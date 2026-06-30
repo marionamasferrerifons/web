@@ -4,7 +4,15 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function CtaSection() {
+export default function CtaSection({
+  title = 'Exploremos juntos las posibilidades que la IA ofrece a tu editorial',
+  subtitle = 'Los contenidos de calidad, el rigor editorial y la excelencia pedagógica son más importantes que nunca en una educación transformada por la IA. Define el rumbo para que tu editorial lidere las aulas del futuro.',
+  subtitleMaxWidth = '453px',
+}: {
+  title?: string;
+  subtitle?: string;
+  subtitleMaxWidth?: string;
+}) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -47,7 +55,7 @@ export default function CtaSection() {
               maxWidth: '718px',
             }}
           >
-            Exploremos juntos las posibilidades que la IA ofrece a tu editorial
+            {title}
           </h2>
           <p
             className="cta-subtitle"
@@ -58,10 +66,10 @@ export default function CtaSection() {
               fontWeight: 300,
               fontVariationSettings: '"opsz" 14',
               color: 'var(--color-blue-100)',
-              maxWidth: '453px',
+              maxWidth: subtitleMaxWidth,
             }}
           >
-            Los contenidos de calidad, el rigor editorial y la excelencia pedagógica son más importantes que nunca en una educación transformada por la IA. Define el rumbo para que tu editorial lidere las aulas del futuro.
+            {subtitle}
           </p>
         </div>
 

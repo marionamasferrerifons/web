@@ -12,7 +12,7 @@ const monoStyle = {
   letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
 }
 
-export default function TestimonialSection() {
+export default function TestimonialSection({ cardColor = 'var(--color-orange-400)' }: { cardColor?: string }) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function TestimonialSection() {
         {/* Orange card */}
         <div
           className="ts-card relative w-full overflow-hidden rounded-[24px] flex items-center"
-          style={{ backgroundColor: 'var(--color-orange-400)' }}
+          style={{ backgroundColor: cardColor }}
         >
           {/* Left decoration — brand shape + logo */}
           <div
