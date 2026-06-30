@@ -1,26 +1,87 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Colores Primary (Blue) */
+  --color-blue-800: #011853;
+  --color-blue-500: #012C97;
+  --color-blue-400: #0542A7;
+  --color-blue-300: #5880C4;
+  --color-blue-200: #B4C6FF;
+  --color-blue-100: #D5E4FB;
+  --color-blue-50:  #F2F4FB;
+
+  /* Color Clickable */
+  --color-orange: #F26949;
+
+  /* Colores Accent (Orange) */
+  --color-orange-200: #E5A27C;
+  --color-orange-400: #EC9A37;
+
+  /* Colores Complement */
+  --color-grey:  #F2F2F2;
+  --color-green: #AFE0D6;
+  --color-white: #FFFFFF;
+
+  /* Fuentes */
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), monospace;
+
+  /* Escala tipográfica — Title */
+  --text-title-xxl: 64px;
+  --text-title-xxl--line-height: 68px;
+
+  --text-title-xl: 56px;
+  --text-title-xl--line-height: 60px;
+
+  --text-title-l: 48px;
+  --text-title-l--line-height: 50px;
+
+  --text-title-m: 40px;
+  --text-title-m--line-height: 44px;
+
+  --text-title-s: 32px;
+  --text-title-s--line-height: 38px;
+
+  /* Escala tipográfica — Body */
+  --text-body-xl: 24px;
+  --text-body-xl--line-height: 32px;
+
+  --text-body-l: 20px;
+  --text-body-l--line-height: 28px;
+
+  --text-body-m: 16px;
+  --text-body-m--line-height: 20px;
+
+  --text-body-accent-mono: 14px;
+  --text-body-accent-mono--line-height: 24px;
+  --text-body-accent-mono--letter-spacing: -0.5px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@media (max-width: 768px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --text-title-xxl: 48px;
+    --text-title-xxl--line-height: 52px;
+
+    --text-title-xl: 48px;
+    --text-title-xl--line-height: 52px;
+
+    --text-title-l: 40px;
+    --text-title-l--line-height: 42px;
+
+    --text-title-m: 32px;
+    --text-title-m--line-height: 36px;
+
+    --text-title-s: 24px;
+    --text-title-s--line-height: 30px;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  color: var(--color-blue-800);
+  background-color: var(--color-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
