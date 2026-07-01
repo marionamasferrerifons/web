@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -8,6 +9,7 @@ type CaseStudy = {
   _id: string
   title: string
   subtitle: string
+  slug: string
   imageCard: {
     asset: { url: string } | null
     alt?: string
@@ -98,8 +100,9 @@ export default function CaseStudiesClient({ caseStudies }: { caseStudies: CaseSt
         {/* Cards */}
         <div className="flex flex-col gap-[16px]">
           {caseStudies.map((item) => (
-            <div
+            <Link
               key={item._id}
+              href={`/casos-de-exito/${item.slug}`}
               className="cs-card bg-white rounded-[16px] p-[20px] md:p-[32px] flex items-center gap-[24px] md:gap-[80px]"
               style={{ minHeight: '98px' }}
             >
@@ -156,7 +159,7 @@ export default function CaseStudiesClient({ caseStudies }: { caseStudies: CaseSt
                   <path d="M13.7523 4.28299L13.1931 4.27026L6.43134 4.27026L6.43134 5.41498L11.8256 5.41419L3.84598 13.3938L4.64148 14.1893L12.6215 6.20928L12.6211 11.6039L13.765 11.6039L13.765 4.84223L13.7523 4.28299Z" fill="white"/>
                 </svg>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

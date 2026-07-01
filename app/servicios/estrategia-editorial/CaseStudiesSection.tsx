@@ -6,6 +6,7 @@ type CaseStudy = {
   _id: string
   title: string
   subtitle: string
+  slug: string
   imageCard: {
     asset: { url: string } | null
     alt?: string
