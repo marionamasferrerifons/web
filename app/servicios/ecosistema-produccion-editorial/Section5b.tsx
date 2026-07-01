@@ -80,7 +80,7 @@ export default function Section5b() {
   return (
     <section
       ref={sectionRef}
-      className="w-full flex flex-col items-center gap-[40px] px-[20px] py-[56px]"
+      className="w-full flex flex-col items-center gap-[40px] xl:gap-[28px] 2xl:gap-[40px] px-[20px] py-[56px]"
       style={{ backgroundColor: 'var(--color-white)' }}
     >
       {/* Header */}
@@ -112,19 +112,6 @@ export default function Section5b() {
           Crea la infraestructura de producción del{' '}
           <span style={{ color: 'var(--color-orange-400)' }}>futuro</span>
         </h2>
-        <p
-          style={{
-            fontFamily: 'var(--font-dm-sans)',
-            fontSize: '16px',
-            lineHeight: '20px',
-            fontWeight: 400,
-            fontVariationSettings: '"opsz" 14',
-            color: 'var(--color-blue-300)',
-            maxWidth: '453px',
-          }}
-        >
-          Construir un ecosistema de trabajo con la IA incorporada significa sentar las bases para el futuro de tu editorial. Crea un entorno de producción inteligente, escalable y duradero.
-        </p>
       </div>
 
       {/* Content */}
@@ -137,7 +124,7 @@ export default function Section5b() {
           {ventajas.map((v, i) => (
             <div
               key={i}
-              className="relative px-[16px] py-[24px]"
+              className="relative px-[16px] py-[24px] xl:py-[16px] 2xl:py-[24px]"
               style={{ borderBottom: '1px solid var(--color-blue-300)' }}
             >
               {/* Orange progress line — scaleX 0→1 from left */}
@@ -201,8 +188,7 @@ export default function Section5b() {
 
         {/* Right: illustration */}
         <div
-          className="w-full lg:w-[661px] shrink-0 rounded-[24px] overflow-hidden"
-          style={{ height: 524 }}
+          className="order-first lg:order-none w-full lg:w-[661px] shrink-0 rounded-[24px] overflow-hidden h-[300px] lg:h-[400px] xl:h-[460px] 2xl:h-[524px]"
         >
           <img
             src="/s5b-ventajas-diagram.png"
