@@ -40,7 +40,54 @@ export const CASE_STUDY_BY_SLUG_QUERY = `
       },
       alt
     },
+    beforeItems[] {
+      text
+    },
+    afterItems[] {
+      text
+    },
+    testimonial-> {
+      quote,
+      authorName,
+      authorRole,
+      avatar {
+        asset-> {
+          _id,
+          url
+        },
+        alt
+      },
+      logo {
+        asset-> {
+          _id,
+          url
+        },
+        alt
+      }
+    },
     imageCard {
+      asset-> {
+        _id,
+        url
+      },
+      alt
+    }
+  }
+`
+
+export const TESTIMONIAL_BY_ID_QUERY = `
+  *[_id == $id][0] {
+    quote,
+    authorName,
+    authorRole,
+    avatar {
+      asset-> {
+        _id,
+        url
+      },
+      alt
+    },
+    logo {
       asset-> {
         _id,
         url

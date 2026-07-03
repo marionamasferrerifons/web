@@ -179,6 +179,63 @@ export const caseStudy = defineType({
         },
       ],
     }),
+    defineField({
+      name: 'beforeItems',
+      title: 'Antes / Después — Antes',
+      description: 'Exactamente 4 puntos. Ej. El equipo editorial dedicaba más de 900 horas anuales a producir materiales periféricos de forma manual.',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'beforeAfterItem',
+          fields: [
+            defineField({
+              name: 'text',
+              title: 'Texto',
+              type: 'array',
+              of: [richTextBlock],
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: { title: 'text.0.children.0.text' },
+          },
+        },
+      ],
+      validation: (rule) => rule.required().length(4),
+    }),
+    defineField({
+      name: 'afterItems',
+      title: 'Antes / Después — Después',
+      description: 'Exactamente 4 puntos. Usa negrita para la frase inicial de cada punto, ej. "Más de 900 horas liberadas al año" en negrita + descripción normal en la misma línea.',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'beforeAfterItem',
+          fields: [
+            defineField({
+              name: 'text',
+              title: 'Texto',
+              type: 'array',
+              of: [richTextBlock],
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: { title: 'text.0.children.0.text' },
+          },
+        },
+      ],
+      validation: (rule) => rule.required().length(4),
+    }),
+    defineField({
+      name: 'testimonial',
+      title: 'Testimonio',
+      description: 'Opcional. Testimonio del cliente vinculado a este caso de éxito.',
+      type: 'reference',
+      to: [{ type: 'testimonial' }],
+    }),
   ],
   preview: {
     select: {
