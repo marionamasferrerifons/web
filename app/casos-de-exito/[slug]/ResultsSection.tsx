@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 type ResultItem = {
   number: string
@@ -18,16 +19,15 @@ export default function ResultsSection({ results }: { results: ResultItem[] }) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     const ctx = gsap.context(() => {
-      gsap.from('.result-tag', { y: -16, opacity: 0, duration: 0.6, ease: 'power3.out' });
-      gsap.from('.result-card', {
-        y: 32,
-        opacity: 0,
-        duration: 0.7,
-        ease: 'power3.out',
-        stagger: 0.12,
-        delay: 0.15,
-      });
+      gsap.timeline({
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
+        defaults: { ease: 'power3.out' },
+      })
+        .from('.result-tag', { y: -16, opacity: 0, duration: 0.6 })
+        .from('.result-card', { y: 32, opacity: 0, duration: 0.7, stagger: 0.12 }, '-=0.15');
     }, sectionRef);
 
     return () => ctx.revert();

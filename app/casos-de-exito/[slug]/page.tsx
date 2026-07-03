@@ -8,6 +8,9 @@ import ChallengeSection from './ChallengeSection'
 import SolutionSection from './SolutionSection'
 import ResultsSection from './ResultsSection'
 import ProcessSection from './ProcessSection'
+import BeforeAfterSection from './BeforeAfterSection'
+import TestimonialSection from '@/app/servicios/estrategia-editorial/TestimonialSection'
+import CtaSection from '@/app/servicios/estrategia-editorial/CtaSection'
 
 type CaseStudy = {
   _id: string
@@ -25,6 +28,15 @@ type CaseStudy = {
   processTitle: string
   processText: PortableTextBlock[]
   processImages: { asset: { url: string } | null; alt?: string }[]
+  beforeItems: { text: PortableTextBlock[] }[]
+  afterItems: { text: PortableTextBlock[] }[]
+  testimonial: {
+    quote: string
+    authorName: string
+    authorRole: string
+    avatar: { asset: { url: string } | null; alt?: string } | null
+    logo: { asset: { url: string } | null; alt?: string } | null
+  } | null
   imageCard: {
     asset: { url: string } | null
     alt?: string
@@ -58,6 +70,25 @@ export default async function CaseStudyPage({
         title={caseStudy.processTitle}
         text={caseStudy.processText}
         images={caseStudy.processImages}
+      />
+      <BeforeAfterSection
+        beforeItems={caseStudy.beforeItems}
+        afterItems={caseStudy.afterItems}
+      />
+      {caseStudy.testimonial?.avatar?.asset?.url && caseStudy.testimonial?.logo?.asset?.url && (
+        <TestimonialSection
+          quote={caseStudy.testimonial.quote}
+          authorName={caseStudy.testimonial.authorName}
+          authorRole={caseStudy.testimonial.authorRole}
+          avatarUrl={caseStudy.testimonial.avatar.asset.url}
+          avatarAlt={caseStudy.testimonial.avatar.alt}
+          logoUrl={caseStudy.testimonial.logo.asset.url}
+          logoAlt={caseStudy.testimonial.logo.alt}
+        />
+      )}
+      <CtaSection
+        title="Exploremos juntos cómo incorporar la IA en tu editorial"
+        subtitle="La IA no se incorpora desde fuera ni de forma experimental. Forma parte del proceso editorial, integrada en el día a día y con criterios claros de calidad."
       />
     </main>
   )

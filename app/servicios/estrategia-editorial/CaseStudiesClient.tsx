@@ -24,7 +24,25 @@ const monoStyle = {
   letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
 }
 
-export default function CaseStudiesClient({ caseStudies }: { caseStudies: CaseStudy[] }) {
+type CaseStudiesClientProps = {
+  caseStudies: CaseStudy[]
+  tag?: string
+  title?: React.ReactNode
+  subtitle?: string
+}
+
+export default function CaseStudiesClient({
+  caseStudies,
+  tag = '[CASOS DE ÉXITO]',
+  title = (
+    <>
+      Explora cómo he{' '}
+      <span style={{ color: 'var(--color-orange-400)' }}>ayudado</span>
+      {' '}a otras editoriales
+    </>
+  ),
+  subtitle = 'Experiencias de editoriales educativas que ya han trabajado conmigo. Descubre cómo hemos colaborado y los resultados que hemos conseguido.',
+}: CaseStudiesClientProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -61,7 +79,7 @@ export default function CaseStudiesClient({ caseStudies }: { caseStudies: CaseSt
         {/* Header */}
         <div className="cs-header flex flex-col gap-[16px]">
           <p className="cs-tag text-blue-300 opacity-65 uppercase" style={monoStyle}>
-            [CASOS DE ÉXITO]
+            {tag}
           </p>
           <div className="flex flex-col gap-[16px] md:flex-row md:items-end md:justify-between">
             <h2
@@ -76,9 +94,7 @@ export default function CaseStudiesClient({ caseStudies }: { caseStudies: CaseSt
                 maxWidth: '689px',
               }}
             >
-              Explora cómo he{' '}
-              <span style={{ color: 'var(--color-orange-400)' }}>ayudado</span>
-              {' '}a otras editoriales
+              {title}
             </h2>
             <p
               className="cs-subtitle"
@@ -92,7 +108,7 @@ export default function CaseStudiesClient({ caseStudies }: { caseStudies: CaseSt
                 maxWidth: '453px',
               }}
             >
-              Experiencias de editoriales educativas que ya han trabajado conmigo. Descubre cómo hemos colaborado y los resultados que hemos conseguido.
+              {subtitle}
             </p>
           </div>
         </div>
@@ -103,12 +119,12 @@ export default function CaseStudiesClient({ caseStudies }: { caseStudies: CaseSt
             <Link
               key={item._id}
               href={`/casos-de-exito/${item.slug}`}
-              className="cs-card bg-white rounded-[16px] p-[20px] md:p-[32px] flex items-center gap-[24px] md:gap-[80px]"
+              className="cs-card relative bg-white rounded-[16px] p-[16px] md:p-[32px] flex flex-col md:flex-row md:items-center gap-[16px] md:gap-[80px]"
               style={{ minHeight: '98px' }}
             >
               {/* Image thumbnail */}
               <div
-                className="shrink-0 rounded-[10px] overflow-hidden w-[80px] h-[60px] md:w-[156px] md:h-[98px]"
+                className="shrink-0 rounded-[16px] md:rounded-[10px] overflow-hidden w-full h-[140px] md:w-[156px] md:h-[98px]"
                 style={{ backgroundColor: 'var(--color-green)' }}
               >
                 {item.imageCard?.asset?.url && (
@@ -121,13 +137,13 @@ export default function CaseStudiesClient({ caseStudies }: { caseStudies: CaseSt
               </div>
 
               {/* Text */}
-              <div className="flex flex-1 flex-col gap-[8px] md:flex-row md:gap-[24px] md:items-start">
+              <div className="flex flex-col gap-[8px] pr-[48px] md:flex-1 md:flex-row md:gap-[24px] md:items-start md:pr-0">
                 <p
                   className="flex-1"
                   style={{
                     fontFamily: 'var(--font-dm-sans)',
                     fontSize: 'var(--text-body-xl)',
-                    lineHeight: 'var(--text-body-xl--line-height)',
+                    lineHeight: '30px',
                     fontWeight: 300,
                     fontVariationSettings: '"opsz" 14',
                     color: 'var(--color-blue-500)',
@@ -152,7 +168,7 @@ export default function CaseStudiesClient({ caseStudies }: { caseStudies: CaseSt
 
               {/* Arrow button */}
               <div
-                className="shrink-0 flex items-center justify-center rounded-full"
+                className="absolute right-[16px] bottom-[16px] md:static shrink-0 flex items-center justify-center rounded-full"
                 style={{ width: '32px', height: '32px', backgroundColor: 'var(--color-orange)' }}
               >
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

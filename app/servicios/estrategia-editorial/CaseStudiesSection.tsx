@@ -13,10 +13,16 @@ type CaseStudy = {
   } | null
 }
 
-export default async function CaseStudiesSection() {
+type CaseStudiesSectionProps = {
+  tag?: string
+  title?: React.ReactNode
+  subtitle?: string
+}
+
+export default async function CaseStudiesSection({ tag, title, subtitle }: CaseStudiesSectionProps = {}) {
   const caseStudies: CaseStudy[] = await client.fetch(CASE_STUDIES_QUERY)
 
   if (caseStudies.length === 0) return null
 
-  return <CaseStudiesClient caseStudies={caseStudies} />
+  return <CaseStudiesClient caseStudies={caseStudies} tag={tag} title={title} subtitle={subtitle} />
 }

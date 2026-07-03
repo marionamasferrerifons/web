@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { PortableText, type PortableTextBlock, type PortableTextComponents } from '@portabletext/react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const bodyComponents: PortableTextComponents = {
   block: {
@@ -31,15 +32,13 @@ export default function ProcessSection({ title, text, images }: ProcessSectionPr
   const hasImages = images && images.length > 0;
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     const ctx = gsap.context(() => {
-      gsap.from('.process-content > *', {
-        y: 32,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        stagger: 0.15,
-        delay: 0.2,
-      });
+      gsap.timeline({
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
+        defaults: { ease: 'power3.out' },
+      }).from('.process-content > *', { y: 32, opacity: 0, duration: 0.8, stagger: 0.15 });
     }, sectionRef);
 
     return () => ctx.revert();
