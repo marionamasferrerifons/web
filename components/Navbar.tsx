@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const monoStyle = {
   fontFamily: 'var(--font-dm-mono)',
   fontSize: '14px',
@@ -25,9 +27,13 @@ export default function Navbar() {
           className="absolute left-1/2 -translate-x-1/2 flex gap-[24px] items-center"
           aria-label="Navegación principal"
         >
-          <a href="#" className="text-white whitespace-nowrap" style={monoStyle}>
+          <Link href="/enfoque" className="text-white whitespace-nowrap" style={monoStyle}>
             Enfoque
-          </a>
+          </Link>
+
+          <Link href="/sobre-mi" className="text-white whitespace-nowrap" style={monoStyle}>
+            Sobre mí
+          </Link>
 
           <div className="relative flex items-center gap-[4px]">
             <a href="#" className="text-white whitespace-nowrap uppercase" style={monoStyle}>
