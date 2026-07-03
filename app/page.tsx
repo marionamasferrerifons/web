@@ -1,65 +1,62 @@
-import Image from "next/image";
+import HeroSection from './home/HeroSection'
+import LogosSection from './home/LogosSection'
+import ChallengesSection from './home/ChallengesSection'
+import ProblemSection from './home/ProblemSection'
+import CriterioSection from './home/CriterioSection'
+import PracticeSection from './home/PracticeSection'
+import ServicesSection from './home/ServicesSection'
+import CaseStudiesSection from './servicios/estrategia-editorial/CaseStudiesSection'
+import TestimonialSection from './servicios/estrategia-editorial/TestimonialSection'
+import CtaSection from './servicios/estrategia-editorial/CtaSection'
+import { client } from '@/sanity/client'
+import { TESTIMONIAL_BY_ID_QUERY } from '@/sanity/queries'
 
-export default function Home() {
+export default async function Home() {
+  const testimonial = await client.fetch(TESTIMONIAL_BY_ID_QUERY, { id: 'testimonial-edebe' })
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    <main>
+      <HeroSection />
+      <LogosSection />
+      <ChallengesSection />
+      <ProblemSection />
+      <CriterioSection />
+      <PracticeSection
+        testimonial={{
+          quote: testimonial.quote,
+          authorName: testimonial.authorName,
+          authorRole: testimonial.authorRole,
+          avatarUrl: testimonial.avatar.asset.url,
+          avatarAlt: testimonial.avatar.alt,
+          logoUrl: testimonial.logo.asset.url,
+          logoAlt: testimonial.logo.alt,
+        }}
+      />
+      <ServicesSection />
+      <CaseStudiesSection
+        tag="[PROYECTOS]"
+        title={
+          <>
+            Cómo se aplica en proyectos{' '}
+            <span style={{ color: 'var(--color-orange-400)' }}>reales</span>
+          </>
+        }
+        subtitle="Lorem ipsum dolor sit amet consectetur. Eget elit consectetur bibendum placerat aliquam dictum. Tincidunt eget tempus tortor congue diam turpis. Sit fusce tempor."
+      />
+      <TestimonialSection
+        cardColor="var(--color-green)"
+        quote={testimonial.quote}
+        authorName={testimonial.authorName}
+        authorRole={testimonial.authorRole}
+        avatarUrl={testimonial.avatar.asset.url}
+        avatarAlt={testimonial.avatar.alt}
+        logoUrl={testimonial.logo.asset.url}
+        logoAlt={testimonial.logo.alt}
+      />
+      <CtaSection
+        title="Exploremos juntos cómo incorporar la IA en tu editorial"
+        subtitle="La IA no se incorpora desde fuera ni de forma experimental. Forma parte del proceso editorial, integrada en el día a día y con criterios claros de calidad."
+      />
+    </main>
+  )
 }
