@@ -3,10 +3,12 @@ import CaseStudiesSection from './CaseStudiesSection'
 import TestimonialSection from './TestimonialSection'
 import CtaSection from './CtaSection'
 import { client } from '@/sanity/client'
-import { TESTIMONIAL_BY_ID_QUERY } from '@/sanity/queries'
+import { TESTIMONIAL_BY_PLACEMENT_QUERY } from '@/sanity/queries'
 
 export default async function EstrategiaEditorialPage() {
-  const testimonial = await client.fetch(TESTIMONIAL_BY_ID_QUERY, { id: 'testimonial-edebe' })
+  const testimonial = await client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, {
+    placement: 'estrategia-editorial',
+  })
 
   return (
     <main>

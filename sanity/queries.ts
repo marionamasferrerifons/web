@@ -75,8 +75,25 @@ export const CASE_STUDY_BY_SLUG_QUERY = `
   }
 `
 
-export const TESTIMONIAL_BY_ID_QUERY = `
-  *[_id == $id][0] {
+export const EDITORIAL_PROJECTS_QUERY = `
+  *[_type == "editorialProject"] | order(order asc) {
+    _id,
+    title,
+    publisher,
+    grade,
+    year,
+    image {
+      asset-> {
+        _id,
+        url
+      },
+      alt
+    }
+  }
+`
+
+export const TESTIMONIAL_BY_PLACEMENT_QUERY = `
+  *[_type == "testimonial" && $placement in placement][0] {
     quote,
     authorName,
     authorRole,

@@ -9,22 +9,19 @@ const GAP = 16;
 const ITEM_WIDTH = CARD_WIDTH + GAP;
 const SCROLL_BY = ITEM_WIDTH * 3;
 
-const projects = [
-  { year: '2024', grade: '2º primaria', publisher: 'Editorial SM', title: 'Cuaderno de Lengua Castellana y Literatura', image: '/project-placeholder.jpg' },
-  { year: '2024', grade: '3º primaria', publisher: 'Editorial SM', title: 'Cuaderno de Matemáticas', image: '/project-placeholder.jpg' },
-  { year: '2023', grade: '1º ESO', publisher: 'Editorial Edebé', title: 'Lengua y Literatura', image: '/project-placeholder.jpg' },
-  { year: '2023', grade: '4º primaria', publisher: 'Editorial Vicens Vives', title: 'Ciencias Naturales', image: '/project-placeholder.jpg' },
-  { year: '2023', grade: '2º ESO', publisher: 'Editorial Santillana', title: 'Geografía e Historia', image: '/project-placeholder.jpg' },
-  { year: '2022', grade: '5º primaria', publisher: 'Editorial Anaya', title: 'Ciencias Sociales', image: '/project-placeholder.jpg' },
-  { year: '2022', grade: '3º ESO', publisher: 'Editorial Edebé', title: 'Biología y Geología', image: '/project-placeholder.jpg' },
-  { year: '2022', grade: '1º primaria', publisher: 'Editorial SM', title: 'Matemáticas Activas', image: '/project-placeholder.jpg' },
-  { year: '2021', grade: '6º primaria', publisher: 'Editorial Vicens Vives', title: 'Lengua Castellana', image: '/project-placeholder.jpg' },
-  { year: '2021', grade: '4º ESO', publisher: 'Editorial Santillana', title: 'Física y Química', image: '/project-placeholder.jpg' },
-  { year: '2021', grade: '2º primaria', publisher: 'Editorial Anaya', title: 'Educación Artística', image: '/project-placeholder.jpg' },
-  { year: '2020', grade: '1º bachillerato', publisher: 'Editorial SM', title: 'Historia de España', image: '/project-placeholder.jpg' },
-];
+export type EditorialProject = {
+  _id: string;
+  year: string;
+  grade: string;
+  publisher: string;
+  title: string;
+  image: {
+    asset: { _id: string; url: string };
+    alt?: string;
+  };
+};
 
-function ProjectCard({ project }: { project: typeof projects[0] }) {
+function ProjectCard({ project }: { project: EditorialProject }) {
   return (
     <div className="group flex flex-col gap-[16px] shrink-0 cursor-pointer" style={{ width: CARD_WIDTH }}>
 
@@ -49,8 +46,8 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
       {/* Image */}
       <div className="relative rounded-[10px] overflow-hidden shrink-0" style={{ width: CARD_WIDTH, height: 380 }}>
         <img
-          src={project.image}
-          alt={project.title}
+          src={project.image.asset.url}
+          alt={project.image.alt || project.title}
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Blue gradient overlay — hidden on hover */}
@@ -114,14 +111,14 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
   );
 }
 
-// Render 3 copies so we can loop seamlessly
-const tripled = [...projects, ...projects, ...projects];
-const SET_WIDTH = projects.length * ITEM_WIDTH;
-
-export default function Section4() {
+export default function EditorialProjectsSection({ projects }: { projects: EditorialProject[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const isScrolling = useRef(false);
+
+  // Render 3 copies so we can loop seamlessly
+  const tripled = [...projects, ...projects, ...projects];
+  const SET_WIDTH = projects.length * ITEM_WIDTH;
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);

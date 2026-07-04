@@ -7,10 +7,10 @@ import TestimonialSection from '@/app/servicios/estrategia-editorial/Testimonial
 import CaseStudiesSection from '@/app/servicios/estrategia-editorial/CaseStudiesSection'
 import CtaSection from '@/app/servicios/estrategia-editorial/CtaSection'
 import { client } from '@/sanity/client'
-import { TESTIMONIAL_BY_ID_QUERY } from '@/sanity/queries'
+import { TESTIMONIAL_BY_PLACEMENT_QUERY } from '@/sanity/queries'
 
 export default async function EnfoquePage() {
-  const testimonial = await client.fetch(TESTIMONIAL_BY_ID_QUERY, { id: 'testimonial-edebe' })
+  const testimonial = await client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'enfoque' })
 
   return (
     <main>

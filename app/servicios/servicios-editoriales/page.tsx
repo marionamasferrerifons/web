@@ -2,13 +2,16 @@ import HeroSection from './HeroSection'
 import Section2 from './Section2'
 import Section3 from './Section3'
 import TestimonialSection from '../estrategia-editorial/TestimonialSection'
-import Section4 from './Section4'
+import EditorialProjectsSection from './EditorialProjectsSection'
 import CtaSection from '../estrategia-editorial/CtaSection'
 import { client } from '@/sanity/client'
-import { TESTIMONIAL_BY_ID_QUERY } from '@/sanity/queries'
+import { TESTIMONIAL_BY_PLACEMENT_QUERY, EDITORIAL_PROJECTS_QUERY } from '@/sanity/queries'
 
 export default async function ServiciosEditorialesPage() {
-  const testimonial = await client.fetch(TESTIMONIAL_BY_ID_QUERY, { id: 'testimonial-edebe' })
+  const [testimonial, projects] = await Promise.all([
+    client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'servicios-editoriales' }),
+    client.fetch(EDITORIAL_PROJECTS_QUERY),
+  ])
 
   return (
     <main>
@@ -25,7 +28,7 @@ export default async function ServiciosEditorialesPage() {
         logoAlt={testimonial.logo.alt}
         cardColor="var(--color-green)"
       />
-      <Section4 />
+      <EditorialProjectsSection projects={projects} />
       <CtaSection
         title="Descubre cómo puedo ayudarte con tus proyectos educativos"
         subtitle="Definamos un plan para que tus próximos materiales salgan a la luz a tiempo, sin imprevistos y con los máximos estándares de calidad."

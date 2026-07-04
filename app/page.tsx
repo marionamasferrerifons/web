@@ -9,10 +9,13 @@ import CaseStudiesSection from './servicios/estrategia-editorial/CaseStudiesSect
 import TestimonialSection from './servicios/estrategia-editorial/TestimonialSection'
 import CtaSection from './servicios/estrategia-editorial/CtaSection'
 import { client } from '@/sanity/client'
-import { TESTIMONIAL_BY_ID_QUERY } from '@/sanity/queries'
+import { TESTIMONIAL_BY_PLACEMENT_QUERY } from '@/sanity/queries'
 
 export default async function Home() {
-  const testimonial = await client.fetch(TESTIMONIAL_BY_ID_QUERY, { id: 'testimonial-edebe' })
+  const [orangeTestimonial, greenTestimonial] = await Promise.all([
+    client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'home-orange' }),
+    client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'home-green' }),
+  ])
 
   return (
     <main>
@@ -23,13 +26,13 @@ export default async function Home() {
       <CriterioSection />
       <PracticeSection
         testimonial={{
-          quote: testimonial.quote,
-          authorName: testimonial.authorName,
-          authorRole: testimonial.authorRole,
-          avatarUrl: testimonial.avatar.asset.url,
-          avatarAlt: testimonial.avatar.alt,
-          logoUrl: testimonial.logo.asset.url,
-          logoAlt: testimonial.logo.alt,
+          quote: orangeTestimonial.quote,
+          authorName: orangeTestimonial.authorName,
+          authorRole: orangeTestimonial.authorRole,
+          avatarUrl: orangeTestimonial.avatar.asset.url,
+          avatarAlt: orangeTestimonial.avatar.alt,
+          logoUrl: orangeTestimonial.logo.asset.url,
+          logoAlt: orangeTestimonial.logo.alt,
         }}
       />
       <ServicesSection />
@@ -45,13 +48,13 @@ export default async function Home() {
       />
       <TestimonialSection
         cardColor="var(--color-green)"
-        quote={testimonial.quote}
-        authorName={testimonial.authorName}
-        authorRole={testimonial.authorRole}
-        avatarUrl={testimonial.avatar.asset.url}
-        avatarAlt={testimonial.avatar.alt}
-        logoUrl={testimonial.logo.asset.url}
-        logoAlt={testimonial.logo.alt}
+        quote={greenTestimonial.quote}
+        authorName={greenTestimonial.authorName}
+        authorRole={greenTestimonial.authorRole}
+        avatarUrl={greenTestimonial.avatar.asset.url}
+        avatarAlt={greenTestimonial.avatar.alt}
+        logoUrl={greenTestimonial.logo.asset.url}
+        logoAlt={greenTestimonial.logo.alt}
       />
       <CtaSection
         title="Exploremos juntos cómo incorporar la IA en tu editorial"
