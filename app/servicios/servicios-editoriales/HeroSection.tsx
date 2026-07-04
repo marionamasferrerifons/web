@@ -24,7 +24,7 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full overflow-hidden flex justify-center pt-[56px] pb-[56px] min-h-[580px] px-[20px] md:px-[40px]"
+      className="relative w-full overflow-hidden flex justify-center pt-[calc(var(--navbar-height)+56px)] pb-[56px] min-h-[580px] px-[20px] md:px-[40px]"
       style={{ backgroundColor: 'var(--color-orange-400)' }}
     >
       {/* Bottom-left blob */}

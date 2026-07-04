@@ -25,7 +25,7 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full overflow-hidden flex flex-col items-center pt-[80px] pb-[56px] min-h-[600px] px-[20px] md:px-[40px]"
+      className="relative w-full overflow-hidden flex flex-col items-center pt-[calc(var(--navbar-height)+80px)] pb-[56px] min-h-[600px] px-[20px] md:px-[40px]"
       style={{ backgroundColor: 'var(--color-orange)' }}
     >
       {/* Top-left vector */}

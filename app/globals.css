@@ -55,6 +55,9 @@
   --text-body-accent-mono: 14px;
   --text-body-accent-mono--line-height: 24px;
   --text-body-accent-mono--letter-spacing: -0.5px;
+
+  /* Layout */
+  --navbar-height: 88px;
 }
 
 @media (max-width: 768px) {

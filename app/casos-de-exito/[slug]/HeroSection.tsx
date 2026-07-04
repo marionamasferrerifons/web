@@ -49,7 +49,7 @@ export default function HeroSection({ title, subtitle, year, duration, client }:
   return (
     <section
       ref={heroRef}
-      className="relative w-full overflow-hidden flex flex-col items-center pt-[56px] pb-[64px] px-[20px] md:px-[40px]"
+      className="relative w-full overflow-hidden flex flex-col items-center pt-[calc(var(--navbar-height)+56px)] pb-[64px] px-[20px] md:px-[40px]"
       style={{ backgroundColor: 'var(--color-blue-500)' }}
     >
       {/* Left blob */}
