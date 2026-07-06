@@ -5,4 +5,5 @@ export default defineCliConfig({
     projectId: 'bbiflrd4',
     dataset: 'production',
   },
+  studioHost: 'mariona-masferrer',
 })
