@@ -32,7 +32,7 @@ export default function HeroSection() {
         alt="Mariona Masferrer"
         className="hero-photo absolute hidden lg:block object-cover"
         style={{
-          top: '36px',
+          top: 'calc(var(--navbar-height) + 36px)',
           right: '0',
           width: '500px',
           height: '279px',
