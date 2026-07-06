@@ -23,7 +23,7 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full overflow-hidden flex justify-center pt-[56px] pb-[56px] px-[20px] md:px-[40px]"
+      className="relative w-full overflow-hidden flex justify-center pt-[calc(var(--navbar-height)+56px)] pb-[56px] px-[20px] md:px-[40px]"
       style={{ backgroundColor: 'var(--color-blue-500)' }}
     >
       {/* Decorative scalloped shape — bottom right, bleeding off the edge */}

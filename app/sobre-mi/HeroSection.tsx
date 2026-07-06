@@ -23,7 +23,7 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full overflow-hidden flex justify-center pt-[56px] pb-[80px] px-[20px] md:px-[40px]"
+      className="relative w-full overflow-hidden flex justify-center pt-[calc(var(--navbar-height)+56px)] pb-[80px] px-[20px] md:px-[40px]"
       style={{ backgroundColor: 'var(--color-blue-500)' }}
     >
       {/* Photo — top right, wave-masked */}
@@ -32,7 +32,7 @@ export default function HeroSection() {
         alt="Mariona Masferrer"
         className="hero-photo absolute hidden lg:block object-cover"
         style={{
-          top: '36px',
+          top: 'calc(var(--navbar-height) + 36px)',
           right: '0',
           width: '500px',
           height: '279px',

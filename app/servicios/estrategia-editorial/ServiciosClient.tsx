@@ -153,7 +153,7 @@ export default function ServiciosClient() {
   return (
     <>
       {/* Hero */}
-      <section ref={heroRef} className="relative w-full overflow-hidden bg-green flex flex-col items-center pt-[80px] pb-[56px] min-h-[660px] px-[20px] md:px-0">
+      <section ref={heroRef} className="relative w-full overflow-hidden bg-green flex flex-col items-center pt-[calc(var(--navbar-height)+80px)] pb-[56px] min-h-[660px] px-[20px] md:px-0">
 
         <img
           src="/hero-vector-right.svg"
