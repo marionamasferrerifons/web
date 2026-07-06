@@ -115,7 +115,7 @@ export default function TestimonialSection({
                 color: 'var(--color-blue-800)',
               }}
             >
-              "{quote}"
+              &quot;{quote}&quot;
             </p>
 
             {/* Author */}
