@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { BOOKING_URL } from '@/lib/constants';
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
@@ -94,7 +95,10 @@ export default function HeroSection() {
               Producción externalizada de materiales educativos con criterio editorial riguroso, mirada pedagógica y eficiencia real gracias a la IA.
             </p>
 
-            <button
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hero-cta group flex items-center gap-4 rounded-full pl-7 pr-3 py-2 transition-colors duration-200 w-fit"
               style={{ backgroundColor: 'var(--color-grey)' }}
             >
@@ -122,7 +126,7 @@ export default function HeroSection() {
                   aria-hidden="true"
                 />
               </span>
-            </button>
+            </a>
           </div>
         </div>
 

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { BOOKING_URL } from '@/lib/constants';
 
 const monoStyle = {
   fontFamily: 'var(--font-dm-mono)',
@@ -125,7 +126,10 @@ export default function MobileMenu({
               </div>
             </div>
 
-            <button
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex items-center justify-center gap-[8px] bg-grey rounded-full px-[20px] cursor-pointer"
               style={{ height: '44px' }}
             >
@@ -135,7 +139,7 @@ export default function MobileMenu({
               <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[24px]">
                 <img src="/hero-arrow.svg" alt="" className="size-[14px]" aria-hidden="true" />
               </span>
-            </button>
+            </a>
           </div>
         </div>
       )}

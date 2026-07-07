@@ -92,6 +92,20 @@ export const EDITORIAL_PROJECTS_QUERY = `
   }
 `
 
+export const INDUSTRY_LOGOS_QUERY = `
+  *[_type == "industryLogo"] | order(order asc) {
+    _id,
+    name,
+    logo {
+      asset-> {
+        _id,
+        url
+      },
+      alt
+    }
+  }
+`
+
 export const TESTIMONIAL_BY_PLACEMENT_QUERY = `
   *[_type == "testimonial" && $placement in placement][0] {
     quote,

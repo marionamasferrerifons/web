@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { BOOKING_URL } from '@/lib/constants';
 import { client } from '@/sanity/client';
 import { CASE_STUDIES_QUERY } from '@/sanity/queries';
 import NavDropdown from './NavDropdown';
@@ -84,7 +85,10 @@ export default async function Navbar() {
           </div>
 
           {/* CTA button */}
-          <button
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex items-center gap-[4px] bg-grey hover:bg-white rounded-full pl-[11px] pr-[4px] cursor-pointer transition-colors duration-200"
             style={{ height: '28px' }}
           >
@@ -97,7 +101,7 @@ export default async function Navbar() {
             <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[19px]">
               <img src="/hero-arrow.svg" alt="" className="size-[12px] transition-transform duration-200 group-hover:rotate-45" aria-hidden="true" />
             </span>
-          </button>
+          </a>
 
         </div>
 

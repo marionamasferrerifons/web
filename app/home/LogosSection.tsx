@@ -4,15 +4,12 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const LOGOS = [
-  { src: '/home-logo-1.png', height: '52px', opacity: 0.4 },
-  { src: '/home-logo-2.png', height: '32px', opacity: 0.4 },
-  { src: '/home-logo-3.png', height: '28px', opacity: 0.3 },
-  { src: '/home-logo-4.png', height: '52px', opacity: 0.4 },
-  { src: '/home-logo-5.png', height: '24px', opacity: 0.4 },
-];
+export type Logo = {
+  src: string;
+  alt: string;
+};
 
-export default function LogosSection() {
+export default function LogosSection({ logos }: { logos: Logo[] }) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -50,15 +47,14 @@ export default function LogosSection() {
         [EDITORIALES PARA LAS QUE HE TRABAJADO]
       </p>
 
-      <div className="flex flex-wrap items-center justify-center gap-x-[48px] gap-y-[24px]" style={{ mixBlendMode: 'luminosity' }}>
-        {LOGOS.map((logo, i) => (
+      <div className="flex flex-wrap items-center justify-center gap-x-[32px] gap-y-[24px]" style={{ mixBlendMode: 'luminosity' }}>
+        {logos.map((logo, i) => (
           <img
             key={i}
             src={logo.src}
-            alt=""
-            className="logos-item w-auto"
-            style={{ height: logo.height, opacity: logo.opacity }}
-            aria-hidden="true"
+            alt={logo.alt}
+            className="logos-item w-auto h-[60px]"
+            style={{ opacity: 0.4 }}
           />
         ))}
       </div>

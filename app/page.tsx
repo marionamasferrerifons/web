@@ -9,18 +9,24 @@ import CaseStudiesSection from './servicios/estrategia-editorial/CaseStudiesSect
 import TestimonialSection from './servicios/estrategia-editorial/TestimonialSection'
 import CtaSection from './servicios/estrategia-editorial/CtaSection'
 import { client } from '@/sanity/client'
-import { TESTIMONIAL_BY_PLACEMENT_QUERY } from '@/sanity/queries'
+import { TESTIMONIAL_BY_PLACEMENT_QUERY, INDUSTRY_LOGOS_QUERY } from '@/sanity/queries'
 
 export default async function Home() {
-  const [orangeTestimonial, greenTestimonial] = await Promise.all([
+  const [orangeTestimonial, greenTestimonial, industryLogos] = await Promise.all([
     client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'home-orange' }),
     client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'home-green' }),
+    client.fetch(INDUSTRY_LOGOS_QUERY),
   ])
 
   return (
     <main>
       <HeroSection />
-      <LogosSection />
+      <LogosSection
+        logos={industryLogos.map((item: { logo: { asset: { url: string }; alt?: string }; name: string }) => ({
+          src: item.logo.asset.url,
+          alt: item.logo.alt || item.name,
+        }))}
+      />
       <ChallengesSection />
       <ProblemSection />
       <CriterioSection />

@@ -1,3 +1,5 @@
+import { BOOKING_URL } from '@/lib/constants';
+
 export default function Section7() {
   return (
     <section
@@ -37,7 +39,10 @@ export default function Section7() {
           </p>
         </div>
 
-        <button
+        <a
+          href={BOOKING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="group flex items-center gap-[16px] pl-[28px] pr-[12px] py-[8px] rounded-full overflow-hidden"
           style={{ backgroundColor: 'var(--color-white)' }}
         >
@@ -65,7 +70,7 @@ export default function Section7() {
               aria-hidden="true"
             />
           </span>
-        </button>
+        </a>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { BOOKING_URL } from '@/lib/constants';
 
 const card1Workshops = [
   {
@@ -216,7 +217,12 @@ export default function ServiciosClient() {
             >
               En un sector en plena transformación, diseñamos juntos una estrategia que integre la IA con criterio editorial y pedagógico, generando una ventaja competitiva sostenible.
             </p>
-            <button className="hero-cta group flex items-center gap-4 bg-grey hover:bg-white rounded-full pl-7 pr-3 py-2 transition-colors duration-200">
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-cta group flex items-center gap-4 bg-grey hover:bg-white rounded-full pl-7 pr-3 py-2 transition-colors duration-200"
+            >
               <span
                 className="text-orange uppercase"
                 style={{
@@ -232,7 +238,7 @@ export default function ServiciosClient() {
               <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[27px]">
                 <img src="/hero-arrow.svg" alt="" className="size-4 transition-transform duration-200 group-hover:rotate-45" aria-hidden="true" />
               </span>
-            </button>
+            </a>
           </div>
 
         </div>

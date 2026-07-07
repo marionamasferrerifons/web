@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { BOOKING_URL } from '@/lib/constants';
 
 export default function CtaSection({
   title = 'Exploremos juntos las posibilidades que la IA ofrece a tu editorial',
@@ -73,7 +74,10 @@ export default function CtaSection({
           </p>
         </div>
 
-        <button
+        <a
+          href={BOOKING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="cta-button group flex items-center gap-[16px] bg-white hover:bg-grey rounded-full cursor-pointer transition-colors duration-200"
           style={{ paddingLeft: '28px', paddingRight: '12px', paddingTop: '8px', paddingBottom: '8px' }}
         >
@@ -92,7 +96,7 @@ export default function CtaSection({
           <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[27px]">
             <img src="/hero-arrow.svg" alt="" className="size-4 transition-transform duration-200 group-hover:rotate-45" aria-hidden="true" />
           </span>
-        </button>
+        </a>
 
       </div>
     </section>
