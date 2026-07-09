@@ -62,7 +62,7 @@ export default function HeroSection() {
               color: 'var(--color-blue-50)',
             }}
           >
-            Lorem ipsum dolor sit amet{' '}
+            Hola Lorem ipsum dolor sit amet{' '}
             <span style={{ color: 'var(--color-orange-400)' }}>consectetur</span>
             . Eu imperdiet cursus cras.
           </h1>
