@@ -1,4 +1,4 @@
-import HeroSection from './HeroSection'
+import HeroSection from './SobreMiHeroSection'
 import ValuesSection from './ValuesSection'
 import HistorySection from './HistorySection'
 import QuoteSection from './QuoteSection'

@@ -1,11 +1,11 @@
-import HeroSection from './HeroSection'
-import Section2 from './Section2'
-import Section3 from './Section3'
-import Section4 from './Section4'
-import Section5 from './Section5'
-import Section5b from './Section5b'
-import Section6 from './Section6'
-import Section7 from './Section7'
+import HeroSection from './EcosistemaHeroSection'
+import Section2 from './ProblemPillsSection'
+import Section3 from './ThreeLayersConvergeSection'
+import Section4 from './SystemStepsSection'
+import Section5 from './ImpactStatsSection'
+import Section5b from './AdvantagesSection'
+import Section6 from './FeaturedTestimonialSection'
+import Section7 from './ClosingCtaSection'
 
 export default function EcosistemaProduccionEditorialPage() {
   return (
