@@ -67,7 +67,7 @@ export default function HeroSection() {
               color: 'var(--color-blue-100)',
             }}
           >
-            [ABOUT ME]
+            [SOBRE MI]
           </p>
           <h1
             className="hero-title"
