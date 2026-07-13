@@ -83,8 +83,8 @@ const values: ValueCardProps[] = [
   },
   {
     icon: '/about-icon-valor.svg',
-    title: 'VALOR',
-    description: 'Lorem ipsum dolor sit amet consectetur. Gravida est sit vitae ipsum est. Facilisi justo auctor sagittis suspendisse arcu aenean tellus.',
+    title: 'Cercanía  ',
+    description: 'Escucho y co-creo con quienes trabajo, porque las mejores soluciones nacen de la suma de perspectivas, del diálogo y de la confianza.',
     height: 350,
   },
 ];
@@ -96,7 +96,7 @@ const columns = [
 ];
 
 export default function ValuesSection({
-  title = 'Lorem ipsum dolor sit amet consectetur. Metus tincidunt velit leo imperdiet malesuada',
+  title = 'Trabajo siempre guiada por valores de integridad, rigor y compromiso.',
 }: {
   title?: string
 }) {
