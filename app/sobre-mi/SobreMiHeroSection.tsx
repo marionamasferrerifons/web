@@ -82,7 +82,7 @@ export default function HeroSection() {
           >
             Soy Mariona y ayudo a{' '}
             <span style={{ color: 'var(--color-orange-400)' }}>editoriales educativas</span>
-            {' '}a diseñar su camino en la era de la IA.
+            {' '}a trazar su camino en la era de la IA.
           </h1>
         </div>
 
