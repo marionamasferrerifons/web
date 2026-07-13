@@ -82,7 +82,7 @@ export default function HeroSection() {
           >
             Soy Mariona y ayudo a{' '}
             <span style={{ color: 'var(--color-orange-400)' }}>editoriales educativas</span>
-            {' '}a liderar el sistema educativo que necesitamos como sociedad
+            {' '}a diseñar su camino en la era de la IA.
           </h1>
         </div>
 
@@ -99,7 +99,7 @@ export default function HeroSection() {
               maxWidth: '570px',
             }}
           >
-            Llevo más de diez años trabajando en el cruce entre edición, educación e innovación tecnológica. He sido editora, docente y ahora acompaño a editoriales que quieren evolucionar con criterio en un sector en plena transformación
+            Llevo más de diez años trabajando en el cruce entre edición, educación e innovación tecnológica. He sido editora, docente y ahora acompaño a editoriales que quieren convertir la IA en ventaja competitiva sin renunciar al rigor editorial y pedagógico.
           </p>
         </div>
       </div>
