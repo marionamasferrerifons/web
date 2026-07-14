@@ -113,7 +113,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
             </div>
           </div>
 
-          <div className="contents lg:flex lg:justify-end lg:gap-[40px]">
+          <div className="contents lg:grid lg:grid-cols-3 lg:gap-[40px] lg:justify-self-end">
           <div className="footer-column flex flex-col gap-[16px]">
             <p className="uppercase" style={columnHeaderStyle}>Servicios</p>
             <div className="flex flex-col gap-[12px]">
