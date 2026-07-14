@@ -101,7 +101,7 @@ export default function ServicesSection() {
         </p>
       </div>
 
-      <div className="w-full flex flex-col gap-[24px]" style={{ maxWidth: '1163px' }}>
+      <div className="w-full flex flex-col gap-[40px]" style={{ maxWidth: '1163px' }}>
         {CARDS.map((card) => (
           <Link
             key={card.href}
