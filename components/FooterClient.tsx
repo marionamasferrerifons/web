@@ -71,7 +71,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
         style={{ maxWidth: '1440px', margin: '0 auto' }}
       >
         {/* Columns */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-[40px]">
+        <div className="grid grid-cols-2 lg:grid-cols-[auto_1fr] gap-[40px]">
           <div className="footer-column flex flex-col gap-[16px]">
             <img
               src="/logo.svg"
@@ -113,6 +113,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
             </div>
           </div>
 
+          <div className="contents lg:flex lg:justify-end lg:gap-[40px]">
           <div className="footer-column flex flex-col gap-[16px]">
             <p className="uppercase" style={columnHeaderStyle}>Servicios</p>
             <div className="flex flex-col gap-[12px]">
@@ -171,6 +172,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
                 LinkedIn ↗
               </a>
             </div>
+          </div>
           </div>
         </div>
 
