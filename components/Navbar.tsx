@@ -95,17 +95,31 @@ export default async function Navbar() {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-[4px] bg-grey hover:bg-white rounded-full pl-[11px] pr-[4px] cursor-pointer transition-colors duration-200"
-            style={{ height: '28px' }}
+            className="group flex items-center gap-[8px] bg-grey hover:bg-orange rounded-full pl-[20px] pr-[6px] cursor-pointer transition-colors duration-200"
+            style={{ height: '40px' }}
           >
             <span
-              className="text-orange whitespace-nowrap"
-              style={{ ...monoStyle, fontSize: '10px' }}
+              className="whitespace-nowrap text-orange group-hover:text-white transition-colors duration-200"
+              style={{ ...monoStyle, fontSize: '13px' }}
             >
               RESERVAR UNA LLAMADA
             </span>
-            <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[19px]">
-              <img src="/hero-arrow.svg" alt="" className="size-[12px] transition-transform duration-200 group-hover:rotate-45" aria-hidden="true" />
+            <span
+              className="relative flex items-center justify-center rounded-full shrink-0 bg-orange group-hover:bg-white transition-colors duration-200"
+              style={{ width: '28px', height: '28px' }}
+            >
+              <img
+                src="/arrow-white.svg"
+                alt=""
+                className="absolute size-[16px] transition-all duration-200 group-hover:rotate-45 group-hover:opacity-0"
+                aria-hidden="true"
+              />
+              <img
+                src="/arrow-orange.svg"
+                alt=""
+                className="absolute size-[16px] opacity-0 transition-all duration-200 group-hover:rotate-45 group-hover:opacity-100"
+                aria-hidden="true"
+              />
             </span>
           </a>
 
