@@ -119,19 +119,21 @@ export default function CaseStudiesClient({
             <Link
               key={item._id}
               href={`/casos-de-exito/${item.slug}`}
-              className="cs-card group relative bg-white rounded-[16px] p-[16px] md:p-[32px] flex flex-col md:flex-row md:items-center gap-[16px] md:gap-[80px]"
+              className="cs-card group relative bg-white rounded-[16px] p-[16px] md:p-[32px] flex flex-col md:flex-row md:items-center gap-[16px] md:gap-[80px] transition-transform duration-300 hover:scale-[1.02]"
               style={{ minHeight: '98px' }}
             >
               {/* Image thumbnail */}
-              <div
-                className="shrink-0 rounded-[16px] md:rounded-[10px] overflow-hidden w-full h-[140px] md:w-[156px] md:h-[98px]"
-                style={{ backgroundColor: 'var(--color-green)' }}
-              >
-                {item.imageCard?.asset?.url && (
+              <div className="shrink-0 rounded-[16px] md:rounded-[10px] overflow-hidden w-full h-[140px] md:w-[156px] md:h-[98px]">
+                {item.imageCard?.asset?.url ? (
                   <img
                     src={item.imageCard.asset.url}
                     alt={item.imageCard.alt ?? item.title}
-                    className="size-full object-cover"
+                    className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                ) : (
+                  <div
+                    className="size-full transition-transform duration-300 group-hover:scale-105"
+                    style={{ backgroundColor: 'var(--color-green)' }}
                   />
                 )}
               </div>
