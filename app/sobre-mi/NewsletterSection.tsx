@@ -116,11 +116,11 @@ export default function NewsletterSection() {
         </div>
 
         <button
-          className="newsletter-button group flex items-center gap-[16px] bg-white hover:bg-orange rounded-full cursor-pointer transition-colors duration-[330ms] ease-linear"
+          className="newsletter-button group flex items-center gap-[16px] bg-white hover:bg-grey rounded-full cursor-pointer transition-colors duration-[330ms] ease-linear"
           style={{ paddingLeft: '28px', paddingRight: '12px', paddingTop: '8px', paddingBottom: '8px' }}
         >
           <span
-            className="uppercase text-orange group-hover:text-white transition-colors duration-[330ms] ease-linear"
+            className="uppercase text-orange"
             style={{
               fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
@@ -131,17 +131,11 @@ export default function NewsletterSection() {
           >
             SUSCRIBIRME
           </span>
-          <span className="relative flex items-center justify-center bg-orange group-hover:bg-white rounded-full shrink-0 size-[27px] transition-colors duration-[330ms] ease-linear">
+          <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[27px]">
             <img
               src="/arrow-white.svg"
               alt=""
-              className="absolute size-4 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-0"
-              aria-hidden="true"
-            />
-            <img
-              src="/arrow-orange.svg"
-              alt=""
-              className="absolute size-4 opacity-0 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-100"
+              className="size-4 transition-transform duration-300 ease-out group-hover:rotate-45"
               aria-hidden="true"
             />
           </span>

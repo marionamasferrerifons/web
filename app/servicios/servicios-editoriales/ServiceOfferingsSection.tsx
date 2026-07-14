@@ -90,7 +90,7 @@ export default function Section3() {
   return (
     <section
       ref={sectionRef}
-      className="w-full flex justify-center pt-[140px] pb-[56px] px-[20px] md:px-[40px]"
+      className="w-full flex justify-center pt-[240px] pb-[56px] px-[20px] md:px-[40px]"
       style={{ backgroundColor: 'var(--color-grey)' }}
     >
       <div className="w-full flex flex-col gap-[40px]" style={{ maxWidth: '1400px' }}>

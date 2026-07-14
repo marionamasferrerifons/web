@@ -221,10 +221,10 @@ export default function ServiciosClient() {
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hero-cta group flex items-center gap-4 bg-grey hover:bg-orange rounded-full pl-7 pr-3 py-2 transition-colors duration-[330ms] ease-linear"
+              className="hero-cta group flex items-center gap-4 bg-grey hover:bg-white rounded-full pl-7 pr-3 py-2 transition-colors duration-[330ms] ease-linear"
             >
               <span
-                className="text-orange group-hover:text-white uppercase transition-colors duration-[330ms] ease-linear"
+                className="text-orange uppercase"
                 style={{
                   fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
@@ -235,9 +235,8 @@ export default function ServiciosClient() {
               >
                 RESERVAR UNA LLAMADA
               </span>
-              <span className="relative flex items-center justify-center bg-orange group-hover:bg-white rounded-full shrink-0 size-[27px] transition-colors duration-[330ms] ease-linear">
-                <img src="/arrow-white.svg" alt="" className="absolute size-4 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-0" aria-hidden="true" />
-                <img src="/arrow-orange.svg" alt="" className="absolute size-4 opacity-0 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-100" aria-hidden="true" />
+              <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[27px]">
+                <img src="/arrow-white.svg" alt="" className="size-4 transition-transform duration-300 ease-out group-hover:rotate-45" aria-hidden="true" />
               </span>
             </a>
           </div>

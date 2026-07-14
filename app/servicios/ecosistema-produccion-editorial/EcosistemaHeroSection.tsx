@@ -107,10 +107,10 @@ export default function HeroSection() {
             </p>
 
             <button
-              className="hero-cta group flex items-center gap-4 bg-grey hover:bg-blue-500 rounded-full pl-7 pr-3 py-2 transition-colors duration-[330ms] ease-linear w-fit"
+              className="hero-cta group flex items-center gap-4 bg-grey hover:bg-white rounded-full pl-7 pr-3 py-2 transition-colors duration-[330ms] ease-linear w-fit"
             >
               <span
-                className="uppercase text-orange group-hover:text-white transition-colors duration-[330ms] ease-linear"
+                className="uppercase text-orange"
                 style={{
                   fontFamily: 'var(--font-dm-mono)',
                   fontWeight: 400,
@@ -121,17 +121,11 @@ export default function HeroSection() {
               >
                 EXPLORAR TU PROYECTO
               </span>
-              <span className="relative flex items-center justify-center bg-orange group-hover:bg-white rounded-full shrink-0 size-[27px] transition-colors duration-[330ms] ease-linear">
+              <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[27px]">
                 <img
                   src="/arrow-white.svg"
                   alt=""
-                  className="absolute size-4 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-0"
-                  aria-hidden="true"
-                />
-                <img
-                  src="/arrow-orange.svg"
-                  alt=""
-                  className="absolute size-4 opacity-0 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-100"
+                  className="size-4 transition-transform duration-300 ease-out group-hover:rotate-45"
                   aria-hidden="true"
                 />
               </span>
