@@ -36,7 +36,7 @@ export default function NavDropdown({ label, items, activePrefix }: { label: str
     >
       <button
         type="button"
-        className="relative text-white whitespace-nowrap uppercase cursor-pointer"
+        className="relative text-white hover:text-orange whitespace-nowrap uppercase cursor-pointer transition-colors duration-200"
         style={monoStyle}
         aria-expanded={open}
         onClick={() => setOpen((prev) => !prev)}

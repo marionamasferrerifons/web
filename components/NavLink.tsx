@@ -15,7 +15,11 @@ export default function NavLink({ href, children }: { href: string; children: Re
   const isActive = pathname === href;
 
   return (
-    <Link href={href} className="relative text-white whitespace-nowrap uppercase" style={monoStyle}>
+    <Link
+      href={href}
+      className="relative text-white hover:text-orange whitespace-nowrap uppercase transition-colors duration-200"
+      style={monoStyle}
+    >
       {children}
       {isActive && (
         <span
