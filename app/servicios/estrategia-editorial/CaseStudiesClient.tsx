@@ -119,7 +119,7 @@ export default function CaseStudiesClient({
             <Link
               key={item._id}
               href={`/casos-de-exito/${item.slug}`}
-              className="cs-card relative bg-white rounded-[16px] p-[16px] md:p-[32px] flex flex-col md:flex-row md:items-center gap-[16px] md:gap-[80px]"
+              className="cs-card group relative bg-white rounded-[16px] p-[16px] md:p-[32px] flex flex-col md:flex-row md:items-center gap-[16px] md:gap-[80px]"
               style={{ minHeight: '98px' }}
             >
               {/* Image thumbnail */}
@@ -168,12 +168,24 @@ export default function CaseStudiesClient({
 
               {/* Arrow button */}
               <div
-                className="absolute right-[16px] bottom-[16px] md:static shrink-0 flex items-center justify-center rounded-full"
-                style={{ width: '32px', height: '32px', backgroundColor: 'var(--color-orange)' }}
+                className="absolute right-[16px] bottom-[16px] md:static shrink-0"
+                style={{ width: '32px', height: '32px' }}
               >
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M13.7523 4.28299L13.1931 4.27026L6.43134 4.27026L6.43134 5.41498L11.8256 5.41419L3.84598 13.3938L4.64148 14.1893L12.6215 6.20928L12.6211 11.6039L13.765 11.6039L13.765 4.84223L13.7523 4.28299Z" fill="white"/>
-                </svg>
+                <div className="relative flex items-center justify-center rounded-full bg-grey size-full">
+                  <span className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-200 group-hover:opacity-100" style={{ backgroundColor: 'var(--color-orange)' }} />
+                  <img
+                    src="/arrow-orange.svg"
+                    alt=""
+                    className="relative size-[16px] transition-all duration-200 group-hover:rotate-45 group-hover:opacity-0"
+                    aria-hidden="true"
+                  />
+                  <img
+                    src="/arrow-white.svg"
+                    alt=""
+                    className="absolute size-[16px] opacity-0 transition-all duration-200 group-hover:rotate-45 group-hover:opacity-100"
+                    aria-hidden="true"
+                  />
+                </div>
               </div>
             </Link>
           ))}
