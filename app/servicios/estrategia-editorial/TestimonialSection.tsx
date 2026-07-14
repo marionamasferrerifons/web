@@ -18,7 +18,7 @@ type TestimonialSectionProps = {
   authorRole: string
   avatarUrl: string
   avatarAlt?: string
-  logoUrl: string
+  logoUrl?: string
   logoAlt?: string
   cardColor?: string
   hideHeader?: boolean
@@ -87,19 +87,21 @@ export default function TestimonialSection({
                 fillOpacity="0.2"
               />
             </svg>
-            <img
-              src={logoUrl}
-              alt={logoAlt ?? ''}
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '150px',
-                height: '60.48px',
-                objectFit: 'contain',
-              }}
-            />
+            {logoUrl && (
+              <img
+                src={logoUrl}
+                alt={logoAlt ?? ''}
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: '150px',
+                  height: '60.48px',
+                  objectFit: 'contain',
+                }}
+              />
+            )}
           </div>
 
           {/* Quote content */}

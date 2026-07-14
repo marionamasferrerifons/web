@@ -11,7 +11,7 @@ type Testimonial = {
   authorRole: string
   avatarUrl: string
   avatarAlt?: string
-  logoUrl: string
+  logoUrl?: string
   logoAlt?: string
 }
 

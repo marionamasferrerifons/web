@@ -37,8 +37,8 @@ export default async function Home() {
           authorRole: orangeTestimonial.authorRole,
           avatarUrl: orangeTestimonial.avatar.asset.url,
           avatarAlt: orangeTestimonial.avatar.alt,
-          logoUrl: orangeTestimonial.logo.asset.url,
-          logoAlt: orangeTestimonial.logo.alt,
+          logoUrl: orangeTestimonial.logo?.asset?.url,
+          logoAlt: orangeTestimonial.logo?.alt,
         }}
       />
       <ServicesSection />
@@ -59,8 +59,8 @@ export default async function Home() {
         authorRole={greenTestimonial.authorRole}
         avatarUrl={greenTestimonial.avatar.asset.url}
         avatarAlt={greenTestimonial.avatar.alt}
-        logoUrl={greenTestimonial.logo.asset.url}
-        logoAlt={greenTestimonial.logo.alt}
+        logoUrl={greenTestimonial.logo?.asset?.url}
+        logoAlt={greenTestimonial.logo?.alt}
       />
       <CtaSection
         title="Exploremos juntos cómo incorporar la IA en tu editorial"
