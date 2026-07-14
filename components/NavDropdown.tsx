@@ -69,14 +69,14 @@ export default function NavDropdown({ label, items, activePrefix }: { label: str
           style={{ top: '100%', paddingTop: '16px', minWidth: '260px' }}
         >
           <div
-            className="flex flex-col rounded-[16px] bg-blue-500 overflow-hidden"
+            className="flex flex-col rounded-[16px] bg-grey overflow-hidden"
             style={{ boxShadow: '0 12px 32px rgba(1, 44, 151, 0.35)' }}
           >
             {items.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-white normal-case whitespace-nowrap px-[20px] py-[12px] hover:bg-blue-400 transition-colors duration-150"
+                className="text-blue-800 normal-case whitespace-nowrap px-[20px] py-[12px] hover:bg-white transition-colors duration-150"
                 style={sansStyle}
               >
                 {item.label}

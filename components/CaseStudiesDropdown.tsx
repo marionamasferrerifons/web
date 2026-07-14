@@ -64,16 +64,16 @@ export default function CaseStudiesDropdown({ items }: { items: CaseStudyItem[] 
           style={{ top: '100%', paddingTop: '16px', width: '440px' }}
         >
           <div
-            className="flex flex-col rounded-[20px] bg-blue-500 p-[8px]"
+            className="flex flex-col rounded-[20px] bg-grey p-[8px]"
             style={{ boxShadow: '0 20px 40px rgba(1, 44, 151, 0.4)' }}
           >
             {items.map((item, i) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="group/card flex items-center gap-[12px] rounded-[14px] px-[12px] py-[10px] hover:bg-blue-400 transition-colors duration-150"
+                className="group/card flex items-center gap-[12px] rounded-[14px] px-[12px] py-[10px] hover:bg-white transition-colors duration-150"
                 style={{
-                  borderTop: i > 0 ? '1px solid rgba(242, 242, 242, 0.1)' : 'none',
+                  borderTop: i > 0 ? '1px solid rgba(1, 24, 83, 0.08)' : 'none',
                 }}
               >
                 {item.imageUrl ? (
@@ -92,7 +92,7 @@ export default function CaseStudiesDropdown({ items }: { items: CaseStudyItem[] 
 
                 <div className="flex flex-col min-w-0">
                   <p
-                    className="text-white"
+                    className="text-blue-800"
                     style={{
                       fontFamily: 'var(--font-dm-sans)',
                       fontSize: '13px',
