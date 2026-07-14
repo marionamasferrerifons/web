@@ -71,7 +71,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
         style={{ maxWidth: '1440px', margin: '0 auto' }}
       >
         {/* Columns */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-[40px]">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-[40px]">
           <div className="footer-column flex flex-col gap-[16px]">
             <img
               src="/logo.svg"
@@ -139,6 +139,26 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
                 style={linkStyle}
               >
                 LinkedIn ↗
+              </a>
+            </div>
+          </div>
+
+          <div className="footer-column flex flex-col gap-[16px]">
+            <p className="uppercase" style={columnHeaderStyle}>Contacto</p>
+            <div className="flex flex-col gap-[12px]">
+              <a
+                href="mailto:mariona@masferrerifons.com"
+                className="text-white hover:text-orange-400 transition-colors duration-200 w-fit"
+                style={linkStyle}
+              >
+                mariona@masferrerifons.com
+              </a>
+              <a
+                href="tel:+34622803203"
+                className="text-white hover:text-orange-400 transition-colors duration-200 w-fit"
+                style={linkStyle}
+              >
+                (+34) 622 80 32 03
               </a>
             </div>
           </div>
