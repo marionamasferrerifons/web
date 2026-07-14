@@ -71,7 +71,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
         style={{ maxWidth: '1440px', margin: '0 auto' }}
       >
         {/* Columns */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-[40px]">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-[40px]">
           <div className="footer-column flex flex-col gap-[16px]">
             <img
               src="/logo.svg"
@@ -81,6 +81,32 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
             <p style={{ ...linkStyle, fontSize: '14px', color: 'var(--color-blue-100)', maxWidth: '220px' }}>
               Sistemas de producción editorial con IA, con el criterio humano en el centro.
             </p>
+
+            <div style={{ height: '1px', width: '100%', maxWidth: '220px', backgroundColor: 'rgba(242, 242, 242, 0.2)' }} />
+
+            <div className="flex flex-col gap-[12px]">
+              <a
+                href="mailto:mariona@masferrerifons.com"
+                className="flex items-center gap-[8px] text-white hover:text-orange-400 transition-colors duration-200 w-fit"
+                style={{ ...linkStyle, fontSize: '14px' }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0" aria-hidden="true">
+                  <path d="M7 12L12 15.5L17 12" stroke="var(--color-orange)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M2 20V9.13238C2 8.42985 2.3686 7.77884 2.97101 7.41739L10.971 2.61739C11.6044 2.23738 12.3956 2.23738 13.029 2.6174L21.029 7.4174C21.6314 7.77884 22 8.42985 22 9.13238V20C22 21.1046 21.1046 22 20 22H4C2.89543 22 2 21.1046 2 20Z" stroke="var(--color-orange)" strokeWidth="1.5"/>
+                </svg>
+                mariona@masferrerifons.com
+              </a>
+              <a
+                href="tel:+34622803203"
+                className="flex items-center gap-[8px] text-white hover:text-orange-400 transition-colors duration-200 w-fit"
+                style={{ ...linkStyle, fontSize: '14px' }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0" aria-hidden="true">
+                  <path d="M18.1182 14.702L14 15.5C11.2183 14.1038 9.5 12.5 8.5 10L9.26995 5.8699L7.81452 2L4.0636 2C2.93605 2 2.04814 2.93178 2.21654 4.04668C2.63695 6.83 3.87653 11.8765 7.5 15.5C11.3052 19.3052 16.7857 20.9564 19.802 21.6127C20.9668 21.8662 22 20.9575 22 19.7655L22 16.1812L18.1182 14.702Z" stroke="var(--color-orange)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                (+34) 622 80 32 03
+              </a>
+            </div>
           </div>
 
           <div className="footer-column flex flex-col gap-[16px]">
@@ -139,26 +165,6 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
                 style={linkStyle}
               >
                 LinkedIn ↗
-              </a>
-            </div>
-          </div>
-
-          <div className="footer-column flex flex-col gap-[16px]">
-            <p className="uppercase" style={columnHeaderStyle}>Contacto</p>
-            <div className="flex flex-col gap-[12px]">
-              <a
-                href="mailto:mariona@masferrerifons.com"
-                className="text-white hover:text-orange-400 transition-colors duration-200 w-fit"
-                style={linkStyle}
-              >
-                mariona@masferrerifons.com
-              </a>
-              <a
-                href="tel:+34622803203"
-                className="text-white hover:text-orange-400 transition-colors duration-200 w-fit"
-                style={linkStyle}
-              >
-                (+34) 622 80 32 03
               </a>
             </div>
           </div>
