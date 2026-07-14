@@ -14,8 +14,8 @@ export default async function Section6() {
       authorRole={testimonial.authorRole}
       avatarUrl={testimonial.avatar.asset.url}
       avatarAlt={testimonial.avatar.alt}
-      logoUrl={testimonial.logo.asset.url}
-      logoAlt={testimonial.logo.alt}
+      logoUrl={testimonial.logo?.asset?.url}
+      logoAlt={testimonial.logo?.alt}
     />
   )
 }

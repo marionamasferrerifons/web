@@ -24,8 +24,8 @@ export default async function ServiciosEditorialesPage() {
         authorRole={testimonial.authorRole}
         avatarUrl={testimonial.avatar.asset.url}
         avatarAlt={testimonial.avatar.alt}
-        logoUrl={testimonial.logo.asset.url}
-        logoAlt={testimonial.logo.alt}
+        logoUrl={testimonial.logo?.asset?.url}
+        logoAlt={testimonial.logo?.alt}
         cardColor="var(--color-green)"
       />
       <EditorialProjectsSection projects={projects} />

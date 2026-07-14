@@ -21,20 +21,26 @@ const SERVICES_ITEMS = [
 ]
 
 export default async function Navbar() {
-  const caseStudies: {
-    _id: string
-    title: string
-    slug: string | null
-    imageCard: { asset: { url: string } | null; alt?: string } | null
-  }[] = await client.fetch(CASE_STUDIES_QUERY)
-  const caseStudiesItems = caseStudies
-    .filter((c) => c.slug)
-    .map((c) => ({
-      href: `/casos-de-exito/${c.slug}`,
-      title: c.title,
-      imageUrl: c.imageCard?.asset?.url,
-      imageAlt: c.imageCard?.alt,
-    }))
+  let caseStudiesItems: { href: string; title: string; imageUrl?: string; imageAlt?: string }[] = []
+
+  try {
+    const caseStudies: {
+      _id: string
+      title: string
+      slug: string | null
+      imageCard: { asset: { url: string } | null; alt?: string } | null
+    }[] = await client.fetch(CASE_STUDIES_QUERY)
+    caseStudiesItems = caseStudies
+      .filter((c) => c.slug)
+      .map((c) => ({
+        href: `/casos-de-exito/${c.slug}`,
+        title: c.title,
+        imageUrl: c.imageCard?.asset?.url,
+        imageAlt: c.imageCard?.alt,
+      }))
+  } catch (error) {
+    console.error('Navbar: failed to fetch case studies from Sanity', error)
+  }
 
   return (
     <header

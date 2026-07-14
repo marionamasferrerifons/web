@@ -20,8 +20,8 @@ export default async function EstrategiaEditorialPage() {
         authorRole={testimonial.authorRole}
         avatarUrl={testimonial.avatar.asset.url}
         avatarAlt={testimonial.avatar.alt}
-        logoUrl={testimonial.logo.asset.url}
-        logoAlt={testimonial.logo.alt}
+        logoUrl={testimonial.logo?.asset?.url}
+        logoAlt={testimonial.logo?.alt}
       />
       <CtaSection />
     </main>
