@@ -87,7 +87,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
             <div className="flex flex-col gap-[12px]">
               <a
                 href="mailto:mariona@masferrerifons.com"
-                className="flex items-center gap-[8px] text-white hover:text-orange-400 transition-colors duration-200 w-fit"
+                className="flex items-center gap-[8px] text-white hover:text-orange transition-colors duration-200 w-fit"
                 style={{ ...linkStyle, fontSize: '14px' }}
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0" aria-hidden="true">
@@ -98,7 +98,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
               </a>
               <a
                 href="tel:+34622803203"
-                className="flex items-center gap-[8px] text-white hover:text-orange-400 transition-colors duration-200 w-fit"
+                className="flex items-center gap-[8px] text-white hover:text-orange transition-colors duration-200 w-fit"
                 style={{ ...linkStyle, fontSize: '14px' }}
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0" aria-hidden="true">
@@ -116,7 +116,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-white hover:text-orange-400 transition-colors duration-200 w-fit"
+                  className="text-white hover:text-orange transition-colors duration-200 w-fit"
                   style={linkStyle}
                 >
                   {item.label}
@@ -133,7 +133,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-white hover:text-orange-400 transition-colors duration-200 w-fit"
+                    className="text-white hover:text-orange transition-colors duration-200 w-fit"
                     style={{ ...linkStyle, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
                   >
                     {item.label}
@@ -148,20 +148,20 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
           <div className="footer-column flex flex-col gap-[16px]">
             <p className="uppercase" style={columnHeaderStyle}>Navegación</p>
             <div className="flex flex-col gap-[12px]">
-              <Link href="/" className="text-white hover:text-orange-400 transition-colors duration-200 w-fit" style={linkStyle}>
+              <Link href="/" className="text-white hover:text-orange transition-colors duration-200 w-fit" style={linkStyle}>
                 Inicio
               </Link>
-              <Link href="/enfoque" className="text-white hover:text-orange-400 transition-colors duration-200 w-fit" style={linkStyle}>
+              <Link href="/enfoque" className="text-white hover:text-orange transition-colors duration-200 w-fit" style={linkStyle}>
                 Enfoque
               </Link>
-              <Link href="/sobre-mi" className="text-white hover:text-orange-400 transition-colors duration-200 w-fit" style={linkStyle}>
+              <Link href="/sobre-mi" className="text-white hover:text-orange transition-colors duration-200 w-fit" style={linkStyle}>
                 Sobre mí
               </Link>
               <a
                 href="https://www.linkedin.com/in/marionamasferrerifons/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:text-orange-400 transition-colors duration-200 w-fit"
+                className="text-white hover:text-orange transition-colors duration-200 w-fit"
                 style={linkStyle}
               >
                 LinkedIn ↗
