@@ -95,29 +95,29 @@ export default async function Navbar() {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-[8px] bg-grey hover:bg-orange rounded-full pl-[20px] pr-[6px] cursor-pointer transition-colors duration-200"
+            className="group flex items-center gap-[8px] bg-grey hover:bg-orange rounded-full pl-[20px] pr-[6px] cursor-pointer transition-colors duration-[330ms] ease-linear"
             style={{ height: '40px' }}
           >
             <span
-              className="whitespace-nowrap text-orange group-hover:text-white transition-colors duration-200"
+              className="whitespace-nowrap text-orange group-hover:text-white transition-colors duration-[330ms] ease-linear"
               style={{ ...monoStyle, fontSize: '13px' }}
             >
               RESERVAR UNA LLAMADA
             </span>
             <span
-              className="relative flex items-center justify-center rounded-full shrink-0 bg-orange group-hover:bg-white transition-colors duration-200"
+              className="relative flex items-center justify-center rounded-full shrink-0 bg-orange group-hover:bg-white transition-colors duration-[330ms] ease-linear"
               style={{ width: '28px', height: '28px' }}
             >
               <img
                 src="/arrow-white.svg"
                 alt=""
-                className="absolute size-[16px] transition-all duration-200 group-hover:rotate-45 group-hover:opacity-0"
+                className="absolute size-[16px] transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-0"
                 aria-hidden="true"
               />
               <img
                 src="/arrow-orange.svg"
                 alt=""
-                className="absolute size-[16px] opacity-0 transition-all duration-200 group-hover:rotate-45 group-hover:opacity-100"
+                className="absolute size-[16px] opacity-0 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-100"
                 aria-hidden="true"
               />
             </span>

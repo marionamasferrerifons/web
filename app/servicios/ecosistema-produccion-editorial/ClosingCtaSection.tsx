@@ -43,30 +43,31 @@ export default function Section7() {
           href={BOOKING_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center gap-[16px] pl-[28px] pr-[12px] py-[8px] rounded-full overflow-hidden"
-          style={{ backgroundColor: 'var(--color-white)' }}
+          className="group flex items-center gap-[16px] bg-white hover:bg-orange pl-[28px] pr-[12px] py-[8px] rounded-full overflow-hidden transition-colors duration-[330ms] ease-linear"
         >
           <span
-            className="uppercase"
+            className="uppercase text-orange group-hover:text-white transition-colors duration-[330ms] ease-linear"
             style={{
               fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
               fontSize: 'var(--text-body-accent-mono)',
               lineHeight: 'var(--text-body-accent-mono--line-height)',
               letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-              color: 'var(--color-orange)',
             }}
           >
             RESERVAR UNA LLAMADA
           </span>
-          <span
-            className="flex items-center justify-center rounded-full shrink-0 size-[27px]"
-            style={{ backgroundColor: 'var(--color-orange)' }}
-          >
+          <span className="relative flex items-center justify-center bg-orange group-hover:bg-white rounded-full shrink-0 size-[27px] transition-colors duration-[330ms] ease-linear">
             <img
-              src="/s7-arrow.svg"
+              src="/arrow-white.svg"
               alt=""
-              className="size-[16px] transition-transform duration-200 group-hover:rotate-45"
+              className="absolute size-[16px] transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-0"
+              aria-hidden="true"
+            />
+            <img
+              src="/arrow-orange.svg"
+              alt=""
+              className="absolute size-[16px] opacity-0 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-100"
               aria-hidden="true"
             />
           </span>

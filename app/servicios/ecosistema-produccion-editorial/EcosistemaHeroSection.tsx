@@ -107,30 +107,31 @@ export default function HeroSection() {
             </p>
 
             <button
-              className="hero-cta group flex items-center gap-4 rounded-full pl-7 pr-3 py-2 transition-colors duration-200 w-fit"
-              style={{ backgroundColor: 'var(--color-grey)' }}
+              className="hero-cta group flex items-center gap-4 bg-grey hover:bg-blue-500 rounded-full pl-7 pr-3 py-2 transition-colors duration-[330ms] ease-linear w-fit"
             >
               <span
-                className="uppercase"
+                className="uppercase text-orange group-hover:text-white transition-colors duration-[330ms] ease-linear"
                 style={{
                   fontFamily: 'var(--font-dm-mono)',
                   fontWeight: 400,
                   fontSize: 'var(--text-body-accent-mono)',
                   lineHeight: 'var(--text-body-accent-mono--line-height)',
                   letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-                  color: 'var(--color-orange)',
                 }}
               >
                 EXPLORAR TU PROYECTO
               </span>
-              <span
-                className="flex items-center justify-center rounded-full shrink-0 size-[27px]"
-                style={{ backgroundColor: 'var(--color-orange)' }}
-              >
+              <span className="relative flex items-center justify-center bg-orange group-hover:bg-white rounded-full shrink-0 size-[27px] transition-colors duration-[330ms] ease-linear">
                 <img
-                  src="/hero-arrow.svg"
+                  src="/arrow-white.svg"
                   alt=""
-                  className="size-4 transition-transform duration-200 group-hover:rotate-45"
+                  className="absolute size-4 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-0"
+                  aria-hidden="true"
+                />
+                <img
+                  src="/arrow-orange.svg"
+                  alt=""
+                  className="absolute size-4 opacity-0 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-100"
                   aria-hidden="true"
                 />
               </span>

@@ -130,14 +130,15 @@ export default function MobileMenu({
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center gap-[8px] bg-grey rounded-full px-[20px] cursor-pointer"
+              className="group flex items-center justify-center gap-[8px] bg-grey hover:bg-orange rounded-full px-[20px] cursor-pointer transition-colors duration-[330ms] ease-linear"
               style={{ height: '44px' }}
             >
-              <span className="text-orange uppercase" style={{ ...monoStyle, fontSize: '12px' }}>
+              <span className="text-orange group-hover:text-white uppercase transition-colors duration-[330ms] ease-linear" style={{ ...monoStyle, fontSize: '12px' }}>
                 Reservar una llamada
               </span>
-              <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[24px]">
-                <img src="/hero-arrow.svg" alt="" className="size-[14px]" aria-hidden="true" />
+              <span className="relative flex items-center justify-center bg-orange group-hover:bg-white rounded-full shrink-0 size-[24px] transition-colors duration-[330ms] ease-linear">
+                <img src="/arrow-white.svg" alt="" className="absolute size-[14px] transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-0" aria-hidden="true" />
+                <img src="/arrow-orange.svg" alt="" className="absolute size-[14px] opacity-0 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-100" aria-hidden="true" />
               </span>
             </a>
           </div>

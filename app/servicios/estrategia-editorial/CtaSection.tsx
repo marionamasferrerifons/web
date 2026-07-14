@@ -78,11 +78,11 @@ export default function CtaSection({
           href={BOOKING_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="cta-button group flex items-center gap-[16px] bg-white hover:bg-grey rounded-full cursor-pointer transition-colors duration-200"
+          className="cta-button group flex items-center gap-[16px] bg-white hover:bg-orange rounded-full cursor-pointer transition-colors duration-[330ms] ease-linear"
           style={{ paddingLeft: '28px', paddingRight: '12px', paddingTop: '8px', paddingBottom: '8px' }}
         >
           <span
-            className="text-orange uppercase"
+            className="text-orange group-hover:text-white uppercase transition-colors duration-[330ms] ease-linear"
             style={{
               fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
@@ -93,8 +93,9 @@ export default function CtaSection({
           >
             RESERVAR UNA LLAMADA
           </span>
-          <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[27px]">
-            <img src="/hero-arrow.svg" alt="" className="size-4 transition-transform duration-200 group-hover:rotate-45" aria-hidden="true" />
+          <span className="relative flex items-center justify-center bg-orange group-hover:bg-white rounded-full shrink-0 size-[27px] transition-colors duration-[330ms] ease-linear">
+            <img src="/arrow-white.svg" alt="" className="absolute size-4 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-0" aria-hidden="true" />
+            <img src="/arrow-orange.svg" alt="" className="absolute size-4 opacity-0 transition-all duration-300 ease-out group-hover:rotate-45 group-hover:opacity-100" aria-hidden="true" />
           </span>
         </a>
 
