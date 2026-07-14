@@ -74,9 +74,9 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-[40px]">
           <div className="footer-column flex flex-col gap-[16px]">
             <img
-              src="/logo.png"
+              src="/logo.svg"
               alt="Mariona Masferrer"
-              style={{ height: '32px', width: 'auto', objectFit: 'contain' }}
+              style={{ height: '32px', width: 'auto' }}
             />
             <p style={{ ...linkStyle, fontSize: '14px', color: 'var(--color-blue-100)', maxWidth: '220px' }}>
               Sistemas de producción editorial con IA, con el criterio humano en el centro.

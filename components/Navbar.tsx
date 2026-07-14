@@ -46,9 +46,9 @@ export default async function Navbar() {
         {/* Logo */}
         <Link href="/">
           <img
-            src="/logo.png"
+            src="/logo.svg"
             alt="Mariona Masferrer"
-            style={{ height: '39.843px', width: '60.44px', objectFit: 'contain' }}
+            style={{ height: '39.843px', width: 'auto' }}
           />
         </Link>
 
