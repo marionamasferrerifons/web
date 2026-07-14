@@ -44,7 +44,7 @@ export default async function Navbar() {
 
   return (
     <header
-      className="fixed top-0 inset-x-0 z-50 w-full bg-blue-500 px-[25px] py-[24px]"
+      className="fixed top-0 inset-x-0 z-50 w-full bg-blue-500 px-[20px] md:px-[40px] py-[24px]"
       style={{ borderRadius: '0 0 24px 24px' }}
     >
       <div className="relative flex items-center h-[40px]">
