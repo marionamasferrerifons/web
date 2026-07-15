@@ -88,7 +88,7 @@ const titleStyle = {
   fontFamily: 'var(--font-dm-sans)',
   fontSize: 'var(--text-title-s)',
   lineHeight: 'var(--text-title-s--line-height)',
-  fontWeight: 400,
+  fontWeight: 500,
   fontVariationSettings: '"opsz" 14',
   color: 'var(--color-blue-400)',
 } as const;
@@ -105,8 +105,8 @@ const bodyStyle = {
 const dateTagStyle = {
   fontFamily: 'var(--font-dm-mono)',
   fontWeight: 400,
-  fontSize: '14px',
-  lineHeight: '24px',
+  fontSize: '11px',
+  lineHeight: '18px',
   letterSpacing: '-0.5px',
   color: 'var(--color-blue-500)',
 } as const;
@@ -126,7 +126,7 @@ function MilestonesBlock({ milestones, align }: { milestones: Milestone[]; align
       {milestones.map((m, i) => (
         <div key={i} className={`flex flex-col gap-[10px] w-full ${align === 'left' ? 'items-end' : 'items-start'}`}>
           <span
-            className="rounded-[8px] px-[16px] py-[4px] w-fit"
+            className="rounded-[6px] px-[10px] py-[2px] w-fit"
             style={{ ...dateTagStyle, backgroundColor: 'var(--color-blue-100)' }}
           >
             {m.date}
@@ -163,7 +163,7 @@ export default function HistorySection({
           defaults: { ease: 'power3.out' },
         })
           .from(row.children[0], { x: isTitleLeft ? -32 : 32, opacity: 0, duration: 0.7 })
-          .from(row.children[2], { x: isTitleLeft ? 32 : -32, opacity: 0, duration: 0.7 }, '-=0.55')
+          .from(row.children[2], { x: isTitleLeft ? 32 : -32, opacity: 0, duration: 0.7 }, '+=0.35')
           .from(row.querySelector('.history-milestones')?.children ?? [], { opacity: 0, y: 16, duration: 0.5, stagger: 0.12 }, '-=0.4');
       });
 
@@ -173,7 +173,7 @@ export default function HistorySection({
           defaults: { ease: 'power3.out' },
         })
           .from(row, { y: 24, opacity: 0, duration: 0.7 })
-          .from(row.querySelector('.history-milestones')?.children ?? [], { opacity: 0, y: 16, duration: 0.5, stagger: 0.12 }, '-=0.4');
+          .from(row.querySelector('.history-milestones')?.children ?? [], { opacity: 0, y: 16, duration: 0.5, stagger: 0.12 }, '+=0.3');
       });
 
       gsap.from('.history-line', {
@@ -327,7 +327,7 @@ function HistoryRowMobile({ entry }: { entry: HistoryEntryData }) {
           {entry.milestones.map((m, i) => (
             <div key={i} className="flex flex-col gap-[10px] items-start w-full">
               <span
-                className="rounded-[8px] px-[16px] py-[4px] w-fit"
+                className="rounded-[6px] px-[10px] py-[2px] w-fit"
                 style={{ ...dateTagStyle, backgroundColor: 'var(--color-blue-100)' }}
               >
                 {m.date}

@@ -15,7 +15,10 @@ type Layer = {
   body: string;
   benefits: string[];
   align: 'left' | 'right';
-  top: string;
+  // Offset in px from the card's vertical center — keeps the line/copy
+  // aligned with the diamond stack (which is centered via flexbox) no
+  // matter how tall the white card is.
+  centerOffset: number;
 };
 
 const LAYERS: Layer[] = [
@@ -27,7 +30,7 @@ const LAYERS: Layer[] = [
     body: 'Desde los procesos de producción hasta las decisiones estratégicas, lo que permite aplicar IA sin romper lo que ya funciona.',
     benefits: ['Beneficio 1', 'Beneficio 1', 'Beneficio 1'],
     align: 'left',
-    top: '150px',
+    centerOffset: -181,
   },
   {
     key: 'pedagogia',
@@ -37,7 +40,7 @@ const LAYERS: Layer[] = [
     body: 'Haber trabajado como docente me permite entender cómo se usa el contenido en la práctica, algo clave a la hora de aplicar IA sin perder valor educativo.',
     benefits: [],
     align: 'right',
-    top: '270px',
+    centerOffset: -61,
   },
   {
     key: 'tecnologia',
@@ -47,7 +50,7 @@ const LAYERS: Layer[] = [
     body: 'Trabajo con IA desde dentro del proceso editorial, lo que permite entender sus límites, sus riesgos y su verdadero potencial.',
     benefits: [],
     align: 'left',
-    top: '420px',
+    centerOffset: 89,
   },
 ];
 
@@ -235,7 +238,7 @@ export default function CriterioSection() {
           margins stay fixed in sync with the card instead of scrolling away.
           It's also taller than the card by 16px so a strip of orange shows
           above the card once it's pinned flush against the viewport top. */}
-      <div ref={cardRef} className="relative w-full" style={{ height: '678px', paddingTop: '16px' }}>
+      <div ref={cardRef} className="relative w-full" style={{ height: '100vh', paddingTop: '16px' }}>
         <div
           className="absolute top-0 bottom-0"
           style={{ left: '-16px', right: '-16px', backgroundColor: 'var(--color-orange-400)', zIndex: 0 }}
@@ -243,7 +246,7 @@ export default function CriterioSection() {
         />
       <div
         className="relative bg-white rounded-t-[24px] w-full overflow-hidden"
-        style={{ height: '662px', zIndex: 1 }}
+        style={{ height: 'calc(100vh - 16px)', zIndex: 1 }}
       >
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative" style={{ width: '558px' }}>
@@ -274,7 +277,7 @@ export default function CriterioSection() {
             key={layer.key}
             className={`line-${layer.key} absolute`}
             style={{
-              top: layer.top,
+              top: `calc(50% + ${layer.centerOffset}px)`,
               height: '1px',
               backgroundColor: 'rgba(1,44,151,0.15)',
               [layer.align]: '48px',
@@ -288,7 +291,7 @@ export default function CriterioSection() {
             key={layer.key}
             className={`content-block content-${layer.key} absolute`}
             style={{
-              top: `calc(${layer.top} + 24px)`,
+              top: `calc(50% + ${layer.centerOffset + 24}px)`,
               [layer.align]: '48px',
               width: '325px',
             }}

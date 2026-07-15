@@ -95,7 +95,7 @@ export default async function Navbar() {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-[8px] bg-grey hover:bg-white rounded-full pl-[20px] pr-[6px] cursor-pointer transition-colors duration-[330ms] ease-linear"
+            className="group flex items-center gap-[8px] bg-white hover:bg-grey rounded-full pl-[20px] pr-[6px] cursor-pointer transition-colors duration-[330ms] ease-linear"
             style={{ height: '40px' }}
           >
             <span

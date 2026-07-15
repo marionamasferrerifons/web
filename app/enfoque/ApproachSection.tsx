@@ -50,14 +50,14 @@ export default function ApproachSection() {
 
     const ctx = gsap.context(() => {
       gsap.timeline({
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 100%' },
         defaults: { ease: 'power3.out' },
       }).from('.approach-shape', { scale: 0.8, opacity: 0, duration: 0.9, ease: 'back.out(1.6)' });
 
       gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%',
+          start: 'top 100%',
           end: 'bottom 55%',
           scrub: 1,
         },
@@ -91,7 +91,7 @@ export default function ApproachSection() {
           src="/enfoque-focus-shape.svg"
           alt=""
           className="approach-shape hidden lg:block absolute"
-          style={{ right: '-20px', top: '8px', width: '351px', height: '208px' }}
+          style={{ right: '-64px', top: '-56px', width: '351px', height: '208px' }}
           aria-hidden="true"
         />
 

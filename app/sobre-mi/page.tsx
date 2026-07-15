@@ -3,7 +3,7 @@ import ValuesSection from './ValuesSection'
 import HistorySection from './HistorySection'
 import QuoteSection from './QuoteSection'
 import LinkedInSection from './LinkedInSection'
-import NewsletterSection from './NewsletterSection'
+// import NewsletterSection from './NewsletterSection' // hidden for now
 import CtaSection from '@/app/servicios/estrategia-editorial/CtaSection'
 
 export default function SobreMiPage() {
@@ -14,7 +14,7 @@ export default function SobreMiPage() {
       <HistorySection />
       <QuoteSection />
       <LinkedInSection />
-      <NewsletterSection />
+      {/* <NewsletterSection /> hidden for now */}
       <div className="relative" style={{ marginTop: '-24px' }}>
         <CtaSection
           title="Exploremos cómo puede evolucionar tu editorial"

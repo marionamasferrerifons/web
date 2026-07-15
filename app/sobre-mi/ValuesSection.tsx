@@ -113,10 +113,19 @@ export default function ValuesSection({
         .from('.values-tag',   { y: -20, opacity: 0, duration: 0.5 })
         .from('.values-title', { y: 40,  opacity: 0, duration: 0.8 }, '-=0.25');
 
-      gsap.timeline({
-        scrollTrigger: { trigger: '.values-grid', start: 'top 85%' },
-        defaults: { ease: 'power3.out' },
-      }).from('.value-card', { y: 32, opacity: 0, duration: 0.7, stagger: 0.08 });
+      // Each card animates independently, triggered by its own scroll
+      // position — not a single shared trigger on the grid — since the
+      // masonry-style column offsets mean cards sit at very different
+      // heights on the page.
+      gsap.utils.toArray<HTMLElement>('.value-card').forEach((card) => {
+        gsap.from(card, {
+          y: 32,
+          opacity: 0,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 85%' },
+        });
+      });
     }, sectionRef);
 
     return () => ctx.revert();

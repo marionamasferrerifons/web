@@ -98,7 +98,8 @@ export default function Section4() {
               maxWidth: '685px',
             }}
           >
-            Tu editorial tiene <span style={{ color: 'var(--color-orange-400)' }}>criterio</span>.{' '}
+            Tu editorial tiene <span style={{ color: 'var(--color-orange-400)' }}>criterio</span>.
+            <br />
             El sistema lo pone a trabajar.
           </h2>
           <p

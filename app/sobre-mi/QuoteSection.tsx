@@ -62,7 +62,6 @@ export default function QuoteSection() {
           className="quote-text"
           style={{
             fontFamily: 'var(--font-dm-sans)',
-            fontStyle: 'italic',
             fontSize: 'var(--text-title-s)',
             lineHeight: 'var(--text-title-s--line-height)',
             fontWeight: 400,

@@ -33,7 +33,10 @@ export default function Section5() {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
-      // Header — both breakpoints
+      // Header — both breakpoints. Everything else below is anchored to this
+      // same trigger point and sequenced in a timeline, so it plays right
+      // after the title instead of waiting on each element's own (often much
+      // lower, due to nesting/offsets) scroll position.
       gsap.from(headerRef.current, {
         y: 24,
         opacity: 0,
@@ -49,31 +52,28 @@ export default function Section5() {
         const listItems = checklistRef.current?.querySelectorAll('li');
         if (listItems?.length) gsap.set(listItems, { opacity: 0, y: 20 });
 
+        const tl = gsap.timeline({
+          scrollTrigger: { trigger: headerRef.current, start: 'top 85%' },
+          delay: 0.3, // starts right after the title animation
+        });
+
         // Stat label
-        gsap.from(statLabelRef.current, {
+        tl.from(statLabelRef.current, {
           y: 16,
           opacity: 0,
           duration: 0.6,
           ease: 'power2.out',
-          scrollTrigger: { trigger: statLabelRef.current, start: 'top 88%' },
-        });
-
-        // Arrow
-        gsap.from(arrowRef.current, {
-          y: -20,
-          opacity: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: arrowRef.current, start: 'top 88%' },
-        });
-
-        // Count up
-        const countObj = { v60: 0, v90: 0 };
-        ScrollTrigger.create({
-          trigger: statLabelRef.current,
-          start: 'top 88%',
-          once: true,
-          onEnter: () => {
+        })
+          // Arrow
+          .from(arrowRef.current, {
+            y: -20,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+          }, '<')
+          // Count up
+          .call(() => {
+            const countObj = { v60: 0, v90: 0 };
             gsap.to(countObj, {
               v60: 60,
               v90: 90,
@@ -84,27 +84,23 @@ export default function Section5() {
                 if (num90Ref.current) num90Ref.current.textContent = String(Math.round(countObj.v90));
               },
             });
-          },
-        });
-
-        // Stat description
-        gsap.from(statDescRef.current, {
-          y: 16,
-          opacity: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: statDescRef.current, start: 'top 90%' },
-        });
-
-        // Blob scales up → then right content appears
-        gsap.from(blobRef.current, {
-          scale: 0,
-          opacity: 0,
-          duration: 1.2,
-          ease: 'back.out(1.4)',
-          transformOrigin: 'center bottom',
-          scrollTrigger: { trigger: blobRef.current, start: 'top 90%' },
-          onComplete() {
+          }, undefined, '<')
+          // Stat description
+          .from(statDescRef.current, {
+            y: 16,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+          }, '<0.1')
+          // Blob scales up → then right content appears
+          .from(blobRef.current, {
+            scale: 0,
+            opacity: 0,
+            duration: 1.2,
+            ease: 'back.out(1.4)',
+            transformOrigin: 'center bottom',
+          }, '<0.1')
+          .call(() => {
             gsap.to(rightTextRef.current, {
               y: 0,
               opacity: 1,
@@ -122,52 +118,48 @@ export default function Section5() {
                 delay: 0.1,
               });
             }
-          },
-        });
+          });
       });
 
       // ── Mobile ───────────────────────────────────────────────
       mm.add('(max-width: 1023px)', () => {
-        // Mobile count up
-        const mobileCountObj = { v60: 0, v90: 0 };
-        ScrollTrigger.create({
-          trigger: mobileNumRef.current,
-          start: 'top 90%',
-          once: true,
-          onEnter: () => {
-            gsap.to(mobileCountObj, {
-              v60: 60,
-              v90: 90,
-              duration: 1.8,
-              ease: 'power2.out',
-              onUpdate() {
-                if (mobileNumRef.current) {
-                  mobileNumRef.current.textContent = `${Math.round(mobileCountObj.v60)}–${Math.round(mobileCountObj.v90)}%`;
-                }
-              },
-            });
-          },
+        const tl = gsap.timeline({
+          scrollTrigger: { trigger: headerRef.current, start: 'top 85%' },
+          delay: 0.3, // starts right after the title animation
         });
 
-        // Right text and checklist on scroll
-        gsap.from(rightTextRef.current, {
-          y: 20,
-          opacity: 0,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: rightTextRef.current, start: 'top 85%' },
-        });
+        // Mobile count up
+        tl.call(() => {
+          const mobileCountObj = { v60: 0, v90: 0 };
+          gsap.to(mobileCountObj, {
+            v60: 60,
+            v90: 90,
+            duration: 1.8,
+            ease: 'power2.out',
+            onUpdate() {
+              if (mobileNumRef.current) {
+                mobileNumRef.current.textContent = `${Math.round(mobileCountObj.v60)}–${Math.round(mobileCountObj.v90)}%`;
+              }
+            },
+          });
+        })
+          // Right text and checklist
+          .from(rightTextRef.current, {
+            y: 20,
+            opacity: 0,
+            duration: 0.7,
+            ease: 'power2.out',
+          }, '<0.1');
 
         const items = checklistRef.current?.querySelectorAll('li');
         if (items?.length) {
-          gsap.from(items, {
+          tl.from(items, {
             y: 20,
             opacity: 0,
             duration: 0.5,
             stagger: 0.08,
             ease: 'power2.out',
-            scrollTrigger: { trigger: checklistRef.current, start: 'top 85%' },
-          });
+          }, '<0.1');
         }
       });
     }, sectionRef);
