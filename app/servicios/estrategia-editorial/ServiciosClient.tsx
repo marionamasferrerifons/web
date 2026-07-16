@@ -390,7 +390,7 @@ export default function ServiciosClient() {
                   <ServiceLink open={card1Open} onToggle={() => setCard1Open(!card1Open)} />
                 </div>
                 <div className="order-first md:order-last rounded-[16px] overflow-hidden h-[260px] w-full md:h-full md:w-[586px] md:shrink-0" style={{ backgroundColor: '#cfece7' }}>
-                  <img src="/section3-illu-1.png" alt="" className="size-full object-cover" aria-hidden="true" />
+                  <img src="/section3-illu-1.svg" alt="" className="size-full object-cover" aria-hidden="true" />
                 </div>
               </div>
 
@@ -576,7 +576,7 @@ export default function ServiciosClient() {
                   <ServiceLink open={card2Open} onToggle={() => setCard2Open(!card2Open)} />
                 </div>
                 <div className="order-first md:order-last rounded-[16px] overflow-hidden h-[260px] w-full md:h-full md:w-[586px] md:shrink-0" style={{ backgroundColor: '#cfece7' }}>
-                  <img src="/section3-illu-2.png" alt="" className="size-full object-cover" aria-hidden="true" />
+                  <img src="/section3-illu-2.svg" alt="" className="size-full object-cover" aria-hidden="true" />
                 </div>
               </div>
 
@@ -772,7 +772,7 @@ export default function ServiciosClient() {
                   <ServiceLink open={card3Open} onToggle={() => setCard3Open(!card3Open)} />
                 </div>
                 <div className="order-first md:order-last rounded-[16px] overflow-hidden h-[260px] w-full md:h-full md:w-[586px] md:shrink-0" style={{ backgroundColor: '#cfece7' }}>
-                  <img src="/section3-illu-3.png" alt="" className="size-full object-cover" aria-hidden="true" />
+                  <img src="/section3-illu-3.svg" alt="" className="size-full object-cover" aria-hidden="true" />
                 </div>
               </div>
 

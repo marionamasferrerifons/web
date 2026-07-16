@@ -4,16 +4,35 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import RecoloredLogo from '@/components/RecoloredLogo';
 
 type CaseStudy = {
   _id: string
   title: string
   subtitle: string
+  client: string
   slug: string
   imageCard: {
     asset: { url: string } | null
     alt?: string
   } | null
+}
+
+type IndustryLogo = {
+  name: string
+  logo: {
+    asset: { url: string } | null
+    alt?: string
+  } | null
+}
+
+function normalizeName(name: string) {
+  return name.toLowerCase().replace(/é/g, 'e').replace(/\s+/g, '')
+}
+
+function findLogoForClient(clientName: string, logos: IndustryLogo[]) {
+  const target = normalizeName(clientName)
+  return logos.find((l) => l.logo?.asset?.url && (normalizeName(l.name).includes(target) || target.includes(normalizeName(l.name))))
 }
 
 const monoStyle = {
@@ -26,6 +45,7 @@ const monoStyle = {
 
 type CaseStudiesClientProps = {
   caseStudies: CaseStudy[]
+  logos?: IndustryLogo[]
   tag?: string
   title?: React.ReactNode
   subtitle?: string
@@ -33,6 +53,7 @@ type CaseStudiesClientProps = {
 
 export default function CaseStudiesClient({
   caseStudies,
+  logos = [],
   tag = '[CASOS DE ÉXITO]',
   title = (
     <>
@@ -115,7 +136,11 @@ export default function CaseStudiesClient({
 
         {/* Cards */}
         <div className="flex flex-col gap-[16px]">
-          {caseStudies.map((item) => (
+          {caseStudies.map((item) => {
+            const clientLogo = item.client ? findLogoForClient(item.client, logos) : undefined
+            const logoUrl = clientLogo?.logo?.asset?.url
+
+            return (
             <Link
               key={item._id}
               href={`/casos-de-exito/${item.slug}`}
@@ -123,7 +148,7 @@ export default function CaseStudiesClient({
               style={{ minHeight: '98px' }}
             >
               {/* Image thumbnail */}
-              <div className="shrink-0 rounded-[16px] md:rounded-[10px] overflow-hidden w-full h-[140px] md:w-[156px] md:h-[98px]">
+              <div className="relative shrink-0 rounded-[16px] md:rounded-[10px] overflow-hidden w-full h-[140px] md:w-[156px] md:h-[98px]">
                 {item.imageCard?.asset?.url ? (
                   <img
                     src={item.imageCard.asset.url}
@@ -135,6 +160,22 @@ export default function CaseStudiesClient({
                     className="size-full transition-transform duration-300 group-hover:scale-105"
                     style={{ backgroundColor: 'var(--color-green)' }}
                   />
+                )}
+
+                {/* Client logo watermark — recolored to a translucent white
+                    so it blends into the image regardless of its source
+                    colors, matching the homepage logos carousel treatment. */}
+                {logoUrl && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <RecoloredLogo
+                      src={logoUrl}
+                      name={item.client}
+                      alt={clientLogo?.logo?.alt}
+                      opacity={0.55}
+                      className="max-w-[65%] max-h-[55%] object-contain"
+                      aria-hidden
+                    />
+                  </div>
                 )}
               </div>
 
@@ -190,7 +231,8 @@ export default function CaseStudiesClient({
                 </div>
               </div>
             </Link>
-          ))}
+            )
+          })}
         </div>
 
       </div>

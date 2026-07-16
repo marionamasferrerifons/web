@@ -152,7 +152,7 @@ export default function Section4() {
               className="order-first lg:order-last rounded-[16px] overflow-hidden shrink-0"
               style={{ width: '100%', maxWidth: '541px', height: '367px', backgroundColor: '#f5917a' }}
             >
-              <img src="/s4-illustration.png" alt="" className="w-full h-full object-cover" aria-hidden="true" />
+              <img src="/s4-illustration.svg" alt="" className="w-full h-full object-cover" aria-hidden="true" />
             </div>
           </div>
 

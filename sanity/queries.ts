@@ -3,6 +3,7 @@ export const CASE_STUDIES_QUERY = `
     _id,
     title,
     subtitle,
+    client,
     "slug": slug.current,
     imageCard {
       asset-> {
@@ -57,7 +58,7 @@ export const CASE_STUDY_BY_SLUG_QUERY = `
         },
         alt
       },
-      logo {
+      "logo": logo->logo {
         asset-> {
           _id,
           url
@@ -118,7 +119,7 @@ export const TESTIMONIAL_BY_PLACEMENT_QUERY = `
       },
       alt
     },
-    logo {
+    "logo": logo->logo {
       asset-> {
         _id,
         url

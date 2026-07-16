@@ -51,14 +51,9 @@ export const testimonial = defineType({
     defineField({
       name: 'logo',
       title: 'Logo de la editorial / cliente',
-      type: 'image',
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Texto alternativo',
-          type: 'string',
-        }),
-      ],
+      description: 'Selecciona el logo ya existente en "Logos de industria". Si no está en la lista, créalo ahí primero.',
+      type: 'reference',
+      to: [{ type: 'industryLogo' }],
       validation: (rule) => rule.required(),
     }),
     defineField({

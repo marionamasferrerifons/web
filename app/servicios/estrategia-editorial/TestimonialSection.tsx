@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import RecoloredLogo from '@/components/RecoloredLogo';
 
 const monoStyle = {
   fontFamily: 'var(--font-dm-mono)',
@@ -88,9 +89,11 @@ export default function TestimonialSection({
               />
             </svg>
             {logoUrl && (
-              <img
+              <RecoloredLogo
                 src={logoUrl}
-                alt={logoAlt ?? ''}
+                name={logoAlt ?? ''}
+                alt={logoAlt}
+                opacity={0.6}
                 style={{
                   position: 'absolute',
                   top: '50%',

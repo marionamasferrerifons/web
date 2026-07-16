@@ -87,7 +87,7 @@ export default function Section5b() {
 
       {/* Content */}
       <div
-        className="w-full flex flex-col lg:flex-row items-center justify-between gap-[32px]"
+        className="w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-[32px]"
         style={{ maxWidth: '1400px' }}
       >
         {/* Left: 2x2 grid, all text always visible */}
@@ -138,9 +138,12 @@ export default function Section5b() {
           ))}
         </div>
 
-        {/* Right: illustration */}
+        {/* Right: illustration — height derives from the SVG's own aspect
+            ratio (661:524) instead of fixed per-breakpoint heights, so
+            object-contain never has to letterbox and the pink background
+            always fills the box edge-to-edge. */}
         <div
-          className="order-first lg:order-none w-full lg:w-[661px] shrink-0 rounded-[24px] overflow-hidden h-[300px] lg:h-[400px] xl:h-[460px] 2xl:h-[524px]"
+          className="order-first lg:order-none w-full lg:w-[661px] shrink-0 rounded-[24px] overflow-hidden aspect-[661/524]"
         >
           <img
             src="/s5b-ventajas-diagram.svg"

@@ -1,17 +1,14 @@
 'use client';
 
-import { useEffect, useRef, type CSSProperties } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import RecoloredLogo from '@/components/RecoloredLogo';
 
 export type Logo = {
   src: string;
   alt: string;
 };
-
-function normalizeAlt(alt: string) {
-  return alt.toLowerCase().replace(/é/g, 'e').replace(/\s+/g, '');
-}
 
 // Some logos read visually smaller/bigger than the rest at the default
 // 25px height, so individual ones get a nudge to match perceived size.
@@ -22,21 +19,9 @@ const HEIGHT_OVERRIDES: Record<string, number> = {
 };
 
 function logoHeight(alt: string) {
-  const normalized = normalizeAlt(alt);
+  const normalized = alt.toLowerCase().replace(/é/g, 'e').replace(/\s+/g, '');
   const match = Object.keys(HEIGHT_OVERRIDES).find((name) => normalized.includes(name));
   return match ? HEIGHT_OVERRIDES[match] : 25;
-}
-
-// McGraw-Hill's source asset has no transparency at all (solid red square +
-// white letter, alpha 255 everywhere), so the brightness/invert filter used
-// for every other logo just turns the whole square white. A luminance mask
-// works off the image's own light/dark values instead of its alpha channel,
-// so it renders correctly for this one regardless of transparency.
-const LUMINANCE_MASK_LOGOS = ['mcgrawhill'];
-
-function needsLuminanceMask(alt: string) {
-  const normalized = normalizeAlt(alt);
-  return LUMINANCE_MASK_LOGOS.some((name) => normalized.includes(name));
 }
 
 export default function LogosSection({ logos }: { logos: Logo[] }) {
@@ -120,37 +105,14 @@ export default function LogosSection({ logos }: { logos: Logo[] }) {
                 className="flex items-center justify-center shrink-0"
                 style={{ height: '55px' }}
               >
-                {needsLuminanceMask(logo.alt) ? (
-                  <div
-                    role="img"
-                    aria-label={logo.alt}
-                    aria-hidden={i >= logos.length}
-                    className="w-auto max-w-full"
-                    style={{
-                      height: `${height}px`,
-                      aspectRatio: '1 / 1',
-                      opacity: 0.4,
-                      backgroundColor: 'white',
-                      maskImage: `url(${logo.src})`,
-                      maskMode: 'luminance',
-                      maskSize: 'contain',
-                      maskRepeat: 'no-repeat',
-                      maskPosition: 'center',
-                      WebkitMaskImage: `url(${logo.src})`,
-                      WebkitMaskSize: 'contain',
-                      WebkitMaskRepeat: 'no-repeat',
-                      WebkitMaskPosition: 'center',
-                    } as CSSProperties}
-                  />
-                ) : (
-                  <img
-                    src={logo.src}
-                    alt={logo.alt}
-                    className="w-auto max-w-full object-contain"
-                    style={{ height: `${height}px`, filter: 'brightness(0) invert(1)', opacity: 0.4 }}
-                    aria-hidden={i >= logos.length}
-                  />
-                )}
+                <RecoloredLogo
+                  src={logo.src}
+                  name={logo.alt}
+                  alt={logo.alt}
+                  className="w-auto max-w-full object-contain"
+                  style={{ height: `${height}px` }}
+                  aria-hidden={i >= logos.length}
+                />
               </div>
             );
           })}
