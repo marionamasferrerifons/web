@@ -77,7 +77,7 @@ export default function LinkedInSection() {
                 color: 'var(--color-blue-300)',
               }}
             >
-              Ayudo a editoriales educativas a evolucionar su estrategia de negocio y sus sistemas de producción en un sector transformado por la IA.
+              Ayudo a editoriales educativas a integrar la IA en su estrategia de negocio y en sus sistemas de producción.
             </p>
           </div>
 
