@@ -96,7 +96,7 @@ const columns = [
 ];
 
 export default function ValuesSection({
-  title = 'Trabajo siempre guiada por valores de integridad, rigor y compromiso.',
+  title = 'Trabajo siempre guiada por la ética y el rigor.',
 }: {
   title?: string
 }) {
