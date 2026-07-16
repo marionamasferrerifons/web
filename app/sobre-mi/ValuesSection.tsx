@@ -54,37 +54,37 @@ const values: ValueCardProps[] = [
   {
     icon: '/about-icon-humanismo.svg',
     title: 'Humanismo',
-    description: 'Pongo a las personas en el centro, porque la tecnología y la innovación solo tienen sentido si mejoran la experiencia educativa y generan un impacto positivo real.',
+    description: 'Pongo a las personas en el centro, porque la tecnología solo tiene sentido si generan un impacto positivo real.',
     height: 304,
   },
   {
     icon: '/about-icon-excelencia.svg',
     title: 'Excelencia y estrategia',
-    description: 'Trabajo con visión a largo plazo y garantizando una ejecución rigurosa. Cada proyecto debe combinar calidad, sostenibilidad y sentido real para la editorial.',
+    description: 'Trabajo garantizando una ejecución rigurosa y manteniendo la visión a global y el horizonte a largo plazo.',
     height: 350,
   },
   {
     icon: '/about-icon-innovacion.svg',
     title: 'Innovación sensata',
-    description: 'Integro nuevas tecnologías y metodologías solo cuando aportan un valor real al aprendizaje y al proceso editorial. No innovo por innovar.',
+    description: 'Integro nuevas tecnologías y metodologías solo cuando aportan un valor real al aprendizaje y al proceso editorial.',
     height: 350,
   },
   {
     icon: '/about-icon-integridad.svg',
     title: 'Integridad',
-    description: 'Actúo con ética y transparencia para construir relaciones de confianza. Las transformaciones solo son posibles con buenos compañeros de viaje.',
+    description: 'Actúo con ética y transparencia para construir relaciones de confianza: mis valores no se ponen en juego.',
     height: 284,
   },
   {
     icon: '/about-icon-valentia.svg',
     title: 'Valentía comprometida',
-    description: 'Me atrevo a cuestionar lo establecido y a proponer caminos diferentes, pero siempre después de un análisis sólido y con responsabilidad.',
+    description: 'Me atrevo a cuestionar lo establecido y a proponer caminos divergentes, pero siempre después de un análisis sólido y con responsabilidad.',
     height: 284,
   },
   {
     icon: '/about-icon-valor.svg',
     title: 'Cercanía  ',
-    description: 'Escucho y co-creo con quienes trabajo, porque las mejores soluciones nacen de la suma de perspectivas, del diálogo y de la confianza.',
+    description: 'Escucho y co-creo con quienes trabajo, porque las mejores soluciones nacen de la suma de perspectivas y del diálogo.',
     height: 350,
   },
 ];
