@@ -28,12 +28,12 @@ export default function HeroSection() {
       className="relative w-full overflow-hidden flex justify-center pt-[calc(var(--navbar-height)+56px)] pb-[56px] px-[20px] md:px-[40px]"
       style={{ backgroundColor: 'var(--color-blue-500)' }}
     >
-      {/* Decorative scalloped shape — top right, bleeding off the edge */}
+      {/* Decorative scalloped shape — top right */}
       <img
         src="/home-hero-shape.svg"
         alt=""
         className="hero-shape absolute hidden lg:block"
-        style={{ right: '-12px', top: '87px', width: '223px', height: '128px' }}
+        style={{ right: '0', top: '112px', width: '223px', height: '128px' }}
         aria-hidden="true"
       />
 

@@ -73,9 +73,12 @@ export default function ApproachSection() {
       className="relative w-full overflow-hidden flex justify-center py-[64px] md:py-[112px] px-[20px] md:px-[40px]"
       style={{ backgroundColor: 'var(--color-grey)' }}
     >
-      <div className="relative w-full flex flex-col gap-[32px] md:block md:h-[279px]" style={{ maxWidth: '1400px' }}>
+      <div
+        className="relative w-full flex flex-col gap-[32px] md:grid md:gap-x-[22px] md:gap-y-[32px] md:items-start"
+        style={{ maxWidth: '1400px', gridTemplateColumns: 'minmax(0, 809fr) minmax(0, 570fr)' }}
+      >
         <p
-          className="approach-title md:absolute md:left-0 md:top-0 md:w-[809px]"
+          className="approach-title"
           style={{
             fontFamily: 'var(--font-dm-sans)',
             fontSize: 'var(--text-title-xl)',
@@ -96,7 +99,7 @@ export default function ApproachSection() {
         />
 
         <p
-          className="approach-body md:absolute md:left-[831px] md:top-[189px] md:w-[570px]"
+          className="approach-body md:col-start-2 md:row-start-2"
           style={{
             fontFamily: 'var(--font-dm-sans)',
             fontSize: 'var(--text-body-l)',

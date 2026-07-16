@@ -1,10 +1,14 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Positions within 1400px container (from Figma)
+// Positions within a 1400px-wide reference canvas (from Figma). The whole
+// composition is scaled down to fit narrower "lg" containers — see
+// DESIGN_WIDTH / scale below — so these stay fixed regardless of viewport.
+const DESIGN_WIDTH = 1400;
+const DESIGN_HEIGHT = 586;
 const LEFT_START   = 33;
 const LEFT_END     = 392;
 const RIGHT_START  = 1065;
@@ -13,12 +17,32 @@ const BOTTOM_TOP_START = 154;
 const BOTTOM_TOP_END   = 370;
 const BOTTOM_LEFT  = 398; // (1400 - 604) / 2
 
+// The left/right pieces meet edge-to-edge at x=694 and the bottom piece
+// meets their bottom edge at y=370 — an exact touching seam that can leave a
+// 1px gap on non-integer display scaling. A small overlap hides that.
+const SEAM_OVERLAP = 3;
+
 export default function Section3() {
   const sectionRef  = useRef<HTMLElement>(null);
+  const outerRef    = useRef<HTMLDivElement>(null);
   const leftRef     = useRef<HTMLDivElement>(null);
   const rightRef    = useRef<HTMLDivElement>(null);
   const bottomRef   = useRef<HTMLDivElement>(null);
   const resultRef   = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  // Scale the whole pixel-choreographed composition to fit whatever width
+  // the container actually has, so it stays centered and never overflows on
+  // "lg but not full 1400px" screens (typical laptops).
+  useEffect(() => {
+    const el = outerRef.current;
+    if (!el) return;
+    const update = () => setScale(Math.min(1, el.clientWidth / DESIGN_WIDTH));
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -36,10 +60,11 @@ export default function Section3() {
         },
       });
 
-      // Phase 1 (0→1): three pieces converge to center
-      tl.to(leftRef.current,   { x: LEFT_END - LEFT_START,     duration: 1 }, 0)
-        .to(rightRef.current,  { x: RIGHT_END - RIGHT_START,   duration: 1 }, 0)
-        .to(bottomRef.current, { y: BOTTOM_TOP_END - BOTTOM_TOP_START, x: -6, duration: 1 }, 0)
+      // Phase 1 (0→1): three pieces converge to center — pushed past their
+      // exact touching edges by SEAM_OVERLAP so no subpixel gap can show.
+      tl.to(leftRef.current,   { x: LEFT_END - LEFT_START + SEAM_OVERLAP,     duration: 1 }, 0)
+        .to(rightRef.current,  { x: RIGHT_END - RIGHT_START - SEAM_OVERLAP,   duration: 1 }, 0)
+        .to(bottomRef.current, { y: BOTTOM_TOP_END - BOTTOM_TOP_START - SEAM_OVERLAP, x: -6 + SEAM_OVERLAP, duration: 1 }, 0)
 
       // Phase 2 (0.8→1.5): card content fades, result appears
         .to('.s3-card-content', { opacity: 0, duration: 0.3 }, 0.8)
@@ -98,10 +123,25 @@ export default function Section3() {
         </p>
       </div>
 
-      {/* ── DESKTOP: animated cards ── */}
+      {/* ── DESKTOP: animated cards ──
+          The inner canvas below is always DESIGN_WIDTH×DESIGN_HEIGHT and all
+          the pixel choreography lives inside it unchanged; this outer
+          wrapper just scales that whole canvas down uniformly to fit
+          whatever width the container actually has, so it's always centered
+          and never overflows on "lg but narrower than 1400px" screens. */}
       <div
+        ref={outerRef}
         className="hidden lg:block relative w-full shrink-0"
-        style={{ maxWidth: '1400px', height: '586px' }}
+        style={{ height: DESIGN_HEIGHT * scale }}
+      >
+      <div
+        className="absolute top-0 left-1/2"
+        style={{
+          width: DESIGN_WIDTH,
+          height: DESIGN_HEIGHT,
+          transform: `translateX(-50%) scale(${scale})`,
+          transformOrigin: 'top center',
+        }}
       >
         {/* LEFT CARD */}
         <div
@@ -197,11 +237,13 @@ export default function Section3() {
           </div>
         </div>
 
-        {/* BOTTOM CARD */}
+        {/* BOTTOM CARD — width trimmed by 2×SEAM_OVERLAP to match the
+            left+right cards' final combined span, now that they're inset by
+            SEAM_OVERLAP on each side to close their own seam. */}
         <div
           ref={bottomRef}
           className="absolute"
-          style={{ left: BOTTOM_LEFT, top: BOTTOM_TOP_START, width: 604, height: 216 }}
+          style={{ left: BOTTOM_LEFT, top: BOTTOM_TOP_START, width: 604 - SEAM_OVERLAP * 2, height: 216 }}
         >
           <div
             className="bg-white w-full h-full"
@@ -249,7 +291,7 @@ export default function Section3() {
           ref={resultRef}
           className="absolute flex items-center justify-center"
           style={{
-            left: LEFT_END,
+            left: LEFT_END + SEAM_OVERLAP,
             top: 0,
             width: 604,
             height: 586,
@@ -285,6 +327,7 @@ export default function Section3() {
             </p>
           </div>
         </div>
+      </div>
       </div>
 
       {/* ── MOBILE: static stacked layout ── */}

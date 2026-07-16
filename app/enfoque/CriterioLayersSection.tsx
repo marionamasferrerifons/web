@@ -281,7 +281,7 @@ export default function CriterioSection() {
               height: '1px',
               backgroundColor: 'rgba(1,44,151,0.15)',
               [layer.align]: '48px',
-              width: 'calc(50% - 279px - 48px)',
+              width: 'clamp(0px, calc(50% - 279px - 48px), 325px)',
             }}
           />
         ))}
@@ -293,7 +293,8 @@ export default function CriterioSection() {
             style={{
               top: `calc(50% + ${layer.centerOffset + 24}px)`,
               [layer.align]: '48px',
-              width: '325px',
+              width: 'clamp(0px, calc(50% - 279px - 48px), 325px)',
+              zIndex: 10,
             }}
           >
             <LayerCopy layer={layer} />

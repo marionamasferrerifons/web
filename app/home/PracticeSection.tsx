@@ -19,14 +19,17 @@ const CARDS = [
   {
     title: 'Proyectos más claros, coherentes y sostenibles',
     body: 'La combinación entre criterio editorial, pedagogía y tecnología permite desarrollar contenidos útiles, bien estructurados y pensados para mantenerse sólidos también a largo plazo.',
+    icon: '/practice-icon-inbox.svg',
   },
   {
     title: 'La tecnología funciona mejor cuando hay criterio detrás',
     body: 'Integrar IA dentro de procesos editoriales no consiste en automatizar por automatizar, sino en tomar mejores decisiones sobre qué mejorar, qué mantener y dónde realmente aporta valor.',
+    icon: '/practice-icon-process.svg',
   },
   {
     title: 'Contenido que se produce y se entiende mejor',
     body: 'Trabajar desde una mirada editorial y pedagógica permite construir materiales más claros, comprensibles y alineados con cómo las personas aprenden y utilizan el contenido.',
+    icon: '/practice-icon-edit.svg',
   },
 ];
 
@@ -125,7 +128,7 @@ export default function PracticeSection({ testimonial }: { testimonial: Testimon
                 className="flex items-center justify-center rounded-[4px] shrink-0 size-[48px]"
                 style={{ backgroundColor: 'var(--color-orange-200)' }}
               >
-                <img src="/enfoque-work-loader.svg" alt="" className="size-[32px]" aria-hidden="true" />
+                <img src={card.icon} alt="" className="size-[28px]" aria-hidden="true" />
               </span>
             </div>
             <p

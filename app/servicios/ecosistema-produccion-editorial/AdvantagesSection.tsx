@@ -28,59 +28,30 @@ const ventajas = [
 ];
 
 export default function Section5b() {
-  const sectionRef   = useRef<HTMLElement>(null);
-  const lineRefs     = useRef<(HTMLDivElement | null)[]>([]);
-  const descWrapRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const mm = gsap.matchMedia();
-
-    mm.add('(min-width: 1024px)', () => {
-      // Measure natural heights before collapsing
-      const heights = descWrapRefs.current.map(el => el?.scrollHeight ?? 100);
-
-      // Collapse all descriptions and reset lines
-      descWrapRefs.current.forEach(el => {
-        if (el) gsap.set(el, { height: 0, overflow: 'hidden', opacity: 0 });
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray<HTMLElement>('.ventaja-card').forEach((card) => {
+        gsap.from(card, {
+          y: 24,
+          opacity: 0,
+          duration: 0.6,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 85%' },
+        });
       });
-      lineRefs.current.forEach(el => {
-        if (el) gsap.set(el, { scaleX: 0, opacity: 1 });
-      });
+    }, sectionRef);
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          pin: true,
-          scrub: 1.5,
-          start: 'top top',
-          end: '+=3600',
-        },
-      });
-
-      ventajas.forEach((_, i) => {
-        const h    = heights[i];
-        const base = i * 1.1;
-
-        // Expand description
-        tl.to(descWrapRefs.current[i], { height: h, opacity: 1, duration: 0.25, ease: 'power2.out' }, base);
-        // Orange line fills left to right
-        tl.to(lineRefs.current[i],     { scaleX: 1, duration: 0.55, ease: 'none' }, base + 0.15);
-        // Line disappears
-        tl.to(lineRefs.current[i],     { opacity: 0, duration: 0.1 }, base + 0.7);
-        // Description collapses
-        tl.to(descWrapRefs.current[i], { height: 0, opacity: 0, duration: 0.25, ease: 'power2.in' }, base + 0.75);
-      });
-    });
-
-    return () => mm.revert();
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="w-full flex flex-col items-center gap-[40px] xl:gap-[28px] 2xl:gap-[40px] px-[20px] py-[56px]"
+      className="w-full flex flex-col items-center gap-[64px] xl:gap-[48px] 2xl:gap-[64px] px-[20px] py-[56px]"
       style={{ backgroundColor: 'var(--color-white)' }}
     >
       {/* Header */}
@@ -116,72 +87,53 @@ export default function Section5b() {
 
       {/* Content */}
       <div
-        className="w-full flex flex-col lg:flex-row items-start justify-between gap-[32px]"
+        className="w-full flex flex-col lg:flex-row items-center justify-between gap-[32px]"
         style={{ maxWidth: '1400px' }}
       >
-        {/* Left: animated rows */}
-        <div className="flex flex-col w-full lg:w-[661px] shrink-0">
+        {/* Left: 2x2 grid, all text always visible */}
+        <div className="grid grid-cols-2 gap-x-[24px] gap-y-[32px] w-full lg:w-[661px] shrink-0">
           {ventajas.map((v, i) => (
             <div
               key={i}
-              className="relative px-[16px] py-[24px] xl:py-[16px] 2xl:py-[24px]"
-              style={{ borderBottom: '1px solid var(--color-blue-300)' }}
+              className="ventaja-card flex flex-col gap-[8px] pt-[16px]"
+              style={{ borderTop: '1px solid var(--color-blue-300)' }}
             >
-              {/* Orange progress line — scaleX 0→1 from left */}
-              <div
-                ref={el => { lineRefs.current[i] = el; }}
-                className="absolute bottom-0 left-0 w-full"
+              <span
                 style={{
-                  height: '1px',
-                  backgroundColor: 'var(--color-orange)',
-                  transformOrigin: 'left center',
+                  fontFamily: 'var(--font-dm-mono)',
+                  fontWeight: 400,
+                  fontSize: 'var(--text-body-accent-mono)',
+                  lineHeight: 'var(--text-body-accent-mono--line-height)',
+                  letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
+                  color: 'var(--color-blue-300)',
                 }}
-              />
-
-              {/* Label + title — always visible */}
-              <div className="flex flex-col gap-[8px]">
-                <span
-                  style={{
-                    fontFamily: 'var(--font-dm-mono)',
-                    fontWeight: 400,
-                    fontSize: 'var(--text-body-accent-mono)',
-                    lineHeight: 'var(--text-body-accent-mono--line-height)',
-                    letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-                    color: 'var(--color-blue-300)',
-                  }}
-                >
-                  {v.label}
-                </span>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-dm-sans)',
-                    fontSize: '24px',
-                    lineHeight: '32px',
-                    fontWeight: 400,
-                    fontVariationSettings: '"opsz" 14',
-                    color: 'var(--color-blue-400)',
-                  }}
-                >
-                  {v.title}
-                </p>
-              </div>
-
-              {/* Description wrapper — height animated 0 ↔ natural */}
-              <div ref={el => { descWrapRefs.current[i] = el; }}>
-                <p
-                  className="pt-[8px]"
-                  style={{
-                    fontFamily: 'var(--font-dm-sans)',
-                    fontSize: '20px',
-                    lineHeight: '28px',
-                    fontWeight: 400,
-                    fontVariationSettings: '"opsz" 14',
-                    color: 'var(--color-blue-300)',
-                  }}
-                >
-                  {v.desc}
-                </p>
-              </div>
+              >
+                {v.label}
+              </span>
+              <p
+                style={{
+                  fontFamily: 'var(--font-dm-sans)',
+                  fontSize: '20px',
+                  lineHeight: '28px',
+                  fontWeight: 400,
+                  fontVariationSettings: '"opsz" 14',
+                  color: 'var(--color-blue-400)',
+                }}
+              >
+                {v.title}
+              </p>
+              <p
+                style={{
+                  fontFamily: 'var(--font-dm-sans)',
+                  fontSize: 'var(--text-body-m)',
+                  lineHeight: 'var(--text-body-m--line-height)',
+                  fontWeight: 400,
+                  fontVariationSettings: '"opsz" 14',
+                  color: 'var(--color-blue-300)',
+                }}
+              >
+                {v.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -191,9 +143,9 @@ export default function Section5b() {
           className="order-first lg:order-none w-full lg:w-[661px] shrink-0 rounded-[24px] overflow-hidden h-[300px] lg:h-[400px] xl:h-[460px] 2xl:h-[524px]"
         >
           <img
-            src="/s5b-ventajas-diagram.png"
+            src="/s5b-ventajas-diagram.svg"
             alt="GEM Especialista workflow"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
         </div>
       </div>

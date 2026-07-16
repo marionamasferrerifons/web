@@ -131,9 +131,20 @@ export default function WorkPrinciplesSection() {
       gsap.timeline({
         scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
         defaults: { ease: 'power3.out' },
-      })
-        .from('.work-header > *', { y: 24, opacity: 0, duration: 0.7, stagger: 0.1 })
-        .from('.work-card', { y: 32, opacity: 0, duration: 0.7, stagger: 0.08 }, '-=0.3');
+      }).from('.work-header > *', { y: 24, opacity: 0, duration: 0.7, stagger: 0.1 });
+
+      // Each card animates on its own scroll trigger — not a single shared
+      // one on the section — since the 3-column masonry layout means cards
+      // sit at very different heights on the page.
+      gsap.utils.toArray<HTMLElement>('.work-card').forEach((card) => {
+        gsap.from(card, {
+          y: 32,
+          opacity: 0,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 85%' },
+        });
+      });
     }, sectionRef);
 
     return () => ctx.revert();

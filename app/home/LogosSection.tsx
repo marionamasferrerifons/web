@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -9,8 +9,43 @@ export type Logo = {
   alt: string;
 };
 
+function normalizeAlt(alt: string) {
+  return alt.toLowerCase().replace(/é/g, 'e').replace(/\s+/g, '');
+}
+
+// Some logos read visually smaller/bigger than the rest at the default
+// 25px height, so individual ones get a nudge to match perceived size.
+const HEIGHT_OVERRIDES: Record<string, number> = {
+  actilearning: 29,
+  juniorreport: 18,
+  altamar: 19,
+};
+
+function logoHeight(alt: string) {
+  const normalized = normalizeAlt(alt);
+  const match = Object.keys(HEIGHT_OVERRIDES).find((name) => normalized.includes(name));
+  return match ? HEIGHT_OVERRIDES[match] : 25;
+}
+
+// McGraw-Hill's source asset has no transparency at all (solid red square +
+// white letter, alpha 255 everywhere), so the brightness/invert filter used
+// for every other logo just turns the whole square white. A luminance mask
+// works off the image's own light/dark values instead of its alpha channel,
+// so it renders correctly for this one regardless of transparency.
+const LUMINANCE_MASK_LOGOS = ['mcgrawhill'];
+
+function needsLuminanceMask(alt: string) {
+  const normalized = normalizeAlt(alt);
+  return LUMINANCE_MASK_LOGOS.some((name) => normalized.includes(name));
+}
+
 export default function LogosSection({ logos }: { logos: Logo[] }) {
   const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  // Duplicated so the track can loop seamlessly — the tween scrolls exactly
+  // one set's width (xPercent -50) then jumps back unnoticed.
+  const trackLogos = [...logos, ...logos];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -21,11 +56,22 @@ export default function LogosSection({ logos }: { logos: Logo[] }) {
         defaults: { ease: 'power3.out' },
       })
         .from('.logos-tag', { y: 16, opacity: 0, duration: 0.6 })
-        .from('.logos-item', { y: 16, opacity: 0, duration: 0.6, stagger: 0.08 }, '-=0.4');
+        .from('.logos-marquee', { y: 16, opacity: 0, duration: 0.6 }, '-=0.4');
+
+      const marqueeTween = gsap.to(trackRef.current, {
+        xPercent: -50,
+        duration: logos.length * 3,
+        ease: 'none',
+        repeat: -1,
+      });
+
+      const track = trackRef.current;
+      track?.addEventListener('mouseenter', () => marqueeTween.pause());
+      track?.addEventListener('mouseleave', () => marqueeTween.play());
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [logos.length]);
 
   return (
     <section
@@ -47,16 +93,68 @@ export default function LogosSection({ logos }: { logos: Logo[] }) {
         [EDITORIALES PARA LAS QUE HE TRABAJADO]
       </p>
 
-      <div className="flex flex-wrap items-center justify-center gap-x-[32px] gap-y-[24px]" style={{ mixBlendMode: 'luminosity' }}>
-        {logos.map((logo, i) => (
-          <img
-            key={i}
-            src={logo.src}
-            alt={logo.alt}
-            className="logos-item w-auto h-[60px]"
-            style={{ opacity: 0.4 }}
-          />
-        ))}
+      <div className="logos-marquee relative overflow-hidden w-full" style={{ maxWidth: '600px' }}>
+        {/* Edge fades — solid gradient overlays (not a CSS mask) so they don't
+            create a stacking context and break the logos' mix-blend-mode
+            against the section's real blue background below. */}
+        <div
+          className="absolute inset-y-0 left-0 z-10 pointer-events-none"
+          style={{ width: '64px', background: 'linear-gradient(to right, var(--color-blue-500), transparent)' }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-y-0 right-0 z-10 pointer-events-none"
+          style={{ width: '64px', background: 'linear-gradient(to left, var(--color-blue-500), transparent)' }}
+          aria-hidden="true"
+        />
+
+        <div
+          ref={trackRef}
+          className="flex items-center flex-nowrap gap-x-[56px] w-max"
+        >
+          {trackLogos.map((logo, i) => {
+            const height = logoHeight(logo.alt);
+            return (
+              <div
+                key={i}
+                className="flex items-center justify-center shrink-0"
+                style={{ height: '55px' }}
+              >
+                {needsLuminanceMask(logo.alt) ? (
+                  <div
+                    role="img"
+                    aria-label={logo.alt}
+                    aria-hidden={i >= logos.length}
+                    className="w-auto max-w-full"
+                    style={{
+                      height: `${height}px`,
+                      aspectRatio: '1 / 1',
+                      opacity: 0.4,
+                      backgroundColor: 'white',
+                      maskImage: `url(${logo.src})`,
+                      maskMode: 'luminance',
+                      maskSize: 'contain',
+                      maskRepeat: 'no-repeat',
+                      maskPosition: 'center',
+                      WebkitMaskImage: `url(${logo.src})`,
+                      WebkitMaskSize: 'contain',
+                      WebkitMaskRepeat: 'no-repeat',
+                      WebkitMaskPosition: 'center',
+                    } as CSSProperties}
+                  />
+                ) : (
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="w-auto max-w-full object-contain"
+                    style={{ height: `${height}px`, filter: 'brightness(0) invert(1)', opacity: 0.4 }}
+                    aria-hidden={i >= logos.length}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
