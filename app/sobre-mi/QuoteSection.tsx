@@ -69,9 +69,9 @@ export default function QuoteSection() {
             color: 'var(--color-white)',
           }}
         >
-          “Creo que las editoriales educativas deben seguir siendo piezas clave de una educación de calidad.
+          “Las editoriales educativas deben seguir siendo piezas clave de una educación de calidad.
           <br /><br />
-          No quiero que incorporen la IA de forma acrítica. Quiero que preserven las mejores prácticas del oficio de editar y que definan, con valentía y confianza, el papel que quieren jugar en el futuro de la educación”
+          Mi objetivo es que preserven las mejores prácticas del oficio de editar y que definan, con valentía y confianza, el papel que quieren jugar en el futuro de la educación.”
         </p>
       </div>
     </section>
