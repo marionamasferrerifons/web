@@ -132,8 +132,8 @@ export default function CriterioSection() {
         scrollTrigger: {
           trigger: cardRef.current,
           start: 'top top',
-          end: '+=2400',
-          scrub: 1,
+          end: '+=1600',
+          scrub: 0.3,
           pin: true,
           pinSpacing: true,
         },
@@ -194,13 +194,13 @@ export default function CriterioSection() {
 
     <section className="w-full flex flex-col items-center px-[16px]">
       {/* Mobile / tablet — simple stacked layout, no pin/crossfade */}
-      <div className="lg:hidden relative w-full">
+      <div className="lg:hidden relative w-full" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
         <div
           className="absolute top-0 bottom-0"
           style={{ left: '-16px', right: '-16px', backgroundColor: 'var(--color-orange-400)', zIndex: 0 }}
           aria-hidden="true"
         />
-        <div className="relative bg-white rounded-t-[24px] w-full flex flex-col px-[24px] py-[48px]" style={{ zIndex: 1 }}>
+        <div className="relative bg-white rounded-[24px] w-full flex flex-col px-[24px] py-[48px]" style={{ zIndex: 1 }}>
           {LAYERS.map((layer, i) => (
             <div
               key={layer.key}
@@ -236,17 +236,17 @@ export default function CriterioSection() {
       <div className="hidden lg:block relative w-full">
       {/* This wrapper (not just the white card) is what GSAP pins, so the orange
           margins stay fixed in sync with the card instead of scrolling away.
-          It's also taller than the card by 16px so a strip of orange shows
-          above the card once it's pinned flush against the viewport top. */}
-      <div ref={cardRef} className="relative w-full" style={{ height: '100vh', paddingTop: '16px' }}>
+          It's also taller than the card by 16px top and bottom so a strip of
+          orange shows on both edges once it's pinned against the viewport. */}
+      <div ref={cardRef} className="relative w-full" style={{ height: '100vh', paddingTop: '16px', paddingBottom: '16px' }}>
         <div
           className="absolute top-0 bottom-0"
           style={{ left: '-16px', right: '-16px', backgroundColor: 'var(--color-orange-400)', zIndex: 0 }}
           aria-hidden="true"
         />
       <div
-        className="relative bg-white rounded-t-[24px] w-full overflow-hidden"
-        style={{ height: 'calc(100vh - 16px)', zIndex: 1 }}
+        className="relative bg-white rounded-[24px] w-full overflow-hidden"
+        style={{ height: 'calc(100vh - 32px)', zIndex: 1 }}
       >
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative" style={{ width: '558px' }}>

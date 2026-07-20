@@ -1,6 +1,6 @@
 <svg width="586" height="402" viewBox="0 -24 586 402" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_579_1675)">
-<rect y="-24" width="586" height="402" rx="16" fill="#CFECE7"/>
+<rect y="-24" width="586" height="402" rx="0" fill="#CFECE7"/>
 <g filter="url(#filter0_di_579_1675)">
 <path d="M610.306 52.4102H78.5132C67.6102 52.4102 58.7715 61.0535 58.7715 71.7156V396.288C58.7715 406.95 67.6102 415.594 78.5132 415.594H610.306C621.209 415.594 630.048 406.95 630.048 396.288V71.7156C630.048 61.0535 621.209 52.4102 610.306 52.4102Z" fill="white"/>
 <path d="M561.874 158.715H83.9288C81.4149 158.715 79.377 160.753 79.377 163.267V198.544C79.377 201.058 81.4149 203.095 83.9288 203.095H561.874C564.388 203.095 566.426 201.058 566.426 198.544V163.267C566.426 160.753 564.388 158.715 561.874 158.715Z" fill="#F2F2F2"/>
@@ -58,7 +58,7 @@
 <feBlend mode="normal" in2="shape" result="effect2_innerShadow_579_1675"/>
 </filter>
 <clipPath id="clip0_579_1675">
-<rect y="-24" width="586" height="402" rx="16" fill="white"/>
+<rect y="-24" width="586" height="402" rx="0" fill="white"/>
 </clipPath>
 </defs>
 </svg>

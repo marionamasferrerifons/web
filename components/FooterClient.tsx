@@ -45,7 +45,11 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
 
     const ctx = gsap.context(() => {
       gsap.timeline({
-        scrollTrigger: { trigger: footerRef.current, start: 'top 85%' },
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: 'top bottom',
+          toggleActions: 'play none none none',
+        },
         defaults: { ease: 'power3.out' },
       })
         .from('.footer-divider', { scaleX: 0, transformOrigin: 'left', duration: 0.9, ease: 'power2.inOut' })
@@ -53,7 +57,18 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
         .from('.footer-bottom', { opacity: 0, duration: 0.6 }, '-=0.3');
     }, footerRef);
 
-    return () => ctx.revert();
+    // Preceding sections (case studies in particular) render variable-length
+    // Sanity content and swap in web fonts after mount, both of which can
+    // change page height after ScrollTrigger already cached its positions.
+    // Re-measure once things settle so the footer's trigger point stays accurate.
+    const refresh = () => ScrollTrigger.refresh();
+    document.fonts?.ready?.then(refresh);
+    window.addEventListener('load', refresh);
+
+    return () => {
+      window.removeEventListener('load', refresh);
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -113,7 +128,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
             </div>
           </div>
 
-          <div className="contents lg:grid lg:grid-cols-3 lg:gap-[40px] lg:justify-self-end">
+          <div className="contents lg:flex lg:gap-[40px] lg:justify-self-end">
           <div className="footer-column flex flex-col gap-[16px]">
             <p className="uppercase" style={columnHeaderStyle}>Servicios</p>
             <div className="flex flex-col gap-[12px]">
@@ -130,7 +145,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
             </div>
           </div>
 
-          <div className="footer-column flex flex-col gap-[16px]">
+          <div className="footer-column flex flex-col gap-[16px]" style={{ maxWidth: '220px' }}>
             <p className="uppercase" style={columnHeaderStyle}>Casos de éxito</p>
             <div className="flex flex-col gap-[12px]">
               {caseStudiesItems.length > 0 ? (
@@ -150,7 +165,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
             </div>
           </div>
 
-          <div className="footer-column flex flex-col gap-[16px]">
+          <div className="footer-column flex flex-col gap-[16px]" style={{ width: '150px' }}>
             <p className="uppercase" style={columnHeaderStyle}>Navegación</p>
             <div className="flex flex-col gap-[12px]">
               <Link href="/" className="text-white hover:text-orange transition-colors duration-200 w-fit" style={linkStyle}>

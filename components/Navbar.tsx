@@ -78,7 +78,7 @@ export default async function Navbar() {
           {/* Language selector */}
           <div
             className="flex items-center gap-[8px] border border-[#d4d4d4] rounded-full px-[11px]"
-            style={{ height: '28px' }}
+            style={{ height: '40px' }}
           >
             <span className="text-white" style={monoStyle}>ES</span>
             <svg

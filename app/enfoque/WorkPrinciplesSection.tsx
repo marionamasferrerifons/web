@@ -135,12 +135,18 @@ export default function WorkPrinciplesSection() {
 
       // Each card animates on its own scroll trigger — not a single shared
       // one on the section — since the 3-column masonry layout means cards
-      // sit at very different heights on the page.
-      gsap.utils.toArray<HTMLElement>('.work-card').forEach((card) => {
+      // sit at very different heights on the page. The first card in each
+      // column still lines up at the same height as its row-mates (grid is
+      // items-start), so without a delay they'd all pop in at once. Cards
+      // render column-by-column (2 per column), so Math.floor(i / 2) gives
+      // the column index for a left-to-right cascade.
+      gsap.utils.toArray<HTMLElement>('.work-card').forEach((card, i) => {
+        const column = Math.floor(i / 2);
         gsap.from(card, {
           y: 32,
           opacity: 0,
           duration: 0.7,
+          delay: column * 0.15,
           ease: 'power3.out',
           scrollTrigger: { trigger: card, start: 'top 85%' },
         });

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PortableText, type PortableTextBlock, type PortableTextComponents } from '@portabletext/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -30,6 +30,7 @@ type ProcessSectionProps = {
 export default function ProcessSection({ title, text, images }: ProcessSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const hasImages = images && images.length > 0;
+  const [lightboxImage, setLightboxImage] = useState<ProcessImage | null>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -43,6 +44,21 @@ export default function ProcessSection({ title, text, images }: ProcessSectionPr
 
     return () => ctx.revert();
   }, []);
+
+  useEffect(() => {
+    if (!lightboxImage) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxImage(null);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [lightboxImage]);
 
   return (
     <section
@@ -83,18 +99,51 @@ export default function ProcessSection({ title, text, images }: ProcessSectionPr
           <div className="flex flex-wrap gap-[24px] justify-center w-full">
             {images.map((image, i) => (
               image.asset?.url && (
-                <img
+                <button
                   key={i}
-                  src={image.asset.url}
-                  alt={image.alt ?? ''}
-                  className="rounded-[8px] object-cover flex-1"
+                  type="button"
+                  onClick={() => setLightboxImage(image)}
+                  aria-label="Ampliar imagen"
+                  className="relative overflow-hidden rounded-[8px] flex-1 cursor-zoom-in"
                   style={{ minWidth: '280px', height: '320px' }}
-                />
+                >
+                  <img
+                    src={image.asset.url}
+                    alt={image.alt ?? ''}
+                    className="size-full object-cover transition-transform duration-300 ease-out hover:scale-110"
+                  />
+                </button>
               )
             ))}
           </div>
         )}
       </div>
+
+      {lightboxImage?.asset?.url && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-[24px] bg-black/90"
+          onClick={() => setLightboxImage(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setLightboxImage(null)}
+            aria-label="Cerrar"
+            className="absolute flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200"
+            style={{ top: '24px', right: '24px', width: '44px', height: '44px' }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 6L18 18M18 6L6 18" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </button>
+          <img
+            src={lightboxImage.asset.url}
+            alt={lightboxImage.alt ?? ''}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-full max-h-full object-contain rounded-[8px]"
+            style={{ maxWidth: '90vw', maxHeight: '90vh' }}
+          />
+        </div>
+      )}
     </section>
   );
 }

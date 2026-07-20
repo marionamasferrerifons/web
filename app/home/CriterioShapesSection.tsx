@@ -128,7 +128,7 @@ export default function CriterioSection() {
           className="criterio-shape group relative overflow-hidden shrink-0 aspect-square w-full md:w-auto md:h-full flex items-center justify-center"
           style={{ backgroundColor: 'var(--color-green)', borderRadius: '9999px' }}
         >
-          <div className="flex flex-col gap-[16px] items-center text-center px-[24px]">
+          <div className="flex flex-col gap-[64px] items-center text-center px-[24px]">
             <div className="flex items-center gap-[12px]">
               <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '32px', lineHeight: '38px', color: 'var(--color-white)' }}>
                 Pedagogía

@@ -101,17 +101,17 @@ export default function ServicesSection() {
         </p>
       </div>
 
-      <div className="w-full flex flex-col gap-[40px]" style={{ maxWidth: '1163px' }}>
+      <div className="w-full flex flex-col gap-[64px]" style={{ maxWidth: '1163px' }}>
         {CARDS.map((card) => (
           <Link
             key={card.href}
             href={card.href}
             className="services-card group relative overflow-hidden rounded-[24px] flex flex-col md:flex-row items-stretch"
-            style={{ backgroundColor: card.bgColor, minHeight: '365px' }}
+            style={{ backgroundColor: card.bgColor, minHeight: '480px' }}
           >
             {/* Text side */}
             <div
-              className={`flex-1 flex flex-col justify-between gap-[24px] p-[32px] md:p-[40px] relative z-10 ${
+              className={`flex-1 md:flex-[0.9] flex flex-col justify-between gap-[24px] p-[32px] md:p-[40px] relative z-10 ${
                 card.imageSide === 'left' ? 'md:order-2' : ''
               }`}
             >
@@ -178,7 +178,7 @@ export default function ServicesSection() {
             </div>
 
             {/* Illustration side */}
-            <div className={`relative flex-1 overflow-hidden ${card.imageSide === 'left' ? 'md:order-1' : ''}`} style={{ minHeight: '240px' }}>
+            <div className={`relative flex-1 md:flex-[1.3] overflow-hidden ${card.imageSide === 'left' ? 'md:order-1' : ''}`} style={{ minHeight: '240px' }}>
               <img
                 src={card.image}
                 alt=""
