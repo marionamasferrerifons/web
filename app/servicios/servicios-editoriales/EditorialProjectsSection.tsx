@@ -16,9 +16,9 @@ export type EditorialProject = {
   publisher: string;
   title: string;
   image: {
-    asset: { _id: string; url: string };
+    asset: { _id: string; url: string } | null;
     alt?: string;
-  };
+  } | null;
 };
 
 function ProjectCard({ project }: { project: EditorialProject }) {
@@ -45,11 +45,15 @@ function ProjectCard({ project }: { project: EditorialProject }) {
 
       {/* Image */}
       <div className="relative rounded-[10px] overflow-hidden shrink-0" style={{ width: CARD_WIDTH, height: 380 }}>
-        <img
-          src={project.image.asset.url}
-          alt={project.image.alt || project.title}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        {project.image?.asset?.url ? (
+          <img
+            src={project.image.asset.url}
+            alt={project.image.alt || project.title}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0" style={{ backgroundColor: 'var(--color-green)' }} />
+        )}
         {/* Blue gradient overlay — hidden on hover */}
         <div
           className="absolute inset-0 transition-opacity duration-300 opacity-100 group-hover:opacity-0 rounded-[10px]"

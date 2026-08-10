@@ -14,15 +14,17 @@ export default async function EstrategiaEditorialPage() {
     <main>
       <ServiciosClient />
       <CaseStudiesSection />
-      <TestimonialSection
-        quote={testimonial.quote}
-        authorName={testimonial.authorName}
-        authorRole={testimonial.authorRole}
-        avatarUrl={testimonial.avatar.asset.url}
-        avatarAlt={testimonial.avatar.alt}
-        logoUrl={testimonial.logo?.asset?.url}
-        logoAlt={testimonial.logo?.alt}
-      />
+      {testimonial?.avatar?.asset?.url && (
+        <TestimonialSection
+          quote={testimonial.quote}
+          authorName={testimonial.authorName}
+          authorRole={testimonial.authorRole}
+          avatarUrl={testimonial.avatar.asset.url}
+          avatarAlt={testimonial.avatar.alt}
+          logoUrl={testimonial.logo?.asset?.url}
+          logoAlt={testimonial.logo?.alt}
+        />
+      )}
       <CtaSection />
     </main>
   )

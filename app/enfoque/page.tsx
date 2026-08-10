@@ -19,15 +19,17 @@ export default async function EnfoquePage() {
       <ApproachSection />
       <CriterioSection />
       <WorkPrinciplesSection />
-      <TestimonialSection
-        quote={testimonial.quote}
-        authorName={testimonial.authorName}
-        authorRole={testimonial.authorRole}
-        avatarUrl={testimonial.avatar.asset.url}
-        avatarAlt={testimonial.avatar.alt}
-        logoUrl={testimonial.logo?.asset?.url}
-        logoAlt={testimonial.logo?.alt}
-      />
+      {testimonial?.avatar?.asset?.url && (
+        <TestimonialSection
+          quote={testimonial.quote}
+          authorName={testimonial.authorName}
+          authorRole={testimonial.authorRole}
+          avatarUrl={testimonial.avatar.asset.url}
+          avatarAlt={testimonial.avatar.alt}
+          logoUrl={testimonial.logo?.asset?.url}
+          logoAlt={testimonial.logo?.alt}
+        />
+      )}
       <CaseStudiesSection />
       <CtaSection
         title="Exploremos juntos cómo incorporar la IA en tu editorial"
