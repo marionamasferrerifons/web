@@ -24,7 +24,7 @@ const boldStyle = { fontWeight: 600, color: 'var(--color-blue-400)' } as const;
 const entries: HistoryEntryData[] = [
   {
     title: 'Entre libros y estrategia',
-    description: LOREM_INTRO,
+    description: 'Estudié Filología Catalana por amor a la literatura, pero enseguida descubrí que era más estratega que poética. Mientras mis compañeros soñaban con escribir, yo buscaba trabajar en una editorial, el lugar donde las humanidades y la gestión confluyen.',
     titleSide: 'left',
     milestones: [
       { date: '2004-2009', description: <>Estudié <strong style={boldStyle}>Filología Catalana</strong> en la UAB</> },
@@ -34,7 +34,7 @@ const entries: HistoryEntryData[] = [
   },
   {
     title: 'El libro digital',
-    description: LOREM_REPEATED,
+    description: 'Viví de cerca los debates sobre el fin del papel. Me formé en edición digital y diseñé nuevos flujos de producción. Aprendí que ante una disrupción, lo más importante es disponer de una brújula propia.',
     titleSide: 'right',
     milestones: [
       { date: '2012-2014', description: <>Mi primera experiencia como <strong style={boldStyle}>coordinadora editorial</strong></> },
@@ -43,7 +43,7 @@ const entries: HistoryEntryData[] = [
   },
   {
     title: 'La educación',
-    description: LOREM_REPEATED,
+    description: 'La edición educativa siempre me había parecido un mundo lejano. Pero me fui reencontrando con un interés que siempre había estado ahí: mi madre maestra, los años de activismo estudiantil, las tardes dando clases de refuerzo...',
     titleSide: 'left',
     milestones: [
       { date: '2015-2019', description: <>Trabajo intenso como <strong style={boldStyle}>editora digital</strong> en Editorial Altamar</> },
@@ -51,7 +51,7 @@ const entries: HistoryEntryData[] = [
   },
   {
     title: 'Dentro del aula',
-    description: LOREM_REPEATED,
+    description: 'Después de unos años trabajando con contenido educativo, quise saber qué pasa de verdad en un aula. Me sirvió para entender la distancia que a veces hay entre lo que produce una editorial y lo que necesita el profesorado y el alumnado.',
     titleSide: 'right',
     milestones: [
       { date: '2019-2021', description: <><strong style={boldStyle}>Profesora</strong> de lengua y literatura</> },
@@ -59,7 +59,7 @@ const entries: HistoryEntryData[] = [
   },
   {
     title: 'Buenos Aires',
-    description: LOREM_REPEATED,
+    description: 'Cuanto más tiempo pasaba en el aula, más clara tenía una cosa: mi formación pedagógica no estaba a la altura. Me fui a Buenos Aires, me especialicé en pedagogía y empecé a trabajar como editora freelance especializada en contenido educativo.',
     titleSide: 'left',
     milestones: [
       { date: '2021', description: <>Empecé a trabajar como <strong style={boldStyle}>editora freelance</strong> especializada en educación</> },
@@ -68,7 +68,7 @@ const entries: HistoryEntryData[] = [
   },
   {
     title: 'La inteligencia artificial',
-    description: LOREM_REPEATED,
+    description: 'Cuando la IA se abrió al gran público, me formé, la incorporé a mis flujos y desarrollé un enfoque propio. Comprender los procesos editoriales desde adentro me permitió identificar cómo la IA podía fortalecer las editoriales y los riesgos que era importante mitigar.',
     titleSide: 'right',
     milestones: [
       { date: '2024', description: <>Estudié el máster en <strong style={boldStyle}>IA e Innovación</strong> de Founderz</> },
@@ -76,7 +76,7 @@ const entries: HistoryEntryData[] = [
   },
   {
     title: 'Hoy',
-    description: 'Acompaño a editoriales educativas en un momento en que su papel está más cuestionado que nunca. Mi trabajo es ayudarlas a evolucionar su estrategia de negocio y sus sistemas de producción para navegar con seguridad un sector transformado por la IA',
+    description: 'Hoy soy consultora de implementación estratégica de IA para editoriales educativas. Ayudo a la dirección a decidir qué hacer con la IA y a gestionar el cambio cultural y tecnológico en su equipo.',
     titleSide: 'left',
     milestones: [
       { date: '2025', description: <>De editora a consultora de <strong style={boldStyle}>innovación</strong> y producción editorial</> },
@@ -139,7 +139,7 @@ function MilestonesBlock({ milestones, align }: { milestones: Milestone[]; align
 }
 
 export default function HistorySection({
-  title = 'Lorem ipsum dolor sit amet consectetur. At.',
+  title = 'De la literatura a la IA: un camino de puentes y confluencias. ',
 }: {
   title?: string
 }) {
