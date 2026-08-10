@@ -63,7 +63,7 @@ const entries: HistoryEntryData[] = [
     titleSide: 'left',
     milestones: [
       { date: '2021', description: <>Empecé a trabajar como <strong style={boldStyle}>editora freelance</strong> especializada en educación</> },
-      { date: '2019-2021', description: <>Me formé en <strong style={boldStyle}>Pedagogías para la Igualdad</strong> en la UBA</> },
+      { date: '2022-2023', description: <>Me formé en <strong style={boldStyle}>Pedagogías para la Igualdad</strong> en la UBA</> },
     ],
   },
   {
@@ -79,7 +79,7 @@ const entries: HistoryEntryData[] = [
     description: 'Hoy soy consultora de implementación estratégica de IA para editoriales educativas. Ayudo a la dirección a decidir qué hacer con la IA y a gestionar el cambio cultural y tecnológico en su equipo.',
     titleSide: 'left',
     milestones: [
-      { date: '2025', description: <>De editora a consultora de <strong style={boldStyle}>innovación</strong> y producción editorial</> },
+      { date: '2025', description: <>De editora a consultora de <strong style={boldStyle}>innovación</strong> editorial con IA</> },
     ],
   },
 ];
