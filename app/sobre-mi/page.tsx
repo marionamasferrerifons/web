@@ -17,7 +17,7 @@ export default function SobreMiPage() {
       {/* <NewsletterSection /> hidden for now */}
       <div className="relative" style={{ marginTop: '-24px' }}>
         <CtaSection
-          title="¿Quieres explorar cómo podría evolucionar tu editorial?"
+          title="¿Quieres explorar el futuro de tu editorial?"
           subtitle="Si crees que puedo aportarte valor o quieres contrastar ideas sobre el sector, estaré encantada de hablar contigo."
         />
       </div>
