@@ -24,7 +24,7 @@ const boldStyle = { fontWeight: 600, color: 'var(--color-blue-400)' } as const;
 const entries: HistoryEntryData[] = [
   {
     title: 'Entre libros y estrategia',
-    description: 'Estudié Filología Catalana por amor a la literatura, pero enseguida descubrí que era más estratega que poética. Mientras mis compañeros soñaban con escribir, yo buscaba trabajar en una editorial, el lugar donde las humanidades y la gestión confluyen.',
+    description: 'Estudié Filología Catalana por amor a la literatura, pero enseguida descubrí que era más estratega que poeta. Mientras mis compañeros soñaban con escribir, yo buscaba trabajar en una editorial, el lugar donde las humanidades y la gestión confluyen.',
     titleSide: 'left',
     milestones: [
       { date: '2004-2009', description: <>Estudié <strong style={boldStyle}>Filología Catalana</strong> en la UAB</> },
