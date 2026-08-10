@@ -71,7 +71,7 @@ export default function QuoteSection() {
         >
           “Trabajo para que las editoriales incorporen la IA de forma crítica, y preservar así las mejores prácticas del oficio de editar.
           <br /><br />
-          Creo que deben seguir siendo piezas clave de una educación de calidad. Por eso les animo a definir, con valentía y confianza, el papel que quieren jugar en el futuro de la educación”
+          Creo que deben seguir siendo piezas clave de una educación de calidad. Por eso les animo a definir, con valentía y confianza, el papel que quieren jugar en el futuro de la educación.”
         </p>
       </div>
     </section>
