@@ -71,7 +71,7 @@ const entries: HistoryEntryData[] = [
     description: 'Cuando la IA se abrió al gran público, me formé, la incorporé a mis flujos y desarrollé un enfoque propio. Comprender los procesos editoriales desde adentro me permitió identificar cómo la IA podía fortalecer las editoriales y los riesgos que era importante mitigar.',
     titleSide: 'right',
     milestones: [
-      { date: '2024', description: <>Estudié el máster en <strong style={boldStyle}>IA e Innovación</strong> de Founderz</> },
+      { date: '2023', description: <>Estudié el máster en <strong style={boldStyle}>IA e Innovación</strong> de Founderz</> },
     ],
   },
   {
