@@ -60,7 +60,7 @@ const values: ValueCardProps[] = [
   {
     icon: '/about-icon-excelencia.svg',
     title: 'Excelencia y estrategia',
-    description: 'Trabajo con visión a largo plazo y garantizando una ejecución rigurosa. Cada proyecto debe combinar calidad, sostenibilidad y sentido real para la editorial.',
+    description: 'Ejecuto buscando la excelencia en cada detalle, sin perder la visión global y la mirada larga. Una combinación que te acerca al éxito.',
     height: 350,
   },
   {
@@ -72,7 +72,7 @@ const values: ValueCardProps[] = [
   {
     icon: '/about-icon-integridad.svg',
     title: 'Integridad',
-    description: 'Actúo con ética y transparencia para construir relaciones de confianza. Las transformaciones solo son posibles con buenos compañeros de viaje.',
+    description: 'Actúo con ética y transparencia para construir relaciones de confianza, ya que las transformaciones solo son posibles con buenos compañeros de viaje.',
     height: 284,
   },
   {
