@@ -1,8 +1,10 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { projectImageUrl } from '@/sanity/image';
 
 const CARD_WIDTH = 280;
 const GAP = 16;
@@ -45,11 +47,13 @@ function ProjectCard({ project }: { project: EditorialProject }) {
 
       {/* Image */}
       <div className="relative rounded-[10px] overflow-hidden shrink-0" style={{ width: CARD_WIDTH, height: 380 }}>
-        {project.image?.asset?.url ? (
-          <img
-            src={project.image.asset.url}
+        {project.image?.asset?._id ? (
+          <Image
+            src={projectImageUrl(project.image.asset._id)}
             alt={project.image.alt || project.title}
-            className="absolute inset-0 w-full h-full object-cover"
+            fill
+            sizes="280px"
+            className="object-cover"
           />
         ) : (
           <div className="absolute inset-0" style={{ backgroundColor: 'var(--color-green)' }} />
@@ -78,12 +82,12 @@ function ProjectCard({ project }: { project: EditorialProject }) {
               lineHeight: 'var(--text-body-m--line-height)',
               fontWeight: 300,
               fontVariationSettings: '"opsz" 14',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
             }}
           >
             {project.grade}
           </span>
-          <span style={{ color: 'var(--color-blue-300)' }}>·</span>
+          <span style={{ color: 'var(--color-text-secondary)' }}>·</span>
           <span
             style={{
               fontFamily: 'var(--font-dm-sans)',
@@ -91,7 +95,7 @@ function ProjectCard({ project }: { project: EditorialProject }) {
               lineHeight: 'var(--text-body-m--line-height)',
               fontWeight: 300,
               fontVariationSettings: '"opsz" 14',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
             }}
           >
             {project.publisher}
@@ -177,7 +181,7 @@ export default function EditorialProjectsSection({ projects }: { projects: Edito
               fontSize: 'var(--text-body-accent-mono)',
               lineHeight: 'var(--text-body-accent-mono--line-height)',
               letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
             }}
           >
             [PROYECTOS EDITORIALES]
@@ -204,7 +208,7 @@ export default function EditorialProjectsSection({ projects }: { projects: Edito
                 lineHeight: 'var(--text-body-m--line-height)',
                 fontWeight: 300,
                 fontVariationSettings: '"opsz" 14',
-                color: 'var(--color-blue-300)',
+                color: 'var(--color-text-secondary)',
                 maxWidth: '453px',
               }}
             >

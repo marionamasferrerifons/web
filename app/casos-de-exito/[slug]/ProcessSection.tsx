@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { PortableText, type PortableTextBlock, type PortableTextComponents } from '@portabletext/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { processImageUrl, lightboxImageUrl } from '@/sanity/image';
 
 const bodyComponents: PortableTextComponents = {
   block: {
@@ -17,7 +19,7 @@ const bodyComponents: PortableTextComponents = {
 };
 
 type ProcessImage = {
-  asset: { url: string } | null
+  asset: { _id: string; url: string } | null
   alt?: string
 }
 
@@ -88,7 +90,7 @@ export default function ProcessSection({ title, text, images }: ProcessSectionPr
               lineHeight: '24px',
               fontWeight: 400,
               fontVariationSettings: '"opsz" 14',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
             }}
           >
             <PortableText value={text} components={bodyComponents} />
@@ -98,7 +100,7 @@ export default function ProcessSection({ title, text, images }: ProcessSectionPr
         {hasImages && (
           <div className="flex flex-wrap gap-[24px] justify-center w-full">
             {images.map((image, i) => (
-              image.asset?.url && (
+              image.asset?._id && (
                 <button
                   key={i}
                   type="button"
@@ -107,10 +109,12 @@ export default function ProcessSection({ title, text, images }: ProcessSectionPr
                   className="relative overflow-hidden rounded-[8px] flex-1 cursor-zoom-in"
                   style={{ minWidth: '280px', height: '320px' }}
                 >
-                  <img
-                    src={image.asset.url}
+                  <Image
+                    src={processImageUrl(image.asset._id)}
                     alt={image.alt ?? ''}
-                    className="size-full object-cover transition-transform duration-300 ease-out hover:scale-110"
+                    fill
+                    sizes="(min-width: 768px) 330px, 90vw"
+                    className="object-cover transition-transform duration-300 ease-out hover:scale-110"
                   />
                 </button>
               )
@@ -119,7 +123,7 @@ export default function ProcessSection({ title, text, images }: ProcessSectionPr
         )}
       </div>
 
-      {lightboxImage?.asset?.url && (
+      {lightboxImage?.asset?._id && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center p-[24px] bg-black/90"
           onClick={() => setLightboxImage(null)}
@@ -135,8 +139,12 @@ export default function ProcessSection({ title, text, images }: ProcessSectionPr
               <path d="M6 6L18 18M18 6L6 18" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
           </button>
+          {/* Plain <img>, not next/image: the lightbox has no fixed aspect
+              ratio (it sizes to whichever image was clicked), which
+              next/image requires unless using `fill`. The URL is still
+              pre-sized via lightboxImageUrl() below. */}
           <img
-            src={lightboxImage.asset.url}
+            src={lightboxImageUrl(lightboxImage.asset._id)}
             alt={lightboxImage.alt ?? ''}
             onClick={(e) => e.stopPropagation()}
             className="max-w-full max-h-full object-contain rounded-[8px]"

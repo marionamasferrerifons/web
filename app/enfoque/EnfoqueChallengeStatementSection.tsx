@@ -23,7 +23,7 @@ const titleWords = buildWords([
 const bodyWords = buildWords([
   {
     text: 'En proyectos editoriales y educativos, la tecnología impacta directamente en la calidad del contenido, los equipos y la forma de trabajar.',
-    color: 'var(--color-blue-300)',
+    color: 'var(--color-text-secondary)',
   },
 ]);
 

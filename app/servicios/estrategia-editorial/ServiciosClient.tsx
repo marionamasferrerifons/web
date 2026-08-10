@@ -57,7 +57,7 @@ function ServiceLink({ open, onToggle }: { open?: boolean; onToggle?: () => void
       onClick={onToggle}
       className="group flex items-end gap-[4px] border-b border-orange w-fit cursor-pointer bg-transparent hover:bg-white transition-colors duration-200"
     >
-      <span className="text-orange uppercase py-[5px]" style={linkStyle}>
+      <span className="text-text-accent uppercase py-[5px]" style={linkStyle}>
         {open ? 'ver menos del servicio' : 'ver más del servicio'}
       </span>
       <img
@@ -205,7 +205,7 @@ export default function ServiciosClient() {
 
           <div className="flex flex-col items-center gap-6 w-full" style={{ maxWidth: '570px' }}>
             <p
-              className="hero-body text-blue-300 text-center"
+              className="hero-body text-text-secondary-strong text-center"
               style={{
                 fontFamily: 'var(--font-dm-sans)',
                 fontSize: 'var(--text-body-l)',
@@ -224,7 +224,7 @@ export default function ServiciosClient() {
               className="hero-cta group flex items-center gap-4 bg-grey hover:bg-white rounded-full pl-7 pr-3 py-2 transition-colors duration-[330ms] ease-linear"
             >
               <span
-                className="text-orange uppercase"
+                className="text-text-accent uppercase"
                 style={{
                   fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
@@ -285,7 +285,7 @@ export default function ServiciosClient() {
               <div key={i} className="s2-item flex items-center gap-[8px] bg-white rounded-[8px] p-[14px]">
                 <div className="rounded-full shrink-0 size-[10px]" style={{ backgroundColor: dot }} />
                 <p
-                  className="text-blue-300"
+                  className="text-text-secondary"
                   style={{
                     fontFamily: 'var(--font-dm-sans)',
                     fontSize: 'var(--text-body-m)',
@@ -310,7 +310,7 @@ export default function ServiciosClient() {
           {/* Header */}
           <div className="s3-header flex flex-col items-center gap-[16px] text-center">
             <p
-              className="s3-tag text-blue-300 opacity-65 uppercase"
+              className="s3-tag text-text-secondary opacity-65 uppercase"
               style={{
                 fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
@@ -337,7 +337,7 @@ export default function ServiciosClient() {
                 para navegar la incertidumbre
               </h2>
               <p
-                className="s3-subtitle text-blue-300"
+                className="s3-subtitle text-text-secondary"
                 style={{
                   fontFamily: 'var(--font-dm-sans)',
                   fontSize: 'var(--text-body-m)',
@@ -375,7 +375,7 @@ export default function ServiciosClient() {
                       Explorar nuevas oportunidades estratégicas
                     </h3>
                     <p
-                      className="text-blue-300"
+                      className="text-text-secondary"
                       style={{
                         fontFamily: 'var(--font-dm-sans)',
                         fontSize: 'var(--text-body-l)',
@@ -412,7 +412,7 @@ export default function ServiciosClient() {
                         }}
                       >
                         <p
-                          className="text-blue-300"
+                          className="text-text-secondary"
                           style={{
                             fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
@@ -446,7 +446,7 @@ export default function ServiciosClient() {
                     {/* Label + badges */}
                     <div className="flex items-center justify-between">
                       <p
-                        className="text-blue-300"
+                        className="text-text-secondary"
                         style={{
                           fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
@@ -491,7 +491,7 @@ export default function ServiciosClient() {
                     {/* Description + outcomes */}
                     <div className="flex flex-col gap-[24px] md:flex-row md:gap-[40px] mt-[16px]">
                       <p
-                        className="text-blue-300 flex-1"
+                        className="text-text-secondary flex-1"
                         style={{
                           fontFamily: 'var(--font-dm-sans)',
                           fontSize: 'var(--text-body-m)',
@@ -504,7 +504,7 @@ export default function ServiciosClient() {
                       </p>
                       <div className="flex-1 flex flex-col gap-[16px] mt-[8px]">
                         <p
-                          className="text-blue-300"
+                          className="text-text-secondary"
                           style={{
                             fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
@@ -561,7 +561,7 @@ export default function ServiciosClient() {
                       Diseñar una hoja de ruta clara y medible
                     </h3>
                     <p
-                      className="text-blue-300"
+                      className="text-text-secondary"
                       style={{
                         fontFamily: 'var(--font-dm-sans)',
                         fontSize: 'var(--text-body-l)',
@@ -601,7 +601,7 @@ export default function ServiciosClient() {
                           Programa de consultoría estratégica
                         </h4>
                         <p
-                          className="text-blue-300"
+                          className="text-text-secondary"
                           style={{
                             fontFamily: 'var(--font-dm-sans)',
                             fontSize: 'var(--text-body-m)',
@@ -645,7 +645,7 @@ export default function ServiciosClient() {
                         >
                           <div className="flex items-center gap-[72px]">
                             <p
-                              className="text-blue-300 shrink-0"
+                              className="text-text-secondary shrink-0"
                               style={{
                                 fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
@@ -678,7 +678,7 @@ export default function ServiciosClient() {
                             <div className="flex items-center gap-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                               <div className="bg-green rounded-full shrink-0 size-[16px]" />
                               <p
-                                className="text-blue-300"
+                                className="text-text-secondary"
                                 style={{
                                   fontFamily: 'var(--font-dm-sans)',
                                   fontSize: 'var(--text-body-m)',
@@ -699,7 +699,7 @@ export default function ServiciosClient() {
                   {/* [LO QUE CONSEGUIRÁS] */}
                   <div className="flex flex-col gap-[16px]">
                     <p
-                      className="text-blue-300"
+                      className="text-text-secondary"
                       style={{
                         fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
@@ -757,7 +757,7 @@ export default function ServiciosClient() {
                       Ejecutar con liderazgo experto y flexible
                     </h3>
                     <p
-                      className="text-blue-300"
+                      className="text-text-secondary"
                       style={{
                         fontFamily: 'var(--font-dm-sans)',
                         fontSize: 'var(--text-body-l)',
@@ -795,7 +795,7 @@ export default function ServiciosClient() {
                         CAIO as a Service
                       </h4>
                       <p
-                        className="text-blue-300"
+                        className="text-text-secondary"
                         style={{
                           fontFamily: 'var(--font-dm-sans)',
                           fontSize: 'var(--text-body-m)',
@@ -810,7 +810,7 @@ export default function ServiciosClient() {
 
                     <div className="flex-1 flex flex-col gap-[24px]">
                       <p
-                        className="text-blue-300"
+                        className="text-text-secondary"
                         style={{
                           fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
@@ -849,7 +849,7 @@ export default function ServiciosClient() {
 
                   <div className="flex flex-col gap-[16px]">
                     <p
-                      className="text-blue-300"
+                      className="text-text-secondary"
                       style={{
                         fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,

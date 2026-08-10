@@ -8,9 +8,11 @@ import CaseStudiesSection from '@/app/servicios/estrategia-editorial/CaseStudies
 import CtaSection from '@/app/servicios/estrategia-editorial/CtaSection'
 import { client } from '@/sanity/client'
 import { TESTIMONIAL_BY_PLACEMENT_QUERY } from '@/sanity/queries'
+import { testimonialImageProps } from '@/sanity/image'
 
 export default async function EnfoquePage() {
   const testimonial = await client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'enfoque' })
+  const images = testimonialImageProps(testimonial)
 
   return (
     <main>
@@ -19,15 +21,12 @@ export default async function EnfoquePage() {
       <ApproachSection />
       <CriterioSection />
       <WorkPrinciplesSection />
-      {testimonial?.avatar?.asset?.url && (
+      {images && (
         <TestimonialSection
           quote={testimonial.quote}
           authorName={testimonial.authorName}
           authorRole={testimonial.authorRole}
-          avatarUrl={testimonial.avatar.asset.url}
-          avatarAlt={testimonial.avatar.alt}
-          logoUrl={testimonial.logo?.asset?.url}
-          logoAlt={testimonial.logo?.alt}
+          {...images}
         />
       )}
       <CaseStudiesSection />

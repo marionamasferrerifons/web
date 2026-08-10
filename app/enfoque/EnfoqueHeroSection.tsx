@@ -91,7 +91,7 @@ export default function HeroSection() {
             style={{ paddingLeft: '28px', paddingRight: '12px', paddingTop: '8px', paddingBottom: '8px' }}
           >
             <span
-              className="uppercase text-orange"
+              className="uppercase text-text-accent"
               style={{
                 fontFamily: 'var(--font-dm-mono)',
                 fontWeight: 400,

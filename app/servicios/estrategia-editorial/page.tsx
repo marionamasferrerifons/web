@@ -4,25 +4,24 @@ import TestimonialSection from './TestimonialSection'
 import CtaSection from './CtaSection'
 import { client } from '@/sanity/client'
 import { TESTIMONIAL_BY_PLACEMENT_QUERY } from '@/sanity/queries'
+import { testimonialImageProps } from '@/sanity/image'
 
 export default async function EstrategiaEditorialPage() {
   const testimonial = await client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, {
     placement: 'estrategia-editorial',
   })
+  const images = testimonialImageProps(testimonial)
 
   return (
     <main>
       <ServiciosClient />
       <CaseStudiesSection />
-      {testimonial?.avatar?.asset?.url && (
+      {images && (
         <TestimonialSection
           quote={testimonial.quote}
           authorName={testimonial.authorName}
           authorRole={testimonial.authorRole}
-          avatarUrl={testimonial.avatar.asset.url}
-          avatarAlt={testimonial.avatar.alt}
-          logoUrl={testimonial.logo?.asset?.url}
-          logoAlt={testimonial.logo?.alt}
+          {...images}
         />
       )}
       <CtaSection />

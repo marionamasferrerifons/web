@@ -92,7 +92,7 @@ export default function Section2() {
                   lineHeight: '20px',
                   fontWeight: 400,
                   fontVariationSettings: '"opsz" 14',
-                  color: 'var(--color-blue-300)',
+                  color: 'var(--color-text-secondary)',
                 }}
               >
                 {pill.text}

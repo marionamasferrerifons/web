@@ -57,7 +57,7 @@ export default function CriterioSection() {
             fontSize: 'var(--text-body-accent-mono)',
             lineHeight: 'var(--text-body-accent-mono--line-height)',
             letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-            color: 'var(--color-blue-300)',
+            color: 'var(--color-text-secondary)',
             opacity: 0.65,
           }}
         >
@@ -84,7 +84,7 @@ export default function CriterioSection() {
             lineHeight: 'var(--text-body-m--line-height)',
             fontWeight: 400,
             fontVariationSettings: '"opsz" 14',
-            color: 'var(--color-blue-300)',
+            color: 'var(--color-text-secondary)',
           }}
         >
           Lorem ipsum dolor sit amet consectetur. Ultrices blandit vestibulum volutpat blandit vulputate fermentum pulvinar.

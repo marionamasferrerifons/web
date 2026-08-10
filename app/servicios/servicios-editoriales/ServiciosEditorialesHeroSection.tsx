@@ -102,7 +102,7 @@ export default function HeroSection() {
               className="hero-cta group flex items-center gap-4 bg-grey hover:bg-white rounded-full pl-7 pr-3 py-2 transition-colors duration-[330ms] ease-linear w-fit"
             >
               <span
-                className="uppercase text-orange"
+                className="uppercase text-text-accent"
                 style={{
                   fontFamily: 'var(--font-dm-mono)',
                   fontWeight: 400,

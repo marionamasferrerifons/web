@@ -11,6 +11,7 @@ import ProcessSection from './ProcessSection'
 import BeforeAfterSection from './BeforeAfterSection'
 import TestimonialSection from '@/app/servicios/estrategia-editorial/TestimonialSection'
 import CtaSection from '@/app/servicios/estrategia-editorial/CtaSection'
+import { testimonialImageProps } from '@/sanity/image'
 
 type CaseStudy = {
   _id: string
@@ -27,15 +28,15 @@ type CaseStudy = {
   results: { number: string; label: string }[]
   processTitle: string
   processText: PortableTextBlock[]
-  processImages: { asset: { url: string } | null; alt?: string }[]
+  processImages: { asset: { _id: string; url: string } | null; alt?: string }[]
   beforeItems: { text: PortableTextBlock[] }[]
   afterItems: { text: PortableTextBlock[] }[]
   testimonial: {
     quote: string
     authorName: string
     authorRole: string
-    avatar: { asset: { url: string } | null; alt?: string } | null
-    logo: { asset: { url: string } | null; alt?: string } | null
+    avatar: { asset: { _id: string; url: string } | null; alt?: string } | null
+    logo: { asset: { _id: string; url: string } | null; alt?: string } | null
   } | null
   imageCard: {
     asset: { url: string } | null
@@ -52,6 +53,12 @@ export default async function CaseStudyPage({
   const caseStudy: CaseStudy | null = await client.fetch(CASE_STUDY_BY_SLUG_QUERY, { slug })
 
   if (!caseStudy) notFound()
+
+  // This card always shows both the author's photo and the client's logo
+  // watermark side by side, so — unlike other testimonial placements —
+  // it requires both, not just the avatar.
+  const testimonialImages =
+    caseStudy.testimonial?.logo?.asset?._id ? testimonialImageProps(caseStudy.testimonial) : null
 
   return (
     <main>
@@ -75,15 +82,12 @@ export default async function CaseStudyPage({
         beforeItems={caseStudy.beforeItems}
         afterItems={caseStudy.afterItems}
       />
-      {caseStudy.testimonial?.avatar?.asset?.url && caseStudy.testimonial?.logo?.asset?.url && (
+      {testimonialImages && (
         <TestimonialSection
-          quote={caseStudy.testimonial.quote}
-          authorName={caseStudy.testimonial.authorName}
-          authorRole={caseStudy.testimonial.authorRole}
-          avatarUrl={caseStudy.testimonial.avatar.asset.url}
-          avatarAlt={caseStudy.testimonial.avatar.alt}
-          logoUrl={caseStudy.testimonial.logo.asset.url}
-          logoAlt={caseStudy.testimonial.logo.alt}
+          quote={caseStudy.testimonial!.quote}
+          authorName={caseStudy.testimonial!.authorName}
+          authorRole={caseStudy.testimonial!.authorRole}
+          {...testimonialImages}
         />
       )}
       <CtaSection

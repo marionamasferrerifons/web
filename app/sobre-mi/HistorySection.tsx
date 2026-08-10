@@ -99,7 +99,7 @@ const bodyStyle = {
   lineHeight: 'var(--text-body-m--line-height)',
   fontWeight: 400,
   fontVariationSettings: '"opsz" 14',
-  color: 'var(--color-blue-300)',
+  color: 'var(--color-text-secondary)',
 } as const;
 
 const dateTagStyle = {
@@ -235,7 +235,7 @@ export default function HistorySection({
               fontSize: 'var(--text-body-accent-mono)',
               lineHeight: 'var(--text-body-accent-mono--line-height)',
               letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
             }}
           >
             [MI HISTORIA]

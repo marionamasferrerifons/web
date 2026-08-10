@@ -23,7 +23,7 @@ const titleWords = buildWords([
 const bodyWords = buildWords([
   {
     text: 'Combinar criterio editorial, mirada pedagógica y comprensión tecnológica permite integrar nuevos procesos sin perder claridad, intención ni calidad.',
-    color: 'var(--color-blue-300)',
+    color: 'var(--color-text-secondary)',
   },
 ]);
 

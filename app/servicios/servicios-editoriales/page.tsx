@@ -6,27 +6,26 @@ import EditorialProjectsSection from './EditorialProjectsSection'
 import CtaSection from '../estrategia-editorial/CtaSection'
 import { client } from '@/sanity/client'
 import { TESTIMONIAL_BY_PLACEMENT_QUERY, EDITORIAL_PROJECTS_QUERY } from '@/sanity/queries'
+import { testimonialImageProps } from '@/sanity/image'
 
 export default async function ServiciosEditorialesPage() {
   const [testimonial, projects] = await Promise.all([
     client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'servicios-editoriales' }),
     client.fetch(EDITORIAL_PROJECTS_QUERY),
   ])
+  const images = testimonialImageProps(testimonial)
 
   return (
     <main>
       <HeroSection />
       <Section2 />
       <Section3 />
-      {testimonial?.avatar?.asset?.url && (
+      {images && (
         <TestimonialSection
           quote={testimonial.quote}
           authorName={testimonial.authorName}
           authorRole={testimonial.authorRole}
-          avatarUrl={testimonial.avatar.asset.url}
-          avatarAlt={testimonial.avatar.alt}
-          logoUrl={testimonial.logo?.asset?.url}
-          logoAlt={testimonial.logo?.alt}
+          {...images}
           cardColor="var(--color-green)"
         />
       )}

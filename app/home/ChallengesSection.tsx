@@ -90,7 +90,7 @@ export default function ChallengesSection() {
                     fontFamily: 'var(--font-dm-sans)',
                     fontSize: '14px',
                     lineHeight: '20px',
-                    color: 'var(--color-blue-300)',
+                    color: 'var(--color-text-secondary)',
                   }}
                 >
                   {c.label}
@@ -129,7 +129,7 @@ export default function ChallengesSection() {
                   fontFamily: 'var(--font-dm-sans)',
                   fontSize: '14px',
                   lineHeight: '20px',
-                  color: 'var(--color-blue-300)',
+                  color: 'var(--color-text-secondary)',
                 }}
               >
                 {c.label}

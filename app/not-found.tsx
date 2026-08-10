@@ -12,7 +12,7 @@ export default function NotFound() {
           fontWeight: 400,
           fontSize: 'var(--text-body-accent-mono)',
           letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-          color: 'var(--color-blue-300)',
+          color: 'var(--color-text-secondary)',
         }}
       >
         [404]
@@ -33,7 +33,7 @@ export default function NotFound() {
           fontFamily: 'var(--font-dm-sans)',
           fontSize: 'var(--text-body-m)',
           lineHeight: 'var(--text-body-m--line-height)',
-          color: 'var(--color-blue-300)',
+          color: 'var(--color-text-secondary)',
           maxWidth: '420px',
         }}
       >

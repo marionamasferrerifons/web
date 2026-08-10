@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 
 export default function HeroSection() {
@@ -27,15 +28,16 @@ export default function HeroSection() {
       style={{ backgroundColor: 'var(--color-blue-500)' }}
     >
       {/* Photo — top right, wave-masked */}
-      <img
-        src="/about-hero-photo.png"
+      <Image
+        src="/hero-photo.png"
         alt="Mariona Masferrer"
+        width={500}
+        height={279}
+        priority
         className="hero-photo absolute hidden lg:block object-cover"
         style={{
           top: 'calc(var(--navbar-height) + 36px)',
           right: '0',
-          width: '500px',
-          height: '279px',
           maskImage: 'url(/about-hero-photo-mask.svg)',
           WebkitMaskImage: 'url(/about-hero-photo-mask.svg)',
           maskSize: '100% 100%',

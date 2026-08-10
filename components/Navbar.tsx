@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { BOOKING_URL } from '@/lib/constants';
 import { client } from '@/sanity/client';
 import { CASE_STUDIES_QUERY } from '@/sanity/queries';
+import { squareThumbnailUrl } from '@/sanity/image';
 import NavDropdown from './NavDropdown';
 import CaseStudiesDropdown from './CaseStudiesDropdown';
 import NavLink from './NavLink';
@@ -28,14 +29,14 @@ export default async function Navbar() {
       _id: string
       title: string
       slug: string | null
-      imageCard: { asset: { url: string } | null; alt?: string } | null
+      imageCard: { asset: { _id: string; url: string } | null; alt?: string } | null
     }[] = await client.fetch(CASE_STUDIES_QUERY)
     caseStudiesItems = caseStudies
       .filter((c) => c.slug)
       .map((c) => ({
         href: `/casos-de-exito/${c.slug}`,
         title: c.title,
-        imageUrl: c.imageCard?.asset?.url,
+        imageUrl: c.imageCard?.asset?._id ? squareThumbnailUrl(c.imageCard.asset._id, 48) : undefined,
         imageAlt: c.imageCard?.alt,
       }))
   } catch (error) {
@@ -99,7 +100,7 @@ export default async function Navbar() {
             style={{ height: '40px' }}
           >
             <span
-              className="whitespace-nowrap text-orange"
+              className="whitespace-nowrap text-text-accent"
               style={{ ...monoStyle, fontSize: '13px' }}
             >
               RESERVAR UNA LLAMADA
