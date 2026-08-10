@@ -54,7 +54,7 @@ const values: ValueCardProps[] = [
   {
     icon: '/about-icon-humanismo.svg',
     title: 'Humanismo',
-    description: 'Pongo a las personas en el centro, porque la tecnología y la innovación solo tienen sentido si mejoran la experiencia educativa y generan un impacto positivo real.',
+    description: 'Pongo a las personas en el centro, porque la tecnología solo tiene sentido si genera un impacto positivo real.',
     height: 304,
   },
   {
