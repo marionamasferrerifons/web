@@ -139,7 +139,7 @@ function MilestonesBlock({ milestones, align }: { milestones: Milestone[]; align
 }
 
 export default function HistorySection({
-  title = 'De la literatura a la IA: un camino de puentes y confluencias. ',
+  title = 'De la literatura a la IA: un\u00A0camino de puentes y confluencias.',
 }: {
   title?: string
 }) {
