@@ -38,7 +38,7 @@ const entries: HistoryEntryData[] = [
     titleSide: 'right',
     milestones: [
       { date: '2012-2014', description: <>Mi primera experiencia como <strong style={boldStyle}>coordinadora editorial</strong></> },
-      { date: '2014', description: <>Hice un máster en <strong style={boldStyle}>edición digital</strong> en la UA</> },
+      { date: '2014', description: <>Hice un máster en <strong style={boldStyle}>edición digital</strong> en la UAH</> },
     ],
   },
   {
