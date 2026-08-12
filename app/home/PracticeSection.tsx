@@ -33,7 +33,7 @@ const CARDS = [
   },
 ];
 
-export default function PracticeSection({ testimonial }: { testimonial: Testimonial }) {
+export default function PracticeSection({ testimonial }: { testimonial?: Testimonial }) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -147,18 +147,20 @@ export default function PracticeSection({ testimonial }: { testimonial: Testimon
         ))}
       </div>
 
-      <div className="w-full" style={{ maxWidth: '1400px' }}>
-        <TestimonialSection
-          hideHeader
-          quote={testimonial.quote}
-          authorName={testimonial.authorName}
-          authorRole={testimonial.authorRole}
-          avatarUrl={testimonial.avatarUrl}
-          avatarAlt={testimonial.avatarAlt}
-          logoUrl={testimonial.logoUrl}
-          logoAlt={testimonial.logoAlt}
-        />
-      </div>
+      {testimonial && (
+        <div className="w-full" style={{ maxWidth: '1400px' }}>
+          <TestimonialSection
+            hideHeader
+            quote={testimonial.quote}
+            authorName={testimonial.authorName}
+            authorRole={testimonial.authorRole}
+            avatarUrl={testimonial.avatarUrl}
+            avatarAlt={testimonial.avatarAlt}
+            logoUrl={testimonial.logoUrl}
+            logoAlt={testimonial.logoAlt}
+          />
+        </div>
+      )}
     </section>
   );
 }

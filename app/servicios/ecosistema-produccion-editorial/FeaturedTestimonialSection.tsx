@@ -7,6 +7,8 @@ export default async function Section6() {
     placement: 'ecosistema-produccion-editorial',
   })
 
+  if (!testimonial) return null
+
   return (
     <TestimonialSection
       quote={testimonial.quote}
