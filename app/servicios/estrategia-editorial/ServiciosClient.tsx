@@ -44,6 +44,9 @@ const card1Workshops = [
   },
 ];
 
+// Flag reutilitzable per amagar/mostrar Card 1 sense eliminar-ne el codi.
+const SHOW_CARD_1 = false;
+
 const linkStyle = {
   fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,
@@ -212,6 +215,7 @@ export default function ServiciosClient() {
                 fontWeight: 300,
                 fontVariationSettings: '"opsz" 14',
                 maxWidth: '468px',
+                textWrap: 'balance',
               }}
             >
               Te ayudo a decidir qué hacer con la IA con una estrategia construida sobre el criterio de tu editorial.
@@ -344,9 +348,10 @@ export default function ServiciosClient() {
                   fontWeight: 300,
                   fontVariationSettings: '"opsz" 14',
                   maxWidth: '453px',
+                  textWrap: 'balance',
                 }}
               >
-                Dos formas de trabajar juntas, según el punto en el que estés.
+                Dos formas de trabajar conmigo, según el punto en el que estés.
               </p>
             </div>
           </div>
@@ -355,6 +360,7 @@ export default function ServiciosClient() {
           <div className="flex flex-col gap-[24px]">
 
             {/* Card 1 — expandable */}
+            {SHOW_CARD_1 && (
             <div className="s3-card bg-white rounded-[24px] p-[32px] md:p-[40px] flex flex-col gap-[40px]">
 
               {/* Main content */}
@@ -541,6 +547,7 @@ export default function ServiciosClient() {
               )}
 
             </div>
+            )}
 
             {/* Card 2 — expandable */}
             <div className="s3-card bg-white rounded-[24px] p-[32px] md:p-[40px] flex flex-col gap-[64px]">
