@@ -18,16 +18,18 @@ export default async function ServiciosEditorialesPage() {
       <HeroSection />
       <Section2 />
       <Section3 />
-      <TestimonialSection
-        quote={testimonial.quote}
-        authorName={testimonial.authorName}
-        authorRole={testimonial.authorRole}
-        avatarUrl={testimonial.avatar.asset.url}
-        avatarAlt={testimonial.avatar.alt}
-        logoUrl={testimonial.logo?.asset?.url}
-        logoAlt={testimonial.logo?.alt}
-        cardColor="var(--color-green)"
-      />
+      {testimonial && (
+        <TestimonialSection
+          quote={testimonial.quote}
+          authorName={testimonial.authorName}
+          authorRole={testimonial.authorRole}
+          avatarUrl={testimonial.avatar.asset.url}
+          avatarAlt={testimonial.avatar.alt}
+          logoUrl={testimonial.logo?.asset?.url}
+          logoAlt={testimonial.logo?.alt}
+          cardColor="var(--color-green)"
+        />
+      )}
       <EditorialProjectsSection projects={projects} />
       <CtaSection
         title="Descubre cómo puedo ayudarte con tus proyectos educativos"

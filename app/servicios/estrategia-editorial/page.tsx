@@ -5,6 +5,9 @@ import CtaSection from './CtaSection'
 import { client } from '@/sanity/client'
 import { TESTIMONIAL_BY_PLACEMENT_QUERY } from '@/sanity/queries'
 
+// Flag reutilitzable per amagar/mostrar el bloc de casos de éxito sense eliminar-ne el codi.
+const SHOW_CASE_STUDIES = false;
+
 export default async function EstrategiaEditorialPage() {
   const testimonial = await client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, {
     placement: 'estrategia-editorial',
@@ -13,16 +16,18 @@ export default async function EstrategiaEditorialPage() {
   return (
     <main>
       <ServiciosClient />
-      <CaseStudiesSection />
-      <TestimonialSection
-        quote={testimonial.quote}
-        authorName={testimonial.authorName}
-        authorRole={testimonial.authorRole}
-        avatarUrl={testimonial.avatar.asset.url}
-        avatarAlt={testimonial.avatar.alt}
-        logoUrl={testimonial.logo?.asset?.url}
-        logoAlt={testimonial.logo?.alt}
-      />
+      {SHOW_CASE_STUDIES && <CaseStudiesSection />}
+      {testimonial && (
+        <TestimonialSection
+          quote={testimonial.quote}
+          authorName={testimonial.authorName}
+          authorRole={testimonial.authorRole}
+          avatarUrl={testimonial.avatar.asset.url}
+          avatarAlt={testimonial.avatar.alt}
+          logoUrl={testimonial.logo?.asset?.url}
+          logoAlt={testimonial.logo?.alt}
+        />
+      )}
       <CtaSection />
     </main>
   )

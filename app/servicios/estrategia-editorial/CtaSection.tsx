@@ -54,6 +54,7 @@ export default function CtaSection({
               fontVariationSettings: '"opsz" 14',
               color: 'var(--color-white)',
               maxWidth: '718px',
+              textWrap: 'balance',
             }}
           >
             {title}

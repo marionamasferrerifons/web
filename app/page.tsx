@@ -31,7 +31,7 @@ export default async function Home() {
       <ProblemSection />
       <CriterioSection />
       <PracticeSection
-        testimonial={{
+        testimonial={orangeTestimonial ? {
           quote: orangeTestimonial.quote,
           authorName: orangeTestimonial.authorName,
           authorRole: orangeTestimonial.authorRole,
@@ -39,7 +39,7 @@ export default async function Home() {
           avatarAlt: orangeTestimonial.avatar.alt,
           logoUrl: orangeTestimonial.logo?.asset?.url,
           logoAlt: orangeTestimonial.logo?.alt,
-        }}
+        } : undefined}
       />
       <ServicesSection />
       <CaseStudiesSection
@@ -52,16 +52,18 @@ export default async function Home() {
         }
         subtitle="Lorem ipsum dolor sit amet consectetur. Eget elit consectetur bibendum placerat aliquam dictum. Tincidunt eget tempus tortor congue diam turpis. Sit fusce tempor."
       />
-      <TestimonialSection
-        cardColor="var(--color-green)"
-        quote={greenTestimonial.quote}
-        authorName={greenTestimonial.authorName}
-        authorRole={greenTestimonial.authorRole}
-        avatarUrl={greenTestimonial.avatar.asset.url}
-        avatarAlt={greenTestimonial.avatar.alt}
-        logoUrl={greenTestimonial.logo?.asset?.url}
-        logoAlt={greenTestimonial.logo?.alt}
-      />
+      {greenTestimonial && (
+        <TestimonialSection
+          cardColor="var(--color-green)"
+          quote={greenTestimonial.quote}
+          authorName={greenTestimonial.authorName}
+          authorRole={greenTestimonial.authorRole}
+          avatarUrl={greenTestimonial.avatar.asset.url}
+          avatarAlt={greenTestimonial.avatar.alt}
+          logoUrl={greenTestimonial.logo?.asset?.url}
+          logoAlt={greenTestimonial.logo?.alt}
+        />
+      )}
       <CtaSection
         title="Exploremos juntos cómo incorporar la IA en tu editorial"
         subtitle="La IA no se incorpora desde fuera ni de forma experimental. Forma parte del proceso editorial, integrada en el día a día y con criterios claros de calidad."
