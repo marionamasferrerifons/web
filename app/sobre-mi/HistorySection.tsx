@@ -16,9 +16,6 @@ type HistoryEntryData = {
   titleSide: 'left' | 'right'
 }
 
-const LOREM_INTRO = 'Lorem ipsum dolor sit amet consectetur. Neque adipiscing adipiscing tristique quis. Nisi proin commodo purus semper consequat aliquam. Posuere metus lobortis pellentesque dui tristique lacus quis. In magna senectus';
-const LOREM_REPEATED = 'Lorem ipsum dolor sit amet consectetur. Mi tincidunt donec dignissim tincidunt dignissim pellentesque tempor diam. Nec placerat adipiscing quis nulla nisl. Risus nec leo venenatis phasellus semper mollis.';
-
 const boldStyle = { fontWeight: 600, color: 'var(--color-blue-400)' } as const;
 
 const entries: HistoryEntryData[] = [
