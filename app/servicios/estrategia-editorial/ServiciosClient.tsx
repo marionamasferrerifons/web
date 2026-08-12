@@ -197,9 +197,8 @@ export default function ServiciosClient() {
                 fontVariationSettings: '"opsz" 14',
               }}
             >
-              La IA no sabe qué es un{' '}
-              <span className="text-blue-50">buen material educativo</span>
-              {' '}. Tu editorial sí.
+              La IA no sabe qué es un buen material educativo.{' '}
+              Tu <span className="text-blue-50">editorial</span> sí.
             </h1>
           </div>
 
