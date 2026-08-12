@@ -6,8 +6,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BOOKING_URL } from '@/lib/constants';
 
 export default function CtaSection({
-  title = 'Exploremos juntos las posibilidades que la IA ofrece a tu editorial',
-  subtitle = 'Los contenidos de calidad, el rigor editorial y la excelencia pedagógica son más importantes que nunca en una educación transformada por la IA. Define el rumbo para que tu editorial lidere las aulas del futuro.',
+  title = 'Ninguna decisión sobre IA se toma bien desde la prisa.',
+  subtitle = 'Reserva una llamada para explorar las posibilidades reales que la IA ofrece a tu editorial.',
   subtitleMaxWidth = '453px',
 }: {
   title?: string;

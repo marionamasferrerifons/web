@@ -185,7 +185,7 @@ export default function ServiciosClient() {
                 letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
               }}
             >
-              [ESTRATEGIA EDITORIAL]
+              [IMPLEMENTACIÓN ESTRATÉGICA DE IA]
             </p>
             <h1
               className="hero-title text-blue-500"
@@ -197,9 +197,8 @@ export default function ServiciosClient() {
                 fontVariationSettings: '"opsz" 14',
               }}
             >
-              Diseña el{' '}
-              <span className="text-blue-50">futuro</span>
-              {' '}de tu editorial con una estrategia propia y rigurosa
+              La IA no sabe qué es un buen material educativo.{' '}
+              Tu <span className="text-blue-50">editorial</span> sí.
             </h1>
           </div>
 
@@ -215,7 +214,7 @@ export default function ServiciosClient() {
                 maxWidth: '468px',
               }}
             >
-              En un sector en plena transformación, diseñamos juntos una estrategia que integre la IA con criterio editorial y pedagógico, generando una ventaja competitiva sostenible.
+              Te ayudo a decidir qué hacer con la IA con una estrategia construida sobre el criterio de tu editorial.
             </p>
             <a
               href={BOOKING_URL}
@@ -347,7 +346,7 @@ export default function ServiciosClient() {
                   maxWidth: '453px',
                 }}
               >
-                Te ofrezco tres modalidades de colaboración para explorar cómo navegar el nuevo paradigma de forma sensata y protegiendo la identidad de tu editorial.
+                Dos formas de trabajar juntas, según el punto en el que estés.
               </p>
             </div>
           </div>
@@ -558,7 +557,7 @@ export default function ServiciosClient() {
                         fontVariationSettings: '"opsz" 14',
                       }}
                     >
-                      Diseñar una hoja de ruta clara y medible
+                      Consultoría estratégica de IA
                     </h3>
                     <p
                       className="text-blue-300"
@@ -570,7 +569,7 @@ export default function ServiciosClient() {
                         fontVariationSettings: '"opsz" 14',
                       }}
                     >
-                      Un programa intensivo para tener claro qué hacer y cómo hacerlo. Conseguirás un plan de acción a un año con un horizonte estratégico de tres años.
+                      Un programa de 5 semanas para tener claro qué hacer y cómo hacerlo. Conseguirás un plan de acción a 12 meses y un horizonte estratégico de 3 años.
                     </p>
                   </div>
                   <ServiceLink open={card2Open} onToggle={() => setCard2Open(!card2Open)} />
@@ -598,7 +597,7 @@ export default function ServiciosClient() {
                             fontVariationSettings: '"opsz" 14',
                           }}
                         >
-                          Programa de consultoría estratégica
+                          Consultoría estratégica de IA
                         </h4>
                         <p
                           className="text-blue-300"
@@ -754,7 +753,7 @@ export default function ServiciosClient() {
                         fontVariationSettings: '"opsz" 14',
                       }}
                     >
-                      Ejecutar con liderazgo experto y flexible
+                      Dirección de IA externa
                     </h3>
                     <p
                       className="text-blue-300"
@@ -766,7 +765,7 @@ export default function ServiciosClient() {
                         fontVariationSettings: '"opsz" 14',
                       }}
                     >
-                      El servicio de dirección estratégica de IA que necesitas para trabajar de forma sostenida y efectiva. Sin contratación fija y con modalidad flexible.
+                      Un servicio de dirección estratégica de IA para trabajar de forma sostenida y efectiva. Sin contratación fija y con modalidad flexible.
                     </p>
                   </div>
                   <ServiceLink open={card3Open} onToggle={() => setCard3Open(!card3Open)} />
@@ -792,7 +791,7 @@ export default function ServiciosClient() {
                           fontVariationSettings: '"opsz" 14',
                         }}
                       >
-                        CAIO as a Service
+                        Dirección de IA externa
                       </h4>
                       <p
                         className="text-blue-300"
