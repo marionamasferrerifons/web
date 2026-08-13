@@ -64,6 +64,7 @@ export async function generateMetadata({
   return {
     title: truncate(caseStudy.title, 60),
     description: truncate(caseStudy.subtitle, 160),
+    alternates: { canonical: `/casos-de-exito/${slug}` },
   }
 }
 

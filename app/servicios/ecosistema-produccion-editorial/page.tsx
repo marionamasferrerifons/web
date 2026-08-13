@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: 'Ecosistema de producción editorial',
   description:
     'Implementamos un ecosistema de producción editorial para que la IA genere contenidos con tus estándares y ayude de verdad a tu equipo editorial.',
+  alternates: { canonical: '/servicios/ecosistema-produccion-editorial' },
 }
 
 export default function EcosistemaProduccionEditorialPage() {

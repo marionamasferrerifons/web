@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Estrategia editorial con IA',
   description:
     'Diseña el futuro de tu editorial con una estrategia propia: propuesta de valor, relación con tus usuarios y procesos operativos, con criterio editorial.',
+  alternates: { canonical: '/servicios/estrategia-editorial' },
 }
 
 export default async function EstrategiaEditorialPage() {

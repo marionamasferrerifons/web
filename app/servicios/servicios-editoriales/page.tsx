@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: 'Servicios editoriales con IA',
   description:
     'Producción externalizada de materiales educativos con criterio editorial riguroso, mirada pedagógica y la eficiencia real que aporta la inteligencia artificial.',
+  alternates: { canonical: '/servicios/servicios-editoriales' },
 }
 
 export default async function ServiciosEditorialesPage() {

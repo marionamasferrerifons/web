@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: 'Enfoque y metodología con IA',
   description:
     'Trabajo en el cruce entre tecnología, contenido y uso real para integrar la IA en tu editorial sin comprometer la calidad ni el valor pedagógico del resultado.',
+  alternates: { canonical: '/enfoque' },
 }
 
 export default async function EnfoquePage() {

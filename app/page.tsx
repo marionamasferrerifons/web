@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   },
   description:
     'Acompaño a direcciones editoriales a integrar la inteligencia artificial en su producción sin perder rigor editorial ni calidad pedagógica.',
+  alternates: { canonical: '/' },
 }
 
 export default async function Home() {

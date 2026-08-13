@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Sobre mí',
   description:
     'Más de diez años entre edición, docencia e innovación tecnológica, ayudando a editoriales educativas a convertir la IA en ventaja competitiva.',
+  alternates: { canonical: '/sobre-mi' },
 }
 
 export default function SobreMiPage() {
