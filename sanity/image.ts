@@ -32,7 +32,7 @@ export const projectImageUrl = (assetId: string) =>
   urlForAsset(assetId).width(560).height(760).fit('crop').quality(75).url()
 
 export const processImageUrl = (assetId: string) =>
-  urlForAsset(assetId).width(1000).height(640).fit('crop').quality(75).url()
+  urlForAsset(assetId).width(1140).height(641).fit('crop').quality(75).url()
 
 export const lightboxImageUrl = (assetId: string) =>
   urlForAsset(assetId).width(1600).fit('max').quality(80).url()

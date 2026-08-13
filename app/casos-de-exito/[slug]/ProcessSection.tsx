@@ -68,8 +68,8 @@ export default function ProcessSection({ title, text, images }: ProcessSectionPr
       className="w-full flex justify-center py-[56px] px-[20px] md:px-[40px]"
       style={{ backgroundColor: 'var(--color-grey)' }}
     >
-      <div className="process-content flex flex-col items-center gap-[40px] w-full" style={{ maxWidth: '690px' }}>
-        <div className="flex flex-col gap-[32px] w-full">
+      <div className="process-content flex flex-col items-center gap-[40px] w-full" style={{ maxWidth: '1164px' }}>
+        <div className="flex flex-col gap-[32px] w-full" style={{ maxWidth: '690px' }}>
           <h2
             style={{
               fontFamily: 'var(--font-dm-sans)',
@@ -98,7 +98,7 @@ export default function ProcessSection({ title, text, images }: ProcessSectionPr
         </div>
 
         {hasImages && (
-          <div className="flex flex-wrap gap-[24px] justify-center w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[24px] w-full">
             {images.map((image, i) => (
               image.asset?._id && (
                 <button
@@ -106,14 +106,13 @@ export default function ProcessSection({ title, text, images }: ProcessSectionPr
                   type="button"
                   onClick={() => setLightboxImage(image)}
                   aria-label="Ampliar imagen"
-                  className="relative overflow-hidden rounded-[8px] flex-1 cursor-zoom-in"
-                  style={{ minWidth: '280px', height: '320px' }}
+                  className="relative overflow-hidden rounded-[8px] cursor-zoom-in aspect-[16/9] w-full"
                 >
                   <Image
                     src={processImageUrl(image.asset._id)}
                     alt={image.alt ?? ''}
                     fill
-                    sizes="(min-width: 768px) 330px, 90vw"
+                    sizes="(min-width: 640px) 570px, 90vw"
                     className="object-cover transition-transform duration-300 ease-out hover:scale-110"
                   />
                 </button>
