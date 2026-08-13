@@ -178,7 +178,7 @@ export default function WorkPrinciplesSection() {
           [PRINCIPIOS DE TRABAJO]
         </p>
         <div className="w-full flex flex-col md:flex-row gap-[24px] items-start md:items-end justify-between">
-          <p
+          <h2
             style={{
               fontFamily: 'var(--font-dm-sans)',
               fontSize: 'var(--text-title-l)',
@@ -192,7 +192,7 @@ export default function WorkPrinciplesSection() {
             Una forma de trabajar que{' '}
             <span style={{ color: 'var(--color-orange-400)' }}>impacta</span>
             {' '}en el resultado final
-          </p>
+          </h2>
           <p
             style={{
               fontFamily: 'var(--font-dm-sans)',

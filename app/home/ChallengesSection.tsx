@@ -49,7 +49,7 @@ export default function ChallengesSection() {
       style={{ backgroundColor: 'var(--color-grey)' }}
     >
       <div className="relative w-full flex flex-col items-center" style={{ maxWidth: '1400px' }}>
-        <p
+        <h2
           className="challenges-title text-center"
           style={{
             fontFamily: 'var(--font-dm-sans)',
@@ -64,7 +64,7 @@ export default function ChallengesSection() {
           Conozco los{' '}
           <span style={{ color: 'var(--color-orange-400)' }}>desafíos reales</span>
           {' '}actuales del sector editorial
-        </p>
+        </h2>
 
         {/* Desktop — floating avatars scattered around the title */}
         <div className="hidden lg:block relative w-full" style={{ height: '389px', marginTop: '48px' }}>

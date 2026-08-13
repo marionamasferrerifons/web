@@ -176,7 +176,7 @@ export default function CriterioSection() {
         >
           [MI ENFOQUE]
         </p>
-        <p
+        <h2
           style={{
             fontFamily: 'var(--font-dm-sans)',
             fontSize: 'var(--text-title-l)',
@@ -187,7 +187,7 @@ export default function CriterioSection() {
           }}
         >
           El <span style={{ color: 'var(--color-blue-400)' }}>criterio</span> de alguien que conoce el sector
-        </p>
+        </h2>
       </div>
       <div style={{ height: '40px' }} aria-hidden="true" />
     </div>

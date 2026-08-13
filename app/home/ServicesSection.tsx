@@ -84,7 +84,7 @@ export default function ServicesSection() {
         >
           [SERVICIOS]
         </p>
-        <p
+        <h2
           className="services-title"
           style={{
             fontFamily: 'var(--font-dm-sans)',
@@ -98,7 +98,7 @@ export default function ServicesSection() {
           Lorem ipsum dolor sit amet{' '}
           <span style={{ color: 'var(--color-orange-400)' }}>consectetur</span>
           . Volutpat scelerisque cras
-        </p>
+        </h2>
       </div>
 
       <div className="w-full flex flex-col gap-[64px]" style={{ maxWidth: '1163px' }}>
