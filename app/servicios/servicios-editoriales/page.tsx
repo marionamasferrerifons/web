@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import HeroSection from './ServiciosEditorialesHeroSection'
 import Section2 from './ProductionPainPointsSection'
 import Section3 from './ServiceOfferingsSection'
@@ -7,6 +8,12 @@ import CtaSection from '../estrategia-editorial/CtaSection'
 import { client } from '@/sanity/client'
 import { TESTIMONIAL_BY_PLACEMENT_QUERY, EDITORIAL_PROJECTS_QUERY } from '@/sanity/queries'
 import { testimonialImageProps } from '@/sanity/image'
+
+export const metadata: Metadata = {
+  title: 'Servicios editoriales con IA',
+  description:
+    'Producción externalizada de materiales educativos con criterio editorial riguroso, mirada pedagógica y la eficiencia real que aporta la inteligencia artificial.',
+}
 
 export default async function ServiciosEditorialesPage() {
   const [testimonial, projects] = await Promise.all([

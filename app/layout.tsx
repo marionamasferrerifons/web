@@ -17,8 +17,12 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mariona Masferrer i Fons",
-  description: "Sistema de producción editorial con IA",
+  title: {
+    default: "Mariona Masferrer i Fons — Estrategia editorial con IA",
+    template: "%s · Mariona Masferrer i Fons",
+  },
+  description:
+    "Acompañamiento estratégico para editoriales que integran la IA en su producción sin perder rigor editorial ni pedagógico.",
 };
 
 export default function RootLayout({

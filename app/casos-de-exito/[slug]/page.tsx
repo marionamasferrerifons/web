@@ -1,7 +1,10 @@
+import { cache } from 'react'
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import type { PortableTextBlock } from '@portabletext/react'
 import { client } from '@/sanity/client'
 import { CASE_STUDY_BY_SLUG_QUERY } from '@/sanity/queries'
+import { truncate } from '@/lib/seo'
 import HeroSection from './CaseStudyHeroSection'
 import ContextSection from './ContextSection'
 import ChallengeSection from './CaseStudyChallengeSection'
@@ -44,13 +47,33 @@ type CaseStudy = {
   } | null
 }
 
+const getCaseStudy = cache(async (slug: string): Promise<CaseStudy | null> => {
+  return client.fetch(CASE_STUDY_BY_SLUG_QUERY, { slug })
+})
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const caseStudy = await getCaseStudy(slug)
+
+  if (!caseStudy) return { title: 'Caso de éxito no encontrado' }
+
+  return {
+    title: truncate(caseStudy.title, 60),
+    description: truncate(caseStudy.subtitle, 160),
+  }
+}
+
 export default async function CaseStudyPage({
   params,
 }: {
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const caseStudy: CaseStudy | null = await client.fetch(CASE_STUDY_BY_SLUG_QUERY, { slug })
+  const caseStudy = await getCaseStudy(slug)
 
   if (!caseStudy) notFound()
 

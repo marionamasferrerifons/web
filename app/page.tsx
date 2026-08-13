@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import HeroSection from './home/HomeHeroSection'
 import LogosSection from './home/LogosSection'
 import ChallengesSection from './home/ChallengesSection'
@@ -11,6 +12,14 @@ import CtaSection from './servicios/estrategia-editorial/CtaSection'
 import { client } from '@/sanity/client'
 import { TESTIMONIAL_BY_PLACEMENT_QUERY, INDUSTRY_LOGOS_QUERY } from '@/sanity/queries'
 import { industryLogoUrl, testimonialImageProps } from '@/sanity/image'
+
+export const metadata: Metadata = {
+  title: {
+    absolute: 'Mariona Masferrer i Fons — Estrategia editorial con IA',
+  },
+  description:
+    'Acompaño a direcciones editoriales a integrar la inteligencia artificial en su producción sin perder rigor editorial ni calidad pedagógica.',
+}
 
 export default async function Home() {
   const [orangeTestimonial, greenTestimonial, industryLogos] = await Promise.all([

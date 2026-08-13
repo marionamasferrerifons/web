@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import HeroSection from './EnfoqueHeroSection'
 import ChallengeSection from './EnfoqueChallengeStatementSection'
 import ApproachSection from './ApproachSection'
@@ -9,6 +10,12 @@ import CtaSection from '@/app/servicios/estrategia-editorial/CtaSection'
 import { client } from '@/sanity/client'
 import { TESTIMONIAL_BY_PLACEMENT_QUERY } from '@/sanity/queries'
 import { testimonialImageProps } from '@/sanity/image'
+
+export const metadata: Metadata = {
+  title: 'Enfoque y metodología con IA',
+  description:
+    'Trabajo en el cruce entre tecnología, contenido y uso real para integrar la IA en tu editorial sin comprometer la calidad ni el valor pedagógico del resultado.',
+}
 
 export default async function EnfoquePage() {
   const testimonial = await client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'enfoque' })
