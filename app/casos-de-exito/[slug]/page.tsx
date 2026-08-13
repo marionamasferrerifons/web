@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import type { PortableTextBlock } from '@portabletext/react'
 import { client } from '@/sanity/client'
-import { CASE_STUDY_BY_SLUG_QUERY } from '@/sanity/queries'
+import { CASE_STUDY_BY_SLUG_QUERY, CASE_STUDY_SLUGS_QUERY } from '@/sanity/queries'
 import { truncate } from '@/lib/seo'
 import HeroSection from './CaseStudyHeroSection'
 import ContextSection from './ContextSection'
@@ -50,6 +50,16 @@ type CaseStudy = {
 const getCaseStudy = cache(async (slug: string): Promise<CaseStudy | null> => {
   return client.fetch(CASE_STUDY_BY_SLUG_QUERY, { slug })
 })
+
+// Red de seguridad: the webhook in app/api/revalidate is the primary
+// refresh mechanism; this just bounds worst-case staleness if a publish
+// event is ever missed.
+export const revalidate = 3600
+
+export async function generateStaticParams() {
+  const caseStudies: { slug: string }[] = await client.fetch(CASE_STUDY_SLUGS_QUERY)
+  return caseStudies.map(({ slug }) => ({ slug }))
+}
 
 export async function generateMetadata({
   params,
