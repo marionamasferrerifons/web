@@ -60,7 +60,7 @@ export default function HeroSection() {
             color: 'var(--color-blue-400)',
           }}
         >
-          [Servicios editoriales]
+          [Servicios editoriales con IA aplicada]
         </p>
 
         {/* Title — left-aligned, ~57% width */}
@@ -75,7 +75,7 @@ export default function HeroSection() {
             color: 'var(--color-blue-50)',
           }}
         >
-          Los servicios editoriales de siempre, potenciados con la tecnología de hoy
+          Amplía tu capacidad de producción con el criterio que exige tu editorial.
         </h1>
 
         {/* Description + CTA — below title, pushed to the right */}
@@ -92,7 +92,7 @@ export default function HeroSection() {
                 color: 'var(--color-grey)',
               }}
             >
-              Producción externalizada de materiales educativos con criterio editorial riguroso, mirada pedagógica y eficiencia real gracias a la IA.
+              Coordino, edito y desarrollo materiales educativos. Vengo de la edición y del aula. Ahora la IA acelera mi trabajo.
             </p>
 
             <a

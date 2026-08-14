@@ -120,7 +120,7 @@ export default function Section2() {
               color: 'rgba(5, 66, 167, 0.05)',
             }}
           >
-            Necesitas cumplir con el plan de producción
+            Si necesitas cumplir con el plan de producción...
           </h2>
 
           <div className="flex flex-col gap-[16px] flex-1">
@@ -160,13 +160,13 @@ export default function Section2() {
             }}
           >
             <span className="fill-title-2-blue" style={{ color: 'rgba(5, 66, 167, 0.05)' }}>
-              y delegar con{' '}
+              ...ahora puedes{' '}
             </span>
             <span className="fill-title-2-orange" style={{ color: 'rgba(236, 154, 55, 0.05)' }}>
-              tranquilidad
+              delegar
             </span>
             <span className="fill-title-2-blue" style={{ color: 'rgba(5, 66, 167, 0.05)' }}>
-              {' '}en alguien con oficio y rigor
+              {' '}en alguien con oficio y rigor.
             </span>
           </h2>
         </div>

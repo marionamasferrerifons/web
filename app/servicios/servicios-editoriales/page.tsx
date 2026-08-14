@@ -39,7 +39,7 @@ export default async function ServiciosEditorialesPage() {
       )}
       <EditorialProjectsSection projects={projects} />
       <CtaSection
-        title="Descubre cómo puedo ayudarte con tus proyectos educativos"
+        title="¿Necesitas ayuda para cumplir con tu plan de producción?"
         subtitle="Definamos un plan para que tus próximos materiales salgan a la luz a tiempo, sin imprevistos y con los máximos estándares de calidad."
         subtitleMaxWidth="404px"
       />
