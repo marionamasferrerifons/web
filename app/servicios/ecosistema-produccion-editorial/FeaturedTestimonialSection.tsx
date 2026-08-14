@@ -1,11 +1,15 @@
 import TestimonialSection from '@/app/servicios/estrategia-editorial/TestimonialSection'
 import { client } from '@/sanity/client'
 import { TESTIMONIAL_BY_PLACEMENT_QUERY } from '@/sanity/queries'
+import { testimonialImageProps } from '@/sanity/image'
 
 export default async function Section6() {
   const testimonial = await client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, {
     placement: 'ecosistema-produccion-editorial',
   })
+  const images = testimonialImageProps(testimonial)
+
+  if (!images) return null
 
   if (!testimonial) return null
 
@@ -14,10 +18,7 @@ export default async function Section6() {
       quote={testimonial.quote}
       authorName={testimonial.authorName}
       authorRole={testimonial.authorRole}
-      avatarUrl={testimonial.avatar.asset.url}
-      avatarAlt={testimonial.avatar.alt}
-      logoUrl={testimonial.logo?.asset?.url}
-      logoAlt={testimonial.logo?.alt}
+      {...images}
     />
   )
 }

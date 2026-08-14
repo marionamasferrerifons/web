@@ -41,7 +41,7 @@ function ValueCard({ icon, title, description, height }: ValueCardProps) {
           lineHeight: 'var(--text-body-m--line-height)',
           fontWeight: 400,
           fontVariationSettings: '"opsz" 14',
-          color: 'var(--color-blue-300)',
+          color: 'var(--color-text-secondary)',
         }}
       >
         {description}
@@ -147,7 +147,7 @@ export default function ValuesSection({
               fontSize: 'var(--text-body-accent-mono)',
               lineHeight: 'var(--text-body-accent-mono--line-height)',
               letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
             }}
           >
             [MIS VALORES]

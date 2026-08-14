@@ -180,7 +180,7 @@ export default function Section3() {
                   lineHeight: '20px',
                   fontWeight: 400,
                   fontVariationSettings: '"opsz" 14',
-                  color: 'var(--color-blue-300)',
+                  color: 'var(--color-text-secondary)',
                 }}
               >
                 El criterio pedagógico y editorial que tu equipo ha acumulado durante años, codificado y operativo.
@@ -226,7 +226,7 @@ export default function Section3() {
                       lineHeight: '20px',
                       fontWeight: 400,
                       fontVariationSettings: '"opsz" 14',
-                      color: 'var(--color-blue-300)',
+                      color: 'var(--color-text-secondary)',
                     }}
                   >
                     El criterio no se delega. Tu equipo supervisa y valida cada paso del proceso.
@@ -276,7 +276,7 @@ export default function Section3() {
                   lineHeight: '20px',
                   fontWeight: 400,
                   fontVariationSettings: '"opsz" 14',
-                  color: 'var(--color-blue-300)',
+                  color: 'var(--color-text-secondary)',
                   maxWidth: '441px',
                 }}
               >
@@ -308,7 +308,7 @@ export default function Section3() {
                 lineHeight: '50px',
                 fontWeight: 400,
                 fontVariationSettings: '"opsz" 14',
-                color: 'var(--color-orange)',
+                color: 'var(--color-blue-800)',
               }}
             >
               Resultado
@@ -320,7 +320,7 @@ export default function Section3() {
                 lineHeight: '28px',
                 fontWeight: 400,
                 fontVariationSettings: '"opsz" 14',
-                color: 'var(--color-orange)',
+                color: 'var(--color-blue-800)',
               }}
             >
               Un sistema de producción editorial con tus estándares y a la velocidad de la IA.
@@ -368,7 +368,7 @@ export default function Section3() {
                 fontSize: '16px',
                 lineHeight: '20px',
                 fontWeight: 400,
-                color: 'var(--color-blue-300)',
+                color: 'var(--color-text-secondary)',
               }}
             >
               {card.desc}
@@ -396,7 +396,7 @@ export default function Section3() {
               fontSize: '16px',
               lineHeight: '20px',
               fontWeight: 400,
-              color: 'var(--color-orange)',
+              color: 'var(--color-text-accent)',
             }}
           >
             Un sistema de producción editorial con tus estándares y a la velocidad de la IA.

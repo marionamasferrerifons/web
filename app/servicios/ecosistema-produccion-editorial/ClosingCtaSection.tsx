@@ -46,7 +46,7 @@ export default function Section7() {
           className="group flex items-center gap-[16px] bg-white hover:bg-grey pl-[28px] pr-[12px] py-[8px] rounded-full overflow-hidden transition-colors duration-[330ms] ease-linear"
         >
           <span
-            className="uppercase text-orange"
+            className="uppercase text-text-accent"
             style={{
               fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,

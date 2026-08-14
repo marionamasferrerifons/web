@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import RecoloredLogo from '@/components/RecoloredLogo';
@@ -125,11 +126,12 @@ export default function TestimonialSection({
 
             {/* Author */}
             <div className="ts-author flex items-center gap-[16px]" style={{ marginTop: '32px' }}>
-              <img
+              <Image
                 src={avatarUrl}
                 alt={avatarAlt ?? authorName}
+                width={48}
+                height={48}
                 className="rounded-full shrink-0 object-cover"
-                style={{ width: '48px', height: '48px' }}
               />
               <p
                 style={{
@@ -158,7 +160,7 @@ export default function TestimonialSection({
 
         {/* Header */}
         <div className="ts-header flex flex-col gap-[16px] items-center text-center">
-          <p className="ts-tag text-blue-300 opacity-65 uppercase" style={monoStyle}>
+          <p className="ts-tag text-text-secondary opacity-65 uppercase" style={monoStyle}>
             [TESTIMONIOS]
           </p>
           <h2

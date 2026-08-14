@@ -48,7 +48,7 @@ export default function ResultsSection({ results }: { results: ResultItem[] }) {
             fontSize: 'var(--text-body-accent-mono)',
             lineHeight: 'var(--text-body-accent-mono--line-height)',
             letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-            color: 'var(--color-blue-300)',
+            color: 'var(--color-text-secondary)',
           }}
         >
           Resultados

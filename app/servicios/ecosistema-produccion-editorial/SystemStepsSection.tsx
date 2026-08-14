@@ -82,7 +82,7 @@ export default function Section4() {
               fontSize: 'var(--text-body-accent-mono)',
               lineHeight: 'var(--text-body-accent-mono--line-height)',
               letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
             }}
           >
             [EN QUÉ CONSISTE]
@@ -109,7 +109,7 @@ export default function Section4() {
               lineHeight: '20px',
               fontWeight: 400,
               fontVariationSettings: '"opsz" 14',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
               maxWidth: '453px',
             }}
           >
@@ -142,7 +142,7 @@ export default function Section4() {
                   lineHeight: 'var(--text-body-l--line-height)',
                   fontWeight: 400,
                   fontVariationSettings: '"opsz" 14',
-                  color: 'var(--color-blue-300)',
+                  color: 'var(--color-text-secondary)',
                 }}
               >
                 Diseñamos un sistema de producción de contenidos para combinar la velocidad de la IA con la calidad de tu editorial.
@@ -183,7 +183,7 @@ export default function Section4() {
                     lineHeight: '20px',
                     fontWeight: 400,
                     fontVariationSettings: '"opsz" 14',
-                    color: 'var(--color-blue-300)',
+                    color: 'var(--color-text-secondary)',
                     maxWidth: '610px',
                   }}
                 >
@@ -228,7 +228,7 @@ export default function Section4() {
                         fontSize: 'var(--text-body-accent-mono)',
                         lineHeight: 'var(--text-body-accent-mono--line-height)',
                         letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-                        color: 'var(--color-blue-300)',
+                        color: 'var(--color-text-secondary)',
                       }}
                     >
                       {s.step}
@@ -254,7 +254,7 @@ export default function Section4() {
                           lineHeight: '20px',
                           fontWeight: 400,
                           fontVariationSettings: '"opsz" 14',
-                          color: 'var(--color-blue-300)',
+                          color: 'var(--color-text-secondary)',
                         }}
                       >
                         {s.desc}
@@ -273,7 +273,7 @@ export default function Section4() {
                           fontSize: 'var(--text-body-accent-mono)',
                           lineHeight: 'var(--text-body-accent-mono--line-height)',
                           letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-                          color: 'var(--color-blue-300)',
+                          color: 'var(--color-text-secondary)',
                           width: '50px',
                           flexShrink: 0,
                         }}
@@ -319,7 +319,7 @@ export default function Section4() {
                             lineHeight: '20px',
                             fontWeight: 400,
                             fontVariationSettings: '"opsz" 14',
-                            color: 'var(--color-blue-300)',
+                            color: 'var(--color-text-secondary)',
                           }}
                         >
                           {s.desc}
@@ -342,7 +342,7 @@ export default function Section4() {
                 fontSize: 'var(--text-body-accent-mono)',
                 lineHeight: 'var(--text-body-accent-mono--line-height)',
                 letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-                color: 'var(--color-blue-300)',
+                color: 'var(--color-text-secondary)',
               }}
             >
               [LO QUE INCLUYE]
@@ -371,7 +371,7 @@ export default function Section4() {
                         lineHeight: '28px',
                         fontWeight: 400,
                         fontVariationSettings: '"opsz" 14',
-                        color: 'var(--color-blue-300)',
+                        color: 'var(--color-text-secondary)',
                       }}
                     >
                       {item.desc}
