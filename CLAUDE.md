@@ -1,7 +1,19 @@
 @AGENTS.md
 
-## Data & animation safety
+# Contracte del projecte
 
-- Every read of Sanity data must validate shape before rendering. Don't assume a referenced document, image, or asset exists — a testimonial can be unpublished, an image field can be empty. Guard with optional chaining and skip rendering the section (or fall back) rather than letting the page crash. Pattern already in use: `{testimonial?.avatar?.asset?.url && <TestimonialSection ... />}` (see `app/page.tsx`, `app/enfoque/page.tsx`, `app/casos-de-exito/[slug]/page.tsx`).
-- Animations must never leave content permanently invisible if their trigger fails to fire. Any `gsap.from()` driven by ScrollTrigger needs `immediateRender: false` so the DOM's default state is visible, plus `invalidateOnRefresh: true` so a trigger doesn't go stale after late layout shifts (fonts, images loading). See `components/FooterClient.tsx` for the reference implementation.
-- Collections and route-level documents get their own guard, distinct from the single-field check above: an empty array means don't render the section (`if (caseStudies.length === 0) return null` in `CaseStudiesSection.tsx`), and a missing document on a dynamic route means a real 404, not a crash (`if (!caseStudy) notFound()` in `app/casos-de-exito/[slug]/page.tsx`).
+## Llegir abans de tocar codi
+- `docs/architecture.md` — estructura de l'App Router i integració amb Sanity
+- `docs/design-system.md` — convencions de Tailwind, GSAP i components
+- `docs/roadmap.md` — prioritats actuals i enllaç a `mejoras/`
+
+## Registrar canvis
+Afegeix una entrada a `CHANGELOG.md` (què / quan / per què) per a qualsevol canvi de contingut, disseny o estructura — no cal per a fixes trivials o typos.
+
+## Guardrails
+- No commitejar `.env.local` ni cap token de Sanity (`SANITY_API_READ_TOKEN` o d'escriptura). Si en cal un de nou, documenta'l a `.env.example` sense el valor.
+- Si es modifica `studio/schemaTypes/`, revisa l'impacte a les queries GROQ de `sanity/queries.ts`.
+- `studio/` és un subprojecte Sanity independent (propi `package.json`) — no assumir que comparteix dependències amb l'app principal.
+
+## Revisió de seguretat
+Executa `/security-review` abans de fusionar canvis que toquin variables d'entorn, tokens de Sanity, o qualsevol formulari/enviament de dades.
