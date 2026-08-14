@@ -75,7 +75,9 @@ export default function HeroSection() {
             color: 'var(--color-blue-50)',
           }}
         >
-          Amplía tu capacidad de producción con el criterio que exige tu editorial.
+          Amplía tu capacidad de{' '}
+          <span style={{ color: 'var(--color-blue-400)' }}>producción</span>
+          {' '}con la calidad que exige tu editorial.
         </h1>
 
         {/* Description + CTA — below title, pushed to the right */}
@@ -92,7 +94,8 @@ export default function HeroSection() {
                 color: 'var(--color-grey)',
               }}
             >
-              Coordino, edito y desarrollo materiales educativos. Vengo de la edición y del aula. Ahora la IA acelera mi trabajo.
+              Coordino, edito y desarrollo materiales educativos. Vengo de la edición y del aula.
+              Ahora la IA acelera mi trabajo.
             </p>
 
             <a

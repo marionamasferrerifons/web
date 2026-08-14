@@ -11,11 +11,23 @@ const GAP = 16;
 const ITEM_WIDTH = CARD_WIDTH + GAP;
 const SCROLL_BY = ITEM_WIDTH * 3;
 
+const metaTextStyle = {
+  fontFamily: 'var(--font-dm-sans)',
+  fontSize: 'var(--text-body-m)',
+  lineHeight: 'var(--text-body-m--line-height)',
+  fontWeight: 300,
+  fontVariationSettings: '"opsz" 14',
+  color: 'var(--color-text-secondary)',
+} as const;
+
+const metaLabelStyle = { fontWeight: 600 } as const;
+
 export type EditorialProject = {
   _id: string;
   year: string;
   grade: string;
   publisher: string;
+  role: string;
   title: string;
   image: {
     asset: { _id: string; url: string } | null;
@@ -73,45 +85,27 @@ function ProjectCard({ project }: { project: EditorialProject }) {
       </div>
 
       {/* Text info — visible on hover */}
-      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col gap-[8px]" style={{ minHeight: 92 }}>
-        <div className="flex items-center gap-[8px]">
-          <span
-            style={{
-              fontFamily: 'var(--font-dm-sans)',
-              fontSize: 'var(--text-body-m)',
-              lineHeight: 'var(--text-body-m--line-height)',
-              fontWeight: 300,
-              fontVariationSettings: '"opsz" 14',
-              color: 'var(--color-text-secondary)',
-            }}
-          >
-            {project.grade}
-          </span>
-          <span style={{ color: 'var(--color-text-secondary)' }}>·</span>
-          <span
-            style={{
-              fontFamily: 'var(--font-dm-sans)',
-              fontSize: 'var(--text-body-m)',
-              lineHeight: 'var(--text-body-m--line-height)',
-              fontWeight: 300,
-              fontVariationSettings: '"opsz" 14',
-              color: 'var(--color-text-secondary)',
-            }}
-          >
-            {project.publisher}
-          </span>
-        </div>
+      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col gap-[8px]">
         <p
           style={{
             fontFamily: 'var(--font-dm-sans)',
-            fontSize: 'var(--text-body-xl)',
-            lineHeight: 'var(--text-body-xl--line-height)',
+            fontSize: 'var(--text-body-l)',
+            lineHeight: 'var(--text-body-l--line-height)',
             fontWeight: 400,
             fontVariationSettings: '"opsz" 14',
             color: 'var(--color-blue-500)',
           }}
         >
           {project.title}
+        </p>
+        <p style={metaTextStyle}>
+          <span style={metaLabelStyle}>Rol:</span> {project.role}
+        </p>
+        <p style={metaTextStyle}>
+          <span style={metaLabelStyle}>Etapa:</span> {project.grade}
+        </p>
+        <p style={metaTextStyle}>
+          <span style={metaLabelStyle}>Editorial:</span> {project.publisher}
         </p>
       </div>
 
@@ -198,7 +192,7 @@ export default function EditorialProjectsSection({ projects }: { projects: Edito
                 maxWidth: '690px',
               }}
             >
-              Proyectos que ya he editado{' '}
+              Proyectos que ya he {' '}
               <span style={{ color: 'var(--color-orange-400)' }}>editado</span>{' '}
               y {' '}
               <span style={{ color: 'var(--color-orange-400)' }}>coordinado</span>
@@ -214,7 +208,7 @@ export default function EditorialProjectsSection({ projects }: { projects: Edito
                 maxWidth: '453px',
               }}
             >
-              Desde 2021, todas las editoriales que han trabajado conmigo me han encargado el proyecto siguiente. La recurrencia es la mejor recumpensa al trabajo bien hecho.
+              Desde 2021, todas las editoriales que han trabajado conmigo me han encargado el proyecto siguiente. La recurrencia es la mejor recompensa al trabajo bien hecho.
             </p>
           </div>
         </div>
