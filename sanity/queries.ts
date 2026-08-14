@@ -89,6 +89,7 @@ export const EDITORIAL_PROJECTS_QUERY = `
     title,
     publisher,
     grade,
+    role,
     year,
     image {
       asset-> {

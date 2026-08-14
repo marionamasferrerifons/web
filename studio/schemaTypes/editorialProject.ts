@@ -29,6 +29,13 @@ export const editorialProject = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'role',
+      title: 'Rol',
+      description: 'Tu rol en el proyecto. Ej. "Coordinación editorial"',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'year',
       title: 'Año',
       type: 'string',

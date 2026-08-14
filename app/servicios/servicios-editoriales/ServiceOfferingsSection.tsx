@@ -90,7 +90,7 @@ export default function Section3() {
   return (
     <section
       ref={sectionRef}
-      className="w-full flex justify-center pt-[240px] pb-[56px] px-[20px] md:px-[40px]"
+      className="w-full flex justify-center pt-[80px] pb-[56px] px-[20px] md:px-[40px]"
       style={{ backgroundColor: 'var(--color-grey)' }}
     >
       <div className="w-full flex flex-col gap-[40px]" style={{ maxWidth: '1400px' }}>
@@ -119,6 +119,7 @@ export default function Section3() {
               fontVariationSettings: '"opsz" 14',
               color: 'var(--color-blue-400)',
               maxWidth: '685px',
+              textWrap: 'balance',
             }}
           >
             La capacidad de{' '}
@@ -134,6 +135,7 @@ export default function Section3() {
               fontVariationSettings: '"opsz" 14',
               color: 'var(--color-text-secondary)',
               maxWidth: '453px',
+              textWrap: 'balance',
             }}
           >
             Gestiono la producción de materiales de primaria, ESO, bachillerato y FP, con un equipo de colaboradoras de confianza.
