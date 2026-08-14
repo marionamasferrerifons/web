@@ -58,7 +58,7 @@ export default function SolutionSection({ title, text }: SolutionSectionProps) {
             fontSize: 'var(--text-body-accent-mono)',
             lineHeight: 'var(--text-body-accent-mono--line-height)',
             letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-            color: 'var(--color-blue-300)',
+            color: 'var(--color-text-secondary)',
           }}
         >
           Solución
@@ -84,7 +84,7 @@ export default function SolutionSection({ title, text }: SolutionSectionProps) {
             lineHeight: '24px',
             fontWeight: 400,
             fontVariationSettings: '"opsz" 14',
-            color: 'var(--color-blue-300)',
+            color: 'var(--color-text-secondary)',
           }}
         >
           <PortableText value={text} components={bodyComponents} />

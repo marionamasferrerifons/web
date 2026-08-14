@@ -133,7 +133,7 @@ export default function MobileMenu({
               className="group flex items-center justify-center gap-[8px] bg-grey hover:bg-white rounded-full px-[20px] cursor-pointer transition-colors duration-[330ms] ease-linear"
               style={{ height: '44px' }}
             >
-              <span className="text-orange uppercase" style={{ ...monoStyle, fontSize: '12px' }}>
+              <span className="text-text-accent uppercase" style={{ ...monoStyle, fontSize: '12px' }}>
                 Reservar una llamada
               </span>
               <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[24px]">

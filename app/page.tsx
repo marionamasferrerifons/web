@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import HeroSection from './home/HomeHeroSection'
 import LogosSection from './home/LogosSection'
 import ChallengesSection from './home/ChallengesSection'
@@ -10,6 +11,16 @@ import TestimonialSection from './servicios/estrategia-editorial/TestimonialSect
 import CtaSection from './servicios/estrategia-editorial/CtaSection'
 import { client } from '@/sanity/client'
 import { TESTIMONIAL_BY_PLACEMENT_QUERY, INDUSTRY_LOGOS_QUERY } from '@/sanity/queries'
+import { industryLogoUrl, testimonialImageProps } from '@/sanity/image'
+
+export const metadata: Metadata = {
+  title: {
+    absolute: 'Mariona Masferrer i Fons — Estrategia editorial con IA',
+  },
+  description:
+    'Acompaño a direcciones editoriales a integrar la inteligencia artificial en su producción sin perder rigor editorial ni calidad pedagógica.',
+  alternates: { canonical: '/' },
+}
 
 export default async function Home() {
   const [orangeTestimonial, greenTestimonial, industryLogos] = await Promise.all([
@@ -17,30 +28,33 @@ export default async function Home() {
     client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'home-green' }),
     client.fetch(INDUSTRY_LOGOS_QUERY),
   ])
+  const orangeImages = testimonialImageProps(orangeTestimonial)
+  const greenImages = testimonialImageProps(greenTestimonial)
 
   return (
     <main>
       <HeroSection />
       <LogosSection
-        logos={industryLogos.map((item: { logo: { asset: { url: string }; alt?: string }; name: string }) => ({
-          src: item.logo.asset.url,
-          alt: item.logo.alt || item.name,
-        }))}
+        logos={industryLogos
+          .filter((item: { logo: { asset: { _id: string; url: string } | null; alt?: string } | null; name: string }) => item.logo?.asset?._id)
+          .map((item: { logo: { asset: { _id: string; url: string }; alt?: string }; name: string }) => ({
+            src: industryLogoUrl(item.logo.asset._id),
+            alt: item.logo.alt || item.name,
+          }))}
       />
       <ChallengesSection />
       <ProblemSection />
       <CriterioSection />
-      <PracticeSection
-        testimonial={orangeTestimonial ? {
-          quote: orangeTestimonial.quote,
-          authorName: orangeTestimonial.authorName,
-          authorRole: orangeTestimonial.authorRole,
-          avatarUrl: orangeTestimonial.avatar.asset.url,
-          avatarAlt: orangeTestimonial.avatar.alt,
-          logoUrl: orangeTestimonial.logo?.asset?.url,
-          logoAlt: orangeTestimonial.logo?.alt,
-        } : undefined}
-      />
+      {orangeImages && (
+        <PracticeSection
+          testimonial={{
+            quote: orangeTestimonial.quote,
+            authorName: orangeTestimonial.authorName,
+            authorRole: orangeTestimonial.authorRole,
+            ...orangeImages,
+          }}
+        />
+      )}
       <ServicesSection />
       <CaseStudiesSection
         tag="[PROYECTOS]"
@@ -52,16 +66,13 @@ export default async function Home() {
         }
         subtitle="Lorem ipsum dolor sit amet consectetur. Eget elit consectetur bibendum placerat aliquam dictum. Tincidunt eget tempus tortor congue diam turpis. Sit fusce tempor."
       />
-      {greenTestimonial && (
+      {greenImages && (
         <TestimonialSection
           cardColor="var(--color-green)"
           quote={greenTestimonial.quote}
           authorName={greenTestimonial.authorName}
           authorRole={greenTestimonial.authorRole}
-          avatarUrl={greenTestimonial.avatar.asset.url}
-          avatarAlt={greenTestimonial.avatar.alt}
-          logoUrl={greenTestimonial.logo?.asset?.url}
-          logoAlt={greenTestimonial.logo?.alt}
+          {...greenImages}
         />
       )}
       <CtaSection

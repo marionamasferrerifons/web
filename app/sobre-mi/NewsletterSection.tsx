@@ -107,7 +107,7 @@ export default function NewsletterSection() {
               lineHeight: 'var(--text-body-m--line-height)',
               fontWeight: 400,
               fontVariationSettings: '"opsz" 14',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
               maxWidth: '453px',
             }}
           >
@@ -120,7 +120,7 @@ export default function NewsletterSection() {
           style={{ paddingLeft: '28px', paddingRight: '12px', paddingTop: '8px', paddingBottom: '8px' }}
         >
           <span
-            className="uppercase text-orange"
+            className="uppercase text-text-accent"
             style={{
               fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,

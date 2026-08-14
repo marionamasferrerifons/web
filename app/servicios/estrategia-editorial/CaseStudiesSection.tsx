@@ -9,7 +9,7 @@ type CaseStudy = {
   client: string
   slug: string
   imageCard: {
-    asset: { url: string } | null
+    asset: { _id: string; url: string } | null
     alt?: string
   } | null
 }
@@ -17,7 +17,7 @@ type CaseStudy = {
 type IndustryLogo = {
   name: string
   logo: {
-    asset: { url: string } | null
+    asset: { _id: string; url: string } | null
     alt?: string
   } | null
 }

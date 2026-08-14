@@ -83,7 +83,7 @@ export default function CtaSection({
           style={{ paddingLeft: '28px', paddingRight: '12px', paddingTop: '8px', paddingBottom: '8px' }}
         >
           <span
-            className="text-orange uppercase"
+            className="text-text-accent uppercase"
             style={{
               fontFamily: 'var(--font-dm-mono)',
               fontWeight: 400,

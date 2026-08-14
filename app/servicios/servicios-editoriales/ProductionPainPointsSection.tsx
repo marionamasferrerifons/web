@@ -18,7 +18,7 @@ function Pill({ dot, text, indent = false }: { dot: string; text: string; indent
           lineHeight: 'var(--text-body-m--line-height)',
           fontWeight: 400,
           fontVariationSettings: '"opsz" 14',
-          color: 'var(--color-blue-300)',
+          color: 'var(--color-text-secondary)',
         }}
       >
         {text}
