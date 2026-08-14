@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, type PointerEvent as ReactPointerEvent } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -73,7 +73,7 @@ function ProjectCard({ project }: { project: EditorialProject }) {
         {/* Blue gradient overlay — hidden on hover */}
         <div
           className="absolute inset-0 transition-opacity duration-300 opacity-100 group-hover:opacity-0 rounded-[10px]"
-          style={{ background: 'linear-gradient(212.57deg, rgba(1, 44, 151, 0.45) 0.84%, rgba(1, 44, 151, 0) 39.95%)' }}
+          style={{ background: 'linear-gradient(212.57deg, rgba(1, 44, 151, 0.18) 0.84%, rgba(1, 44, 151, 0) 39.95%)' }}
         />
         {/* Orange arrow — hidden on hover */}
         <div
@@ -117,6 +117,9 @@ export default function EditorialProjectsSection({ projects }: { projects: Edito
   const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const isScrolling = useRef(false);
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragStartScrollLeft = useRef(0);
 
   // Render 3 copies so we can loop seamlessly
   const tripled = [...projects, ...projects, ...projects];
@@ -143,6 +146,17 @@ export default function EditorialProjectsSection({ projects }: { projects: Edito
     return () => ctx.revert();
   }, []);
 
+  // Keeps the illusion of an infinite loop: silently jumps back to the
+  // middle copy once the user has scrolled (by arrow or drag) into the
+  // first or third copy of the track.
+  const resetLoopBounds = (el: HTMLDivElement) => {
+    if (el.scrollLeft >= SET_WIDTH * 2) {
+      el.scrollLeft -= SET_WIDTH;
+    } else if (el.scrollLeft < SET_WIDTH / 2) {
+      el.scrollLeft += SET_WIDTH;
+    }
+  };
+
   const scroll = (dir: 'prev' | 'next') => {
     const el = scrollRef.current;
     if (!el || isScrolling.current) return;
@@ -150,15 +164,42 @@ export default function EditorialProjectsSection({ projects }: { projects: Edito
 
     el.scrollBy({ left: dir === 'next' ? SCROLL_BY : -SCROLL_BY, behavior: 'smooth' });
 
-    // After animation, silently reset to middle copy if needed
     setTimeout(() => {
-      if (el.scrollLeft >= SET_WIDTH * 2) {
-        el.scrollLeft -= SET_WIDTH;
-      } else if (el.scrollLeft < SET_WIDTH / 2) {
-        el.scrollLeft += SET_WIDTH;
-      }
+      resetLoopBounds(el);
       isScrolling.current = false;
     }, 450);
+  };
+
+  // Mouse-only drag-to-scroll — touch/trackpad already get native
+  // horizontal scrolling from overflow-x-auto, so we don't touch those.
+  const handlePointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== 'mouse') return;
+    const el = scrollRef.current;
+    if (!el) return;
+    isDragging.current = true;
+    dragStartX.current = e.pageX;
+    dragStartScrollLeft.current = el.scrollLeft;
+    el.setPointerCapture(e.pointerId);
+    el.style.cursor = 'grabbing';
+    el.style.userSelect = 'none';
+  };
+
+  const handlePointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollLeft = dragStartScrollLeft.current - (e.pageX - dragStartX.current);
+  };
+
+  const handlePointerUp = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    const el = scrollRef.current;
+    if (!el) return;
+    el.style.cursor = 'grab';
+    el.style.userSelect = '';
+    if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+    resetLoopBounds(el);
   };
 
   return (
@@ -238,7 +279,11 @@ export default function EditorialProjectsSection({ projects }: { projects: Edito
       <div
         ref={scrollRef}
         className="s4-track flex gap-[16px] overflow-x-auto pb-[8px] pl-[20px] md:pl-[40px]"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', cursor: 'grab' }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
       >
         {tripled.map((project, i) => (
           <div key={i} className="s4-card">
