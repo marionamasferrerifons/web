@@ -198,8 +198,10 @@ export default function EditorialProjectsSection({ projects }: { projects: Edito
                 maxWidth: '690px',
               }}
             >
-              Explora los proyectos que ya he{' '}
-              <span style={{ color: 'var(--color-orange-400)' }}>liderado</span>
+              Proyectos que ya he editado{' '}
+              <span style={{ color: 'var(--color-orange-400)' }}>editado</span>{' '}
+              y {' '}
+              <span style={{ color: 'var(--color-orange-400)' }}>coordinado</span>
             </h2>
             <p
               style={{
@@ -212,7 +214,7 @@ export default function EditorialProjectsSection({ projects }: { projects: Edito
                 maxWidth: '453px',
               }}
             >
-              Proyectos de editoriales educativas que ya han trabajado conmigo. Descubre cómo hemos trabajado y los resultados que hemos conseguido.
+              Desde 2021, todas las editoriales que han trabajado conmigo me han encargado el proyecto siguiente. La recurrencia es la mejor recumpensa al trabajo bien hecho.
             </p>
           </div>
         </div>

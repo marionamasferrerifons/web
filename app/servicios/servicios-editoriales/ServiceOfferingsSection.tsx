@@ -9,13 +9,13 @@ const serviceCards = [
     icon: '/s3-icon-definition.png',
     iconSize: 48,
     title: 'Definición de la idea editorial',
-    description: 'Definimos el ADN pedagógico y editorial de tu proyecto para que conecte con el aula actual, garantizando la cobertura del currículo y la identidad de tu editorial.',
+    description: 'Definimos el ADN pedagógico y editorial de tu proyecto para que conecte con el aula actual.',
   },
   {
     icon: '/s3-icon-coordination.svg',
     iconSize: 32,
     title: 'Coordinación de proyectos',
-    description: 'Lidero la ejecución integral de tu proyecto, centralizando la coordinación de profesionales y el control de plazos, calidad y presupuesto.',
+    description: 'Lidero la ejecución de tu proyecto, centralizando la coordinación de profesionales y el control de plazos, calidad y presupuesto.',
   },
   {
     icon: '/s3-icon-edition.svg',
@@ -32,8 +32,8 @@ const serviceCards = [
 ];
 
 const outcomes = [
-  'Proyectos entregados con máxima calidad y puntualidad',
-  'Escalar tu capacidad de producción de forma flexible, sin aumentar tu plantilla',
+  'Entregas puntuales y sin rondas de corrección imprevistas',
+  'Escalar tu capacidad de producción sin aumentar tu plantilla',
   'Reducir los tiempos de desarrollo con la integración responsable de la IA',
 ];
 
@@ -121,10 +121,9 @@ export default function Section3() {
               maxWidth: '685px',
             }}
           >
-            Producción editorial externa{' '}
-            <span style={{ color: 'var(--color-orange-400)' }}>confiable</span>
-            {' '}y{' '}
-            <span style={{ color: 'var(--color-orange-400)' }}>eficiente</span>
+            La capacidad de{' '}
+            <span style={{ color: 'var(--color-orange-400)' }}>producción externa</span>
+            {' '}que no te obliga a revisarlo todo.{' '}
           </h2>
           <p
             style={{
@@ -137,7 +136,7 @@ export default function Section3() {
               maxWidth: '453px',
             }}
           >
-            Te ofrezco un apoyo profesional externo para que puedas desarrollar tus proyectos con garantías de calidad.
+            Gestiono la producción de materiales de primaria, ESO, bachillerato y FP, con un equipo de colaboradoras de confianza.
           </p>
         </div>
 
@@ -157,7 +156,7 @@ export default function Section3() {
                   color: 'var(--color-blue-400)',
                 }}
               >
-                La capacidad y el expertise que necesitas para tus contenidos educativos
+                La capacidad y el oficio que necesitas para tus contenidos educativos
               </h3>
               <p
                 style={{
@@ -169,7 +168,7 @@ export default function Section3() {
                   color: 'var(--color-text-secondary)',
                 }}
               >
-                Aplica la innovación educativa en tus libros de texto, asegurándote de que cada material cumpla con los requisitos curriculares y con las expectativas del profesorado y alumnado.
+                Aplica la innovación educativa en tus libros de texto, asegurándote de que cada material cumpla con los requisitos curriculares y con las necesidades del profesorado y alumnado.
               </p>
             </div>
             <div
