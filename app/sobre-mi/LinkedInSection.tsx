@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -43,10 +44,12 @@ export default function LinkedInSection() {
               border: '6px solid var(--color-white)',
             }}
           >
-            <img
-              src="/about-hero-photo.png"
+            <Image
+              src="/hero-photo.png"
               alt="Mariona Masferrer"
-              className="w-full h-full object-cover"
+              fill
+              sizes="(min-width: 768px) 198px, 120px"
+              className="object-cover"
             />
           </div>
         </div>
@@ -74,7 +77,7 @@ export default function LinkedInSection() {
                 lineHeight: 'var(--text-body-l--line-height)',
                 fontWeight: 400,
                 fontVariationSettings: '"opsz" 14',
-                color: 'var(--color-blue-300)',
+                color: 'var(--color-text-secondary)',
               }}
             >
               Ayudo a editoriales educativas a evolucionar su estrategia de negocio y sus sistemas de producción en un sector transformado por la IA.
@@ -95,7 +98,7 @@ export default function LinkedInSection() {
                 fontSize: 'var(--text-body-accent-mono)',
                 lineHeight: 'var(--text-body-accent-mono--line-height)',
                 letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-                color: 'var(--color-orange)',
+                color: 'var(--color-text-accent)',
               }}
             >
               VER PERFIL DE LINKEDIN

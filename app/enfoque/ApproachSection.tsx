@@ -23,7 +23,7 @@ const titleWords = buildWords([
 const bodyWords = buildWords([
   {
     text: 'Combinar criterio editorial, mirada pedagógica y comprensión tecnológica permite integrar nuevos procesos sin perder claridad, intención ni calidad.',
-    color: 'var(--color-blue-300)',
+    color: 'var(--color-text-secondary)',
   },
 ]);
 
@@ -77,7 +77,7 @@ export default function ApproachSection() {
         className="relative w-full flex flex-col gap-[32px] md:grid md:gap-x-[22px] md:gap-y-[32px] md:items-start"
         style={{ maxWidth: '1400px', gridTemplateColumns: 'minmax(0, 809fr) minmax(0, 570fr)' }}
       >
-        <p
+        <h2
           className="approach-title"
           style={{
             fontFamily: 'var(--font-dm-sans)',
@@ -88,7 +88,7 @@ export default function ApproachSection() {
           }}
         >
           <FillingWords words={titleWords} />
-        </p>
+        </h2>
 
         <img
           src="/enfoque-focus-shape.svg"

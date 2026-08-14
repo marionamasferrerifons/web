@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { BOOKING_URL } from '@/lib/constants';
 
@@ -38,15 +39,16 @@ export default function HeroSection() {
       />
 
       {/* Photo — flush with the section's true left edge, regardless of viewport width */}
-      <img
-        src="/home-hero-photo.png"
+      <Image
+        src="/hero-photo.png"
         alt="Mariona Masferrer"
+        width={340}
+        height={207}
+        priority
         className="hero-photo absolute hidden lg:block object-cover"
         style={{
           left: '0',
           bottom: '56px',
-          width: '340px',
-          height: '207px',
           maskImage: 'url(/home-hero-photo-mask.svg)',
           WebkitMaskImage: 'url(/home-hero-photo-mask.svg)',
           maskSize: '100% 100%',
@@ -76,13 +78,13 @@ export default function HeroSection() {
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-end gap-[40px] mt-[64px] md:mt-[96px]">
           {/* Photo — mobile only; desktop uses the edge-to-edge absolute version above */}
-          <img
-            src="/home-hero-photo.png"
+          <Image
+            src="/hero-photo.png"
             alt="Mariona Masferrer"
+            width={340}
+            height={207}
             className="hero-photo lg:hidden object-cover shrink-0"
             style={{
-              width: '340px',
-              height: '207px',
               maxWidth: '100%',
               maskImage: 'url(/home-hero-photo-mask.svg)',
               WebkitMaskImage: 'url(/home-hero-photo-mask.svg)',
@@ -129,7 +131,7 @@ export default function HeroSection() {
               style={{ paddingLeft: '28px', paddingRight: '12px', paddingTop: '8px', paddingBottom: '8px', marginTop: '16px' }}
             >
               <span
-                className="uppercase text-orange"
+                className="uppercase text-text-accent"
                 style={{
                   fontFamily: 'var(--font-dm-mono)',
                   fontWeight: 400,

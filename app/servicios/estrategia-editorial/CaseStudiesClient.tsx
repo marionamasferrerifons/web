@@ -2,9 +2,11 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import RecoloredLogo from '@/components/RecoloredLogo';
+import { caseStudyCardImageUrl, industryLogoUrl } from '@/sanity/image';
 
 type CaseStudy = {
   _id: string
@@ -13,7 +15,7 @@ type CaseStudy = {
   client: string
   slug: string
   imageCard: {
-    asset: { url: string } | null
+    asset: { _id: string; url: string } | null
     alt?: string
   } | null
 }
@@ -21,7 +23,7 @@ type CaseStudy = {
 type IndustryLogo = {
   name: string
   logo: {
-    asset: { url: string } | null
+    asset: { _id: string; url: string } | null
     alt?: string
   } | null
 }
@@ -32,7 +34,7 @@ function normalizeName(name: string) {
 
 function findLogoForClient(clientName: string, logos: IndustryLogo[]) {
   const target = normalizeName(clientName)
-  return logos.find((l) => l.logo?.asset?.url && (normalizeName(l.name).includes(target) || target.includes(normalizeName(l.name))))
+  return logos.find((l) => l.logo?.asset?._id && (normalizeName(l.name).includes(target) || target.includes(normalizeName(l.name))))
 }
 
 const monoStyle = {
@@ -99,7 +101,7 @@ export default function CaseStudiesClient({
 
         {/* Header */}
         <div className="cs-header flex flex-col gap-[16px]">
-          <p className="cs-tag text-blue-300 opacity-65 uppercase" style={monoStyle}>
+          <p className="cs-tag text-text-secondary opacity-65 uppercase" style={monoStyle}>
             {tag}
           </p>
           <div className="flex flex-col gap-[16px] md:flex-row md:items-end md:justify-between">
@@ -125,7 +127,7 @@ export default function CaseStudiesClient({
                 lineHeight: 'var(--text-body-m--line-height)',
                 fontWeight: 300,
                 fontVariationSettings: '"opsz" 14',
-                color: 'var(--color-blue-300)',
+                color: 'var(--color-text-secondary)',
                 maxWidth: '453px',
               }}
             >
@@ -138,7 +140,7 @@ export default function CaseStudiesClient({
         <div className="flex flex-col gap-[16px]">
           {caseStudies.map((item) => {
             const clientLogo = item.client ? findLogoForClient(item.client, logos) : undefined
-            const logoUrl = clientLogo?.logo?.asset?.url
+            const logoUrl = clientLogo?.logo?.asset?._id ? industryLogoUrl(clientLogo.logo.asset._id) : undefined
 
             return (
             <Link
@@ -149,11 +151,13 @@ export default function CaseStudiesClient({
             >
               {/* Image thumbnail */}
               <div className="relative shrink-0 rounded-[16px] md:rounded-[10px] overflow-hidden w-full h-[140px] md:w-[156px] md:h-[98px]">
-                {item.imageCard?.asset?.url ? (
-                  <img
-                    src={item.imageCard.asset.url}
+                {item.imageCard?.asset?._id ? (
+                  <Image
+                    src={caseStudyCardImageUrl(item.imageCard.asset._id)}
                     alt={item.imageCard.alt ?? item.title}
-                    className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    fill
+                    sizes="(min-width: 768px) 156px, 100vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 ) : (
                   <div
@@ -202,7 +206,7 @@ export default function CaseStudiesClient({
                     lineHeight: 'var(--text-body-m--line-height)',
                     fontWeight: 300,
                     fontVariationSettings: '"opsz" 14',
-                    color: 'var(--color-blue-300)',
+                    color: 'var(--color-text-secondary)',
                   }}
                 >
                   {item.subtitle}

@@ -10,6 +10,21 @@
   --color-blue-100: #D5E4FB;
   --color-blue-50:  #F2F4FB;
 
+  /* --color-blue-300 fails WCAG AA as text (3.96:1 on white). This is the
+     same hue darkened to meet 4.5:1 against every light background it's
+     used on — blue-300 itself stays untouched for decorative use. */
+  --color-text-secondary: #3C64A9;
+
+  /* Same text, but for the 2 spots where it sits on a saturated/tinted
+     background (green hero, pastel-blue-200 card) instead of white/grey —
+     --color-text-secondary alone doesn't clear 4.5:1 there. */
+  --color-text-secondary-strong: #32538C;
+
+  /* --color-orange fails WCAG AA as text (3.05:1 on white, 2.72:1 on grey —
+     both below 4.5:1). Same hue darkened to clear 4.5:1 against the
+     white/grey button backgrounds it's used on as text. */
+  --color-text-accent: #CF330F;
+
   /* Color Clickable */
   --color-orange: #F26949;
 

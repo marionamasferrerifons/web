@@ -82,7 +82,7 @@ function WorkCard({ card }: { card: Card }) {
               fontSize: 'var(--text-body-accent-mono)',
               lineHeight: 'var(--text-body-accent-mono--line-height)',
               letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
               opacity: 0.65,
             }}
           >
@@ -111,7 +111,7 @@ function WorkCard({ card }: { card: Card }) {
           lineHeight: 'var(--text-body-m--line-height)',
           fontWeight: 400,
           fontVariationSettings: '"opsz" 14',
-          color: 'var(--color-blue-300)',
+          color: 'var(--color-text-secondary)',
           maxWidth: !centered && card.shape ? '300px' : undefined,
         }}
       >
@@ -171,14 +171,14 @@ export default function WorkPrinciplesSection() {
             fontSize: 'var(--text-body-accent-mono)',
             lineHeight: 'var(--text-body-accent-mono--line-height)',
             letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-            color: 'var(--color-blue-300)',
+            color: 'var(--color-text-secondary)',
             opacity: 0.65,
           }}
         >
           [PRINCIPIOS DE TRABAJO]
         </p>
         <div className="w-full flex flex-col md:flex-row gap-[24px] items-start md:items-end justify-between">
-          <p
+          <h2
             style={{
               fontFamily: 'var(--font-dm-sans)',
               fontSize: 'var(--text-title-l)',
@@ -192,7 +192,7 @@ export default function WorkPrinciplesSection() {
             Una forma de trabajar que{' '}
             <span style={{ color: 'var(--color-orange-400)' }}>impacta</span>
             {' '}en el resultado final
-          </p>
+          </h2>
           <p
             style={{
               fontFamily: 'var(--font-dm-sans)',
@@ -200,7 +200,7 @@ export default function WorkPrinciplesSection() {
               lineHeight: 'var(--text-body-m--line-height)',
               fontWeight: 400,
               fontVariationSettings: '"opsz" 14',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
               maxWidth: '453px',
             }}
           >

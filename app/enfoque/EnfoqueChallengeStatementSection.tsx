@@ -23,7 +23,7 @@ const titleWords = buildWords([
 const bodyWords = buildWords([
   {
     text: 'En proyectos editoriales y educativos, la tecnología impacta directamente en la calidad del contenido, los equipos y la forma de trabajar.',
-    color: 'var(--color-blue-300)',
+    color: 'var(--color-text-secondary)',
   },
 ]);
 
@@ -74,7 +74,7 @@ export default function ChallengeSection() {
       style={{ backgroundColor: 'var(--color-grey)' }}
     >
       <div className="relative w-full flex flex-col gap-[32px] md:block md:h-[378px]" style={{ maxWidth: '1400px' }}>
-        <p
+        <h2
           className="challenge-title md:absolute md:left-[593px] md:top-0 md:w-[809px]"
           style={{
             fontFamily: 'var(--font-dm-sans)',
@@ -85,7 +85,7 @@ export default function ChallengeSection() {
           }}
         >
           <FillingWords words={titleWords} />
-        </p>
+        </h2>
 
         <img
           src="/enfoque-context-shape.svg"

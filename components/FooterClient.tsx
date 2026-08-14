@@ -49,8 +49,10 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
           trigger: footerRef.current,
           start: 'top bottom',
           toggleActions: 'play none none none',
+          once: true,
+          invalidateOnRefresh: true,
         },
-        defaults: { ease: 'power3.out' },
+        defaults: { ease: 'power3.out', immediateRender: false },
       })
         .from('.footer-divider', { scaleX: 0, transformOrigin: 'left', duration: 0.9, ease: 'power2.inOut' })
         .from('.footer-column', { y: 24, opacity: 0, duration: 0.7, stagger: 0.1 }, '-=0.5')

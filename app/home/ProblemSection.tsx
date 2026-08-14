@@ -37,7 +37,7 @@ export default function ProblemSection() {
       />
 
       <div className="relative w-full" style={{ maxWidth: '1400px' }}>
-        <p
+        <h2
           className="problem-title"
           style={{
             fontFamily: 'var(--font-dm-sans)',
@@ -52,7 +52,7 @@ export default function ProblemSection() {
           El problema principal es{' '}
           <span style={{ color: 'var(--color-orange-400)' }}>cómo integrar</span>
           {' '}IA sin perder calidad
-        </p>
+        </h2>
       </div>
     </section>
   );

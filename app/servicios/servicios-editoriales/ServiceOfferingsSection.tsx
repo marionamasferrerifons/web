@@ -105,7 +105,7 @@ export default function Section3() {
               fontSize: 'var(--text-body-accent-mono)',
               lineHeight: 'var(--text-body-accent-mono--line-height)',
               letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
             }}
           >
             [LO QUE OFREZCO]
@@ -133,7 +133,7 @@ export default function Section3() {
               lineHeight: 'var(--text-body-m--line-height)',
               fontWeight: 300,
               fontVariationSettings: '"opsz" 14',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
               maxWidth: '453px',
             }}
           >
@@ -166,7 +166,7 @@ export default function Section3() {
                   lineHeight: 'var(--text-body-l--line-height)',
                   fontWeight: 300,
                   fontVariationSettings: '"opsz" 14',
-                  color: 'var(--color-blue-300)',
+                  color: 'var(--color-text-secondary)',
                 }}
               >
                 Aplica la innovación educativa en tus libros de texto, asegurándote de que cada material cumpla con los requisitos curriculares y con las expectativas del profesorado y alumnado.
@@ -220,7 +220,7 @@ export default function Section3() {
                       lineHeight: 'var(--text-body-m--line-height)',
                       fontWeight: 300,
                       fontVariationSettings: '"opsz" 14',
-                      color: 'var(--color-blue-300)',
+                      color: 'var(--color-text-secondary)',
                     }}
                   >
                     {card.description}
@@ -261,7 +261,7 @@ export default function Section3() {
                       lineHeight: 'var(--text-body-m--line-height)',
                       fontWeight: 300,
                       fontVariationSettings: '"opsz" 14',
-                      color: 'var(--color-blue-300)',
+                      color: 'var(--color-text-secondary)',
                     }}
                   >
                     {card.description}
@@ -281,7 +281,7 @@ export default function Section3() {
                 fontSize: 'var(--text-body-accent-mono)',
                 lineHeight: 'var(--text-body-accent-mono--line-height)',
                 letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-                color: 'var(--color-blue-300)',
+                color: 'var(--color-text-secondary)',
               }}
             >
               [LO QUE CONSEGUIRÁS]

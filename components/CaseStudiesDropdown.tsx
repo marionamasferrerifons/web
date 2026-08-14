@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 const monoStyle = {
@@ -77,11 +78,12 @@ export default function CaseStudiesDropdown({ items }: { items: CaseStudyItem[] 
                 }}
               >
                 {item.imageUrl ? (
-                  <img
+                  <Image
                     src={item.imageUrl}
                     alt={item.imageAlt || ''}
+                    width={48}
+                    height={48}
                     className="rounded-[10px] object-cover shrink-0 transition-transform duration-200 group-hover/card:scale-105"
-                    style={{ width: '48px', height: '48px' }}
                   />
                 ) : (
                   <div

@@ -76,6 +76,13 @@ export const CASE_STUDY_BY_SLUG_QUERY = `
   }
 `
 
+export const CASE_STUDY_SLUGS_QUERY = `
+  *[_type == "caseStudy" && defined(slug.current)] {
+    "slug": slug.current,
+    _updatedAt
+  }
+`
+
 export const EDITORIAL_PROJECTS_QUERY = `
   *[_type == "editorialProject"] | order(order asc) {
     _id,

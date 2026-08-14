@@ -78,7 +78,7 @@ export default function BeforeAfterSection({ beforeItems, afterItems }: BeforeAf
               lineHeight: 'var(--text-title-s--line-height)',
               fontWeight: 400,
               fontVariationSettings: '"opsz" 14',
-              color: 'var(--color-blue-300)',
+              color: 'var(--color-text-secondary)',
             }}
           >
             Antes
@@ -94,7 +94,7 @@ export default function BeforeAfterSection({ beforeItems, afterItems }: BeforeAf
                     lineHeight: 'var(--text-body-l--line-height)',
                     fontWeight: 400,
                     fontVariationSettings: '"opsz" 14',
-                    color: 'var(--color-blue-300)',
+                    color: 'var(--color-text-secondary)',
                   }}
                 >
                   <PortableText value={item.text} components={itemComponents} />
