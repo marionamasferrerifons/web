@@ -99,10 +99,6 @@ export default function MobileMenu({
               </div>
             )}
 
-            <Link href="/enfoque" className="text-white uppercase" style={monoStyle}>
-              Enfoque
-            </Link>
-
             <Link href="/sobre-mi" className="text-white uppercase" style={monoStyle}>
               Sobre mí
             </Link>
