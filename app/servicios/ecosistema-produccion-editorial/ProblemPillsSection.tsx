@@ -7,22 +7,22 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 const pills = [
   {
     dot: '#E5A27C',
-    text: 'Los outputs de la IA no cumplen con los estándares de calidad que caracterizan tu editorial',
+    text: 'Lo que genera la IA no cumple con los estándares de calidad que caracterizan tu editorial.',
     mlClass: 'md:ml-[135px]',
   },
   {
     dot: '#AFE0D6',
-    text: 'El equipo editorial dedica más tiempo corrigiendo y reescribiendo lo que genera la IA que creando el contenido manualmente',
+    text: 'Corregir lo que genera la IA le cuesta a tu equipo más tiempo que haber escrito el contenido desde cero.',
     mlClass: 'md:ml-[186px]',
   },
   {
     dot: 'var(--color-blue-300)',
-    text: 'Cada editor/a hace la guerra por su cuenta, investigando qué hacer con la IA de forma aislada y sin protocolos claros',
+    text: 'Cada editor hace la guerra por su cuenta, investigando qué hacer con la IA de forma aislada y sin protocolos claros.',
     mlClass: 'md:ml-[85px]',
   },
   {
     dot: 'var(--color-orange-400)',
-    text: 'Se malgasta tiempo probando la última herramienta del mercado en busca de una solución mágica',
+    text: 'Cada herramienta nueva abre la duda de si esta vez sí va a ser útil para tu equipo, y el presupuesto se va en pruebas.',
     mlClass: 'md:ml-[272px]',
   },
 ];
@@ -70,7 +70,7 @@ export default function Section2() {
           }}
         >
           La IA promete aliviar la carga de trabajo. Pero{' '}
-          <span style={{ color: 'var(--color-orange-400)' }}>sin tu criterio</span>
+          <span style={{ color: 'var(--color-orange-400)' }}>sin tu criterio codificado</span>
           , la multiplica.
         </h2>
 

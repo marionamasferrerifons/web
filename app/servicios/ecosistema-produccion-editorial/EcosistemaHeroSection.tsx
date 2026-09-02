@@ -70,7 +70,7 @@ export default function HeroSection() {
             color: 'var(--color-grey)',
           }}
         >
-          [Ecosistema de Producción Editorial]
+          [Sistema de Producción Editorial con IA]
         </p>
 
         <h1
@@ -84,8 +84,8 @@ export default function HeroSection() {
             color: 'var(--color-white)',
           }}
         >
-          Optimiza tu producción haciendo que la IA trabaje con tu{' '}
-          <span style={{ color: 'var(--color-blue-400)' }}>criterio editorial</span>
+          Crea {' '}
+          <span style={{ color: 'var(--color-blue-400)' }}>contenido publicable</span>{' '}con un sistema de IA construido sobre tu criterio.
         </h1>
         </div>
 
@@ -103,7 +103,7 @@ export default function HeroSection() {
                 color: 'var(--color-grey)',
               }}
             >
-              Te ayudo a implementar un ecosistema de producción editorial para que la IA desarrolle contenidos con tus estándares y ayude de verdad a tu equipo editorial.
+              Te ayudo a codificar tu criterio editorial y pedagógico para que la IA produzca al nivel de tus autores y editores.
             </p>
 
             <button
@@ -119,7 +119,7 @@ export default function HeroSection() {
                   letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
                 }}
               >
-                EXPLORAR TU PROYECTO
+                RESERVAR UNA LLAMADA
               </span>
               <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[27px]">
                 <img

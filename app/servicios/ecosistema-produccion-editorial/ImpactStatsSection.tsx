@@ -308,7 +308,7 @@ export default function Section5() {
               color: 'var(--color-grey)',
             }}
           >
-            Reducción del tiempo de producción según tipología de contenido, calculada a partir de los flujos reales de la editorial.
+            Reducción del tiempo de producción según el tipo de contenido, calculada a partir de los flujos reales de la editorial.
           </p>
         </div>
 
@@ -330,7 +330,7 @@ export default function Section5() {
                 maxWidth: '525px',
               }}
             >
-              Algunos ejemplos de tipologías que el sistema puede producir:
+              Algunos ejemplos de contenidos que el sistema puede producir:
             </p>
             <ul ref={checklistRef} className="flex flex-col gap-[24px]">
               {checkItems.map((item, i) => (

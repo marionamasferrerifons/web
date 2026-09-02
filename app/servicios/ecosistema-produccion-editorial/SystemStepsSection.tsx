@@ -7,33 +7,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 const steps = [
   {
     step: 'PASO 1',
-    title: 'Mapeo de contenidos y flujos',
-    desc: 'Analizamos todas las tipologías de contenido que produce tu editorial y los flujos de trabajo actuales para entender el punto de partida real.',
+    title: 'Definición del alcance',
+    desc: 'Revisamos qué materiales produces y cómo los produces hoy. Sabrás por dónde empezar, cuánto tiempo puedes recuperar y cómo lo mediremos.',
   },
   {
     step: 'PASO 2',
-    title: 'Selección de oportunidades y KPIs',
-    desc: 'Identificamos qué tipologías tienen mayor potencial de optimización y fijamos los indicadores de ahorro de tiempo para la evaluación final.',
+    title: 'Diseño y validación',
+    desc: 'Codificamos tu criterio, montamos un proceso para cada tipo de material y lo probamos con contenido real. Se cierra cuando lo que sale es publicable.',
   },
   {
     step: 'PASO 3',
-    title: 'Codificación del criterio editorial',
-    desc: 'Estructuramos el conocimiento editorial y pedagógico acumulado por tu equipo para que la IA pueda trabajar con él de forma consistente.',
-  },
-  {
-    step: 'PASO 4',
-    title: 'Desarrollo del ecosistema',
-    desc: 'Construimos el sistema: base de conocimiento, configuración de la IA, skills y flujos de producción adaptados a tu editorial.',
-  },
-  {
-    step: 'PASO 5',
-    title: 'Testeo y validación',
-    desc: 'Probamos el sistema con contenido real de tu editorial. Tu equipo valida los outputs y ajustamos hasta alcanzar tus estándares de calidad.',
-  },
-  {
-    step: 'PASO 6',
-    title: 'Implementación y formación',
-    desc: 'Desplegamos el sistema en los flujos de trabajo del equipo y los acompañamos para que lo adopten con seguridad y autonomía.',
+    title: 'Traspaso y autogestión',
+    desc: 'Tu equipo aprende a mantener el sistema al día cuando cambien tus materiales o tus criterios. A partir de aquí, funciona sin mí.',
   },
 ];
 
@@ -85,7 +70,7 @@ export default function Section4() {
               color: 'var(--color-text-secondary)',
             }}
           >
-            [EN QUÉ CONSISTE]
+            [¿EN QUÉ CONSISTE?]
           </p>
           <h2
             style={{
@@ -98,9 +83,7 @@ export default function Section4() {
               maxWidth: '685px',
             }}
           >
-            Tu editorial tiene <span style={{ color: 'var(--color-orange-400)' }}>criterio</span>.
-            <br />
-            El sistema lo pone a trabajar.
+            No necesitas otra herramienta. Necesitas que la que uses conozca <span style={{ color: 'var(--color-orange-400)' }}>tu criterio</span>.
           </h2>
           <p
             style={{
@@ -113,7 +96,7 @@ export default function Section4() {
               maxWidth: '453px',
             }}
           >
-            Tu editorial lleva años acumulando un criterio propio que la define. Codificamos este criterio para crear un ecosistema de trabajo donde la IA y tu equipo editorial suman capacidades y multiplican resultados.
+            El sistema se construye sobre la IA que elijas. Tu equipo no empieza ante un lienzo en blanco: encuentra los procesos ya montados y produce sin necesidad de saber de IA.
           </p>
         </div>
 
@@ -133,7 +116,7 @@ export default function Section4() {
                   color: 'var(--color-blue-400)',
                 }}
               >
-                Un sistema donde la IA genera el contenido y tus editores lo validan.
+                Tu criterio editorial es el contexto que le falta a la IA
               </h3>
               <p
                 style={{
@@ -145,7 +128,7 @@ export default function Section4() {
                   color: 'var(--color-text-secondary)',
                 }}
               >
-                Diseñamos un sistema de producción de contenidos para combinar la velocidad de la IA con la calidad de tu editorial.
+                Codifico el criterio de tu editorial y programo procesos automatizados por cada tipo de material en tu cuenta de Claude, ChatGPT o Gemini.
               </p>
             </div>
             <div
@@ -174,7 +157,7 @@ export default function Section4() {
                     color: 'var(--color-blue-400)',
                   }}
                 >
-                  ¿Cómo construimos el sistema?
+                  ¿Cómo los construimos?
                 </h3>
                 <p
                   style={{
@@ -187,7 +170,7 @@ export default function Section4() {
                     maxWidth: '610px',
                   }}
                 >
-                  Un proceso en el que construimos, junto a tu equipo, el sistema que reduce el tiempo de producción sin comprometer tus estándares editoriales.
+                  Un proceso que hacemos junto a tu equipo. Empezamos por los materiales prioritarios y ampliamos solo cuando estés convencido del resultado.
                 </p>
               </div>
               <div
@@ -203,7 +186,7 @@ export default function Section4() {
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  RESULTADOS EN 1 SEMANA
+                  RESULTADOS EN 2 SEMANAS
                 </p>
               </div>
             </div>
@@ -345,7 +328,7 @@ export default function Section4() {
                 color: 'var(--color-text-secondary)',
               }}
             >
-              [LO QUE INCLUYE]
+              [¿QUé INCLUYE?]
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-[40px]">
               {includes.map((item, i) => (
