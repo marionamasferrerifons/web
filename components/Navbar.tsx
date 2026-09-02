@@ -16,9 +16,9 @@ const monoStyle = {
 }
 
 const SERVICES_ITEMS = [
-  { href: '/servicios/estrategia-editorial', label: 'Innovación editorial con IA' },
-  { href: '/servicios/servicios-editoriales', label: 'Servicios editoriales con IA aplicada' },
+  { href: '/servicios/estrategia-editorial', label: 'Implementación estratégica de IA' },
   { href: '/servicios/ecosistema-produccion-editorial', label: 'Sistema de producción editorial con IA' },
+  { href: '/servicios/servicios-editoriales', label: 'Servicios editoriales con IA aplicada' },
 ]
 
 export default async function Navbar() {
@@ -67,8 +67,6 @@ export default async function Navbar() {
           <NavDropdown label="Servicios" items={SERVICES_ITEMS} activePrefix="/servicios" />
 
           <CaseStudiesDropdown items={caseStudiesItems} />
-
-          <NavLink href="/enfoque">Enfoque</NavLink>
 
           <NavLink href="/sobre-mi">Sobre mí</NavLink>
         </nav>

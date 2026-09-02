@@ -29,9 +29,9 @@ const monoSmallStyle = {
 }
 
 const SERVICES_ITEMS = [
-  { href: '/servicios/estrategia-editorial', label: 'Innovación editorial con IA' },
-  { href: '/servicios/servicios-editoriales', label: 'Servicios editoriales con IA aplicada' },
+  { href: '/servicios/estrategia-editorial', label: 'Implementación estratégica de IA' },
   { href: '/servicios/ecosistema-produccion-editorial', label: 'Sistema de producción editorial con IA' },
+  { href: '/servicios/servicios-editoriales', label: 'Servicios editoriales con IA aplicada' },
 ]
 
 export type FooterLinkItem = { href: string; label: string };
@@ -89,15 +89,17 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
       >
         {/* Columns */}
         <div className="grid grid-cols-2 lg:grid-cols-[auto_1fr] gap-[40px]">
-          <div className="footer-column flex flex-col gap-[16px]">
-            <img
-              src="/logo.svg"
-              alt="Mariona Masferrer"
-              style={{ height: '32px', width: 'auto' }}
-            />
-            <p style={{ ...linkStyle, fontSize: '14px', color: 'var(--color-blue-100)', maxWidth: '220px' }}>
-              Sistemas de producción editorial con IA, con el criterio humano en el centro.
-            </p>
+          <div className="footer-column flex flex-col gap-[20px]">
+            <div className="flex flex-col items-center gap-[20px]">
+              <img
+                src="/logo.svg"
+                alt="Mariona Masferrer"
+                style={{ height: '44px', width: 'auto' }}
+              />
+              <p style={{ ...linkStyle, fontSize: '14px', color: 'var(--color-blue-100)', maxWidth: '220px', textAlign: 'center' }}>
+                Inteligencia artificial para editoriales educativas.
+              </p>
+            </div>
 
             <div style={{ height: '1px', width: '100%', maxWidth: '220px', backgroundColor: 'rgba(242, 242, 242, 0.2)' }} />
 
@@ -173,9 +175,6 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
               <Link href="/" className="text-white hover:text-orange transition-colors duration-200 w-fit" style={linkStyle}>
                 Inicio
               </Link>
-              <Link href="/enfoque" className="text-white hover:text-orange transition-colors duration-200 w-fit" style={linkStyle}>
-                Enfoque
-              </Link>
               <Link href="/sobre-mi" className="text-white hover:text-orange transition-colors duration-200 w-fit" style={linkStyle}>
                 Sobre mí
               </Link>
@@ -198,7 +197,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
         {/* Bottom bar */}
         <div className="footer-bottom flex flex-col md:flex-row items-center justify-between gap-[16px]">
           <p style={monoSmallStyle}>© {year} Mariona Masferrer i Fons. Todos los derechos reservados.</p>
-          <p style={monoSmallStyle}>Diseñado con criterio editorial + IA</p>
+          <p style={monoSmallStyle}>Diseñado con criterio editorial + IA.</p>
         </div>
       </div>
     </footer>
