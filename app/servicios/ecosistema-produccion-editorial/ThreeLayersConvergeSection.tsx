@@ -93,7 +93,7 @@ export default function Section3() {
             color: 'var(--color-grey)',
           }}
         >
-          [TRES CAPAS]
+          [EL CRITERIO NO SE DELEGA]
         </p>
         <h2
           style={{
@@ -106,7 +106,7 @@ export default function Section3() {
             maxWidth: '685px',
           }}
         >
-          Una <span style={{ color: 'var(--color-blue-400)' }}>suma</span> de inteligencias
+          Un sistema donde el <span style={{ color: 'var(--color-blue-400)' }}>criterio editorial</span> dirige a la tecnología.
         </h2>
         <p
           style={{
@@ -119,7 +119,7 @@ export default function Section3() {
             maxWidth: '453px',
           }}
         >
-          Combinamos el conocimiento pedagógico y editorial que has construido durante años, la capacidad de generación a escala de la IA y el criterio humano de tu equipo.
+          Codifico el conocimiento pedagógico y editorial que has construido durante años y lo combino con la capacidad de generación a escala de la IA. Tu equipo se queda al mando de todo el proceso.
         </p>
       </div>
 
@@ -169,7 +169,7 @@ export default function Section3() {
                     color: 'var(--color-blue-400)',
                   }}
                 >
-                  Tu conocimiento editorial
+                  Tu conocimiento editorial codificado
                 </p>
               </div>
               <p
@@ -183,7 +183,7 @@ export default function Section3() {
                   color: 'var(--color-text-secondary)',
                 }}
               >
-                El criterio pedagógico y editorial que tu equipo ha acumulado durante años, codificado y operativo.
+                El criterio pedagógico y editorial que tu equipo ha acumulado durante años, codificado y operativo para la IA.
               </p>
             </div>
           </div>
@@ -280,7 +280,7 @@ export default function Section3() {
                   maxWidth: '441px',
                 }}
               >
-                Velocidad y capacidad de generación a escala, aplicada sobre tu conocimiento estructurado.
+                Velocidad y capacidad de generación a escala, aplicada sobre el criterio de tu editorial.
               </p>
             </div>
           </div>

@@ -22,7 +22,7 @@ export default function Section7() {
               maxWidth: '678px',
             }}
           >
-            Optimiza tu producción editorial, liberando tiempo y presupuesto
+            Hablemos de qué material podrías crear con la IA.
           </h2>
           <p
             style={{
@@ -35,7 +35,7 @@ export default function Section7() {
               maxWidth: '453px',
             }}
           >
-            Un sistema integrado en el día a día de tu equipo y con resultados medibles desde el primer proyecto.
+            Reserva una llamada para ver qué produces, dónde se te va el tiempo y si este sistema puede ayudarte.
           </p>
         </div>
 
