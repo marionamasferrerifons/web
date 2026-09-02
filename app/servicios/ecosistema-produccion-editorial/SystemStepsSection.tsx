@@ -157,7 +157,7 @@ export default function Section4() {
                     color: 'var(--color-blue-400)',
                   }}
                 >
-                  ¿Cómo los construimos?
+                  ¿Cómo lo construimos?
                 </h3>
                 <p
                   style={{
