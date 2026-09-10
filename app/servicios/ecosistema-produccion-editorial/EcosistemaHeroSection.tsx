@@ -85,7 +85,7 @@ export default function HeroSection() {
             color: 'var(--color-white)',
           }}
         >
-          Crea {' '}
+          Crea{' '}
           <span style={{ color: 'var(--color-blue-400)' }}>contenido publicable</span>{' '}con un sistema de IA construido sobre tu criterio.
         </h1>
         </div>
@@ -104,7 +104,7 @@ export default function HeroSection() {
                 color: 'var(--color-grey)',
               }}
             >
-              Te ayudo a codificar tu criterio editorial y pedagógico para que la IA produzca al nivel de tus autores y editores.
+              La IA no sabe qué es un buen material educativo. Tu editorial sí. Te ayudo a automatizar la producción de contenidos para que la IA escriba al nivel de tus autores y editores.
             </p>
 
             <a

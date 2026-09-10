@@ -200,8 +200,8 @@ export default function ServiciosClient() {
                 fontVariationSettings: '"opsz" 14',
               }}
             >
-              La IA no sabe qué es un buen material educativo.{' '}
-              Tu <span className="text-blue-50">editorial</span> sí.
+              Las reglas han cambiado, pero tu{' '}
+              <span className="text-blue-50">contenido</span> sigue siendo imprescindible.
             </h1>
           </div>
 
@@ -218,7 +218,7 @@ export default function ServiciosClient() {
                 textWrap: 'balance',
               }}
             >
-              Te ayudo a decidir qué hacer con la IA con una estrategia construida sobre el criterio de tu editorial.
+              Te ayudo a definir el papel de tu editorial en la era de la IA y a poner la tecnología al servicio de tus objetivos de negocio, no al revés.
             </p>
             <a
               href={BOOKING_URL}
@@ -335,9 +335,9 @@ export default function ServiciosClient() {
                   fontVariationSettings: '"opsz" 14',
                 }}
               >
-                <span className="text-orange-400">Estrategia</span>{' '}y{' '}
-                <span className="text-orange-400">dirección</span>{' '}
-                para navegar la incertidumbre
+                Diseña el{' '}
+                <span className="text-orange-400">futuro</span>{' '}
+                de tu editorial
               </h2>
               <p
                 className="s3-subtitle text-text-secondary"
@@ -351,7 +351,7 @@ export default function ServiciosClient() {
                   textWrap: 'balance',
                 }}
               >
-                Dos formas de trabajar conmigo, según el punto en el que estés.
+                Estrategia y dirección para navegar la incertidumbre. Dos formas de trabajar conmigo, según el punto en el que estés.
               </p>
             </div>
           </div>
