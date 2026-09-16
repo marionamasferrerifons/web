@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import TestimonialSection from '@/app/servicios/estrategia-editorial/TestimonialSection'
+import TestimonialSection from '@/app/(es)/servicios/estrategia-editorial/TestimonialSection'
 
 type Testimonial = {
   quote: string
@@ -15,25 +15,17 @@ type Testimonial = {
   logoAlt?: string
 }
 
-const CARDS = [
-  {
-    title: 'Proyectos más claros, coherentes y sostenibles',
-    body: 'La combinación entre criterio editorial, pedagogía y tecnología permite desarrollar contenidos útiles, bien estructurados y pensados para mantenerse sólidos también a largo plazo.',
-    icon: '/practice-icon-inbox.svg',
-  },
-  {
-    title: 'La tecnología funciona mejor cuando hay criterio detrás',
-    body: 'Integrar IA dentro de procesos editoriales no consiste en automatizar por automatizar, sino en tomar mejores decisiones sobre qué mejorar, qué mantener y dónde realmente aporta valor.',
-    icon: '/practice-icon-process.svg',
-  },
-  {
-    title: 'Contenido que se produce y se entiende mejor',
-    body: 'Trabajar desde una mirada editorial y pedagógica permite construir materiales más claros, comprensibles y alineados con cómo las personas aprenden y utilizan el contenido.',
-    icon: '/practice-icon-edit.svg',
-  },
-];
+type Card = { title: string; body: string; icon: string };
 
-export default function PracticeSection({ testimonial }: { testimonial?: Testimonial }) {
+type PracticeSectionProps = {
+  tag: string;
+  title: ReactNode;
+  subtitle: string;
+  cards: Card[];
+  testimonial?: Testimonial;
+};
+
+export default function PracticeSection({ tag, title, subtitle, cards, testimonial }: PracticeSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -70,7 +62,7 @@ export default function PracticeSection({ testimonial }: { testimonial?: Testimo
             opacity: 0.65,
           }}
         >
-          [TRADUCCIÓN A LA PRÁCTICA]
+          {tag}
         </p>
         <div className="w-full flex flex-col md:flex-row gap-[24px] items-start md:items-end justify-between">
           <h2
@@ -84,9 +76,7 @@ export default function PracticeSection({ testimonial }: { testimonial?: Testimo
               maxWidth: '690px',
             }}
           >
-            Una forma de trabajar que{' '}
-            <span style={{ color: 'var(--color-orange-400)' }}>impacta</span>
-            {' '}en el resultado final
+            {title}
           </h2>
           <p
             style={{
@@ -99,13 +89,13 @@ export default function PracticeSection({ testimonial }: { testimonial?: Testimo
               maxWidth: '453px',
             }}
           >
-            La IA no se incorpora desde fuera ni de forma experimental. Forma parte del proceso editorial, integrada en el día a día y con criterios claros de calidad.
+            {subtitle}
           </p>
         </div>
       </div>
 
       <div className="w-full flex flex-col md:flex-row gap-[20px] items-stretch" style={{ maxWidth: '1400px' }}>
-        {CARDS.map((card, i) => (
+        {cards.map((card, i) => (
           <div
             key={i}
             className="practice-card bg-white rounded-[24px] p-[32px] flex flex-col justify-between gap-[24px] flex-1"

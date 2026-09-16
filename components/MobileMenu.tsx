@@ -19,14 +19,32 @@ const sansStyle = {
   fontWeight: 400,
 }
 
+// La versión en catalán (/ca) está en revisión con la clienta — el selector
+// se activa cuando dé luz verde para publicarlo.
+const SHOW_LANGUAGE_SELECTOR = false
+
 export type MobileMenuItem = { href: string; label: string };
 
 export default function MobileMenu({
+  servicesLabel,
   servicesItems,
+  caseStudiesLabel,
   caseStudiesItems,
+  aboutLabel,
+  aboutHref,
+  ctaLabel,
+  openLabel,
+  closeLabel,
 }: {
+  servicesLabel: string;
   servicesItems: MobileMenuItem[];
+  caseStudiesLabel: string;
   caseStudiesItems: MobileMenuItem[];
+  aboutLabel: string;
+  aboutHref: string;
+  ctaLabel: string;
+  openLabel: string;
+  closeLabel: string;
 }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -51,7 +69,7 @@ export default function MobileMenu({
       <button
         type="button"
         aria-expanded={open}
-        aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+        aria-label={open ? closeLabel : openLabel}
         onClick={() => setOpen((prev) => !prev)}
         className="relative z-50 flex flex-col justify-center items-center gap-[5px] size-[40px] cursor-pointer"
       >
@@ -76,7 +94,7 @@ export default function MobileMenu({
         >
           <div className="flex flex-col gap-[28px] px-[25px] py-[32px]">
             <div className="flex flex-col gap-[16px]">
-              <p className="uppercase text-white" style={monoStyle}>Servicios</p>
+              <p className="uppercase text-white" style={monoStyle}>{servicesLabel}</p>
               <div className="flex flex-col gap-[16px] pl-[12px]">
                 {servicesItems.map((item) => (
                   <Link key={item.href} href={item.href} className="text-white" style={sansStyle}>
@@ -88,7 +106,7 @@ export default function MobileMenu({
 
             {caseStudiesItems.length > 0 && (
               <div className="flex flex-col gap-[16px]">
-                <p className="uppercase text-white" style={monoStyle}>Casos de éxito</p>
+                <p className="uppercase text-white" style={monoStyle}>{caseStudiesLabel}</p>
                 <div className="flex flex-col gap-[16px] pl-[12px]">
                   {caseStudiesItems.map((item) => (
                     <Link key={item.href} href={item.href} className="text-white" style={sansStyle}>
@@ -99,28 +117,30 @@ export default function MobileMenu({
               </div>
             )}
 
-            <Link href="/sobre-mi" className="text-white uppercase" style={monoStyle}>
-              Sobre mí
+            <Link href={aboutHref} className="text-white uppercase" style={monoStyle}>
+              {aboutLabel}
             </Link>
 
-            <div
-              className="flex items-center gap-[12px] pt-[24px]"
-              style={{ borderTop: '1px solid rgba(242, 242, 242, 0.15)' }}
-            >
+            {SHOW_LANGUAGE_SELECTOR && (
               <div
-                className="flex items-center gap-[8px] border border-[#d4d4d4] rounded-full px-[11px]"
-                style={{ height: '28px' }}
+                className="flex items-center gap-[12px] pt-[24px]"
+                style={{ borderTop: '1px solid rgba(242, 242, 242, 0.15)' }}
               >
-                <span className="text-white" style={monoStyle}>ES</span>
-                <svg
-                  width="14" height="7" viewBox="0 0 14 7"
-                  fill="none" xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
+                <div
+                  className="flex items-center gap-[8px] border border-[#d4d4d4] rounded-full px-[11px]"
+                  style={{ height: '28px' }}
                 >
-                  <path d="M1 1L7 6L13 1" stroke="var(--color-orange)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                  <span className="text-white" style={monoStyle}>ES</span>
+                  <svg
+                    width="14" height="7" viewBox="0 0 14 7"
+                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path d="M1 1L7 6L13 1" stroke="var(--color-orange)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
               </div>
-            </div>
+            )}
 
             <a
               href={BOOKING_URL}
@@ -130,7 +150,7 @@ export default function MobileMenu({
               style={{ height: '44px' }}
             >
               <span className="text-text-accent uppercase" style={{ ...monoStyle, fontSize: '12px' }}>
-                Reservar una llamada
+                {ctaLabel}
               </span>
               <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[24px]">
                 <img src="/arrow-white.svg" alt="" className="size-[14px] transition-transform duration-300 ease-out group-hover:rotate-45" aria-hidden="true" />

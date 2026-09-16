@@ -1,11 +1,19 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { BOOKING_URL } from '@/lib/constants';
 
-export default function HeroSection() {
+type HeroSectionProps = {
+  tag: string;
+  title: ReactNode;
+  body: string;
+  ctaLabel: string;
+  photoAlt: string;
+};
+
+export default function HeroSection({ tag, title, body, ctaLabel, photoAlt }: HeroSectionProps) {
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -41,7 +49,7 @@ export default function HeroSection() {
       {/* Photo — flush with the section's true left edge, regardless of viewport width */}
       <Image
         src="/hero-photo.png"
-        alt="Mariona Masferrer"
+        alt={photoAlt}
         width={340}
         height={207}
         priority
@@ -71,16 +79,14 @@ export default function HeroSection() {
             maxWidth: '809px',
           }}
         >
-          Te ayudo a{' '}
-          <span style={{ color: 'var(--color-orange-400)' }}>decidir</span>
-          {' '}qué adoptar y qué dejar de lado en el sector editorial
+          {title}
         </h1>
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-end gap-[40px] mt-[64px] md:mt-[96px]">
           {/* Photo — mobile only; desktop uses the edge-to-edge absolute version above */}
           <Image
             src="/hero-photo.png"
-            alt="Mariona Masferrer"
+            alt={photoAlt}
             width={340}
             height={207}
             className="hero-photo lg:hidden object-cover shrink-0"
@@ -107,7 +113,7 @@ export default function HeroSection() {
                 color: 'var(--color-blue-200)',
               }}
             >
-              [+15 AÑOS DE EXPERIENCIA]
+              {tag}
             </p>
             <p
               className="hero-body"
@@ -120,7 +126,7 @@ export default function HeroSection() {
                 color: 'var(--color-blue-100)',
               }}
             >
-              Acompañamiento estratégico para directivos editoriales que buscan integrar la innovación en IA, combinando experiencia editorial, pedagógica y tecnológica.
+              {body}
             </p>
 
             <a
@@ -140,7 +146,7 @@ export default function HeroSection() {
                   letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
                 }}
               >
-                RESERVAR UNA LLAMADA
+                {ctaLabel}
               </span>
               <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[27px]">
                 <img

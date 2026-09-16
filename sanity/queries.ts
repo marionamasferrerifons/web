@@ -1,5 +1,5 @@
 export const CASE_STUDIES_QUERY = `
-  *[_type == "caseStudy"] | order(_createdAt asc) {
+  *[_type == "caseStudy" && coalesce(language, "es") == $language] | order(_createdAt asc) {
     _id,
     title,
     subtitle,
@@ -16,8 +16,10 @@ export const CASE_STUDIES_QUERY = `
 `
 
 export const CASE_STUDY_BY_SLUG_QUERY = `
-  *[_type == "caseStudy" && slug.current == $slug][0] {
+  *[_type == "caseStudy" && slug.current == $slug && coalesce(language, "es") == $language][0] {
     _id,
+    "translationSlug": translationOf->slug.current,
+    "caTranslationSlug": *[_type == "caseStudy" && translationOf._ref == ^._id][0].slug.current,
     title,
     subtitle,
     year,
@@ -77,14 +79,14 @@ export const CASE_STUDY_BY_SLUG_QUERY = `
 `
 
 export const CASE_STUDY_SLUGS_QUERY = `
-  *[_type == "caseStudy" && defined(slug.current)] {
+  *[_type == "caseStudy" && defined(slug.current) && coalesce(language, "es") == $language] {
     "slug": slug.current,
     _updatedAt
   }
 `
 
 export const EDITORIAL_PROJECTS_QUERY = `
-  *[_type == "editorialProject"] | order(order asc) {
+  *[_type == "editorialProject" && coalesce(language, "es") == $language] | order(order asc) {
     _id,
     title,
     publisher,
@@ -116,7 +118,7 @@ export const INDUSTRY_LOGOS_QUERY = `
 `
 
 export const TESTIMONIAL_BY_PLACEMENT_QUERY = `
-  *[_type == "testimonial" && $placement in placement][0] {
+  *[_type == "testimonial" && $placement in placement && coalesce(language, "es") == $language][0] {
     quote,
     authorName,
     authorRole,

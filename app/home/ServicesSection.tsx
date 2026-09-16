@@ -1,41 +1,27 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const CARDS = [
-  {
-    href: '/servicios/estrategia-editorial',
-    title: 'Innovación editorial con IA',
-    subtitle: 'Te ayudo a trabajar como yo trabajo',
-    body: 'Acompaño a editoriales educativas en el proceso de incorporar la IA de forma estratégica y responsable: desde entender dónde están hoy hasta construir los sistemas y las capacidades para trabajar diferente.',
-    image: '/home-service-card1.svg',
-    bgColor: 'var(--color-white)',
-    imageSide: 'right' as const,
-  },
-  {
-    href: '/servicios/servicios-editoriales',
-    title: 'Servicios editoriales con IA aplicada',
-    subtitle: 'Lo que hago yo, aplicado a tu proyecto',
-    body: 'Dirijo proyectos editoriales completos con un equipo de colaboradores de confianza. La IA forma parte del método de trabajo como herramienta integrada en la producción diaria. Esto explica la eficiencia y la calidad de los entregables.',
-    image: '/home-service-card2.svg',
-    bgColor: 'var(--color-white)',
-    imageSide: 'left' as const,
-  },
-  {
-    href: '/servicios/ecosistema-produccion-editorial',
-    title: 'Sistema de producción editorial con IA',
-    subtitle: 'El criterio de tu editorial, codificado y amplificado.',
-    body: 'Diseño e implanto un sistema de producción a medida que codifica el conocimiento editorial y pedagógico de tu organización en un entorno de IA. El equipo mantiene el criterio; la IA multiplica la capacidad productiva.',
-    image: '/home-service-card3.svg',
-    bgColor: 'var(--color-white)',
-    imageSide: 'right' as const,
-  },
-];
+type Card = {
+  href: string;
+  title: string;
+  subtitle: string;
+  body: string;
+  image: string;
+  bgColor: string;
+  imageSide: 'left' | 'right';
+};
 
-export default function ServicesSection() {
+type ServicesSectionProps = {
+  tag: string;
+  title: ReactNode;
+  cards: Card[];
+};
+
+export default function ServicesSection({ tag, title, cards }: ServicesSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -82,7 +68,7 @@ export default function ServicesSection() {
             opacity: 0.65,
           }}
         >
-          [SERVICIOS]
+          {tag}
         </p>
         <h2
           className="services-title"
@@ -95,14 +81,12 @@ export default function ServicesSection() {
             color: 'var(--color-blue-400)',
           }}
         >
-          Lorem ipsum dolor sit amet{' '}
-          <span style={{ color: 'var(--color-orange-400)' }}>consectetur</span>
-          . Volutpat scelerisque cras
+          {title}
         </h2>
       </div>
 
       <div className="w-full flex flex-col gap-[64px]" style={{ maxWidth: '1163px' }}>
-        {CARDS.map((card) => (
+        {cards.map((card) => (
           <Link
             key={card.href}
             href={card.href}
