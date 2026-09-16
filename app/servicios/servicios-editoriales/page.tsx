@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   alternates: { canonical: '/servicios/servicios-editoriales' },
 }
 
+// Red de seguridad: the webhook in app/api/revalidate is the primary
+// refresh mechanism; this just bounds worst-case staleness if a publish
+// event is ever missed.
+export const revalidate = 3600
+
 export default async function ServiciosEditorialesPage() {
   const [testimonial, projects] = await Promise.all([
     client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'servicios-editoriales' }),
