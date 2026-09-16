@@ -17,6 +17,11 @@ export const metadata: Metadata = {
 // Flag reutilitzable per amagar/mostrar el bloc de casos de éxito sense eliminar-ne el codi.
 const SHOW_CASE_STUDIES = false;
 
+// Red de seguridad: the webhook in app/api/revalidate is the primary
+// refresh mechanism; this just bounds worst-case staleness if a publish
+// event is ever missed.
+export const revalidate = 3600
+
 export default async function EstrategiaEditorialPage() {
   const testimonial = await client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, {
     placement: 'estrategia-editorial',
