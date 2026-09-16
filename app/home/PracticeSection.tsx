@@ -3,7 +3,7 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import TestimonialSection from '@/app/servicios/estrategia-editorial/TestimonialSection'
+import TestimonialSection from '@/app/(es)/servicios/estrategia-editorial/TestimonialSection'
 
 type Testimonial = {
   quote: string

@@ -236,12 +236,43 @@ export const caseStudy = defineType({
       type: 'reference',
       to: [{ type: 'testimonial' }],
     }),
+    defineField({
+      name: 'language',
+      title: 'Idioma',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Castellano', value: 'es' },
+          { title: 'Català', value: 'ca' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'es',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'translationOf',
+      title: 'Traducción de',
+      description: 'Si este caso de éxito es la versión en catalán, enlaza aquí el original en castellano.',
+      type: 'reference',
+      to: [{ type: 'caseStudy' }],
+      weak: true,
+      hidden: ({ document }) => document?.language !== 'ca',
+    }),
   ],
   preview: {
     select: {
       title: 'title',
       subtitle: 'subtitle',
       media: 'imageCard',
+      language: 'language',
+    },
+    prepare({ title, subtitle, media, language }) {
+      return {
+        title: `${title} (${language === 'ca' ? 'CA' : 'ES'})`,
+        subtitle,
+        media,
+      }
     },
   },
 })

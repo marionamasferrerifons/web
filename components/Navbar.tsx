@@ -3,6 +3,8 @@ import { BOOKING_URL } from '@/lib/constants';
 import { client } from '@/sanity/client';
 import { CASE_STUDIES_QUERY } from '@/sanity/queries';
 import { squareThumbnailUrl } from '@/sanity/image';
+import { navContentEs } from '@/content/nav/es';
+import { navContentCa } from '@/content/nav/ca';
 import NavDropdown from './NavDropdown';
 import CaseStudiesDropdown from './CaseStudiesDropdown';
 import NavLink from './NavLink';
@@ -15,17 +17,13 @@ const monoStyle = {
   letterSpacing: '-0.5px',
 }
 
-const SERVICES_ITEMS = [
-  { href: '/servicios/estrategia-editorial', label: 'Implementación estratégica de IA' },
-  { href: '/servicios/ecosistema-produccion-editorial', label: 'Sistema de producción editorial con IA' },
-  { href: '/servicios/servicios-editoriales', label: 'Servicios editoriales con IA aplicada' },
-]
-
 // La versión en catalán (/ca) está en revisión con la clienta — el selector
 // se activa cuando dé luz verde para publicarlo.
 const SHOW_LANGUAGE_SELECTOR = false
 
-export default async function Navbar() {
+export default async function Navbar({ locale = 'es' }: { locale?: 'es' | 'ca' }) {
+  const c = locale === 'ca' ? navContentCa : navContentEs
+  const caseStudiesHrefPrefix = locale === 'ca' ? '/ca/casos-dexit' : '/casos-de-exito'
   let caseStudiesItems: { href: string; title: string; imageUrl?: string; imageAlt?: string }[] = []
 
   try {
@@ -34,11 +32,11 @@ export default async function Navbar() {
       title: string
       slug: string | null
       imageCard: { asset: { _id: string; url: string } | null; alt?: string } | null
-    }[] = await client.fetch(CASE_STUDIES_QUERY)
+    }[] = await client.fetch(CASE_STUDIES_QUERY, { language: locale })
     caseStudiesItems = caseStudies
       .filter((c) => c.slug)
       .map((c) => ({
-        href: `/casos-de-exito/${c.slug}`,
+        href: `${caseStudiesHrefPrefix}/${c.slug}`,
         title: c.title,
         imageUrl: c.imageCard?.asset?._id ? squareThumbnailUrl(c.imageCard.asset._id, 48) : undefined,
         imageAlt: c.imageCard?.alt,
@@ -55,10 +53,10 @@ export default async function Navbar() {
       <div className="relative flex items-center h-[40px]">
 
         {/* Logo */}
-        <Link href="/">
+        <Link href={c.homeHref}>
           <img
             src="/logo.svg"
-            alt="Mariona Masferrer"
+            alt={c.logoAlt}
             style={{ height: '39.843px', width: 'auto' }}
           />
         </Link>
@@ -66,13 +64,13 @@ export default async function Navbar() {
         {/* Nav links — centred (desktop only) */}
         <nav
           className="hidden lg:flex absolute left-1/2 -translate-x-1/2 gap-[24px] items-center"
-          aria-label="Navegación principal"
+          aria-label={c.navAriaLabel}
         >
-          <NavDropdown label="Servicios" items={SERVICES_ITEMS} activePrefix="/servicios" />
+          <NavDropdown label={c.servicesLabel} items={c.servicesItems} activePrefix={locale === 'ca' ? '/ca/serveis' : '/servicios'} />
 
-          <CaseStudiesDropdown items={caseStudiesItems} />
+          <CaseStudiesDropdown items={caseStudiesItems} label={c.caseStudiesLabel} activePrefix={c.caseStudiesActivePrefix} />
 
-          <NavLink href="/sobre-mi">Sobre mí</NavLink>
+          <NavLink href={c.aboutHref}>{c.aboutLabel}</NavLink>
         </nav>
 
         {/* Right side (desktop only) */}
@@ -107,7 +105,7 @@ export default async function Navbar() {
               className="whitespace-nowrap text-text-accent"
               style={{ ...monoStyle, fontSize: '13px' }}
             >
-              RESERVAR UNA LLAMADA
+              {c.ctaLabel}
             </span>
             <span
               className="flex items-center justify-center rounded-full shrink-0 bg-orange"
@@ -126,8 +124,15 @@ export default async function Navbar() {
 
         {/* Mobile menu (mobile only) */}
         <MobileMenu
-          servicesItems={SERVICES_ITEMS}
-          caseStudiesItems={caseStudiesItems.map((c) => ({ href: c.href, label: c.title }))}
+          servicesLabel={c.servicesLabel}
+          servicesItems={c.servicesItems}
+          caseStudiesLabel={c.caseStudiesLabel}
+          caseStudiesItems={caseStudiesItems.map((item) => ({ href: item.href, label: item.title }))}
+          aboutLabel={c.aboutLabel}
+          aboutHref={c.aboutHref}
+          ctaLabel={c.mobileMenu.ctaLabel}
+          openLabel={c.mobileMenu.openLabel}
+          closeLabel={c.mobileMenu.closeLabel}
         />
       </div>
     </header>

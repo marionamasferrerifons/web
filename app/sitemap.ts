@@ -14,7 +14,7 @@ const STATIC_ROUTES = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const caseStudies: { slug: string; _updatedAt: string }[] =
-    await client.fetch(CASE_STUDY_SLUGS_QUERY)
+    await client.fetch(CASE_STUDY_SLUGS_QUERY, { language: 'es' })
 
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((path) => ({
     url: `${SITE_URL}${path}`,

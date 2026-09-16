@@ -6,9 +6,9 @@ import ProblemSection from '../home/ProblemSection'
 import CriterioSection from '../home/CriterioShapesSection'
 import PracticeSection from '../home/PracticeSection'
 import ServicesSection from '../home/ServicesSection'
-import CaseStudiesSection from '../servicios/estrategia-editorial/CaseStudiesSection'
-import TestimonialSection from '../servicios/estrategia-editorial/TestimonialSection'
-import CtaSection from '../servicios/estrategia-editorial/CtaSection'
+import CaseStudiesSection from '@/app/(es)/servicios/estrategia-editorial/CaseStudiesSection'
+import TestimonialSection from '@/app/(es)/servicios/estrategia-editorial/TestimonialSection'
+import CtaSection from '@/app/(es)/servicios/estrategia-editorial/CtaSection'
 import { client } from '@/sanity/client'
 import { TESTIMONIAL_BY_PLACEMENT_QUERY, INDUSTRY_LOGOS_QUERY } from '@/sanity/queries'
 import { industryLogoUrl, testimonialImageProps } from '@/sanity/image'
@@ -81,7 +81,7 @@ export default async function HomeCa() {
         />
       )}
       <ServicesSection tag={c.services.tag} title={c.services.title} cards={c.services.cards} />
-      <CaseStudiesSection tag={c.caseStudies.tag} title={c.caseStudies.title} subtitle={c.caseStudies.subtitle} />
+      <CaseStudiesSection tag={c.caseStudies.tag} title={c.caseStudies.title} subtitle={c.caseStudies.subtitle} language="ca" />
       {greenImages && (
         <TestimonialSection
           cardColor="var(--color-green)"

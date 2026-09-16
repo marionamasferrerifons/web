@@ -1,0 +1,41 @@
+import { client } from '@/sanity/client'
+import { CASE_STUDIES_QUERY, INDUSTRY_LOGOS_QUERY } from '@/sanity/queries'
+import CaseStudiesClient from './CaseStudiesClient'
+
+type CaseStudy = {
+  _id: string
+  title: string
+  subtitle: string
+  client: string
+  slug: string
+  imageCard: {
+    asset: { _id: string; url: string } | null
+    alt?: string
+  } | null
+}
+
+type IndustryLogo = {
+  name: string
+  logo: {
+    asset: { _id: string; url: string } | null
+    alt?: string
+  } | null
+}
+
+type CaseStudiesSectionProps = {
+  tag?: string
+  title?: React.ReactNode
+  subtitle?: string
+  language?: 'es' | 'ca'
+}
+
+export default async function CaseStudiesSection({ tag, title, subtitle, language = 'es' }: CaseStudiesSectionProps = {}) {
+  const [caseStudies, logos]: [CaseStudy[], IndustryLogo[]] = await Promise.all([
+    client.fetch(CASE_STUDIES_QUERY, { language }),
+    client.fetch(INDUSTRY_LOGOS_QUERY),
+  ])
+
+  if (caseStudies.length === 0) return null
+
+  return <CaseStudiesClient caseStudies={caseStudies} logos={logos} tag={tag} title={title} subtitle={subtitle} />
+}

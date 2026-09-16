@@ -26,11 +26,25 @@ const SHOW_LANGUAGE_SELECTOR = false
 export type MobileMenuItem = { href: string; label: string };
 
 export default function MobileMenu({
+  servicesLabel,
   servicesItems,
+  caseStudiesLabel,
   caseStudiesItems,
+  aboutLabel,
+  aboutHref,
+  ctaLabel,
+  openLabel,
+  closeLabel,
 }: {
+  servicesLabel: string;
   servicesItems: MobileMenuItem[];
+  caseStudiesLabel: string;
   caseStudiesItems: MobileMenuItem[];
+  aboutLabel: string;
+  aboutHref: string;
+  ctaLabel: string;
+  openLabel: string;
+  closeLabel: string;
 }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -55,7 +69,7 @@ export default function MobileMenu({
       <button
         type="button"
         aria-expanded={open}
-        aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+        aria-label={open ? closeLabel : openLabel}
         onClick={() => setOpen((prev) => !prev)}
         className="relative z-50 flex flex-col justify-center items-center gap-[5px] size-[40px] cursor-pointer"
       >
@@ -80,7 +94,7 @@ export default function MobileMenu({
         >
           <div className="flex flex-col gap-[28px] px-[25px] py-[32px]">
             <div className="flex flex-col gap-[16px]">
-              <p className="uppercase text-white" style={monoStyle}>Servicios</p>
+              <p className="uppercase text-white" style={monoStyle}>{servicesLabel}</p>
               <div className="flex flex-col gap-[16px] pl-[12px]">
                 {servicesItems.map((item) => (
                   <Link key={item.href} href={item.href} className="text-white" style={sansStyle}>
@@ -92,7 +106,7 @@ export default function MobileMenu({
 
             {caseStudiesItems.length > 0 && (
               <div className="flex flex-col gap-[16px]">
-                <p className="uppercase text-white" style={monoStyle}>Casos de éxito</p>
+                <p className="uppercase text-white" style={monoStyle}>{caseStudiesLabel}</p>
                 <div className="flex flex-col gap-[16px] pl-[12px]">
                   {caseStudiesItems.map((item) => (
                     <Link key={item.href} href={item.href} className="text-white" style={sansStyle}>
@@ -103,8 +117,8 @@ export default function MobileMenu({
               </div>
             )}
 
-            <Link href="/sobre-mi" className="text-white uppercase" style={monoStyle}>
-              Sobre mí
+            <Link href={aboutHref} className="text-white uppercase" style={monoStyle}>
+              {aboutLabel}
             </Link>
 
             {SHOW_LANGUAGE_SELECTOR && (
@@ -136,7 +150,7 @@ export default function MobileMenu({
               style={{ height: '44px' }}
             >
               <span className="text-text-accent uppercase" style={{ ...monoStyle, fontSize: '12px' }}>
-                Reservar una llamada
+                {ctaLabel}
               </span>
               <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[24px]">
                 <img src="/arrow-white.svg" alt="" className="size-[14px] transition-transform duration-300 ease-out group-hover:rotate-45" aria-hidden="true" />

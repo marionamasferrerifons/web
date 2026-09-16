@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { SITE_URL } from "@/lib/constants";
 
 const dmSans = DM_Sans({
@@ -43,9 +41,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${dmSans.variable} ${dmMono.variable}`}>
-        <Navbar />
         {children}
-        <Footer />
       </body>
     </html>
   );

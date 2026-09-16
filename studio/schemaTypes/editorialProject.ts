@@ -61,6 +61,29 @@ export const editorialProject = defineType({
       description: 'Los proyectos se muestran de menor a mayor. Déjalo vacío para que aparezca al final.',
       type: 'number',
     }),
+    defineField({
+      name: 'language',
+      title: 'Idioma',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Castellano', value: 'es' },
+          { title: 'Català', value: 'ca' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'es',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'translationOf',
+      title: 'Traducción de',
+      description: 'Si este proyecto es la versión en catalán, enlaza aquí el original en castellano.',
+      type: 'reference',
+      to: [{ type: 'editorialProject' }],
+      weak: true,
+      hidden: ({ document }) => document?.language !== 'ca',
+    }),
   ],
   orderings: [
     {
@@ -70,6 +93,13 @@ export const editorialProject = defineType({
     },
   ],
   preview: {
-    select: { title: 'title', subtitle: 'publisher', media: 'image' },
+    select: { title: 'title', subtitle: 'publisher', media: 'image', language: 'language' },
+    prepare({ title, subtitle, media, language }) {
+      return {
+        title: `${title} (${language === 'ca' ? 'CA' : 'ES'})`,
+        subtitle,
+        media,
+      }
+    },
   },
 })

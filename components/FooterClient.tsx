@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import type { NavContent } from '@/content/nav/types';
 
 const columnHeaderStyle = {
   fontFamily: 'var(--font-dm-mono)',
@@ -28,15 +29,9 @@ const monoSmallStyle = {
   color: 'var(--color-blue-200)',
 }
 
-const SERVICES_ITEMS = [
-  { href: '/servicios/estrategia-editorial', label: 'Implementación estratégica de IA' },
-  { href: '/servicios/ecosistema-produccion-editorial', label: 'Sistema de producción editorial con IA' },
-  { href: '/servicios/servicios-editoriales', label: 'Servicios editoriales con IA aplicada' },
-]
-
 export type FooterLinkItem = { href: string; label: string };
 
-export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: FooterLinkItem[] }) {
+export default function FooterClient({ content, caseStudiesItems }: { content: NavContent; caseStudiesItems: FooterLinkItem[] }) {
   const footerRef = useRef<HTMLElement>(null);
   const year = new Date().getFullYear();
 
@@ -93,11 +88,11 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
             <div className="flex flex-col items-center gap-[20px]">
               <img
                 src="/logo.svg"
-                alt="Mariona Masferrer"
+                alt={content.logoAlt}
                 style={{ height: '44px', width: 'auto' }}
               />
               <p style={{ ...linkStyle, fontSize: '14px', color: 'var(--color-blue-100)', maxWidth: '220px', textAlign: 'center' }}>
-                Inteligencia artificial para editoriales educativas.
+                {content.footer.tagline}
               </p>
             </div>
 
@@ -134,9 +129,9 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
 
           <div className="contents lg:flex lg:gap-[40px] lg:justify-self-end">
           <div className="footer-column flex flex-col gap-[16px]">
-            <p className="uppercase" style={columnHeaderStyle}>Servicios</p>
+            <p className="uppercase" style={columnHeaderStyle}>{content.footer.servicesColumnHeader}</p>
             <div className="flex flex-col gap-[12px]">
-              {SERVICES_ITEMS.map((item) => (
+              {content.servicesItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -150,7 +145,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
           </div>
 
           <div className="footer-column flex flex-col gap-[16px]" style={{ maxWidth: '220px' }}>
-            <p className="uppercase" style={columnHeaderStyle}>Casos de éxito</p>
+            <p className="uppercase" style={columnHeaderStyle}>{content.footer.caseStudiesColumnHeader}</p>
             <div className="flex flex-col gap-[12px]">
               {caseStudiesItems.length > 0 ? (
                 caseStudiesItems.map((item) => (
@@ -164,19 +159,19 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
                   </Link>
                 ))
               ) : (
-                <p style={{ ...linkStyle, color: 'var(--color-blue-200)' }}>Próximamente</p>
+                <p style={{ ...linkStyle, color: 'var(--color-blue-200)' }}>{content.footer.caseStudiesEmpty}</p>
               )}
             </div>
           </div>
 
           <div className="footer-column flex flex-col gap-[16px]" style={{ width: '150px' }}>
-            <p className="uppercase" style={columnHeaderStyle}>Navegación</p>
+            <p className="uppercase" style={columnHeaderStyle}>{content.footer.navColumnHeader}</p>
             <div className="flex flex-col gap-[12px]">
-              <Link href="/" className="text-white hover:text-orange transition-colors duration-200 w-fit" style={linkStyle}>
-                Inicio
+              <Link href={content.homeHref} className="text-white hover:text-orange transition-colors duration-200 w-fit" style={linkStyle}>
+                {content.footer.homeLabel}
               </Link>
-              <Link href="/sobre-mi" className="text-white hover:text-orange transition-colors duration-200 w-fit" style={linkStyle}>
-                Sobre mí
+              <Link href={content.aboutHref} className="text-white hover:text-orange transition-colors duration-200 w-fit" style={linkStyle}>
+                {content.footer.aboutLabel}
               </Link>
               <a
                 href="https://www.linkedin.com/in/marionamasferrerifons/"
@@ -185,7 +180,7 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
                 className="text-white hover:text-orange transition-colors duration-200 w-fit"
                 style={linkStyle}
               >
-                LinkedIn ↗
+                {content.footer.linkedinLabel}
               </a>
             </div>
           </div>
@@ -196,8 +191,8 @@ export default function FooterClient({ caseStudiesItems }: { caseStudiesItems: F
 
         {/* Bottom bar */}
         <div className="footer-bottom flex flex-col md:flex-row items-center justify-between gap-[16px]">
-          <p style={monoSmallStyle}>© {year} Mariona Masferrer i Fons. Todos los derechos reservados.</p>
-          <p style={monoSmallStyle}>Diseñado con criterio editorial + IA.</p>
+          <p style={monoSmallStyle}>{content.footer.copyright.replace('{year}', String(year))}</p>
+          <p style={monoSmallStyle}>{content.footer.bottomTagline}</p>
         </div>
       </div>
     </footer>
