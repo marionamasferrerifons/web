@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function ProblemSection() {
+export default function ProblemSection({ title }: { title: ReactNode }) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -49,9 +49,7 @@ export default function ProblemSection() {
             maxWidth: '689px',
           }}
         >
-          El problema principal es{' '}
-          <span style={{ color: 'var(--color-orange-400)' }}>cómo integrar</span>
-          {' '}IA sin perder calidad
+          {title}
         </h2>
       </div>
     </section>

@@ -35,6 +35,29 @@ export const testimonial = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'language',
+      title: 'Idioma',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Castellano', value: 'es' },
+          { title: 'Català', value: 'ca' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'es',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'translationOf',
+      title: 'Traducción de',
+      description: 'Si este testimonio es la versión en catalán, enlaza aquí el testimonio original en castellano.',
+      type: 'reference',
+      to: [{ type: 'testimonial' }],
+      weak: true,
+      hidden: ({ document }) => document?.language !== 'ca',
+    }),
+    defineField({
       name: 'avatar',
       title: 'Foto del autor/a',
       type: 'image',
@@ -82,10 +105,11 @@ export const testimonial = defineType({
           const { document, getClient } = context
           const client = getClient({ apiVersion: '2024-01-01' })
           const id = document!._id.replace(/^drafts\./, '')
+          const language = (document!.language as string | undefined) ?? 'es'
 
           const conflicts: string[] = await client.fetch(
-            `*[_type == "testimonial" && !(_id in [$draftId, $publishedId]) && count((placement[])[@ in $values]) > 0].internalName`,
-            { draftId: `drafts.${id}`, publishedId: id, values }
+            `*[_type == "testimonial" && !(_id in [$draftId, $publishedId]) && language == $language && count((placement[])[@ in $values]) > 0].internalName`,
+            { draftId: `drafts.${id}`, publishedId: id, values, language }
           )
 
           return conflicts.length > 0
@@ -95,6 +119,13 @@ export const testimonial = defineType({
     }),
   ],
   preview: {
-    select: { title: 'internalName', subtitle: 'authorRole', media: 'avatar' },
+    select: { title: 'internalName', subtitle: 'authorRole', media: 'avatar', language: 'language' },
+    prepare({ title, subtitle, media, language }) {
+      return {
+        title: `${title} (${language === 'ca' ? 'CA' : 'ES'})`,
+        subtitle,
+        media,
+      }
+    },
   },
 })

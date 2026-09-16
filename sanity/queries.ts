@@ -116,7 +116,7 @@ export const INDUSTRY_LOGOS_QUERY = `
 `
 
 export const TESTIMONIAL_BY_PLACEMENT_QUERY = `
-  *[_type == "testimonial" && $placement in placement][0] {
+  *[_type == "testimonial" && $placement in placement && coalesce(language, "es") == $language][0] {
     quote,
     authorName,
     authorRole,

@@ -25,6 +25,7 @@ export const revalidate = 3600
 export default async function EstrategiaEditorialPage() {
   const testimonial = await client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, {
     placement: 'estrategia-editorial',
+    language: 'es',
   })
   const images = testimonialImageProps(testimonial)
 

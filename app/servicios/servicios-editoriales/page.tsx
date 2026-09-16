@@ -23,7 +23,7 @@ export const revalidate = 3600
 
 export default async function ServiciosEditorialesPage() {
   const [testimonial, projects] = await Promise.all([
-    client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'servicios-editoriales' }),
+    client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, { placement: 'servicios-editoriales', language: 'es' }),
     client.fetch(EDITORIAL_PROJECTS_QUERY),
   ])
   const images = testimonialImageProps(testimonial)

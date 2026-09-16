@@ -19,6 +19,10 @@ const sansStyle = {
   fontWeight: 400,
 }
 
+// La versión en catalán (/ca) está en revisión con la clienta — el selector
+// se activa cuando dé luz verde para publicarlo.
+const SHOW_LANGUAGE_SELECTOR = false
+
 export type MobileMenuItem = { href: string; label: string };
 
 export default function MobileMenu({
@@ -103,24 +107,26 @@ export default function MobileMenu({
               Sobre mí
             </Link>
 
-            <div
-              className="flex items-center gap-[12px] pt-[24px]"
-              style={{ borderTop: '1px solid rgba(242, 242, 242, 0.15)' }}
-            >
+            {SHOW_LANGUAGE_SELECTOR && (
               <div
-                className="flex items-center gap-[8px] border border-[#d4d4d4] rounded-full px-[11px]"
-                style={{ height: '28px' }}
+                className="flex items-center gap-[12px] pt-[24px]"
+                style={{ borderTop: '1px solid rgba(242, 242, 242, 0.15)' }}
               >
-                <span className="text-white" style={monoStyle}>ES</span>
-                <svg
-                  width="14" height="7" viewBox="0 0 14 7"
-                  fill="none" xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
+                <div
+                  className="flex items-center gap-[8px] border border-[#d4d4d4] rounded-full px-[11px]"
+                  style={{ height: '28px' }}
                 >
-                  <path d="M1 1L7 6L13 1" stroke="var(--color-orange)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                  <span className="text-white" style={monoStyle}>ES</span>
+                  <svg
+                    width="14" height="7" viewBox="0 0 14 7"
+                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path d="M1 1L7 6L13 1" stroke="var(--color-orange)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
               </div>
-            </div>
+            )}
 
             <a
               href={BOOKING_URL}

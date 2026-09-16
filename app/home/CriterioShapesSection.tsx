@@ -1,10 +1,21 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function CriterioSection() {
+type ShapeContent = { name: string; boldLine: string; bodyLine: string };
+
+type CriterioSectionProps = {
+  tag: string;
+  title: ReactNode;
+  subtitle: string;
+  editorial: ShapeContent;
+  pedagogia: ShapeContent;
+  tecnologia: ShapeContent;
+};
+
+export default function CriterioSection({ tag, title, subtitle, editorial, pedagogia, tecnologia }: CriterioSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -61,7 +72,7 @@ export default function CriterioSection() {
             opacity: 0.65,
           }}
         >
-          [MI ENFOQUE]
+          {tag}
         </p>
         <h2
           className="criterio-title"
@@ -74,7 +85,7 @@ export default function CriterioSection() {
             color: 'var(--color-blue-400)',
           }}
         >
-          El <span style={{ color: 'var(--color-orange-400)' }}>criterio</span> de alguien que conoce el sector
+          {title}
         </h2>
         <p
           className="criterio-subtitle"
@@ -87,7 +98,7 @@ export default function CriterioSection() {
             color: 'var(--color-text-secondary)',
           }}
         >
-          Lorem ipsum dolor sit amet consectetur. Ultrices blandit vestibulum volutpat blandit vulputate fermentum pulvinar.
+          {subtitle}
         </p>
       </div>
 
@@ -107,7 +118,7 @@ export default function CriterioSection() {
           />
           <div className="absolute flex items-center gap-[16px]" style={{ left: '48px', top: '48px' }}>
             <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '32px', lineHeight: '38px', color: 'var(--color-white)' }}>
-              Editorial
+              {editorial.name}
             </p>
             <span className="flex items-center justify-center bg-white rounded-full shrink-0 size-[30px]">
               <img src="/arrow-orange.svg" alt="" className="size-[18px]" aria-hidden="true" />
@@ -117,8 +128,8 @@ export default function CriterioSection() {
             className="absolute flex flex-col gap-[8px] opacity-100 translate-y-0 md:opacity-0 md:translate-y-[12px] transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-y-0"
             style={{ left: '48px', right: '32px', bottom: '32px' }}
           >
-            <p style={{ ...bodyTextStyle, fontWeight: 600 }}>Entiendo cómo funciona una editorial por dentro.</p>
-            <p style={bodyTextStyle}>Desde los procesos de producción hasta las decisiones estratégicas, lo que permite aplicar IA sin romper lo que ya funciona.</p>
+            <p style={{ ...bodyTextStyle, fontWeight: 600 }}>{editorial.boldLine}</p>
+            <p style={bodyTextStyle}>{editorial.bodyLine}</p>
           </div>
         </div>
 
@@ -131,7 +142,7 @@ export default function CriterioSection() {
           <div className="flex flex-col gap-[64px] items-center text-center px-[24px]">
             <div className="flex items-center gap-[12px]">
               <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '32px', lineHeight: '38px', color: 'var(--color-white)' }}>
-                Pedagogía
+                {pedagogia.name}
               </p>
               <span className="flex items-center justify-center bg-white rounded-full shrink-0 size-[30px]">
                 <img src="/arrow-orange.svg" alt="" className="size-[18px]" aria-hidden="true" />
@@ -141,8 +152,8 @@ export default function CriterioSection() {
               className="flex flex-col gap-[8px] opacity-100 max-h-none md:opacity-0 md:max-h-0 overflow-hidden transition-all duration-300 md:group-hover:opacity-100 md:group-hover:max-h-[200px]"
               style={{ maxWidth: '360px' }}
             >
-              <p style={{ ...bodyTextStyle, fontWeight: 600 }}>Entiendo el contenido desde quien lo enseña y quien lo produce.</p>
-              <p style={bodyTextStyle}>Haber trabajado como docente me permite entender cómo se usa el contenido en la práctica, algo clave a la hora de aplicar IA sin perder valor educativo.</p>
+              <p style={{ ...bodyTextStyle, fontWeight: 600 }}>{pedagogia.boldLine}</p>
+              <p style={bodyTextStyle}>{pedagogia.bodyLine}</p>
             </div>
           </div>
         </div>
@@ -158,7 +169,7 @@ export default function CriterioSection() {
           />
           <div className="absolute flex items-center gap-[16px]" style={{ right: '48px', top: '150px' }}>
             <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '32px', lineHeight: '38px', color: 'var(--color-white)' }}>
-              Tecnología
+              {tecnologia.name}
             </p>
             <span className="flex items-center justify-center bg-white rounded-full shrink-0 size-[30px]">
               <img src="/arrow-orange.svg" alt="" className="size-[18px]" aria-hidden="true" />
@@ -168,8 +179,8 @@ export default function CriterioSection() {
             className="absolute flex flex-col gap-[8px] opacity-100 translate-y-0 md:opacity-0 md:translate-y-[12px] transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-y-0"
             style={{ left: '32px', right: '32px', top: '230px' }}
           >
-            <p style={{ ...bodyTextStyle, fontWeight: 600 }}>Uso la IA en la práctica</p>
-            <p style={bodyTextStyle}>Trabajo con IA desde dentro del proceso editorial, lo que permite entender sus límites, sus riesgos y su verdadero potencial.</p>
+            <p style={{ ...bodyTextStyle, fontWeight: 600 }}>{tecnologia.boldLine}</p>
+            <p style={bodyTextStyle}>{tecnologia.bodyLine}</p>
           </div>
         </div>
       </div>

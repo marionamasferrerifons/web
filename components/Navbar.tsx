@@ -21,6 +21,10 @@ const SERVICES_ITEMS = [
   { href: '/servicios/servicios-editoriales', label: 'Servicios editoriales con IA aplicada' },
 ]
 
+// La versión en catalán (/ca) está en revisión con la clienta — el selector
+// se activa cuando dé luz verde para publicarlo.
+const SHOW_LANGUAGE_SELECTOR = false
+
 export default async function Navbar() {
   let caseStudiesItems: { href: string; title: string; imageUrl?: string; imageAlt?: string }[] = []
 
@@ -75,19 +79,21 @@ export default async function Navbar() {
         <div className="hidden lg:flex ml-auto items-center gap-[8px]">
 
           {/* Language selector */}
-          <div
-            className="flex items-center gap-[8px] border border-[#d4d4d4] rounded-full px-[11px]"
-            style={{ height: '40px' }}
-          >
-            <span className="text-white" style={monoStyle}>ES</span>
-            <svg
-              width="14" height="7" viewBox="0 0 14 7"
-              fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
+          {SHOW_LANGUAGE_SELECTOR && (
+            <div
+              className="flex items-center gap-[8px] border border-[#d4d4d4] rounded-full px-[11px]"
+              style={{ height: '40px' }}
             >
-              <path d="M1 1L7 6L13 1" stroke="var(--color-orange)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+              <span className="text-white" style={monoStyle}>ES</span>
+              <svg
+                width="14" height="7" viewBox="0 0 14 7"
+                fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path d="M1 1L7 6L13 1" stroke="var(--color-orange)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          )}
 
           {/* CTA button */}
           <a

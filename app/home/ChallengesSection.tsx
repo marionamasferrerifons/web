@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -13,18 +13,12 @@ type Challenge = {
   side: 'left' | 'right';
 };
 
-// Each label is laid out relative to its own avatar (flex row, side-by-side)
-// rather than with independent absolute coordinates, so the two can never
-// drift apart — the bubble is always physically attached to its avatar.
-const CHALLENGES: Challenge[] = [
-  { avatar: '/home-avatar-1.png', size: 69, left: 1262, top: 0, label: 'Aumentar la productividad de creación de libros', side: 'left' },
-  { avatar: '/home-avatar-2.png', size: 71, left: 0, top: 89, label: 'Necesidad de IA aplicada al entorno editorial', side: 'right' },
-  { avatar: '/home-avatar-3.png', size: 60, left: 811, top: 208, label: 'Resistencias del equipo por adoptar la IA', side: 'left' },
-  { avatar: '/home-avatar-4.png', size: 91, left: 188, top: 298, label: 'Miedo por pérdida de la calidad en los resultados', side: 'right' },
-  { avatar: '/home-avatar-5.png', size: 83, left: 1132, top: 223, label: 'Presión por innovar', side: 'left' },
-];
+type ChallengesSectionProps = {
+  title: ReactNode;
+  challenges: Challenge[];
+};
 
-export default function ChallengesSection() {
+export default function ChallengesSection({ title, challenges }: ChallengesSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -61,14 +55,12 @@ export default function ChallengesSection() {
             maxWidth: '690px',
           }}
         >
-          Conozco los{' '}
-          <span style={{ color: 'var(--color-orange-400)' }}>desafíos reales</span>
-          {' '}actuales del sector editorial
+          {title}
         </h2>
 
         {/* Desktop — floating avatars scattered around the title */}
         <div className="hidden lg:block relative w-full" style={{ height: '389px', marginTop: '48px' }}>
-          {CHALLENGES.map((c, i) => {
+          {challenges.map((c, i) => {
             const avatar = (
               <img
                 key="avatar"
@@ -121,7 +113,7 @@ export default function ChallengesSection() {
 
         {/* Mobile / tablet — simple stacked list */}
         <div className="lg:hidden flex flex-col gap-[16px] w-full mt-[40px]" style={{ maxWidth: '480px' }}>
-          {CHALLENGES.map((c, i) => (
+          {challenges.map((c, i) => (
             <div key={i} className="challenges-item flex items-center gap-[12px] bg-white rounded-[8px] px-[16px] py-[12px]">
               <img src={c.avatar} alt="" className="rounded-full shrink-0" style={{ width: '40px', height: '40px' }} aria-hidden="true" />
               <p

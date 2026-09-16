@@ -24,7 +24,7 @@ function logoHeight(alt: string) {
   return match ? HEIGHT_OVERRIDES[match] : 25;
 }
 
-export default function LogosSection({ logos }: { logos: Logo[] }) {
+export default function LogosSection({ logos, tag }: { logos: Logo[]; tag: string }) {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -75,7 +75,7 @@ export default function LogosSection({ logos }: { logos: Logo[] }) {
           color: 'var(--color-blue-200)',
         }}
       >
-        [EDITORIALES PARA LAS QUE HE TRABAJADO]
+        {tag}
       </p>
 
       <div className="logos-marquee relative overflow-hidden w-full" style={{ maxWidth: '600px' }}>

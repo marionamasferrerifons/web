@@ -6,6 +6,7 @@ import { testimonialImageProps } from '@/sanity/image'
 export default async function Section6() {
   const testimonial = await client.fetch(TESTIMONIAL_BY_PLACEMENT_QUERY, {
     placement: 'ecosistema-produccion-editorial',
+    language: 'es',
   })
   const images = testimonialImageProps(testimonial)
 
