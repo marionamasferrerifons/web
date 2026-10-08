@@ -6,6 +6,7 @@
 - `docs/architecture.md` — estructura de l'App Router i integració amb Sanity
 - `docs/design-system.md` — convencions de Tailwind, GSAP i components
 - `docs/roadmap.md` — prioritats actuals i enllaç a `mejoras/`
+- `docs/component-inventory.md` i `docs/visual-criteria.md` — inventari de blocs visuals i criteris de disseny vigents; vegeu també la galeria `/dev/gallery`
 
 ## Registrar canvis
 Afegeix una entrada a `CHANGELOG.md` (què / quan / per què) per a qualsevol canvi de contingut, disseny o estructura — no cal per a fixes trivials o typos.
