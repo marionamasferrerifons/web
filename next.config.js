@@ -9,6 +9,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/servicios/estrategia-editorial',
+        destination: '/servicios/estrategia-de-ia',
+        statusCode: 301,
+      },
+    ];
+  },
   async headers() {
     return [
       {

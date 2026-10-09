@@ -7,7 +7,7 @@ const STATIC_ROUTES = [
   '',
   '/enfoque',
   '/sobre-mi',
-  '/servicios/estrategia-editorial',
+  '/servicios/estrategia-de-ia',
   '/servicios/ecosistema-produccion-editorial',
   '/servicios/servicios-editoriales',
 ]

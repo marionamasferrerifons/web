@@ -7,8 +7,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const CARDS = [
   {
-    href: '/servicios/estrategia-editorial',
-    title: 'Innovación editorial con IA',
+    href: '/servicios/estrategia-de-ia',
+    title: 'Estrategia de IA',
     subtitle: 'Te ayudo a trabajar como yo trabajo',
     body: 'Acompaño a editoriales educativas en el proceso de incorporar la IA de forma estratégica y responsable: desde entender dónde están hoy hasta construir los sistemas y las capacidades para trabajar diferente.',
     image: '/home-service-card1.svg',

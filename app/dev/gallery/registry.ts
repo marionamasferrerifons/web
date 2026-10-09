@@ -105,7 +105,7 @@ export type BlockEntry = {
 /** Pàgines, per referència creuada a la documentació. */
 export const PAGES = {
   home: '/',
-  estrategia: '/servicios/estrategia-editorial',
+  estrategia: '/servicios/estrategia-de-ia',
   ecosistema: '/servicios/ecosistema-produccion-editorial',
   editoriales: '/servicios/servicios-editoriales',
   sobreMi: '/sobre-mi',
@@ -344,16 +344,15 @@ export const BLOCKS: BlockEntry[] = [
       'Totes amaguen les formes i fotos decoratives (hidden lg:block). El titular i el cos passen a una sola columna.',
     limits: [
       'Set implementacions independents del mateix patró: canviar la mida del titular o el boto exigeix tocar set fitxers.',
-      'La variant estrategia no és un component: viu incrustada a ServiciosClient.tsx (línies 160-249), dins d\'un fitxer de 905 línies que també conté les llistes de problemes i les targetes de servei.',
       'La variant enfoque conserva text de farciment (lorem ipsum) al titular en producció.',
-      'Cap variant té una alternativa de contrast per a usuaris amb preferència de moviment reduït: totes animen amb GSAP a la càrrega.',
+      'Cap variant té una alternativa de contrast per a usuaris amb preferència de moviment reduït, excepte la variant estrategia (afegida en el redisseny de 2026-10-08, que sí que comprova prefers-reduced-motion).',
     ],
     recommendation: 'adaptar',
     rationale:
-      'Set copies divergents d\'un sol patró, amb una d\'elles incrustada dins un component enorme. Convergir-les en un component amb props de color i alineació es el primer pas pràctic per a donar identitat a quatre pàgines de servei noves.',
+      'Sis copies divergents d\'un sol patró (la variant estrategia ja és un component propi des del redisseny). Convergir-les en un de sol amb props de color i alineació és el pas pràctic que falta per a les tres pàgines de servei restants.',
     variants: [
       { id: 'home', label: 'Home - foto amb màscara + forma dentada', files: ['app/home/HomeHeroSection.tsx'], pages: [PAGES.home] },
-      { id: 'estrategia', label: 'Estrategia editorial - vectors simètrics, fons verd', files: ['app/servicios/estrategia-editorial/ServiciosClient.tsx:160-249'], pages: [PAGES.estrategia], embedded: true, note: 'Incrustada dins ServiciosClient.tsx; no és un component separat.' },
+      { id: 'estrategia', label: 'Estrategia de IA - vectors simètrics, fons verd', files: ['app/servicios/estrategia-de-ia/HeroSection.tsx'], pages: [PAGES.estrategia] },
       { id: 'ecosistema', label: 'Ecosistema de producció - titular alineat a la dreta, fons taronja', files: ['app/servicios/ecosistema-produccion-editorial/EcosistemaHeroSection.tsx'], pages: [PAGES.ecosistema] },
       { id: 'editoriales', label: 'Servicios editoriales - titular al 57%, fons taronja-400', files: ['app/servicios/servicios-editoriales/ServiciosEditorialesHeroSection.tsx'], pages: [PAGES.editoriales] },
       { id: 'sobre-mi', label: 'Sobre mi - foto amb màscara d\'ona, fons blau', files: ['app/sobre-mi/SobreMiHeroSection.tsx'], pages: [PAGES.sobreMi] },
@@ -427,18 +426,39 @@ export const BLOCKS: BlockEntry[] = [
       'Disposició esglaonada amb marges esquerra variables per crear una composició irregular, no una llista neta.',
     mobile: 'Es converteix en una llista vertical simple, sense marges esglaonats.',
     limits: [
-      'Quatre implementacions divergents amb marges codificats a mà per cada pastilla (per exemple md:ml-[135px], md:ml-[186px]): afegir o treure una frase desquadra tota la composició.',
+      'Tres implementacions divergents amb marges codificats a mà per cada pastilla (per exemple md:ml-[135px], md:ml-[186px]): afegir o treure una frase desquadra tota la composició.',
       'El color del punt no té cap significat (no categoritza el tipus de problema): es només decoratiu.',
       'No hi ha versió amb més de sis frases provada: amb quatre serveis que comparteixin aquest bloc, la composició esglaonada pot no escalar.',
     ],
     recommendation: 'adaptar',
     rationale:
-      'El concepte (reconeixer el dolor abans de vendre) és útil per a una pàgina de comparació de serveis, però la implementació actual amb marges fixos no és sostenible si el nombre de frases varia per servei.',
+      'El concepte (reconeixer el dolor abans de vendre) és útil per a una pàgina de comparació de serveis, però la implementació actual amb marges fixos no és sostenible si el nombre de frases varia per servei. El redisseny de "Estrategia de IA" (2026-10-08) ha optat per substituir aquest patró per una graella regular de preguntes (vegeu `qa-grid`) en lloc d\'adaptar-lo.',
     variants: [
-      { id: 'estrategia', label: '¿Te pasa que...? (estrategia editorial) - llista vertical simple', files: ['app/servicios/estrategia-editorial/ServiciosClient.tsx:252-307'], pages: [PAGES.estrategia], embedded: true },
       { id: 'ecosistema', label: 'Sense el teu criteri codificat (ecosistema) - esglaonat amb marges a la dreta', files: ['app/servicios/ecosistema-produccion-editorial/ProblemPillsSection.tsx'], pages: [PAGES.ecosistema] },
       { id: 'editoriales', label: 'Si necessites complir el pla (servicios editoriales) - dues files, titular a banda i banda', files: ['app/servicios/servicios-editoriales/ProductionPainPointsSection.tsx'], pages: [PAGES.editoriales] },
       { id: 'home-avatars', label: 'Desafíos reales (home) - amb avatar flotant en lloc de punt de color', files: ['app/home/ChallengesSection.tsx'], pages: [PAGES.home], note: 'Variant més allunyada del patró: substitueix el punt per una fotografia d\'avatar i coordenades absolutes calibrades a 1400px.' },
+    ],
+  },
+  {
+    id: 'qa-grid',
+    name: 'Graella de preguntes i respostes',
+    group: 'problemes',
+    purpose:
+      'Graella regular (no esglaonada, no masonry) de targetes blanques sobre fons gris, cadascuna amb un número, una pregunta a mode de títol i una resposta curta de com s\'ajuda a resoldre-la.',
+    whenToUse:
+      'Introduïda al redisseny de "Estrategia de IA" (2026-10-08) com a alternativa deliberada a `painpoint-pills`: en lloc de pastilles esglaonades que descriuen un dolor, presenta directament la pregunta i la resposta, amb un disseny de graella que escala millor a un nombre variable d\'elements.',
+    reuse: 'copies',
+    needs: ['Entre 4 i 6 parelles de pregunta curta + resposta d\'1-2 frases'],
+    desktop: '3 columnes (≥1024px), 2 a tauleta, 1 a mòbil. Targetes blanques, radi 24, padding 32.',
+    mobile: '1 columna; cap contingut s\'oculta ni depèn d\'interacció.',
+    limits: [
+      'Només una implementació fins ara: cal veure com escala amb un nombre de preguntes diferent de 6 abans de considerar-lo un patró consolidat.',
+    ],
+    recommendation: 'conservar',
+    rationale:
+      'Resol directament la limitació de `painpoint-pills` (marges esglaonats codificats a mà que no escalen): és una graella regular sense posicions fixes per element.',
+    variants: [
+      { id: 'estrategia', label: '¿Qué preguntas no puedes seguir aplazando? (estrategia de ia) - graella 3x2', files: ['app/servicios/estrategia-de-ia/DecisionsSection.tsx'], pages: [PAGES.estrategia] },
     ],
   },
 
@@ -457,7 +477,6 @@ export const BLOCKS: BlockEntry[] = [
     limits: [
       'Només en té tres: amb el quart servei cal decidir si s\'hi afegeix una quarta targeta o es redissenya el bloc.',
       'No hi ha manera de comparar els serveis entre si: cada targeta és un enllaç independent, no hi ha taula ni resum conjunt.',
-      'El títol d\'aquesta targeta (Innovación editorial con IA) no coincideix amb el nom del mateix servei a la capcalera (Implementación estratégica de IA) - incoherència 15 de docs/visual-criteria.md.',
     ],
     recommendation: 'adaptar',
     rationale:
@@ -467,51 +486,27 @@ export const BLOCKS: BlockEntry[] = [
     ],
   },
   {
-    id: 'svccard-expandable',
-    name: 'Targeta de servei desplegable',
-    group: 'serveis',
-    purpose:
-      'Targeta blanca amb títol, cos i il·lustració, que es desplega en clic per mostrar un panell detallat (workshops amb pestanyes, programa setmana a setmana, o llista de com funciona). Només a /servicios/estrategia-editorial.',
-    whenToUse: 'Quan un sol servei té diverses modalitats que cal detallar sense saturar la vista inicial.',
-    reuse: 'incrustat',
-    needs: ['Títol i cos curts (vista tancada)', 'Contingut detallat per la vista oberta: pot ser pestanyes, una llista setmana a setmana o una llista de punts'],
-    desktop: 'En obrir-se, la targeta creix amunt i avall dins la mateixa posició; no és un modal ni es desplaca la pàgina.',
-    mobile: 'Identic, però el contingut intern (pestanyes, files setmanals) s\'apila en lloc de mostrar-se en horitzontal.',
-    limits: [
-      'Viu sencer dins ServiciosClient.tsx, un sol fitxer de 905 línies amb tres targetes amb estructura interna diferent cadascuna: no és tres variants d\'un component, són tres implementacions ad hoc.',
-      'La primera targeta (Explorar nuevas oportunidades) està desactivada per una bandera SHOW_CARD_1 = false però el codi es manté sencer: existeix però no es veu a la web pública.',
-      'Les tres targetes tenen graella CSS calibrada a una alcada fixa de 419px per al contingut tancat, cosa que no s\'adapta bé si el text d\'un quart servei és més llarg.',
-    ],
-    recommendation: 'adaptar',
-    rationale:
-      'El concepte de desplegable és útil per no saturar la vista, però avui no és un component: és codi incrustat tres vegades amb formes internes diferents. Cal decidir-ne una de sola abans de replicar-la a quatre serveis.',
-    variants: [
-      { id: 'card1-workshops', label: 'Targeta 1 - pestanyes de workshop (desactivada)', files: ['app/servicios/estrategia-editorial/ServiciosClient.tsx:362-550'], pages: [PAGES.estrategia], embedded: true, inactive: true, note: 'Només es renderitza si SHOW_CARD_1 és true; avui és false.' },
-      { id: 'card2-weekly', label: 'Targeta 2 - programa setmana a setmana', files: ['app/servicios/estrategia-editorial/ServiciosClient.tsx:552-746'], pages: [PAGES.estrategia], embedded: true },
-      { id: 'card3-howitworks', label: 'Targeta 3 - llista de com funciona', files: ['app/servicios/estrategia-editorial/ServiciosClient.tsx:748-899'], pages: [PAGES.estrategia], embedded: true },
-    ],
-  },
-  {
     id: 'svccard-grid',
     name: 'Graella de targetes de servei',
     group: 'serveis',
     purpose:
       'Una targeta blanca gran que conté un subtitol de servei i una graella de 2x2 (o files) de targetes grises més petites, cadascuna amb icona, títol i descripció curta.',
-    whenToUse: 'Per descompondre un servei ampli en les seves peces concretes, dins la mateixa pàgina de servei.',
+    whenToUse: 'Per descompondre un servei ampli en les seves peces concretes, dins la mateixa pàgina de servei. Des del redisseny de "Estrategia de IA" (2026-10-08), també per comparar 2 modalitats de col·laboració amb la mateixa jerarquia (variant `estrategia-collaboration`), usant CSS subgrid perquè les files quedin alineades encara que el contingut de cada targeta no tingui la mateixa llargada.',
     reuse: 'copies',
-    needs: ['Títol i cos del servei pare', 'Una il·lustració gran', 'De 3 a 6 sub-elements amb icona, títol i descripció'],
-    desktop: 'Graella de 2 columnes amb targetes d\'alcada mínima fixa (245px).',
-    mobile: 'Una sola columna; les targetes mantenen l\'alcada mínima, que pot deixar espai buit si el text es curt.',
+    needs: ['Títol i cos del servei pare', 'Una il·lustració gran', 'De 2 a 6 sub-elements amb icona, títol i descripció'],
+    desktop: 'Graella de 2 columnes amb targetes d\'alcada mínima fixa (245px) a les variants antigues; la variant `estrategia-collaboration` alinea les files amb subgrid en lloc d\'una alçada fixa.',
+    mobile: 'Una sola columna; les targetes mantenen l\'alcada mínima, que pot deixar espai buit si el text es curt (excepte `estrategia-collaboration`, que no té alçada fixa).',
     limits: [
-      'Dues implementacions amb nombre de columnes diferent (2x2 vs 1x3) i amb mides d\'icona inconsistents dins el mateix bloc (48px el contenidor, però la icona interior varia de 28 a 48px segons l\'entrada).',
-      'No hi ha cap mecanisme de comparació entre els sub-elements: és una llista, no una taula.',
+      'Les variants antigues tenen nombre de columnes diferent (2x2 vs 1x3) i mides d\'icona inconsistents dins el mateix bloc (48px el contenidor, però la icona interior varia de 28 a 48px segons l\'entrada).',
+      'Retirat el patró `svccard-expandable` (targeta desplegable, única implementació a l\'antiga /servicios/estrategia-editorial): el redisseny de 2026-10-08 el substitueix per aquesta variant `estrategia-collaboration`.',
     ],
     recommendation: 'adaptar',
     rationale:
-      'És el patró més a prop d\'una graella de característiques comparables, però cal normalitzar les mides d\'icona i decidir si s\'usa per presentar els quatre serveis o només per desglossar-ne un de sol.',
+      'És el patró que s\'ha triat per al primer comparador real del lloc (`estrategia-collaboration`); cal decidir si les variants antigues (sense subgrid, amb alçada fixa) convergeixen cap a la mateixa tècnica o es deixen tal com estan.',
     variants: [
       { id: 'editoriales-offerings', label: 'Lo que ofrezco (servicios editoriales) - graella 2x2', files: ['app/servicios/servicios-editoriales/ServiceOfferingsSection.tsx'], pages: [PAGES.editoriales] },
       { id: 'ecosistema-includes', label: 'Qué incluye (ecosistema) - fila de 3, dins SystemStepsSection', files: ['app/servicios/ecosistema-produccion-editorial/SystemStepsSection.tsx:318-366'], pages: [PAGES.ecosistema], embedded: true },
+      { id: 'estrategia-collaboration', label: '¿Cómo podemos colaborar? (estrategia de ia) - comparador de 2 modalitats amb subgrid', files: ['app/servicios/estrategia-de-ia/CollaborationSection.tsx'], pages: [PAGES.estrategia] },
     ],
   },
 
@@ -583,19 +578,19 @@ export const BLOCKS: BlockEntry[] = [
     whenToUse: 'Per explicar com es treballa, en quin ordre i amb quina durada.',
     reuse: 'copies',
     needs: ['Una etiqueta numèrica (Paso 1, Semana 1)', 'Un títol curt', 'Un detall d\'una frase'],
-    desktop: 'Files horitzontals amb una línia divisoria; en dues de les tres variants el detall només es veu en passar-hi el ratolí per sobre.',
-    mobile: 'Les tres variants passen a un format apilat amb el detall sempre visible (la dependència del hover és exclusiva d\'escriptori).',
+    desktop: 'Files horitzontals amb una línia divisoria; a la variant `ecosistema-build` el detall només es veu en passar-hi el ratolí per sobre, però `estrategia-always-visible` i `case-process` el mostren sempre.',
+    mobile: 'Totes les variants passen a un format apilat amb el detall sempre visible.',
     limits: [
-      'Dues de les tres variants amaguen el detall de cada pas rere hover a escriptori: a la vista per defecte només es veu el títol, sense el contingut que explica el pas.',
-      'Les mides de fletxa i de punt verd no estan unificades entre les tres variants.',
+      'La variant `ecosistema-build` amaga el detall de cada pas rere hover a escriptori: a la vista per defecte només es veu el títol, sense el contingut que explica el pas (vegeu la incoherència 10 de docs/visual-criteria.md).',
+      'Les mides de fletxa i de punt verd no estan unificades entre les variants.',
       'La variant de casos d\'èxit (ProcessSection) és l\'única alimentada per Sanity (PortableText) i inclou un lightbox d\'imatges; no comparteix cap part de la implementació amb les altres dues.',
     ],
     recommendation: 'adaptar',
     rationale:
-      'El concepte és clar i útil per explicar un procés de venda, però amagar el detall rere hover només a escriptori el fa invisible per a mòbil i tàctil fins que es toca cada fila (vegeu la incoherència 10 de docs/visual-criteria.md).',
+      'El concepte és clar i útil per explicar un procés de venda. El redisseny de "Estrategia de IA" (2026-10-08) ja demostra que es pot mantenir tot visible sense perdre claredat; queda per decidir si `ecosistema-build` convergeix cap al mateix patró.',
     variants: [
       { id: 'ecosistema-build', label: 'Cómo lo construimos (ecosistema) - detall rere hover a escriptori', files: ['app/servicios/ecosistema-produccion-editorial/SystemStepsSection.tsx:194-316'], pages: [PAGES.ecosistema], embedded: true },
-      { id: 'estrategia-weekly', label: 'Programa setmanal (estrategia, dins svccard-expandable) - detall rere hover a escriptori', files: ['app/servicios/estrategia-editorial/ServiciosClient.tsx:636-702'], pages: [PAGES.estrategia], embedded: true },
+      { id: 'estrategia-always-visible', label: '¿Cómo trabajo? (estrategia de ia) - 3 passos, tot visible sense hover', files: ['app/servicios/estrategia-de-ia/WorkProcessSection.tsx'], pages: [PAGES.estrategia] },
       { id: 'case-process', label: 'Proceso (cas d\'èxit) - text + graella d\'imatges amb lightbox', files: ['app/casos-de-exito/[slug]/ProcessSection.tsx'], pages: [PAGES.caso] },
     ],
   },

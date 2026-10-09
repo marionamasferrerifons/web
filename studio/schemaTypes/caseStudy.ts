@@ -58,6 +58,23 @@ export const caseStudy = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'summaryImage',
+      title: 'Imagen de la ficha resumen',
+      description:
+        'Opcional. Imagen propia para la ficha destacada de este caso en una página de servicio (ej. la sección "Caso de éxito" de Estrategia de IA), con su propio encuadre. Independiente de "Imagen de la tarjeta", que es para listados y miniaturas. Si no se añade, la ficha usa la imagen de la tarjeta.',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Texto alternativo',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
       name: 'year',
       title: 'Año',
       type: 'string',
