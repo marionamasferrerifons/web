@@ -29,11 +29,16 @@ import HomeCriterioShapesSection from '@/app/home/CriterioShapesSection'
 import PracticeSection from '@/app/home/PracticeSection'
 import ServicesSection from '@/app/home/ServicesSection'
 
-// Estrategia editorial
-import ServiciosClient from '@/app/servicios/estrategia-editorial/ServiciosClient'
+// Estrategia editorial (fitxers compartits que es queden en aquesta carpeta)
 import CaseStudiesClient from '@/app/servicios/estrategia-editorial/CaseStudiesClient'
 import CtaSection from '@/app/servicios/estrategia-editorial/CtaSection'
 import TestimonialSection from '@/app/servicios/estrategia-editorial/TestimonialSection'
+
+// Estrategia de IA
+import EstrategiaHeroSection from '@/app/servicios/estrategia-de-ia/HeroSection'
+import DecisionsSection from '@/app/servicios/estrategia-de-ia/DecisionsSection'
+import WorkProcessSection from '@/app/servicios/estrategia-de-ia/WorkProcessSection'
+import CollaborationSection from '@/app/servicios/estrategia-de-ia/CollaborationSection'
 
 // Ecosistema de producció editorial
 import EcosistemaHeroSection from '@/app/servicios/ecosistema-produccion-editorial/EcosistemaHeroSection'
@@ -133,7 +138,7 @@ export const BLOCK_RENDERERS: Record<string, Record<string, Renderer>> = {
 
   'hero-page': {
     home: () => <HomeHeroSection />,
-    estrategia: () => <ServiciosClient />,
+    estrategia: () => <EstrategiaHeroSection />,
     ecosistema: () => <EcosistemaHeroSection />,
     editoriales: () => <ServiciosEditorialesHeroSection />,
     'sobre-mi': () => <SobreMiHeroSection />,
@@ -152,21 +157,17 @@ export const BLOCK_RENDERERS: Record<string, Record<string, Renderer>> = {
   },
 
   'painpoint-pills': {
-    estrategia: () => <ServiciosClient />,
     ecosistema: () => <ProblemPillsSection />,
     editoriales: () => <ProductionPainPointsSection />,
     'home-avatars': () => <ChallengesSection />,
   },
+  'qa-grid': { estrategia: () => <DecisionsSection /> },
 
   'svccard-illustrated': { default: () => <ServicesSection /> },
-  'svccard-expandable': {
-    'card1-workshops': () => <ServiciosClient />,
-    'card2-weekly': () => <ServiciosClient />,
-    'card3-howitworks': () => <ServiciosClient />,
-  },
   'svccard-grid': {
     'editoriales-offerings': () => <ServiceOfferingsSection />,
     'ecosistema-includes': () => <SystemStepsSection />,
+    'estrategia-collaboration': () => <CollaborationSection />,
   },
 
   'valuegrid-masonry': {
@@ -184,7 +185,7 @@ export const BLOCK_RENDERERS: Record<string, Record<string, Renderer>> = {
 
   'process-steps': {
     'ecosistema-build': () => <SystemStepsSection />,
-    'estrategia-weekly': () => <ServiciosClient />,
+    'estrategia-always-visible': () => <WorkProcessSection />,
     'case-process': () => <ProcessSection {...processFixture} />,
   },
   'timeline-history': { default: () => <HistorySection /> },

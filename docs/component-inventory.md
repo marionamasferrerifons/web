@@ -17,15 +17,12 @@ La galeria visual interna (`npm run dev` → [http://localhost:3000/dev/gallery]
 
 ## Blocs que no existeixen
 
-Abans de l'inventari dels blocs reals, la llista dels que l'objectiu de negoci demana i **no hi són al codi**:
-
 | Bloc que falta | Per què fa falta | El més a prop que hi ha avui |
 |---|---|---|
-| Comparador de serveis (4 opcions en paral·lel) | Calen 4 serveis comparables i cap patró actual els mostra junts | `compare-beforeafter` compara abans/després d'un sol cas, no opcions entre si |
+| Comparador de 4 serveis en paral·lel | Falten 3 serveis més per comparar amb el mateix format que `estrategia-collaboration` | `svccard-grid` (variant `estrategia-collaboration`) compara 2 modalitats d'un sol servei amb subgrid — el patró ja existeix, falta aplicar-lo als 4 serveis |
 | Preguntes freqüents | Cap FAQ existeix enlloc del lloc | — |
 | Preus o paquets | Cap pàgina mostra preu, rang de preu ni paquets | Les úniques xifres són mètriques de resultat (`metric-hero`, `metric-cards`) |
 | Selector / diagnòstic «quin servei necessito» | Amb 4 serveis, cal ajudar a triar | `svccard-illustrated` és només una llista d'enllaços, sense cap lògica de selecció |
-| Targeta de servei que escali a 4 elements comparables | Cap dels 3 patrons de targeta de servei es va dissenyar per a més de 3 | `svccard-illustrated` en té 3 de fixes; `svccard-expandable` en té 3 amb estructura diferent cadascuna |
 
 ---
 
@@ -205,7 +202,7 @@ _El primer bloc de cada ruta: etiqueta, titular, descripció i crida a l'acció 
 
 ### `hero-page` — Capcalera de pàgina
 
-**Recomanació: 🟡 Adaptar** — Set copies divergents d'un sol patró, amb una d'elles incrustada dins un component enorme. Convergir-les en un component amb props de color i alineació es el primer pas pràctic per a donar identitat a quatre pàgines de servei noves.
+**Recomanació: 🟡 Adaptar** — Sis copies divergents d'un sol patró (la variant estrategia ja és un component propi des del redisseny). Convergir-les en un de sol amb props de color i alineació és el pas pràctic que falta per a les tres pàgines de servei restants.
 
 | | |
 |---|---|
@@ -215,14 +212,14 @@ _El primer bloc de cada ruta: etiqueta, titular, descripció i crida a l'acció 
 | **Contingut que necessita** | - Etiqueta (1-3 paraules)<br>- Titular amb un fragment destacat<br>- Cos curt (1-2 frases)<br>- Boto amb destinació |
 | **Escriptori** | Composicions variades: foto amb màscara (home, sobre-mi), vectors decoratius a les cantonades (servicios), titular alineat a la dreta (ecosistema), o centrat (enfoque, caso). |
 | **Mòbil** | Totes amaguen les formes i fotos decoratives (hidden lg:block). El titular i el cos passen a una sola columna. |
-| **Limitacions observades** | - Set implementacions independents del mateix patró: canviar la mida del titular o el boto exigeix tocar set fitxers.<br>- La variant estrategia no és un component: viu incrustada a ServiciosClient.tsx (línies 160-249), dins d'un fitxer de 905 línies que també conté les llistes de problemes i les targetes de servei.<br>- La variant enfoque conserva text de farciment (lorem ipsum) al titular en producció.<br>- Cap variant té una alternativa de contrast per a usuaris amb preferència de moviment reduït: totes animen amb GSAP a la càrrega. |
+| **Limitacions observades** | - Set implementacions independents del mateix patró: canviar la mida del titular o el boto exigeix tocar set fitxers.<br>- La variant enfoque conserva text de farciment (lorem ipsum) al titular en producció.<br>- Cap variant té una alternativa de contrast per a usuaris amb preferència de moviment reduït, excepte la variant estrategia (afegida en el redisseny de 2026-10-08, que sí que comprova prefers-reduced-motion). |
 
 **Variants:**
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
 | `home` — Home - foto amb màscara + forma dentada | `app/home/HomeHeroSection.tsx` | / |  |
-| `estrategia` — Estrategia editorial - vectors simètrics, fons verd | `app/servicios/estrategia-editorial/ServiciosClient.tsx:160-249` | /servicios/estrategia-editorial | Incrustada dins ServiciosClient.tsx; no és un component separat. · _incrustat_ |
+| `estrategia` — Estrategia de IA - vectors simètrics, fons verd | `app/servicios/estrategia-de-ia/HeroSection.tsx` | /servicios/estrategia-de-ia |  |
 | `ecosistema` — Ecosistema de producció - titular alineat a la dreta, fons taronja | `app/servicios/ecosistema-produccion-editorial/EcosistemaHeroSection.tsx` | /servicios/ecosistema-produccion-editorial |  |
 | `editoriales` — Servicios editoriales - titular al 57%, fons taronja-400 | `app/servicios/servicios-editoriales/ServiciosEditorialesHeroSection.tsx` | /servicios/servicios-editoriales |  |
 | `sobre-mi` — Sobre mi - foto amb màscara d'ona, fons blau | `app/sobre-mi/SobreMiHeroSection.tsx` | /sobre-mi |  |
@@ -282,7 +279,7 @@ _Pastilles blanques que enumeren dolors del client abans de presentar l'oferta._
 
 ### `painpoint-pills` — Pastilles de problema
 
-**Recomanació: 🟡 Adaptar** — El concepte (reconeixer el dolor abans de vendre) és útil per a una pàgina de comparació de serveis, però la implementació actual amb marges fixos no és sostenible si el nombre de frases varia per servei.
+**Recomanació: 🟡 Adaptar** — El concepte (reconeixer el dolor abans de vendre) és útil per a una pàgina de comparació de serveis, però la implementació actual amb marges fixos no és sostenible si el nombre de frases varia per servei. El redisseny de "Estrategia de IA" (2026-10-08) ha optat per substituir aquest patró per una graella regular de preguntes (vegeu `qa-grid`) en lloc d'adaptar-lo.
 
 | | |
 |---|---|
@@ -292,16 +289,35 @@ _Pastilles blanques que enumeren dolors del client abans de presentar l'oferta._
 | **Contingut que necessita** | - De 2 a 6 frases curtes<br>- Un color de punt per frase (sense significat declarat) |
 | **Escriptori** | Disposició esglaonada amb marges esquerra variables per crear una composició irregular, no una llista neta. |
 | **Mòbil** | Es converteix en una llista vertical simple, sense marges esglaonats. |
-| **Limitacions observades** | - Quatre implementacions divergents amb marges codificats a mà per cada pastilla (per exemple md:ml-[135px], md:ml-[186px]): afegir o treure una frase desquadra tota la composició.<br>- El color del punt no té cap significat (no categoritza el tipus de problema): es només decoratiu.<br>- No hi ha versió amb més de sis frases provada: amb quatre serveis que comparteixin aquest bloc, la composició esglaonada pot no escalar. |
+| **Limitacions observades** | - Tres implementacions divergents amb marges codificats a mà per cada pastilla (per exemple md:ml-[135px], md:ml-[186px]): afegir o treure una frase desquadra tota la composició.<br>- El color del punt no té cap significat (no categoritza el tipus de problema): es només decoratiu.<br>- No hi ha versió amb més de sis frases provada: amb quatre serveis que comparteixin aquest bloc, la composició esglaonada pot no escalar. |
 
 **Variants:**
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `estrategia` — ¿Te pasa que...? (estrategia editorial) - llista vertical simple | `app/servicios/estrategia-editorial/ServiciosClient.tsx:252-307` | /servicios/estrategia-editorial | _incrustat_ |
 | `ecosistema` — Sense el teu criteri codificat (ecosistema) - esglaonat amb marges a la dreta | `app/servicios/ecosistema-produccion-editorial/ProblemPillsSection.tsx` | /servicios/ecosistema-produccion-editorial |  |
 | `editoriales` — Si necessites complir el pla (servicios editoriales) - dues files, titular a banda i banda | `app/servicios/servicios-editoriales/ProductionPainPointsSection.tsx` | /servicios/servicios-editoriales |  |
 | `home-avatars` — Desafíos reales (home) - amb avatar flotant en lloc de punt de color | `app/home/ChallengesSection.tsx` | / | Variant més allunyada del patró: substitueix el punt per una fotografia d'avatar i coordenades absolutes calibrades a 1400px. |
+
+### `qa-grid` — Graella de preguntes i respostes
+
+**Recomanació: 🟢 Conservar** — Resol directament la limitació de `painpoint-pills` (marges esglaonats codificats a mà que no escalen): és una graella regular sense posicions fixes per element.
+
+| | |
+|---|---|
+| **Funció** | Graella regular (no esglaonada, no masonry) de targetes blanques sobre fons gris, cadascuna amb un número, una pregunta a mode de títol i una resposta curta de com s'ajuda a resoldre-la. |
+| **Quan té sentit** | Introduïda al redisseny de "Estrategia de IA" (2026-10-08) com a alternativa deliberada a `painpoint-pills`: en lloc de pastilles esglaonades que descriuen un dolor, presenta directament la pregunta i la resposta, amb un disseny de graella que escala millor a un nombre variable d'elements. |
+| **Construcció** | Còpies divergents a diversos fitxers |
+| **Contingut que necessita** | - Entre 4 i 6 parelles de pregunta curta + resposta d'1-2 frases |
+| **Escriptori** | 3 columnes (≥1024px), 2 a tauleta, 1 a mòbil. Targetes blanques, radi 24, padding 32. |
+| **Mòbil** | 1 columna; cap contingut s'oculta ni depèn d'interacció. |
+| **Limitacions observades** | - Només una implementació fins ara: cal veure com escala amb un nombre de preguntes diferent de 6 abans de considerar-lo un patró consolidat. |
+
+**Variants:**
+
+| Variant | Fitxer(s) | Pàgines | Nota |
+|---|---|---|---|
+| `estrategia` — ¿Qué preguntas no puedes seguir aplazando? (estrategia de ia) - graella 3x2 | `app/servicios/estrategia-de-ia/DecisionsSection.tsx` | /servicios/estrategia-de-ia |  |
 
 ## Targetes de servei
 
@@ -319,7 +335,7 @@ _Els blocs que presenten l'oferta. És el grup clau per a la reorganització en 
 | **Contingut que necessita** | - Títol<br>- Subtitol (en cursiva)<br>- Cos (2-3 frases)<br>- Una il·lustració SVG per servei<br>- Ruta de destinació |
 | **Escriptori** | Targetes de 480px d'alcada mínima; la il·lustració ocupa ~56% de l'amplada i alterna costat servei a servei. |
 | **Mòbil** | La il·lustració passa a dalt de tot i el text a sota, en una sola columna. |
-| **Limitacions observades** | - Només en té tres: amb el quart servei cal decidir si s'hi afegeix una quarta targeta o es redissenya el bloc.<br>- No hi ha manera de comparar els serveis entre si: cada targeta és un enllaç independent, no hi ha taula ni resum conjunt.<br>- El títol d'aquesta targeta (Innovación editorial con IA) no coincideix amb el nom del mateix servei a la capcalera (Implementación estratégica de IA) - incoherència 15 de docs/visual-criteria.md. |
+| **Limitacions observades** | - Només en té tres: amb el quart servei cal decidir si s'hi afegeix una quarta targeta o es redissenya el bloc.<br>- No hi ha manera de comparar els serveis entre si: cada targeta és un enllaç independent, no hi ha taula ni resum conjunt. |
 
 **Variants:**
 
@@ -327,41 +343,19 @@ _Els blocs que presenten l'oferta. És el grup clau per a la reorganització en 
 |---|---|---|---|
 | `default` — Les tres targetes reals, amb el seu contingut | `app/home/ServicesSection.tsx` | / |  |
 
-### `svccard-expandable` — Targeta de servei desplegable
-
-**Recomanació: 🟡 Adaptar** — El concepte de desplegable és útil per no saturar la vista, però avui no és un component: és codi incrustat tres vegades amb formes internes diferents. Cal decidir-ne una de sola abans de replicar-la a quatre serveis.
-
-| | |
-|---|---|
-| **Funció** | Targeta blanca amb títol, cos i il·lustració, que es desplega en clic per mostrar un panell detallat (workshops amb pestanyes, programa setmana a setmana, o llista de com funciona). Només a /servicios/estrategia-editorial. |
-| **Quan té sentit** | Quan un sol servei té diverses modalitats que cal detallar sense saturar la vista inicial. |
-| **Construcció** | Codi incrustat dins un component més gran |
-| **Contingut que necessita** | - Títol i cos curts (vista tancada)<br>- Contingut detallat per la vista oberta: pot ser pestanyes, una llista setmana a setmana o una llista de punts |
-| **Escriptori** | En obrir-se, la targeta creix amunt i avall dins la mateixa posició; no és un modal ni es desplaca la pàgina. |
-| **Mòbil** | Identic, però el contingut intern (pestanyes, files setmanals) s'apila en lloc de mostrar-se en horitzontal. |
-| **Limitacions observades** | - Viu sencer dins ServiciosClient.tsx, un sol fitxer de 905 línies amb tres targetes amb estructura interna diferent cadascuna: no és tres variants d'un component, són tres implementacions ad hoc.<br>- La primera targeta (Explorar nuevas oportunidades) està desactivada per una bandera SHOW_CARD_1 = false però el codi es manté sencer: existeix però no es veu a la web pública.<br>- Les tres targetes tenen graella CSS calibrada a una alcada fixa de 419px per al contingut tancat, cosa que no s'adapta bé si el text d'un quart servei és més llarg. |
-
-**Variants:**
-
-| Variant | Fitxer(s) | Pàgines | Nota |
-|---|---|---|---|
-| `card1-workshops` — Targeta 1 - pestanyes de workshop (desactivada) | `app/servicios/estrategia-editorial/ServiciosClient.tsx:362-550` | /servicios/estrategia-editorial | Només es renderitza si SHOW_CARD_1 és true; avui és false. · _incrustat_, _inactiu_ |
-| `card2-weekly` — Targeta 2 - programa setmana a setmana | `app/servicios/estrategia-editorial/ServiciosClient.tsx:552-746` | /servicios/estrategia-editorial | _incrustat_ |
-| `card3-howitworks` — Targeta 3 - llista de com funciona | `app/servicios/estrategia-editorial/ServiciosClient.tsx:748-899` | /servicios/estrategia-editorial | _incrustat_ |
-
 ### `svccard-grid` — Graella de targetes de servei
 
-**Recomanació: 🟡 Adaptar** — És el patró més a prop d'una graella de característiques comparables, però cal normalitzar les mides d'icona i decidir si s'usa per presentar els quatre serveis o només per desglossar-ne un de sol.
+**Recomanació: 🟡 Adaptar** — És el patró que s'ha triat per al primer comparador real del lloc (`estrategia-collaboration`); cal decidir si les variants antigues (sense subgrid, amb alçada fixa) convergeixen cap a la mateixa tècnica o es deixen tal com estan.
 
 | | |
 |---|---|
 | **Funció** | Una targeta blanca gran que conté un subtitol de servei i una graella de 2x2 (o files) de targetes grises més petites, cadascuna amb icona, títol i descripció curta. |
-| **Quan té sentit** | Per descompondre un servei ampli en les seves peces concretes, dins la mateixa pàgina de servei. |
+| **Quan té sentit** | Per descompondre un servei ampli en les seves peces concretes, dins la mateixa pàgina de servei. Des del redisseny de "Estrategia de IA" (2026-10-08), també per comparar 2 modalitats de col·laboració amb la mateixa jerarquia (variant `estrategia-collaboration`), usant CSS subgrid perquè les files quedin alineades encara que el contingut de cada targeta no tingui la mateixa llargada. |
 | **Construcció** | Còpies divergents a diversos fitxers |
-| **Contingut que necessita** | - Títol i cos del servei pare<br>- Una il·lustració gran<br>- De 3 a 6 sub-elements amb icona, títol i descripció |
-| **Escriptori** | Graella de 2 columnes amb targetes d'alcada mínima fixa (245px). |
-| **Mòbil** | Una sola columna; les targetes mantenen l'alcada mínima, que pot deixar espai buit si el text es curt. |
-| **Limitacions observades** | - Dues implementacions amb nombre de columnes diferent (2x2 vs 1x3) i amb mides d'icona inconsistents dins el mateix bloc (48px el contenidor, però la icona interior varia de 28 a 48px segons l'entrada).<br>- No hi ha cap mecanisme de comparació entre els sub-elements: és una llista, no una taula. |
+| **Contingut que necessita** | - Títol i cos del servei pare<br>- Una il·lustració gran<br>- De 2 a 6 sub-elements amb icona, títol i descripció |
+| **Escriptori** | Graella de 2 columnes amb targetes d'alcada mínima fixa (245px) a les variants antigues; la variant `estrategia-collaboration` alinea les files amb subgrid en lloc d'una alçada fixa. |
+| **Mòbil** | Una sola columna; les targetes mantenen l'alcada mínima, que pot deixar espai buit si el text es curt (excepte `estrategia-collaboration`, que no té alçada fixa). |
+| **Limitacions observades** | - Les variants antigues tenen nombre de columnes diferent (2x2 vs 1x3) i mides d'icona inconsistents dins el mateix bloc (48px el contenidor, però la icona interior varia de 28 a 48px segons l'entrada).<br>- Retirat el patró `svccard-expandable` (targeta desplegable, única implementació a l'antiga /servicios/estrategia-editorial): el redisseny de 2026-10-08 el substitueix per aquesta variant `estrategia-collaboration`. |
 
 **Variants:**
 
@@ -369,6 +363,7 @@ _Els blocs que presenten l'oferta. És el grup clau per a la reorganització en 
 |---|---|---|---|
 | `editoriales-offerings` — Lo que ofrezco (servicios editoriales) - graella 2x2 | `app/servicios/servicios-editoriales/ServiceOfferingsSection.tsx` | /servicios/servicios-editoriales |  |
 | `ecosistema-includes` — Qué incluye (ecosistema) - fila de 3, dins SystemStepsSection | `app/servicios/ecosistema-produccion-editorial/SystemStepsSection.tsx:318-366` | /servicios/ecosistema-produccion-editorial | _incrustat_ |
+| `estrategia-collaboration` — ¿Cómo podemos colaborar? (estrategia de ia) - comparador de 2 modalitats amb subgrid | `app/servicios/estrategia-de-ia/CollaborationSection.tsx` | /servicios/estrategia-de-ia |  |
 
 ## Graelles de valor
 
@@ -429,7 +424,7 @@ _Seqüències numerades (passos, setmanes) que expliquen com es treballa._
 
 ### `process-steps` — Passos de procés
 
-**Recomanació: 🟡 Adaptar** — El concepte és clar i útil per explicar un procés de venda, però amagar el detall rere hover només a escriptori el fa invisible per a mòbil i tàctil fins que es toca cada fila (vegeu la incoherència 10 de docs/visual-criteria.md).
+**Recomanació: 🟡 Adaptar** — El concepte és clar i útil per explicar un procés de venda. El redisseny de "Estrategia de IA" (2026-10-08) ja demostra que es pot mantenir tot visible sense perdre claredat; queda per decidir si `ecosistema-build` convergeix cap al mateix patró.
 
 | | |
 |---|---|
@@ -437,16 +432,16 @@ _Seqüències numerades (passos, setmanes) que expliquen com es treballa._
 | **Quan té sentit** | Per explicar com es treballa, en quin ordre i amb quina durada. |
 | **Construcció** | Còpies divergents a diversos fitxers |
 | **Contingut que necessita** | - Una etiqueta numèrica (Paso 1, Semana 1)<br>- Un títol curt<br>- Un detall d'una frase |
-| **Escriptori** | Files horitzontals amb una línia divisoria; en dues de les tres variants el detall només es veu en passar-hi el ratolí per sobre. |
-| **Mòbil** | Les tres variants passen a un format apilat amb el detall sempre visible (la dependència del hover és exclusiva d'escriptori). |
-| **Limitacions observades** | - Dues de les tres variants amaguen el detall de cada pas rere hover a escriptori: a la vista per defecte només es veu el títol, sense el contingut que explica el pas.<br>- Les mides de fletxa i de punt verd no estan unificades entre les tres variants.<br>- La variant de casos d'èxit (ProcessSection) és l'única alimentada per Sanity (PortableText) i inclou un lightbox d'imatges; no comparteix cap part de la implementació amb les altres dues. |
+| **Escriptori** | Files horitzontals amb una línia divisoria; a la variant `ecosistema-build` el detall només es veu en passar-hi el ratolí per sobre, però `estrategia-always-visible` i `case-process` el mostren sempre. |
+| **Mòbil** | Totes les variants passen a un format apilat amb el detall sempre visible. |
+| **Limitacions observades** | - La variant `ecosistema-build` amaga el detall de cada pas rere hover a escriptori: a la vista per defecte només es veu el títol, sense el contingut que explica el pas (vegeu la incoherència 10 de docs/visual-criteria.md).<br>- Les mides de fletxa i de punt verd no estan unificades entre les variants.<br>- La variant de casos d'èxit (ProcessSection) és l'única alimentada per Sanity (PortableText) i inclou un lightbox d'imatges; no comparteix cap part de la implementació amb les altres dues. |
 
 **Variants:**
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
 | `ecosistema-build` — Cómo lo construimos (ecosistema) - detall rere hover a escriptori | `app/servicios/ecosistema-produccion-editorial/SystemStepsSection.tsx:194-316` | /servicios/ecosistema-produccion-editorial | _incrustat_ |
-| `estrategia-weekly` — Programa setmanal (estrategia, dins svccard-expandable) - detall rere hover a escriptori | `app/servicios/estrategia-editorial/ServiciosClient.tsx:636-702` | /servicios/estrategia-editorial | _incrustat_ |
+| `estrategia-always-visible` — ¿Cómo trabajo? (estrategia de ia) - 3 passos, tot visible sense hover | `app/servicios/estrategia-de-ia/WorkProcessSection.tsx` | /servicios/estrategia-de-ia |  |
 | `case-process` — Proceso (cas d'èxit) - text + graella d'imatges amb lightbox | `app/casos-de-exito/[slug]/ProcessSection.tsx` | /casos-de-exito/[slug] |  |
 
 ### `timeline-history` — Línia de temps biogràfica
@@ -559,7 +554,7 @@ _Citació de client amb autoria i logotip._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `orange` — Color per defecte (taronja-400), amb capcalera Testimonios | `app/servicios/estrategia-editorial/TestimonialSection.tsx` | /, /servicios/estrategia-editorial, /servicios/ecosistema-produccion-editorial, /enfoque, /casos-de-exito/[slug] |  |
+| `orange` — Color per defecte (taronja-400), amb capcalera Testimonios | `app/servicios/estrategia-editorial/TestimonialSection.tsx` | /, /servicios/estrategia-de-ia, /servicios/ecosistema-produccion-editorial, /enfoque, /casos-de-exito/[slug] |  |
 | `green` — Variant verda (cardColor), amb capcalera | `app/servicios/estrategia-editorial/TestimonialSection.tsx` | /, /servicios/servicios-editoriales |  |
 | `embedded` — hideHeader - incrustat sense títol de secció, dins PracticeSection | `app/home/PracticeSection.tsx:150-163` | / | _incrustat_ |
 
@@ -585,7 +580,7 @@ _Índexs de feina feta que enllacen o es naveguen._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `default` — Llista amb casos reals i logotips aparellats | `app/servicios/estrategia-editorial/CaseStudiesClient.tsx`<br>`app/servicios/estrategia-editorial/CaseStudiesSection.tsx` | /, /servicios/estrategia-editorial, /enfoque | A estrategia-editorial està desactivat per SHOW_CASE_STUDIES = false. |
+| `default` — Llista amb casos reals i logotips aparellats | `app/servicios/estrategia-editorial/CaseStudiesClient.tsx`<br>`app/servicios/estrategia-editorial/CaseStudiesSection.tsx` | /, /servicios/estrategia-de-ia, /enfoque | A estrategia-editorial està desactivat per SHOW_CASE_STUDIES = false. |
 
 ### `project-carousel` — Carrusel de projectes
 
@@ -679,7 +674,7 @@ _Bandes de conversió al final de pàgina o de secció._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `cta-section` — CtaSection - component compartit amb props | `app/servicios/estrategia-editorial/CtaSection.tsx` | /, /servicios/estrategia-editorial, /servicios/servicios-editoriales, /enfoque, /sobre-mi, /casos-de-exito/[slug] |  |
+| `cta-section` — CtaSection - component compartit amb props | `app/servicios/estrategia-editorial/CtaSection.tsx` | /, /servicios/estrategia-de-ia, /servicios/servicios-editoriales, /enfoque, /sobre-mi, /casos-de-exito/[slug] |  |
 | `closing-ecosistema` — ClosingCtaSection - copia fixada, només a ecosistema | `app/servicios/ecosistema-produccion-editorial/ClosingCtaSection.tsx` | /servicios/ecosistema-produccion-editorial |  |
 | `newsletter` — Newsletter (sobre mi) - variant amb il·lustracions animades, desactivada | `app/sobre-mi/NewsletterSection.tsx` | /sobre-mi | Comentada a page.tsx; no es renderitza a la web pública. · _inactiu_ |
 | `linkedin` — LinkedIn (sobre mi) - targeta amb banner i foto, no només boto | `app/sobre-mi/LinkedInSection.tsx` | /sobre-mi |  |

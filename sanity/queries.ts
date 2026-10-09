@@ -76,6 +76,30 @@ export const CASE_STUDY_BY_SLUG_QUERY = `
   }
 `
 
+export const CASE_STUDY_CARD_BY_SLUG_QUERY = `
+  *[_type == "caseStudy" && slug.current == $slug][0] {
+    _id,
+    title,
+    subtitle,
+    client,
+    "slug": slug.current,
+    imageCard {
+      asset-> {
+        _id,
+        url
+      },
+      alt
+    },
+    summaryImage {
+      asset-> {
+        _id,
+        url
+      },
+      alt
+    }
+  }
+`
+
 export const CASE_STUDY_SLUGS_QUERY = `
   *[_type == "caseStudy" && defined(slug.current)] {
     "slug": slug.current,

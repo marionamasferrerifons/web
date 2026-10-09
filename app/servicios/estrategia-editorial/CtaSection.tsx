@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BOOKING_URL } from '@/lib/constants';
@@ -9,10 +9,13 @@ export default function CtaSection({
   title = 'Ninguna decisión sobre IA se toma bien desde la prisa.',
   subtitle = 'Reserva una llamada para explorar las posibilidades reales que la IA ofrece a tu editorial.',
   subtitleMaxWidth = '453px',
+  actions,
 }: {
   title?: string;
   subtitle?: string;
   subtitleMaxWidth?: string;
+  /** Substitueix el botó per defecte per un bloc d'accions propi (p. ex. ActionButtons de la pàgina "Estrategia de IA"). */
+  actions?: ReactNode;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -75,29 +78,33 @@ export default function CtaSection({
           </p>
         </div>
 
-        <a
-          href={BOOKING_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="cta-button group flex items-center gap-[16px] bg-white hover:bg-grey rounded-full cursor-pointer transition-colors duration-[330ms] ease-linear"
-          style={{ paddingLeft: '28px', paddingRight: '12px', paddingTop: '8px', paddingBottom: '8px' }}
-        >
-          <span
-            className="text-text-accent uppercase"
-            style={{
-              fontFamily: 'var(--font-dm-mono)',
-              fontWeight: 400,
-              fontSize: 'var(--text-body-accent-mono)',
-              lineHeight: 'var(--text-body-accent-mono--line-height)',
-              letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-            }}
-          >
-            RESERVAR UNA LLAMADA
-          </span>
-          <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[27px]">
-            <img src="/arrow-white.svg" alt="" className="size-4 transition-transform duration-300 ease-out group-hover:rotate-45" aria-hidden="true" />
-          </span>
-        </a>
+        <div className="cta-button">
+          {actions ?? (
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-[16px] bg-white hover:bg-grey rounded-full cursor-pointer transition-colors duration-[330ms] ease-linear"
+              style={{ paddingLeft: '28px', paddingRight: '12px', paddingTop: '8px', paddingBottom: '8px' }}
+            >
+              <span
+                className="text-text-accent uppercase"
+                style={{
+                  fontFamily: 'var(--font-dm-mono)',
+                  fontWeight: 400,
+                  fontSize: 'var(--text-body-accent-mono)',
+                  lineHeight: 'var(--text-body-accent-mono--line-height)',
+                  letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
+                }}
+              >
+                RESERVAR UNA LLAMADA
+              </span>
+              <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[27px]">
+                <img src="/arrow-white.svg" alt="" className="size-4 transition-transform duration-300 ease-out group-hover:rotate-45" aria-hidden="true" />
+              </span>
+            </a>
+          )}
+        </div>
 
       </div>
     </section>

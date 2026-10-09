@@ -28,6 +28,11 @@ export const industryLogoUrl = (assetId: string) =>
 export const caseStudyCardImageUrl = (assetId: string) =>
   urlForAsset(assetId).width(640).height(400).fit('crop').quality(75).url()
 
+// Retall 4:3 a la mida real de la columna on es mostra la fitxa resum
+// (CaseHighlightSection), diferent del retall 640x400 de les miniatures.
+export const caseStudySummaryImageUrl = (assetId: string) =>
+  urlForAsset(assetId).width(960).height(720).fit('crop').quality(80).url()
+
 export const projectImageUrl = (assetId: string) =>
   urlForAsset(assetId).width(560).height(760).fit('crop').quality(75).url()
 
