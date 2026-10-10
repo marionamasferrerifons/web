@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SectionTag from './SectionTag';
+import SectionTag from '@/components/service/SectionTag';
 
 const DECISIONS = [
   {
@@ -77,7 +77,6 @@ export default function DecisionsSection() {
             fontSize: 'var(--text-title-l)',
             lineHeight: 'var(--text-title-l--line-height)',
             fontWeight: 400,
-            fontVariationSettings: '"opsz" 14',
             color: 'var(--color-blue-400)',
             maxWidth: '820px',
             textWrap: 'balance',
@@ -101,7 +100,6 @@ export default function DecisionsSection() {
                   fontSize: 'var(--text-body-xl)',
                   lineHeight: 'var(--text-body-xl--line-height)',
                   fontWeight: 400,
-                  fontVariationSettings: '"opsz" 14',
                   color: 'var(--color-blue-400)',
                   textWrap: 'balance',
                 }}
@@ -114,7 +112,6 @@ export default function DecisionsSection() {
                   fontSize: 'var(--text-body-m)',
                   lineHeight: '24px',
                   fontWeight: 300,
-                  fontVariationSettings: '"opsz" 14',
                   color: 'var(--color-text-secondary)',
                 }}
               >

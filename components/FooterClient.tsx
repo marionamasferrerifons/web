@@ -30,8 +30,7 @@ const monoSmallStyle = {
 
 const SERVICES_ITEMS = [
   { href: '/servicios/estrategia-de-ia', label: 'Estrategia de IA' },
-  { href: '/servicios/ecosistema-produccion-editorial', label: 'Sistema de producción editorial con IA' },
-  { href: '/servicios/servicios-editoriales', label: 'Servicios editoriales con IA aplicada' },
+  { href: '/servicios/produccion-editorial-con-ia', label: 'Producción editorial con IA' },
 ]
 
 export type FooterLinkItem = { href: string; label: string };

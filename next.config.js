@@ -16,6 +16,17 @@ const nextConfig = {
         destination: '/servicios/estrategia-de-ia',
         statusCode: 301,
       },
+      // Les dues pàgines anteriors de producció s'unifiquen a Producción editorial con IA.
+      {
+        source: '/servicios/servicios-editoriales',
+        destination: '/servicios/produccion-editorial-con-ia',
+        statusCode: 301,
+      },
+      {
+        source: '/servicios/ecosistema-produccion-editorial',
+        destination: '/servicios/produccion-editorial-con-ia',
+        statusCode: 301,
+      },
     ];
   },
   async headers() {

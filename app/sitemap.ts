@@ -8,8 +8,7 @@ const STATIC_ROUTES = [
   '/enfoque',
   '/sobre-mi',
   '/servicios/estrategia-de-ia',
-  '/servicios/ecosistema-produccion-editorial',
-  '/servicios/servicios-editoriales',
+  '/servicios/produccion-editorial-con-ia',
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

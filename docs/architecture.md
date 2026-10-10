@@ -10,7 +10,8 @@
 Cada ruta és una carpeta amb el seu `page.tsx` i els components de secció colocats al costat (`NomSection.tsx`), en lloc d'un `components/` compartit per pàgina. Rutes actuals:
 - `app/page.tsx` + `app/home/` — home
 - `app/enfoque/`
-- `app/servicios/estrategia-editorial/`, `.../ecosistema-produccion-editorial/`, `.../servicios-editoriales/`
+- `app/servicios/estrategia-de-ia/`, `.../produccion-editorial-con-ia/` — pàgines de servei; les peces compartides són a `components/service/`
+- `app/servicios/estrategia-editorial/` (només components compartits: testimoni, CTA, llista de casos), `.../ecosistema-produccion-editorial/`, `.../servicios-editoriales/` (sense `page.tsx`: redirecció 301 a `next.config.js`; les seccions es conserven per a la galeria `/dev/gallery`)
 - `app/casos-de-exito/[slug]/` — pàgina dinàmica per cas d'èxit
 - `app/sobre-mi/`
 

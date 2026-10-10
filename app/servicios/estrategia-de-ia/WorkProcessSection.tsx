@@ -62,7 +62,6 @@ export default function WorkProcessSection() {
               fontSize: 'var(--text-title-l)',
               lineHeight: 'var(--text-title-l--line-height)',
               fontWeight: 400,
-              fontVariationSettings: '"opsz" 14',
               color: 'var(--color-blue-400)',
             }}
           >
@@ -75,7 +74,6 @@ export default function WorkProcessSection() {
               fontSize: 'var(--text-body-l)',
               lineHeight: 'var(--text-body-l--line-height)',
               fontWeight: 300,
-              fontVariationSettings: '"opsz" 14',
               color: 'var(--color-text-secondary)',
               maxWidth: '640px',
               textWrap: 'pretty',
@@ -116,7 +114,6 @@ export default function WorkProcessSection() {
                   fontSize: 'var(--text-body-xl)',
                   lineHeight: 'var(--text-body-xl--line-height)',
                   fontWeight: 400,
-                  fontVariationSettings: '"opsz" 14',
                   color: 'var(--color-blue-400)',
                 }}
               >
@@ -128,7 +125,6 @@ export default function WorkProcessSection() {
                   fontSize: 'var(--text-body-m)',
                   lineHeight: '24px',
                   fontWeight: 300,
-                  fontVariationSettings: '"opsz" 14',
                   color: 'var(--color-text-secondary)',
                 }}
               >

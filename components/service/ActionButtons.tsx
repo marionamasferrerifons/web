@@ -4,18 +4,21 @@ import { BOOKING_URL, WHATSAPP_URL } from '@/lib/constants';
 import Button from './Button';
 
 /**
- * Bloc d'accions comú a les seccions 1, 4 i 6: botó principal de reserva +
+ * Bloc d'accions comú de les pàgines de servei: botó principal de reserva +
  * botó secundari de WhatsApp, amb una nota centrada a sota. A mòbil els
  * botons s'apilen a amplada completa i la nota es manté a sota.
+ * `whatsappHref` permet que cada servei porti el seu missatge suggerit.
  */
 export default function ActionButtons({
   inverted = false,
   surface = 'color',
   noteColor,
+  whatsappHref = WHATSAPP_URL,
 }: {
   inverted?: boolean;
   surface?: 'color' | 'white';
   noteColor?: string;
+  whatsappHref?: string;
 }) {
   return (
     <div className="flex flex-col items-center gap-[16px] w-full">
@@ -23,7 +26,7 @@ export default function ActionButtons({
         <Button href={BOOKING_URL} variant="primary" surface={surface}>
           Reservar una sesión gratuita
         </Button>
-        <Button href={WHATSAPP_URL} variant="secondary" inverted={inverted} icon="chat">
+        <Button href={whatsappHref} variant="secondary" inverted={inverted} icon="chat">
           Hablar por WhatsApp
         </Button>
       </div>
@@ -34,7 +37,6 @@ export default function ActionButtons({
           fontSize: '14px',
           lineHeight: '20px',
           fontWeight: 300,
-          fontVariationSettings: '"opsz" 14',
           color: noteColor ?? 'var(--color-text-secondary)',
           maxWidth: '460px',
           textWrap: 'balance',

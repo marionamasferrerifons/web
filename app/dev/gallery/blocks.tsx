@@ -40,7 +40,13 @@ import DecisionsSection from '@/app/servicios/estrategia-de-ia/DecisionsSection'
 import WorkProcessSection from '@/app/servicios/estrategia-de-ia/WorkProcessSection'
 import CollaborationSection from '@/app/servicios/estrategia-de-ia/CollaborationSection'
 
-// Ecosistema de producció editorial
+// Producción editorial con IA
+import ProduccionHeroSection from '@/app/servicios/produccion-editorial-con-ia/HeroSection'
+import ModalitiesSection from '@/app/servicios/produccion-editorial-con-ia/ModalitiesSection'
+import ProductionSystemSection from '@/app/servicios/produccion-editorial-con-ia/ProductionSystemSection'
+import EditorialProjectsSection from '@/app/servicios/produccion-editorial-con-ia/EditorialProjectsSection'
+
+// Ecosistema de producció editorial (sense ruta; només galeria)
 import EcosistemaHeroSection from '@/app/servicios/ecosistema-produccion-editorial/EcosistemaHeroSection'
 import ProblemPillsSection from '@/app/servicios/ecosistema-produccion-editorial/ProblemPillsSection'
 import ThreeLayersConvergeSection from '@/app/servicios/ecosistema-produccion-editorial/ThreeLayersConvergeSection'
@@ -49,11 +55,10 @@ import ImpactStatsSection from '@/app/servicios/ecosistema-produccion-editorial/
 import AdvantagesSection from '@/app/servicios/ecosistema-produccion-editorial/AdvantagesSection'
 import ClosingCtaSection from '@/app/servicios/ecosistema-produccion-editorial/ClosingCtaSection'
 
-// Servicios editoriales
+// Servicios editoriales (sense ruta; només galeria)
 import ServiciosEditorialesHeroSection from '@/app/servicios/servicios-editoriales/ServiciosEditorialesHeroSection'
 import ProductionPainPointsSection from '@/app/servicios/servicios-editoriales/ProductionPainPointsSection'
 import ServiceOfferingsSection from '@/app/servicios/servicios-editoriales/ServiceOfferingsSection'
-import EditorialProjectsSection from '@/app/servicios/servicios-editoriales/EditorialProjectsSection'
 
 // Casos d'èxit
 import CaseStudyHeroSection from '@/app/casos-de-exito/[slug]/CaseStudyHeroSection'
@@ -99,9 +104,8 @@ import {
 } from './fixtures'
 
 const SERVICES_ITEMS = [
-  { href: '/servicios/estrategia-editorial', label: 'Implementación estratégica de IA' },
-  { href: '/servicios/ecosistema-produccion-editorial', label: 'Sistema de producción editorial con IA' },
-  { href: '/servicios/servicios-editoriales', label: 'Servicios editoriales con IA aplicada' },
+  { href: '/servicios/estrategia-de-ia', label: 'Estrategia de IA' },
+  { href: '/servicios/produccion-editorial-con-ia', label: 'Producción editorial con IA' },
 ]
 
 const CASE_STUDY_DROPDOWN_ITEMS = caseStudiesFixture.map((c) => ({
@@ -139,6 +143,7 @@ export const BLOCK_RENDERERS: Record<string, Record<string, Renderer>> = {
   'hero-page': {
     home: () => <HomeHeroSection />,
     estrategia: () => <EstrategiaHeroSection />,
+    produccion: () => <ProduccionHeroSection />,
     ecosistema: () => <EcosistemaHeroSection />,
     editoriales: () => <ServiciosEditorialesHeroSection />,
     'sobre-mi': () => <SobreMiHeroSection />,
@@ -168,6 +173,8 @@ export const BLOCK_RENDERERS: Record<string, Record<string, Renderer>> = {
     'editoriales-offerings': () => <ServiceOfferingsSection />,
     'ecosistema-includes': () => <SystemStepsSection />,
     'estrategia-collaboration': () => <CollaborationSection />,
+    'produccion-modalities': () => <ModalitiesSection />,
+    'produccion-options': () => <ProductionSystemSection />,
   },
 
   'valuegrid-masonry': {
@@ -186,6 +193,7 @@ export const BLOCK_RENDERERS: Record<string, Record<string, Renderer>> = {
   'process-steps': {
     'ecosistema-build': () => <SystemStepsSection />,
     'estrategia-always-visible': () => <WorkProcessSection />,
+    'produccion-benefits': () => <ProductionSystemSection />,
     'case-process': () => <ProcessSection {...processFixture} />,
   },
   'timeline-history': { default: () => <HistorySection /> },

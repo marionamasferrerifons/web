@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { isValidSignature, SIGNATURE_HEADER_NAME } from '@sanity/webhook'
 
 // Testimonials and case studies fan out across most of the site's 8 routes
-// (home, enfoque, estrategia-editorial, servicios-editoriales, the case
+// (home, enfoque, estrategia-de-ia, produccion-editorial-con-ia, the case
 // study's own page) — mapping document type to affected paths would need
 // to be kept in sync with every page's data dependencies. Revalidating
 // everything on each publish is the simpler, always-correct choice at this

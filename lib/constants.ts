@@ -3,6 +3,14 @@ export const BOOKING_URL =
 
 export const SITE_URL = 'https://masferrerifons.com'
 
-export const WHATSAPP_URL =
-  'https://wa.me/34622803203?text=' +
-  encodeURIComponent('Hola, Mariona. Me gustaría comentarte una cuestión sobre IA en mi editorial.')
+/** Obre una conversa de WhatsApp amb un missatge suggerit que el visitant pot editar abans d'enviar. */
+export const whatsappUrl = (message: string) =>
+  'https://wa.me/34622803203?text=' + encodeURIComponent(message)
+
+export const WHATSAPP_URL = whatsappUrl(
+  'Hola, Mariona. Me gustaría comentarte una cuestión sobre IA en mi editorial.',
+)
+
+export const WHATSAPP_URL_PRODUCCION = whatsappUrl(
+  'Hola, Mariona. Me gustaría comentarte una necesidad de producción de contenidos educativos con IA.',
+)
