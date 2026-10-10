@@ -29,6 +29,9 @@
   --color-orange: #F26949;
 
   /* Colores Accent (Orange) */
+  /* Fons de les il·lustracions de Producción editorial con IA (tint clar
+     d'orange-400), equivalent al verd clar de les d'Estrategia. */
+  --color-orange-100: #FAE3C6;
   --color-orange-200: #E5A27C;
   --color-orange-400: #EC9A37;
 
@@ -100,6 +103,16 @@ body {
   color: var(--color-blue-800);
   background-color: var(--color-white);
   overflow-x: hidden;
+  /* DM Sans es carrega com a font variable amb eix opsz (app/layout.tsx).
+     Per defecte el lloc es manté a la mida òptica 14, com abans; les pàgines
+     de servei la deixen automàtica (classe .optical-auto). */
+  font-variation-settings: "opsz" 14;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mida òptica automàtica (segons la mida del text), com a les maquetes de
+   les pàgines de servei. S'aplica al <main> d'aquestes pàgines. */
+.optical-auto {
+  font-variation-settings: normal;
 }

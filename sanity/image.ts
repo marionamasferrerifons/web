@@ -33,8 +33,10 @@ export const caseStudyCardImageUrl = (assetId: string) =>
 export const caseStudySummaryImageUrl = (assetId: string) =>
   urlForAsset(assetId).width(960).height(720).fit('crop').quality(80).url()
 
+// Cobertes de llibre senceres (sense retall): les originals van de 0,68 a 0,84
+// d'amplada/alçada, i el carrusel les encabeix en una caixa 7:10.
 export const projectImageUrl = (assetId: string) =>
-  urlForAsset(assetId).width(560).height(760).fit('crop').quality(75).url()
+  urlForAsset(assetId).width(480).height(686).fit('max').quality(75).url()
 
 export const processImageUrl = (assetId: string) =>
   urlForAsset(assetId).width(1140).height(641).fit('crop').quality(75).url()

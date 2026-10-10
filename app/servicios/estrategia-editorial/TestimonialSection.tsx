@@ -117,7 +117,6 @@ export default function TestimonialSection({
                 fontSize: 'var(--text-title-s)',
                 lineHeight: 'var(--text-title-s--line-height)',
                 fontWeight: 300,
-                fontVariationSettings: '"opsz" 14',
                 color: 'var(--color-blue-800)',
               }}
             >
@@ -139,7 +138,6 @@ export default function TestimonialSection({
                   fontSize: 'var(--text-body-m)',
                   lineHeight: 'var(--text-body-m--line-height)',
                   fontWeight: 300,
-                  fontVariationSettings: '"opsz" 14',
                   color: 'var(--color-blue-800)',
                 }}
               >
@@ -170,7 +168,6 @@ export default function TestimonialSection({
               fontSize: 'var(--text-title-l)',
               lineHeight: 'var(--text-title-l--line-height)',
               fontWeight: 400,
-              fontVariationSettings: '"opsz" 14',
               color: 'var(--color-blue-400)',
             }}
           >

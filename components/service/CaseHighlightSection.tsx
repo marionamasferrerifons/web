@@ -8,21 +8,41 @@ import SectionTag from './SectionTag';
 import Button from './Button';
 
 type CaseHighlightProps = {
+  /** Slug del cas a Sanity; el botó enllaça a /casos-de-exito/{slug}. */
   slug: string
+  tag?: string
+  title: string
+  paragraphs: string[]
+  /** Dades breus del cas, com a parelles [etiqueta, valor]. */
+  facts: [string, string][]
+  linkLabel: string
   imageUrl?: string
   imageAlt?: string
   logoUrl?: string
   logoAlt?: string
+  /** Sense padding superior: quan la secció anterior també és blanca, evita doblar la separació. */
+  flushTop?: boolean
 }
 
 /**
- * Secció 5 — targeta destacada del cas Altamar. El títol i els paràgrafs són
- * còpia pròpia d'aquesta pàgina (no venen de Sanity): el document de caseStudy
- * amb slug "estrategia-de-ia" encara no existeix a Sanity, així que `slug`,
- * `imageUrl` i `logoUrl` poden no estar disponibles — en aquest cas el
- * component es renderitza igualment, sense imatge ni logotip, sense trencar.
+ * Targeta destacada d'un cas d'èxit dins una pàgina de servei. El títol, els
+ * paràgrafs i les dades són còpia pròpia de cada pàgina (props); de Sanity
+ * només venen el slug, la imatge resum i el logotip. Si falten la imatge o el
+ * logotip, la targeta es renderitza igualment sense ells.
  */
-export default function CaseHighlightSection({ slug, imageUrl, imageAlt, logoUrl, logoAlt }: CaseHighlightProps) {
+export default function CaseHighlightSection({
+  slug,
+  tag = '[CASO DE ÉXITO]',
+  title,
+  paragraphs,
+  facts,
+  linkLabel,
+  imageUrl,
+  imageAlt,
+  logoUrl,
+  logoAlt,
+  flushTop = false,
+}: CaseHighlightProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -45,7 +65,6 @@ export default function CaseHighlightSection({ slug, imageUrl, imageAlt, logoUrl
     fontSize: 'var(--text-body-l)',
     lineHeight: 'var(--text-body-l--line-height)',
     fontWeight: 300,
-    fontVariationSettings: '"opsz" 14',
     color: 'var(--color-text-secondary-strong)',
   } as const;
 
@@ -61,7 +80,7 @@ export default function CaseHighlightSection({ slug, imageUrl, imageAlt, logoUrl
   return (
     <section
       ref={sectionRef}
-      className="w-full flex justify-center py-[64px] md:py-[96px] px-[20px] md:px-[40px]"
+      className={`w-full flex justify-center ${flushTop ? 'pt-0' : 'pt-[64px] md:pt-[96px]'} pb-[64px] md:pb-[96px] px-[20px] md:px-[40px]`}
       style={{ backgroundColor: 'var(--color-white)' }}
     >
       <article
@@ -69,7 +88,7 @@ export default function CaseHighlightSection({ slug, imageUrl, imageAlt, logoUrl
         style={{ maxWidth: '1160px', backgroundColor: 'var(--color-blue-100)', borderRadius: '24px' }}
       >
         <div className="lg:col-span-7 flex flex-col gap-[24px]">
-          <SectionTag color="var(--color-text-secondary-strong)">[CASO DE ÉXITO]</SectionTag>
+          <SectionTag color="var(--color-text-secondary-strong)">{tag}</SectionTag>
           {logoUrl && (
             // El logotip d'origen (Sanity) no és blanc: aquí es força a negre
             // amb `brightness(0)` perquè contrasti sobre el fons blau clar
@@ -77,7 +96,7 @@ export default function CaseHighlightSection({ slug, imageUrl, imageAlt, logoUrl
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={logoUrl}
-              alt={logoAlt ?? 'Altamar'}
+              alt={logoAlt ?? ''}
               className="self-start"
               style={{ height: '40px', width: 'auto', filter: 'brightness(0)', opacity: 0.8 }}
             />
@@ -88,23 +107,16 @@ export default function CaseHighlightSection({ slug, imageUrl, imageAlt, logoUrl
               fontSize: 'var(--text-title-m)',
               lineHeight: 'var(--text-title-m--line-height)',
               fontWeight: 400,
-              fontVariationSettings: '"opsz" 14',
               color: 'var(--color-blue-400)',
               textWrap: 'balance',
             }}
           >
-            Altamar: de querer incorporar IA a decidir dónde invertir.
+            {title}
           </h2>
           <div className="flex flex-col gap-[16px]">
-            <p style={paragraphStyle}>
-              Altamar necesitaba definir qué papel debía tener la IA en su negocio y qué iniciativas merecía la pena impulsar.
-            </p>
-            <p style={paragraphStyle}>
-              En un proyecto de cinco semanas analizamos su contexto, identificamos oportunidades y construimos una hoja de ruta con iniciativas priorizadas, proveedores evaluados y una propuesta de calendario e inversión.
-            </p>
-            <p style={paragraphStyle}>
-              El trabajo permitió reorientar el presupuesto hacia una cartera de iniciativas y establecer criterios para decidir qué impulsar y qué aplazar.
-            </p>
+            {paragraphs.map((text) => (
+              <p key={text} style={paragraphStyle}>{text}</p>
+            ))}
           </div>
         </div>
 
@@ -115,11 +127,7 @@ export default function CaseHighlightSection({ slug, imageUrl, imageAlt, logoUrl
             </div>
           )}
           <dl className="flex flex-col" style={{ borderBottom: '1px solid var(--color-blue-200)' }}>
-            {[
-              ['Cliente', 'Altamar'],
-              ['Servicio', 'Consultoría estratégica'],
-              ['Duración', '5 semanas'],
-            ].map(([label, value]) => (
+            {facts.map(([label, value]) => (
               <div
                 key={label}
                 className="flex justify-between gap-[16px] py-[12px]"
@@ -133,7 +141,6 @@ export default function CaseHighlightSection({ slug, imageUrl, imageAlt, logoUrl
                     fontSize: 'var(--text-body-m)',
                     lineHeight: '24px',
                     fontWeight: 400,
-                    fontVariationSettings: '"opsz" 14',
                     color: 'var(--color-blue-800)',
                   }}
                 >
@@ -144,7 +151,7 @@ export default function CaseHighlightSection({ slug, imageUrl, imageAlt, logoUrl
           </dl>
           <div>
             <Button href={`/casos-de-exito/${slug}`} variant="primary">
-              Ver el caso de Altamar
+              {linkLabel}
             </Button>
           </div>
         </div>

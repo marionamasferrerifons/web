@@ -220,8 +220,9 @@ _El primer bloc de cada ruta: etiqueta, titular, descripció i crida a l'acció 
 |---|---|---|---|
 | `home` — Home - foto amb màscara + forma dentada | `app/home/HomeHeroSection.tsx` | / |  |
 | `estrategia` — Estrategia de IA - vectors simètrics, fons verd | `app/servicios/estrategia-de-ia/HeroSection.tsx` | /servicios/estrategia-de-ia |  |
-| `ecosistema` — Ecosistema de producció - titular alineat a la dreta, fons taronja | `app/servicios/ecosistema-produccion-editorial/EcosistemaHeroSection.tsx` | /servicios/ecosistema-produccion-editorial |  |
-| `editoriales` — Servicios editoriales - titular al 57%, fons taronja-400 | `app/servicios/servicios-editoriales/ServiciosEditorialesHeroSection.tsx` | /servicios/servicios-editoriales |  |
+| `produccion` — Producción editorial con IA - titular a l'esquerra, text i accions a la dreta, fons taronja-400 | `app/servicios/produccion-editorial-con-ia/HeroSection.tsx` | /servicios/produccion-editorial-con-ia |  |
+| `ecosistema` — Ecosistema de producció - titular alineat a la dreta, fons taronja | `app/servicios/ecosistema-produccion-editorial/EcosistemaHeroSection.tsx` | /servicios/ecosistema-produccion-editorial (sense ruta, 301) |  |
+| `editoriales` — Servicios editoriales - titular al 57%, fons taronja-400 | `app/servicios/servicios-editoriales/ServiciosEditorialesHeroSection.tsx` | /servicios/servicios-editoriales (sense ruta, 301) |  |
 | `sobre-mi` — Sobre mi - foto amb màscara d'ona, fons blau | `app/sobre-mi/SobreMiHeroSection.tsx` | /sobre-mi |  |
 | `enfoque` — Enfoque - centrat, amb text de farciment | `app/enfoque/EnfoqueHeroSection.tsx` | /enfoque |  |
 | `caso` — Cas d'èxit - centrat amb metadades (any, durada, client) | `app/casos-de-exito/[slug]/CaseStudyHeroSection.tsx` | /casos-de-exito/[slug] |  |
@@ -249,7 +250,7 @@ _Blocs que només són un titular gran, sense targetes ni llistes._
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
 | `problem` — Problem (home) - titular amb forma de fons | `app/home/ProblemSection.tsx` | / |  |
-| `production-painpoints-title` — Titulars de ProductionPainPoints (servicios editoriales) | `app/servicios/servicios-editoriales/ProductionPainPointsSection.tsx` | /servicios/servicios-editoriales | Els dos h2 del bloc de pastilles; no és un component separat. · _incrustat_ |
+| `production-painpoints-title` — Titulars de ProductionPainPoints (servicios editoriales) | `app/servicios/servicios-editoriales/ProductionPainPointsSection.tsx` | /servicios/servicios-editoriales (sense ruta, 301) | Els dos h2 del bloc de pastilles; no és un component separat. · _incrustat_ |
 | `quote` — Quote (sobre mi) - citació personal sobre fons taronja | `app/sobre-mi/QuoteSection.tsx` | /sobre-mi |  |
 
 ### `statement-wordfill` — Titular que s'omple en fer scroll
@@ -295,8 +296,8 @@ _Pastilles blanques que enumeren dolors del client abans de presentar l'oferta._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `ecosistema` — Sense el teu criteri codificat (ecosistema) - esglaonat amb marges a la dreta | `app/servicios/ecosistema-produccion-editorial/ProblemPillsSection.tsx` | /servicios/ecosistema-produccion-editorial |  |
-| `editoriales` — Si necessites complir el pla (servicios editoriales) - dues files, titular a banda i banda | `app/servicios/servicios-editoriales/ProductionPainPointsSection.tsx` | /servicios/servicios-editoriales |  |
+| `ecosistema` — Sense el teu criteri codificat (ecosistema) - esglaonat amb marges a la dreta | `app/servicios/ecosistema-produccion-editorial/ProblemPillsSection.tsx` | /servicios/ecosistema-produccion-editorial (sense ruta, 301) |  |
+| `editoriales` — Si necessites complir el pla (servicios editoriales) - dues files, titular a banda i banda | `app/servicios/servicios-editoriales/ProductionPainPointsSection.tsx` | /servicios/servicios-editoriales (sense ruta, 301) |  |
 | `home-avatars` — Desafíos reales (home) - amb avatar flotant en lloc de punt de color | `app/home/ChallengesSection.tsx` | / | Variant més allunyada del patró: substitueix el punt per una fotografia d'avatar i coordenades absolutes calibrades a 1400px. |
 
 ### `qa-grid` — Graella de preguntes i respostes
@@ -361,9 +362,11 @@ _Els blocs que presenten l'oferta. És el grup clau per a la reorganització en 
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `editoriales-offerings` — Lo que ofrezco (servicios editoriales) - graella 2x2 | `app/servicios/servicios-editoriales/ServiceOfferingsSection.tsx` | /servicios/servicios-editoriales |  |
-| `ecosistema-includes` — Qué incluye (ecosistema) - fila de 3, dins SystemStepsSection | `app/servicios/ecosistema-produccion-editorial/SystemStepsSection.tsx:318-366` | /servicios/ecosistema-produccion-editorial | _incrustat_ |
+| `editoriales-offerings` — Lo que ofrezco (servicios editoriales) - graella 2x2 | `app/servicios/servicios-editoriales/ServiceOfferingsSection.tsx` | /servicios/servicios-editoriales (sense ruta, 301) |  |
+| `ecosistema-includes` — Qué incluye (ecosistema) - fila de 3, dins SystemStepsSection | `app/servicios/ecosistema-produccion-editorial/SystemStepsSection.tsx:318-366` | /servicios/ecosistema-produccion-editorial (sense ruta, 301) | _incrustat_ |
 | `estrategia-collaboration` — ¿Cómo podemos colaborar? (estrategia de ia) - comparador de 2 modalitats amb subgrid | `app/servicios/estrategia-de-ia/CollaborationSection.tsx` | /servicios/estrategia-de-ia |  |
+| `produccion-modalities` — ¿Qué necesitas resolver? (producción) - 3 modalitats amb il·lustració, subgrid | `app/servicios/produccion-editorial-con-ia/ModalitiesSection.tsx` | /servicios/produccion-editorial-con-ia |  |
+| `produccion-options` — Dos formas de ponerlo en marcha (producción) - comparador de 2 opcions amb subgrid, dins ProductionSystemSection | `app/servicios/produccion-editorial-con-ia/ProductionSystemSection.tsx` | /servicios/produccion-editorial-con-ia | _incrustat_ |
 
 ## Graelles de valor
 
@@ -390,7 +393,7 @@ _Targetes curtes amb icona, títol i cos que argumenten beneficis o principis._
 | `about-values` — Mis valores (sobre mi) - 3 columnes de 2, amb formes de fons | `app/sobre-mi/ValuesSection.tsx` | /sobre-mi |  |
 | `enfoque-principles` — Principios de trabajo (enfoque) - 3 columnes, targetes altes amb forma | `app/enfoque/WorkPrinciplesSection.tsx` | /enfoque |  |
 | `home-practice` — Traducción a la práctica (home) - fila de 3 + testimoni incrustat | `app/home/PracticeSection.tsx` | / |  |
-| `ecosistema-advantages` — Ventajas (ecosistema) - graella 2x2 + diagrama | `app/servicios/ecosistema-produccion-editorial/AdvantagesSection.tsx` | /servicios/ecosistema-produccion-editorial |  |
+| `ecosistema-advantages` — Ventajas (ecosistema) - graella 2x2 + diagrama | `app/servicios/ecosistema-produccion-editorial/AdvantagesSection.tsx` | /servicios/ecosistema-produccion-editorial (sense ruta, 301) |  |
 
 ## Composicions de marca
 
@@ -416,7 +419,7 @@ _Composicions amb formes de marca i coreografia d'scroll. Alt impacte visual, po
 |---|---|---|---|
 | `home-arches` — El meu enfoque (home) - dos arcs + un cercle, sense pin | `app/home/CriterioShapesSection.tsx` | / |  |
 | `enfoque-diamonds` — El criteri (enfoque) - diamants apilats amb pin + crossfade | `app/enfoque/CriterioLayersSection.tsx` | /enfoque |  |
-| `ecosistema-converge` — El criteri no es delega (ecosistema) - tres targetes que convergeixen amb pin | `app/servicios/ecosistema-produccion-editorial/ThreeLayersConvergeSection.tsx` | /servicios/ecosistema-produccion-editorial |  |
+| `ecosistema-converge` — El criteri no es delega (ecosistema) - tres targetes que convergeixen amb pin | `app/servicios/ecosistema-produccion-editorial/ThreeLayersConvergeSection.tsx` | /servicios/ecosistema-produccion-editorial (sense ruta, 301) |  |
 
 ## Processos i etapes
 
@@ -440,8 +443,9 @@ _Seqüències numerades (passos, setmanes) que expliquen com es treballa._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `ecosistema-build` — Cómo lo construimos (ecosistema) - detall rere hover a escriptori | `app/servicios/ecosistema-produccion-editorial/SystemStepsSection.tsx:194-316` | /servicios/ecosistema-produccion-editorial | _incrustat_ |
+| `ecosistema-build` — Cómo lo construimos (ecosistema) - detall rere hover a escriptori | `app/servicios/ecosistema-produccion-editorial/SystemStepsSection.tsx:194-316` | /servicios/ecosistema-produccion-editorial (sense ruta, 301) | _incrustat_ |
 | `estrategia-always-visible` — ¿Cómo trabajo? (estrategia de ia) - 3 passos, tot visible sense hover | `app/servicios/estrategia-de-ia/WorkProcessSection.tsx` | /servicios/estrategia-de-ia |  |
+| `produccion-benefits` — ¿Qué aporta a tu editorial? (producción) - 4 beneficis amb icona, sense numeració, dins ProductionSystemSection | `app/servicios/produccion-editorial-con-ia/ProductionSystemSection.tsx` | /servicios/produccion-editorial-con-ia | _incrustat_ |
 | `case-process` — Proceso (cas d'èxit) - text + graella d'imatges amb lightbox | `app/casos-de-exito/[slug]/ProcessSection.tsx` | /casos-de-exito/[slug] |  |
 
 ### `timeline-history` — Línia de temps biogràfica
@@ -486,7 +490,7 @@ _Xifres grans de resultat._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `default` — Tiempo de producción - rang 60-90% | `app/servicios/ecosistema-produccion-editorial/ImpactStatsSection.tsx` | /servicios/ecosistema-produccion-editorial |  |
+| `default` — Tiempo de producción - rang 60-90% | `app/servicios/ecosistema-produccion-editorial/ImpactStatsSection.tsx` | /servicios/ecosistema-produccion-editorial (sense ruta, 301) |  |
 
 ### `metric-cards` — Targetes de resultat
 
@@ -554,8 +558,8 @@ _Citació de client amb autoria i logotip._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `orange` — Color per defecte (taronja-400), amb capcalera Testimonios | `app/servicios/estrategia-editorial/TestimonialSection.tsx` | /, /servicios/estrategia-de-ia, /servicios/ecosistema-produccion-editorial, /enfoque, /casos-de-exito/[slug] |  |
-| `green` — Variant verda (cardColor), amb capcalera | `app/servicios/estrategia-editorial/TestimonialSection.tsx` | /, /servicios/servicios-editoriales |  |
+| `orange` — Color per defecte (taronja-400), amb capcalera Testimonios | `app/servicios/estrategia-editorial/TestimonialSection.tsx` | /, /servicios/estrategia-de-ia, /enfoque, /casos-de-exito/[slug] |  |
+| `green` — Variant verda (cardColor), amb capcalera | `app/servicios/estrategia-editorial/TestimonialSection.tsx` | /, /servicios/produccion-editorial-con-ia |  |
 | `embedded` — hideHeader - incrustat sense títol de secció, dins PracticeSection | `app/home/PracticeSection.tsx:150-163` | / | _incrustat_ |
 
 ## Casos i projectes
@@ -584,23 +588,23 @@ _Índexs de feina feta que enllacen o es naveguen._
 
 ### `project-carousel` — Carrusel de projectes
 
-**Recomanació: 🟡 Adaptar** — És el cas més greu de contingut només accessible per hover de tot el lloc: en mòbil, el bloc perd tota la seva informació (vegeu incoherència 10 de docs/visual-criteria.md).
+**Recomanació: 🟢 Conservar** — Redissenyat el 2026-10-09 per a Producción editorial con IA: resol la dependència de hover (incoherència 10 de docs/visual-criteria.md) i el triplicat de l'array de projectes.
 
 | | |
 |---|---|
-| **Funció** | Targetes verticals en carrusel horitzontal amb scroll, on la informació (títol, rol, etapa, editorial) només es veu en passar-hi el ratolí per sobre; en repos només es veu la imatge amb un degradat. |
+| **Funció** | Targetes verticals en carrusel horitzontal: coberta sencera del llibre i, a sota, any, curs, títol, rol i editorial, sempre visibles. |
 | **Quan té sentit** | Per mostrar un volum gran de projectes (desenes) sense ocupar tanta alcada de pàgina com una llista vertical. |
 | **Construcció** | Codi incrustat dins un component més gran |
-| **Contingut que necessita** | - Títol, rol, etapa, editorial i any per projecte<br>- Imatge de projecte (Sanity) |
-| **Escriptori** | Scroll horitzontal amb botons de fletxa; el contingut de text només apareix en hover sobre cada targeta. |
-| **Mòbil** | El carrusel es fa lliscable amb el dit (overflow-x-auto), però el text segueix depenent del hover, que no existeix en tàctil: en mòbil el projecte es veu només com a imatge, sense títol ni rol ni editorial visibles mai. |
-| **Limitacions observades** | - Tot el contingut textual (títol, rol, etapa, editorial) només es veu amb hover de ratolí: en tàctil i mòbil és completament illegible sense cap alternativa.<br>- Es construeix triplicant l'array de projectes per simular un bucle infinit, cosa que fa més pesada la pàgina com més projectes hi hagi. |
+| **Contingut que necessita** | - Títol, rol, curs, editorial i any per projecte<br>- Imatge de coberta (Sanity) |
+| **Escriptori** | Scroll-snap natiu amb botons anterior/següent (aria-label) que es desactiven als extrems; projectes del més recent al més antic. |
+| **Mòbil** | Lliscable amb el dit; la informació de cada projecte es manté visible sota la coberta. |
+| **Limitacions observades** | - Sense bucle infinit: arribat a l'últim projecte, cal tornar enrere.<br>- L'ordre és per any (descendent); dins d'un mateix any es respecta el camp «Orden» de Sanity. |
 
 **Variants:**
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `default` — Carrusel amb projectes reals | `app/servicios/servicios-editoriales/EditorialProjectsSection.tsx` | /servicios/servicios-editoriales |  |
+| `default` — Carrusel amb projectes reals | `app/servicios/produccion-editorial-con-ia/EditorialProjectsSection.tsx` | /servicios/produccion-editorial-con-ia |  |
 
 ## Logotips de client
 
@@ -674,8 +678,8 @@ _Bandes de conversió al final de pàgina o de secció._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `cta-section` — CtaSection - component compartit amb props | `app/servicios/estrategia-editorial/CtaSection.tsx` | /, /servicios/estrategia-de-ia, /servicios/servicios-editoriales, /enfoque, /sobre-mi, /casos-de-exito/[slug] |  |
-| `closing-ecosistema` — ClosingCtaSection - copia fixada, només a ecosistema | `app/servicios/ecosistema-produccion-editorial/ClosingCtaSection.tsx` | /servicios/ecosistema-produccion-editorial |  |
+| `cta-section` — CtaSection - component compartit amb props | `app/servicios/estrategia-editorial/CtaSection.tsx` | /, /servicios/estrategia-de-ia, /servicios/produccion-editorial-con-ia, /enfoque, /sobre-mi, /casos-de-exito/[slug] |  |
+| `closing-ecosistema` — ClosingCtaSection - copia fixada, només a ecosistema | `app/servicios/ecosistema-produccion-editorial/ClosingCtaSection.tsx` | /servicios/ecosistema-produccion-editorial (sense ruta, 301) |  |
 | `newsletter` — Newsletter (sobre mi) - variant amb il·lustracions animades, desactivada | `app/sobre-mi/NewsletterSection.tsx` | /sobre-mi | Comentada a page.tsx; no es renderitza a la web pública. · _inactiu_ |
 | `linkedin` — LinkedIn (sobre mi) - targeta amb banner i foto, no només boto | `app/sobre-mi/LinkedInSection.tsx` | /sobre-mi |  |
 

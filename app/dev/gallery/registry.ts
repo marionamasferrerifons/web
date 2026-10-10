@@ -106,8 +106,11 @@ export type BlockEntry = {
 export const PAGES = {
   home: '/',
   estrategia: '/servicios/estrategia-de-ia',
-  ecosistema: '/servicios/ecosistema-produccion-editorial',
-  editoriales: '/servicios/servicios-editoriales',
+  produccion: '/servicios/produccion-editorial-con-ia',
+  // Pàgines retirades el 2026-10-09 (301 a produccion). Les seves seccions es
+  // conserven només a la galeria, com a referència del disseny anterior.
+  ecosistema: '/servicios/ecosistema-produccion-editorial (sense ruta, 301)',
+  editoriales: '/servicios/servicios-editoriales (sense ruta, 301)',
   sobreMi: '/sobre-mi',
   enfoque: '/enfoque',
   caso: '/casos-de-exito/[slug]',
@@ -353,6 +356,7 @@ export const BLOCKS: BlockEntry[] = [
     variants: [
       { id: 'home', label: 'Home - foto amb màscara + forma dentada', files: ['app/home/HomeHeroSection.tsx'], pages: [PAGES.home] },
       { id: 'estrategia', label: 'Estrategia de IA - vectors simètrics, fons verd', files: ['app/servicios/estrategia-de-ia/HeroSection.tsx'], pages: [PAGES.estrategia] },
+      { id: 'produccion', label: 'Producción editorial con IA - titular a l\'esquerra, text i accions a la dreta, fons taronja-400', files: ['app/servicios/produccion-editorial-con-ia/HeroSection.tsx'], pages: [PAGES.produccion] },
       { id: 'ecosistema', label: 'Ecosistema de producció - titular alineat a la dreta, fons taronja', files: ['app/servicios/ecosistema-produccion-editorial/EcosistemaHeroSection.tsx'], pages: [PAGES.ecosistema] },
       { id: 'editoriales', label: 'Servicios editoriales - titular al 57%, fons taronja-400', files: ['app/servicios/servicios-editoriales/ServiciosEditorialesHeroSection.tsx'], pages: [PAGES.editoriales] },
       { id: 'sobre-mi', label: 'Sobre mi - foto amb màscara d\'ona, fons blau', files: ['app/sobre-mi/SobreMiHeroSection.tsx'], pages: [PAGES.sobreMi] },
@@ -507,6 +511,8 @@ export const BLOCKS: BlockEntry[] = [
       { id: 'editoriales-offerings', label: 'Lo que ofrezco (servicios editoriales) - graella 2x2', files: ['app/servicios/servicios-editoriales/ServiceOfferingsSection.tsx'], pages: [PAGES.editoriales] },
       { id: 'ecosistema-includes', label: 'Qué incluye (ecosistema) - fila de 3, dins SystemStepsSection', files: ['app/servicios/ecosistema-produccion-editorial/SystemStepsSection.tsx:318-366'], pages: [PAGES.ecosistema], embedded: true },
       { id: 'estrategia-collaboration', label: '¿Cómo podemos colaborar? (estrategia de ia) - comparador de 2 modalitats amb subgrid', files: ['app/servicios/estrategia-de-ia/CollaborationSection.tsx'], pages: [PAGES.estrategia] },
+      { id: 'produccion-modalities', label: '¿Qué necesitas resolver? (producción) - 3 modalitats amb il·lustració, subgrid', files: ['app/servicios/produccion-editorial-con-ia/ModalitiesSection.tsx'], pages: [PAGES.produccion] },
+      { id: 'produccion-options', label: 'Dos formas de ponerlo en marcha (producción) - comparador de 2 opcions amb subgrid, dins ProductionSystemSection', files: ['app/servicios/produccion-editorial-con-ia/ProductionSystemSection.tsx'], pages: [PAGES.produccion], embedded: true },
     ],
   },
 
@@ -591,6 +597,7 @@ export const BLOCKS: BlockEntry[] = [
     variants: [
       { id: 'ecosistema-build', label: 'Cómo lo construimos (ecosistema) - detall rere hover a escriptori', files: ['app/servicios/ecosistema-produccion-editorial/SystemStepsSection.tsx:194-316'], pages: [PAGES.ecosistema], embedded: true },
       { id: 'estrategia-always-visible', label: '¿Cómo trabajo? (estrategia de ia) - 3 passos, tot visible sense hover', files: ['app/servicios/estrategia-de-ia/WorkProcessSection.tsx'], pages: [PAGES.estrategia] },
+      { id: 'produccion-benefits', label: '¿Qué aporta a tu editorial? (producción) - 4 beneficis amb icona, sense numeració, dins ProductionSystemSection', files: ['app/servicios/produccion-editorial-con-ia/ProductionSystemSection.tsx'], pages: [PAGES.produccion], embedded: true },
       { id: 'case-process', label: 'Proceso (cas d\'èxit) - text + graella d\'imatges amb lightbox', files: ['app/casos-de-exito/[slug]/ProcessSection.tsx'], pages: [PAGES.caso] },
     ],
   },
@@ -681,8 +688,8 @@ export const BLOCKS: BlockEntry[] = [
     recommendation: 'conservar',
     rationale: 'És el millor exemple del lloc de bloc reutilitzat correctament via props. Servirà de model per convergir altres patrons (hero-page, cta-band) cap a un sol component.',
     variants: [
-      { id: 'orange', label: 'Color per defecte (taronja-400), amb capcalera Testimonios', files: ['app/servicios/estrategia-editorial/TestimonialSection.tsx'], pages: [PAGES.home, PAGES.estrategia, PAGES.ecosistema, PAGES.enfoque, PAGES.caso] },
-      { id: 'green', label: 'Variant verda (cardColor), amb capcalera', files: ['app/servicios/estrategia-editorial/TestimonialSection.tsx'], pages: [PAGES.home, PAGES.editoriales] },
+      { id: 'orange', label: 'Color per defecte (taronja-400), amb capcalera Testimonios', files: ['app/servicios/estrategia-editorial/TestimonialSection.tsx'], pages: [PAGES.home, PAGES.estrategia, PAGES.enfoque, PAGES.caso] },
+      { id: 'green', label: 'Variant verda (cardColor), amb capcalera', files: ['app/servicios/estrategia-editorial/TestimonialSection.tsx'], pages: [PAGES.home, PAGES.produccion] },
       { id: 'embedded', label: 'hideHeader - incrustat sense títol de secció, dins PracticeSection', files: ['app/home/PracticeSection.tsx:150-163'], pages: [PAGES.home], embedded: true },
     ],
   },
@@ -714,20 +721,20 @@ export const BLOCKS: BlockEntry[] = [
     name: 'Carrusel de projectes',
     group: 'casos',
     purpose:
-      'Targetes verticals en carrusel horitzontal amb scroll, on la informació (títol, rol, etapa, editorial) només es veu en passar-hi el ratolí per sobre; en repos només es veu la imatge amb un degradat.',
+      'Targetes verticals en carrusel horitzontal: coberta sencera del llibre i, a sota, any, curs, títol, rol i editorial, sempre visibles.',
     whenToUse: 'Per mostrar un volum gran de projectes (desenes) sense ocupar tanta alcada de pàgina com una llista vertical.',
     reuse: 'incrustat',
-    needs: ['Títol, rol, etapa, editorial i any per projecte', 'Imatge de projecte (Sanity)'],
-    desktop: 'Scroll horitzontal amb botons de fletxa; el contingut de text només apareix en hover sobre cada targeta.',
-    mobile: 'El carrusel es fa lliscable amb el dit (overflow-x-auto), però el text segueix depenent del hover, que no existeix en tàctil: en mòbil el projecte es veu només com a imatge, sense títol ni rol ni editorial visibles mai.',
+    needs: ['Títol, rol, curs, editorial i any per projecte', 'Imatge de coberta (Sanity)'],
+    desktop: 'Scroll-snap natiu amb botons anterior/següent (aria-label) que es desactiven als extrems; projectes del més recent al més antic.',
+    mobile: 'Lliscable amb el dit; la informació de cada projecte es manté visible sota la coberta.',
     limits: [
-      'Tot el contingut textual (títol, rol, etapa, editorial) només es veu amb hover de ratolí: en tàctil i mòbil és completament illegible sense cap alternativa.',
-      'Es construeix triplicant l\'array de projectes per simular un bucle infinit, cosa que fa més pesada la pàgina com més projectes hi hagi.',
+      'Sense bucle infinit: arribat a l\'últim projecte, cal tornar enrere.',
+      'L\'ordre és per any (descendent); dins d\'un mateix any es respecta el camp «Orden» de Sanity.',
     ],
-    recommendation: 'adaptar',
-    rationale: 'És el cas més greu de contingut només accessible per hover de tot el lloc: en mòbil, el bloc perd tota la seva informació (vegeu incoherència 10 de docs/visual-criteria.md).',
+    recommendation: 'conservar',
+    rationale: 'Redissenyat el 2026-10-09 per a Producción editorial con IA: resol la dependència de hover (incoherència 10 de docs/visual-criteria.md) i el triplicat de l\'array de projectes.',
     variants: [
-      { id: 'default', label: 'Carrusel amb projectes reals', files: ['app/servicios/servicios-editoriales/EditorialProjectsSection.tsx'], pages: [PAGES.editoriales] },
+      { id: 'default', label: 'Carrusel amb projectes reals', files: ['app/servicios/produccion-editorial-con-ia/EditorialProjectsSection.tsx'], pages: [PAGES.produccion] },
     ],
   },
 
@@ -800,7 +807,7 @@ export const BLOCKS: BlockEntry[] = [
     recommendation: 'adaptar',
     rationale: 'Tres de les quatre implementacions haurien de ser CtaSection amb props diferents. És la duplicació més fàcil de resoldre de tot l\'inventari i la que més es notarà quan es repliqui a quatre pàgines de servei.',
     variants: [
-      { id: 'cta-section', label: 'CtaSection - component compartit amb props', files: ['app/servicios/estrategia-editorial/CtaSection.tsx'], pages: [PAGES.home, PAGES.estrategia, PAGES.editoriales, PAGES.enfoque, PAGES.sobreMi, PAGES.caso] },
+      { id: 'cta-section', label: 'CtaSection - component compartit amb props', files: ['app/servicios/estrategia-editorial/CtaSection.tsx'], pages: [PAGES.home, PAGES.estrategia, PAGES.produccion, PAGES.enfoque, PAGES.sobreMi, PAGES.caso] },
       { id: 'closing-ecosistema', label: 'ClosingCtaSection - copia fixada, només a ecosistema', files: ['app/servicios/ecosistema-produccion-editorial/ClosingCtaSection.tsx'], pages: [PAGES.ecosistema] },
       { id: 'newsletter', label: 'Newsletter (sobre mi) - variant amb il·lustracions animades, desactivada', files: ['app/sobre-mi/NewsletterSection.tsx'], pages: [PAGES.sobreMi], inactive: true, note: 'Comentada a page.tsx; no es renderitza a la web pública.' },
       { id: 'linkedin', label: 'LinkedIn (sobre mi) - targeta amb banner i foto, no només boto', files: ['app/sobre-mi/LinkedInSection.tsx'], pages: [PAGES.sobreMi] },

@@ -54,7 +54,6 @@ export default function CtaSection({
               fontSize: 'var(--text-title-xl)',
               lineHeight: 'var(--text-title-xl--line-height)',
               fontWeight: 400,
-              fontVariationSettings: '"opsz" 14',
               color: 'var(--color-white)',
               maxWidth: '718px',
               textWrap: 'balance',
@@ -69,7 +68,6 @@ export default function CtaSection({
               fontSize: 'var(--text-body-m)',
               lineHeight: 'var(--text-body-m--line-height)',
               fontWeight: 300,
-              fontVariationSettings: '"opsz" 14',
               color: 'var(--color-blue-100)',
               maxWidth: subtitleMaxWidth,
             }}

@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import SectionTag from './SectionTag';
-import ActionButtons from './ActionButtons';
+import SectionTag from '@/components/service/SectionTag';
+import ActionButtons from '@/components/service/ActionButtons';
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
@@ -58,7 +58,6 @@ export default function HeroSection() {
               fontSize: 'var(--text-title-xxl)',
               lineHeight: 'var(--text-title-xxl--line-height)',
               fontWeight: 400,
-              fontVariationSettings: '"opsz" 14',
               color: 'var(--color-blue-400)',
               maxWidth: '860px',
               textWrap: 'balance',
@@ -75,7 +74,6 @@ export default function HeroSection() {
               fontSize: 'var(--text-body-l)',
               lineHeight: 'var(--text-body-l--line-height)',
               fontWeight: 300,
-              fontVariationSettings: '"opsz" 14',
               color: 'var(--color-text-secondary-strong)',
               maxWidth: '620px',
               textWrap: 'pretty',

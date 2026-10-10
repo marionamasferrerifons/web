@@ -3,8 +3,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SectionTag from './SectionTag';
-import ActionButtons from './ActionButtons';
+import SectionTag from '@/components/service/SectionTag';
+import ActionButtons from '@/components/service/ActionButtons';
 
 function CheckIcon() {
   return (
@@ -20,7 +20,6 @@ const bodyL = {
   fontSize: 'var(--text-body-l)',
   lineHeight: 'var(--text-body-l--line-height)',
   fontWeight: 300,
-  fontVariationSettings: '"opsz" 14',
 } as const;
 
 const CARDS = [
@@ -93,7 +92,6 @@ export default function CollaborationSection() {
               fontSize: 'var(--text-title-l)',
               lineHeight: 'var(--text-title-l--line-height)',
               fontWeight: 400,
-              fontVariationSettings: '"opsz" 14',
               color: 'var(--color-blue-400)',
             }}
           >
@@ -138,7 +136,6 @@ export default function CollaborationSection() {
                       fontSize: 'var(--text-title-m)',
                       lineHeight: 'var(--text-title-m--line-height)',
                       fontWeight: 400,
-                      fontVariationSettings: '"opsz" 14',
                       color: 'var(--color-blue-400)',
                     }}
                   >

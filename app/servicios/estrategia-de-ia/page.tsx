@@ -3,8 +3,8 @@ import HeroSection from './HeroSection'
 import DecisionsSection from './DecisionsSection'
 import WorkProcessSection from './WorkProcessSection'
 import CollaborationSection from './CollaborationSection'
-import CaseHighlightSection from './CaseHighlightSection'
-import ActionButtons from './ActionButtons'
+import CaseHighlightSection from '@/components/service/CaseHighlightSection'
+import ActionButtons from '@/components/service/ActionButtons'
 import TestimonialSection from '@/app/servicios/estrategia-editorial/TestimonialSection'
 import CtaSection from '@/app/servicios/estrategia-editorial/CtaSection'
 import { client } from '@/sanity/client'
@@ -47,7 +47,7 @@ export default async function EstrategiaDeIAPage() {
       : null
 
   return (
-    <main>
+    <main className="optical-auto">
       <HeroSection />
       <DecisionsSection />
       <WorkProcessSection />
@@ -55,10 +55,22 @@ export default async function EstrategiaDeIAPage() {
       {caseStudy && (
         <CaseHighlightSection
           slug={caseStudy.slug}
+          title="Altamar: de querer incorporar IA a decidir dónde invertir."
+          paragraphs={[
+            'Altamar necesitaba definir qué papel debía tener la IA en su negocio y qué iniciativas merecía la pena impulsar.',
+            'En un proyecto de cinco semanas analizamos su contexto, identificamos oportunidades y construimos una hoja de ruta con iniciativas priorizadas, proveedores evaluados y una propuesta de calendario e inversión.',
+            'El trabajo permitió reorientar el presupuesto hacia una cartera de iniciativas y establecer criterios para decidir qué impulsar y qué aplazar.',
+          ]}
+          facts={[
+            ['Cliente', 'Altamar'],
+            ['Servicio', 'Consultoría estratégica'],
+            ['Duración', '5 semanas'],
+          ]}
+          linkLabel="Ver el caso de Altamar"
           imageUrl={summaryImage?.url}
           imageAlt={summaryImage?.alt}
           logoUrl={matchedLogo?.logo?.asset?._id ? industryLogoUrl(matchedLogo.logo.asset._id) : undefined}
-          logoAlt={matchedLogo?.logo?.alt}
+          logoAlt={matchedLogo?.logo?.alt ?? 'Altamar'}
         />
       )}
       {testimonialImages && (

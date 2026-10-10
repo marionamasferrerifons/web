@@ -5,10 +5,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SITE_URL } from "@/lib/constants";
 
+// Font variable amb l'eix de mida òptica (opsz 9–40): permet que els títols
+// grans de les pàgines de servei facin servir el disseny «display» de DM Sans.
+// La resta del lloc fixa "opsz" 14 (body a globals.css i estils inline), el
+// valor per defecte de la versió estàtica anterior, i no canvia d'aspecte.
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
-  weight: ["300", "400", "500", "600"],
+  axes: ["opsz"],
 });
 
 const dmMono = DM_Mono({
