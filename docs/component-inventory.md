@@ -221,6 +221,7 @@ _El primer bloc de cada ruta: etiqueta, titular, descripció i crida a l'acció 
 | `home` — Home - foto amb màscara + forma dentada | `app/home/HomeHeroSection.tsx` | / |  |
 | `estrategia` — Estrategia de IA - vectors simètrics, fons verd | `app/servicios/estrategia-de-ia/HeroSection.tsx` | /servicios/estrategia-de-ia |  |
 | `produccion` — Producción editorial con IA - titular a l'esquerra, text i accions a la dreta, fons taronja-400 | `app/servicios/produccion-editorial-con-ia/HeroSection.tsx` | /servicios/produccion-editorial-con-ia |  |
+| `formacion` — Formación en IA - etiqueta i titular a la dreta, text i accions a baix a l'esquerra, fons coral | `app/servicios/formacion-en-ia/HeroSection.tsx` | /servicios/formacion-en-ia | Recupera el color i la disposició de la variant ecosistema amb les mides i el bloc d'accions de les pàgines de servei. |
 | `ecosistema` — Ecosistema de producció - titular alineat a la dreta, fons taronja | `app/servicios/ecosistema-produccion-editorial/EcosistemaHeroSection.tsx` | /servicios/ecosistema-produccion-editorial (sense ruta, 301) |  |
 | `editoriales` — Servicios editoriales - titular al 57%, fons taronja-400 | `app/servicios/servicios-editoriales/ServiciosEditorialesHeroSection.tsx` | /servicios/servicios-editoriales (sense ruta, 301) |  |
 | `sobre-mi` — Sobre mi - foto amb màscara d'ona, fons blau | `app/sobre-mi/SobreMiHeroSection.tsx` | /sobre-mi |  |
@@ -343,6 +344,7 @@ _Els blocs que presenten l'oferta. És el grup clau per a la reorganització en 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
 | `default` — Les tres targetes reals, amb el seu contingut | `app/home/ServicesSection.tsx` | / |  |
+| `formacion-services` — Curso, acompañamiento y empresas (formación) - text 3 : il·lustració 2, botó propi a cada targeta | `app/servicios/formacion-en-ia/TrainingServicesSection.tsx` | /servicios/formacion-en-ia | La targeta no és un enllaç sencer: cada una té el seu botó de WhatsApp. La il·lustració es mostra sencera (object-contain) sobre --color-coral-100. |
 
 ### `svccard-grid` — Graella de targetes de servei
 
@@ -367,6 +369,7 @@ _Els blocs que presenten l'oferta. És el grup clau per a la reorganització en 
 | `estrategia-collaboration` — ¿Cómo podemos colaborar? (estrategia de ia) - comparador de 2 modalitats amb subgrid | `app/servicios/estrategia-de-ia/CollaborationSection.tsx` | /servicios/estrategia-de-ia |  |
 | `produccion-modalities` — ¿Qué necesitas resolver? (producción) - 3 modalitats amb il·lustració, subgrid | `app/servicios/produccion-editorial-con-ia/ModalitiesSection.tsx` | /servicios/produccion-editorial-con-ia |  |
 | `produccion-options` — Dos formas de ponerlo en marcha (producción) - comparador de 2 opcions amb subgrid, dins ProductionSystemSection | `app/servicios/produccion-editorial-con-ia/ProductionSystemSection.tsx` | /servicios/produccion-editorial-con-ia | _incrustat_ |
+| `formacion-starting-points` — No te quedes fuera del futuro de la edición (formación) - 3 punts de partida amb icona i enllaç intern, subgrid | `app/servicios/formacion-en-ia/StartingPointsSection.tsx` | /servicios/formacion-en-ia |  |
 
 ## Graelles de valor
 
@@ -678,7 +681,7 @@ _Bandes de conversió al final de pàgina o de secció._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `cta-section` — CtaSection - component compartit amb props | `app/servicios/estrategia-editorial/CtaSection.tsx` | /, /servicios/estrategia-de-ia, /servicios/produccion-editorial-con-ia, /enfoque, /sobre-mi, /casos-de-exito/[slug] |  |
+| `cta-section` — CtaSection - component compartit amb props | `app/servicios/estrategia-editorial/CtaSection.tsx` | /, /servicios/estrategia-de-ia, /servicios/produccion-editorial-con-ia, /servicios/formacion-en-ia, /enfoque, /sobre-mi, /casos-de-exito/[slug] |  |
 | `closing-ecosistema` — ClosingCtaSection - copia fixada, només a ecosistema | `app/servicios/ecosistema-produccion-editorial/ClosingCtaSection.tsx` | /servicios/ecosistema-produccion-editorial (sense ruta, 301) |  |
 | `newsletter` — Newsletter (sobre mi) - variant amb il·lustracions animades, desactivada | `app/sobre-mi/NewsletterSection.tsx` | /sobre-mi | Comentada a page.tsx; no es renderitza a la web pública. · _inactiu_ |
 | `linkedin` — LinkedIn (sobre mi) - targeta amb banner i foto, no només boto | `app/sobre-mi/LinkedInSection.tsx` | /sobre-mi |  |

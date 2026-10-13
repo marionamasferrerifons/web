@@ -107,6 +107,7 @@ export const PAGES = {
   home: '/',
   estrategia: '/servicios/estrategia-de-ia',
   produccion: '/servicios/produccion-editorial-con-ia',
+  formacion: '/servicios/formacion-en-ia',
   // Pàgines retirades el 2026-10-09 (301 a produccion). Les seves seccions es
   // conserven només a la galeria, com a referència del disseny anterior.
   ecosistema: '/servicios/ecosistema-produccion-editorial (sense ruta, 301)',
@@ -357,6 +358,7 @@ export const BLOCKS: BlockEntry[] = [
       { id: 'home', label: 'Home - foto amb màscara + forma dentada', files: ['app/home/HomeHeroSection.tsx'], pages: [PAGES.home] },
       { id: 'estrategia', label: 'Estrategia de IA - vectors simètrics, fons verd', files: ['app/servicios/estrategia-de-ia/HeroSection.tsx'], pages: [PAGES.estrategia] },
       { id: 'produccion', label: 'Producción editorial con IA - titular a l\'esquerra, text i accions a la dreta, fons taronja-400', files: ['app/servicios/produccion-editorial-con-ia/HeroSection.tsx'], pages: [PAGES.produccion] },
+      { id: 'formacion', label: 'Formación en IA - etiqueta i titular a la dreta, text i accions a baix a l\'esquerra, fons coral', files: ['app/servicios/formacion-en-ia/HeroSection.tsx'], pages: [PAGES.formacion], note: 'Recupera el color i la disposició de la variant ecosistema amb les mides i el bloc d\'accions de les pàgines de servei.' },
       { id: 'ecosistema', label: 'Ecosistema de producció - titular alineat a la dreta, fons taronja', files: ['app/servicios/ecosistema-produccion-editorial/EcosistemaHeroSection.tsx'], pages: [PAGES.ecosistema] },
       { id: 'editoriales', label: 'Servicios editoriales - titular al 57%, fons taronja-400', files: ['app/servicios/servicios-editoriales/ServiciosEditorialesHeroSection.tsx'], pages: [PAGES.editoriales] },
       { id: 'sobre-mi', label: 'Sobre mi - foto amb màscara d\'ona, fons blau', files: ['app/sobre-mi/SobreMiHeroSection.tsx'], pages: [PAGES.sobreMi] },
@@ -487,6 +489,7 @@ export const BLOCKS: BlockEntry[] = [
       'És el bloc més pròxim a un selector de serveis que existeix avui, però només funciona com a llista, no com a comparador. Amb quatre serveis caldra decidir si aquest patró escala o si cal un comparador nou (vegeu la secció de blocs inexistents a l\'inventari).',
     variants: [
       { id: 'default', label: 'Les tres targetes reals, amb el seu contingut', files: ['app/home/ServicesSection.tsx'], pages: [PAGES.home] },
+      { id: 'formacion-services', label: 'Curso, acompañamiento y empresas (formación) - text 3 : il·lustració 2, botó propi a cada targeta', files: ['app/servicios/formacion-en-ia/TrainingServicesSection.tsx'], pages: [PAGES.formacion], note: 'La targeta no és un enllaç sencer: cada una té el seu botó de WhatsApp. La il·lustració es mostra sencera (object-contain) sobre --color-coral-100.' },
     ],
   },
   {
@@ -513,6 +516,7 @@ export const BLOCKS: BlockEntry[] = [
       { id: 'estrategia-collaboration', label: '¿Cómo podemos colaborar? (estrategia de ia) - comparador de 2 modalitats amb subgrid', files: ['app/servicios/estrategia-de-ia/CollaborationSection.tsx'], pages: [PAGES.estrategia] },
       { id: 'produccion-modalities', label: '¿Qué necesitas resolver? (producción) - 3 modalitats amb il·lustració, subgrid', files: ['app/servicios/produccion-editorial-con-ia/ModalitiesSection.tsx'], pages: [PAGES.produccion] },
       { id: 'produccion-options', label: 'Dos formas de ponerlo en marcha (producción) - comparador de 2 opcions amb subgrid, dins ProductionSystemSection', files: ['app/servicios/produccion-editorial-con-ia/ProductionSystemSection.tsx'], pages: [PAGES.produccion], embedded: true },
+      { id: 'formacion-starting-points', label: 'No te quedes fuera del futuro de la edición (formación) - 3 punts de partida amb icona i enllaç intern, subgrid', files: ['app/servicios/formacion-en-ia/StartingPointsSection.tsx'], pages: [PAGES.formacion] },
     ],
   },
 
@@ -807,7 +811,7 @@ export const BLOCKS: BlockEntry[] = [
     recommendation: 'adaptar',
     rationale: 'Tres de les quatre implementacions haurien de ser CtaSection amb props diferents. És la duplicació més fàcil de resoldre de tot l\'inventari i la que més es notarà quan es repliqui a quatre pàgines de servei.',
     variants: [
-      { id: 'cta-section', label: 'CtaSection - component compartit amb props', files: ['app/servicios/estrategia-editorial/CtaSection.tsx'], pages: [PAGES.home, PAGES.estrategia, PAGES.produccion, PAGES.enfoque, PAGES.sobreMi, PAGES.caso] },
+      { id: 'cta-section', label: 'CtaSection - component compartit amb props', files: ['app/servicios/estrategia-editorial/CtaSection.tsx'], pages: [PAGES.home, PAGES.estrategia, PAGES.produccion, PAGES.formacion, PAGES.enfoque, PAGES.sobreMi, PAGES.caso] },
       { id: 'closing-ecosistema', label: 'ClosingCtaSection - copia fixada, només a ecosistema', files: ['app/servicios/ecosistema-produccion-editorial/ClosingCtaSection.tsx'], pages: [PAGES.ecosistema] },
       { id: 'newsletter', label: 'Newsletter (sobre mi) - variant amb il·lustracions animades, desactivada', files: ['app/sobre-mi/NewsletterSection.tsx'], pages: [PAGES.sobreMi], inactive: true, note: 'Comentada a page.tsx; no es renderitza a la web pública.' },
       { id: 'linkedin', label: 'LinkedIn (sobre mi) - targeta amb banner i foto, no només boto', files: ['app/sobre-mi/LinkedInSection.tsx'], pages: [PAGES.sobreMi] },

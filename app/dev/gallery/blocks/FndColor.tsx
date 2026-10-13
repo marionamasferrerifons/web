@@ -14,6 +14,8 @@ const TOKENS = [
   '--color-text-secondary-strong',
   '--color-text-accent',
   '--color-orange',
+  '--color-coral-100',
+  '--color-orange-100',
   '--color-orange-200',
   '--color-orange-400',
   '--color-grey',

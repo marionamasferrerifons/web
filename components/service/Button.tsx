@@ -25,16 +25,22 @@ function ChatIcon() {
   );
 }
 
-function ArrowCircle() {
+function ArrowCircle({ icon }: { icon?: 'chat' }) {
   return (
-    <span className="flex items-center justify-center bg-orange rounded-full shrink-0" style={{ width: '40px', height: '40px' }}>
-      <img
-        src="/arrow-white.svg"
-        alt=""
-        className="transition-transform duration-300 ease-out group-hover:rotate-45"
-        style={{ width: '16px', height: '16px' }}
-        aria-hidden="true"
-      />
+    <span className="flex items-center justify-center bg-orange rounded-full shrink-0 text-white" style={{ width: '40px', height: '40px' }}>
+      {icon === 'chat' ? (
+        <span className="flex transition-transform duration-300 ease-out group-hover:scale-110">
+          <ChatIcon />
+        </span>
+      ) : (
+        <img
+          src="/arrow-white.svg"
+          alt=""
+          className="transition-transform duration-300 ease-out group-hover:rotate-45"
+          style={{ width: '16px', height: '16px' }}
+          aria-hidden="true"
+        />
+      )}
     </span>
   );
 }
@@ -45,7 +51,12 @@ type ButtonProps = {
   /** Fons de la secció on va el botó: `color` (verd, blau...) o `white`. Només afecta la variant `primary`. */
   surface?: 'color' | 'white';
   inverted?: boolean;
+  /** Variant `secondary`: color de vora i text quan no és l'estàndard (p. ex. blue-800 sobre el coral de Formación). */
+  color?: string;
+  /** `primary`: substitueix la fletxa del cercle per la bombolla de conversa. `secondary`: icona davant del text. */
   icon?: 'chat';
+  /** `primary`: permet partir l'etiqueta en dues línies a mòbil (etiquetes llargues). */
+  wrap?: boolean;
   children: ReactNode;
 };
 
@@ -58,7 +69,7 @@ type ButtonProps = {
  * Un `href` intern (que no comença per `http`) navega amb `next/link`; un
  * d'extern obre en una pestanya nova.
  */
-export default function Button({ href, variant, surface = 'color', inverted = false, icon, children }: ButtonProps) {
+export default function Button({ href, variant, surface = 'color', inverted = false, color: colorOverride, icon, wrap = false, children }: ButtonProps) {
   const isExternal = href.startsWith('http');
   const Tag = isExternal ? 'a' : Link;
   const externalProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {};
@@ -73,15 +84,15 @@ export default function Button({ href, variant, surface = 'color', inverted = fa
         className={`group flex items-center justify-between md:justify-center gap-[16px] ${surfaceClass} rounded-full cursor-pointer transition-colors duration-[330ms] ease-linear w-full md:w-fit ${focusClass}`}
         style={{ paddingLeft: '24px', paddingRight: '8px', minHeight: '56px', outlineColor: 'var(--color-blue-800)' }}
       >
-        <span className="text-text-accent uppercase whitespace-nowrap" style={labelStyle}>
+        <span className={`text-text-accent uppercase ${wrap ? 'md:whitespace-nowrap' : 'whitespace-nowrap'} py-[8px]`} style={labelStyle}>
           {children}
         </span>
-        <ArrowCircle />
+        <ArrowCircle icon={icon} />
       </Tag>
     );
   }
 
-  const color = inverted ? 'var(--color-white)' : 'var(--color-blue-500)';
+  const color = colorOverride ?? (inverted ? 'var(--color-white)' : 'var(--color-blue-500)');
   const hoverClass = inverted ? 'hover:bg-white/10' : 'hover:bg-blue-500/[0.07]';
 
   return (

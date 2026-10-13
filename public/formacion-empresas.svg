@@ -1,0 +1,89 @@
+<svg width="600" height="420" viewBox="0 0 600 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="clipFE"><rect width="600" height="420" rx="16"/></clipPath>
+    <filter id="shFE" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#011853" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <g clip-path="url(#clipFE)">
+    <rect width="600" height="420" fill="#FCE3DB"/>
+
+    <!-- Presentació del taller -->
+    <rect x="40" y="40" width="330" height="224" rx="16" fill="#FFFFFF" filter="url(#shFE)"/>
+    <rect x="64" y="64" width="140" height="12" rx="6" fill="#0542A7"/>
+    <rect x="64" y="84" width="90" height="8" rx="4" fill="#B4C6FF"/>
+    <rect x="80" y="182" width="28" height="52" rx="4" fill="#D5E4FB"/>
+    <rect x="120" y="156" width="28" height="78" rx="4" fill="#B4C6FF"/>
+    <rect x="160" y="128" width="28" height="106" rx="4" fill="#5880C4"/>
+    <rect x="200" y="112" width="28" height="122" rx="4" fill="#F26949"/>
+    <path d="M70 236h170" stroke="#B4C6FF" stroke-width="2" stroke-linecap="round"/>
+    <g>
+      <circle cx="270" cy="134" r="9" stroke="#0542A7" stroke-width="2"/>
+      <path d="M266 134.5l3 3 5-5.5" stroke="#0542A7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="286" y="130" width="62" height="8" rx="4" fill="#D5E4FB"/>
+    </g>
+    <g>
+      <circle cx="270" cy="164" r="9" stroke="#0542A7" stroke-width="2"/>
+      <path d="M266 164.5l3 3 5-5.5" stroke="#0542A7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="286" y="160" width="50" height="8" rx="4" fill="#D5E4FB"/>
+    </g>
+    <g>
+      <circle cx="270" cy="194" r="9" fill="#F26949"/>
+      <rect x="286" y="190" width="56" height="8" rx="4" fill="#FEF1EC"/>
+    </g>
+
+    <!-- Tauler amb notes de l'equip -->
+    <rect x="392" y="64" width="240" height="252" rx="16" fill="#FFFFFF" filter="url(#shFE)"/>
+    <g transform="rotate(-4 448 130)">
+      <rect x="410" y="96" width="76" height="68" rx="6" fill="#F5917A"/>
+      <rect x="420" y="110" width="52" height="7" rx="3.5" fill="#FFFFFF"/>
+      <rect x="420" y="124" width="38" height="7" rx="3.5" fill="#FFFFFF"/>
+    </g>
+    <g transform="rotate(3 538 126)">
+      <rect x="500" y="92" width="76" height="68" rx="6" fill="#FAE3C6"/>
+      <rect x="510" y="106" width="52" height="7" rx="3.5" fill="#EC9A37"/>
+      <rect x="510" y="120" width="40" height="7" rx="3.5" fill="#EC9A37"/>
+    </g>
+    <g transform="rotate(2 452 214)">
+      <rect x="414" y="180" width="76" height="68" rx="6" fill="#D5E4FB"/>
+      <rect x="424" y="194" width="52" height="7" rx="3.5" fill="#5880C4"/>
+      <rect x="424" y="208" width="34" height="7" rx="3.5" fill="#5880C4"/>
+    </g>
+    <g transform="rotate(-3 540 210)">
+      <rect x="502" y="176" width="76" height="68" rx="6" fill="#F26949"/>
+      <rect x="512" y="190" width="52" height="7" rx="3.5" fill="#FFFFFF"/>
+      <rect x="512" y="204" width="44" height="7" rx="3.5" fill="#FFFFFF"/>
+    </g>
+    <rect x="414" y="272" width="120" height="8" rx="4" fill="#D5E4FB"/>
+
+    <!-- L'equip -->
+    <rect x="64" y="292" width="420" height="96" rx="24" fill="#FFFFFF" filter="url(#shFE)"/>
+    <g>
+      <circle cx="116" cy="340" r="26" fill="#5880C4"/>
+      <circle cx="116" cy="334" r="8" fill="#FFFFFF"/>
+      <path d="M103 359q13-22 26 0" fill="#FFFFFF"/>
+    </g>
+    <g>
+      <circle cx="176" cy="340" r="26" fill="#F26949"/>
+      <circle cx="176" cy="334" r="8" fill="#FFFFFF"/>
+      <path d="M163 359q13-22 26 0" fill="#FFFFFF"/>
+    </g>
+    <g>
+      <circle cx="236" cy="340" r="26" fill="#B4C6FF"/>
+      <circle cx="236" cy="334" r="8" fill="#FFFFFF"/>
+      <path d="M223 359q13-22 26 0" fill="#FFFFFF"/>
+    </g>
+    <g>
+      <circle cx="296" cy="340" r="26" fill="#F5917A"/>
+      <circle cx="296" cy="334" r="8" fill="#FFFFFF"/>
+      <path d="M283 359q13-22 26 0" fill="#FFFFFF"/>
+    </g>
+    <g>
+      <circle cx="356" cy="340" r="26" fill="#0542A7"/>
+      <circle cx="356" cy="334" r="8" fill="#FFFFFF"/>
+      <path d="M343 359q13-22 26 0" fill="#FFFFFF"/>
+    </g>
+    <circle cx="428" cy="340" r="26" fill="#FEF1EC"/>
+    <path d="M428 330v20M418 340h20" stroke="#F26949" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+</svg>
