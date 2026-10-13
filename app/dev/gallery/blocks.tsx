@@ -46,6 +46,11 @@ import ModalitiesSection from '@/app/servicios/produccion-editorial-con-ia/Modal
 import ProductionSystemSection from '@/app/servicios/produccion-editorial-con-ia/ProductionSystemSection'
 import EditorialProjectsSection from '@/app/servicios/produccion-editorial-con-ia/EditorialProjectsSection'
 
+// Formación en IA
+import FormacionHeroSection from '@/app/servicios/formacion-en-ia/HeroSection'
+import StartingPointsSection from '@/app/servicios/formacion-en-ia/StartingPointsSection'
+import TrainingServicesSection from '@/app/servicios/formacion-en-ia/TrainingServicesSection'
+
 // Ecosistema de producció editorial (sense ruta; només galeria)
 import EcosistemaHeroSection from '@/app/servicios/ecosistema-produccion-editorial/EcosistemaHeroSection'
 import ProblemPillsSection from '@/app/servicios/ecosistema-produccion-editorial/ProblemPillsSection'
@@ -106,6 +111,7 @@ import {
 const SERVICES_ITEMS = [
   { href: '/servicios/estrategia-de-ia', label: 'Estrategia de IA' },
   { href: '/servicios/produccion-editorial-con-ia', label: 'Producción editorial con IA' },
+  { href: '/servicios/formacion-en-ia', label: 'Formación en IA' },
 ]
 
 const CASE_STUDY_DROPDOWN_ITEMS = caseStudiesFixture.map((c) => ({
@@ -144,6 +150,7 @@ export const BLOCK_RENDERERS: Record<string, Record<string, Renderer>> = {
     home: () => <HomeHeroSection />,
     estrategia: () => <EstrategiaHeroSection />,
     produccion: () => <ProduccionHeroSection />,
+    formacion: () => <FormacionHeroSection />,
     ecosistema: () => <EcosistemaHeroSection />,
     editoriales: () => <ServiciosEditorialesHeroSection />,
     'sobre-mi': () => <SobreMiHeroSection />,
@@ -168,13 +175,17 @@ export const BLOCK_RENDERERS: Record<string, Record<string, Renderer>> = {
   },
   'qa-grid': { estrategia: () => <DecisionsSection /> },
 
-  'svccard-illustrated': { default: () => <ServicesSection /> },
+  'svccard-illustrated': {
+    default: () => <ServicesSection />,
+    'formacion-services': () => <TrainingServicesSection />,
+  },
   'svccard-grid': {
     'editoriales-offerings': () => <ServiceOfferingsSection />,
     'ecosistema-includes': () => <SystemStepsSection />,
     'estrategia-collaboration': () => <CollaborationSection />,
     'produccion-modalities': () => <ModalitiesSection />,
     'produccion-options': () => <ProductionSystemSection />,
+    'formacion-starting-points': () => <StartingPointsSection />,
   },
 
   'valuegrid-masonry': {

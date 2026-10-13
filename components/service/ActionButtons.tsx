@@ -14,11 +14,14 @@ export default function ActionButtons({
   surface = 'color',
   noteColor,
   whatsappHref = WHATSAPP_URL,
+  secondaryColor,
 }: {
   inverted?: boolean;
   surface?: 'color' | 'white';
   noteColor?: string;
   whatsappHref?: string;
+  /** Color de vora i text del botó de WhatsApp quan el fons el demana (p. ex. coral). */
+  secondaryColor?: string;
 }) {
   return (
     <div className="flex flex-col items-center gap-[16px] w-full">
@@ -26,7 +29,7 @@ export default function ActionButtons({
         <Button href={BOOKING_URL} variant="primary" surface={surface}>
           Reservar una sesión gratuita
         </Button>
-        <Button href={whatsappHref} variant="secondary" inverted={inverted} icon="chat">
+        <Button href={whatsappHref} variant="secondary" inverted={inverted} color={secondaryColor} icon="chat">
           Hablar por WhatsApp
         </Button>
       </div>

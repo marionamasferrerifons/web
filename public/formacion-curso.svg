@@ -1,0 +1,62 @@
+<svg width="600" height="420" viewBox="0 0 600 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="clipFC"><rect width="600" height="420" rx="16"/></clipPath>
+    <filter id="shFC" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#011853" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <g clip-path="url(#clipFC)">
+    <rect width="600" height="420" fill="#FCE3DB"/>
+
+    <!-- Pàgina del curs: vídeo, títol, progrés -->
+    <rect x="40" y="64" width="340" height="400" rx="16" fill="#FFFFFF" filter="url(#shFC)"/>
+    <rect x="64" y="88" width="292" height="164" rx="12" fill="#F26949"/>
+    <circle cx="210" cy="170" r="28" fill="#FFFFFF"/>
+    <path d="M202 156l22 14-22 14z" fill="#F26949"/>
+    <rect x="64" y="276" width="180" height="12" rx="6" fill="#0542A7"/>
+    <rect x="64" y="298" width="120" height="8" rx="4" fill="#B4C6FF"/>
+    <rect x="64" y="330" width="292" height="8" rx="4" fill="#D5E4FB"/>
+    <rect x="64" y="330" width="116" height="8" rx="4" fill="#F26949"/>
+    <rect x="64" y="350" width="60" height="8" rx="4" fill="#B4C6FF"/>
+    <g fill="#D5E4FB">
+      <rect x="64" y="384" width="260" height="10" rx="5"/>
+      <rect x="64" y="406" width="220" height="10" rx="5"/>
+    </g>
+
+    <!-- Índex de blocs -->
+    <rect x="404" y="104" width="220" height="292" rx="16" fill="#FFFFFF" filter="url(#shFC)"/>
+    <rect x="424" y="126" width="96" height="12" rx="6" fill="#012C97"/>
+    <rect x="424" y="146" width="130" height="8" rx="4" fill="#B4C6FF"/>
+
+    <g>
+      <circle cx="436" cy="188" r="11" stroke="#0542A7" stroke-width="2"/>
+      <path d="M431 188.5l3.5 3.5 6.5-7" stroke="#0542A7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="456" y="183" width="110" height="10" rx="5" fill="#D5E4FB"/>
+    </g>
+    <g>
+      <circle cx="436" cy="226" r="11" stroke="#0542A7" stroke-width="2"/>
+      <path d="M431 226.5l3.5 3.5 6.5-7" stroke="#0542A7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="456" y="221" width="94" height="10" rx="5" fill="#D5E4FB"/>
+    </g>
+    <rect x="416" y="246" width="200" height="36" rx="10" fill="#FEF1EC"/>
+    <g>
+      <circle cx="436" cy="264" r="11" fill="#F26949"/>
+      <circle cx="436" cy="264" r="4" fill="#FFFFFF"/>
+      <rect x="456" y="259" width="118" height="10" rx="5" fill="#F5917A"/>
+    </g>
+    <g>
+      <circle cx="436" cy="302" r="11" stroke="#B4C6FF" stroke-width="2"/>
+      <rect x="456" y="297" width="100" height="10" rx="5" fill="#D5E4FB"/>
+    </g>
+    <g>
+      <circle cx="436" cy="340" r="11" stroke="#B4C6FF" stroke-width="2"/>
+      <rect x="456" y="335" width="84" height="10" rx="5" fill="#D5E4FB"/>
+    </g>
+
+    <!-- Etiqueta flotant -->
+    <rect x="300" y="36" width="128" height="40" rx="20" fill="#FFFFFF" filter="url(#shFC)"/>
+    <path d="M318 52l12-5 12 5-12 5z" fill="#0542A7"/>
+    <path d="M323 54.5v5c4 3 10 3 14 0v-5" stroke="#0542A7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="352" y="51" width="60" height="10" rx="5" fill="#F26949"/>
+  </g>
+</svg>
