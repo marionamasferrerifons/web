@@ -3,6 +3,7 @@ import { DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import HideInClientSpace from "@/components/HideInClientSpace";
 import { SITE_URL } from "@/lib/constants";
 
 // Font variable amb l'eix de mida òptica (opsz 9–40): permet que els títols
@@ -47,9 +48,13 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${dmSans.variable} ${dmMono.variable}`}>
-        <Navbar />
+        <HideInClientSpace>
+          <Navbar />
+        </HideInClientSpace>
         {children}
-        <Footer />
+        <HideInClientSpace>
+          <Footer />
+        </HideInClientSpace>
       </body>
     </html>
   );
