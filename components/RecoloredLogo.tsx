@@ -20,6 +20,8 @@ type RecoloredLogoProps = {
   style?: CSSProperties;
   className?: string;
   'aria-hidden'?: boolean;
+  /** Només per a la branca <img>: permet llegir la mida natural (p. ex. per dimensionar per superfície). */
+  onLoad?: React.ReactEventHandler<HTMLImageElement>;
 };
 
 // Recolors any logo to a translucent white silhouette so it blends into a
@@ -27,7 +29,7 @@ type RecoloredLogoProps = {
 // back to a luminance mask for assets with no transparency at all (e.g.
 // McGraw-Hill's solid red-square logo), which a brightness/invert filter
 // can't handle since that technique relies on alpha to reveal the shape.
-export default function RecoloredLogo({ src, name, alt = '', opacity = 0.4, style, className, ...rest }: RecoloredLogoProps) {
+export default function RecoloredLogo({ src, name, alt = '', opacity = 0.4, style, className, onLoad, ...rest }: RecoloredLogoProps) {
   if (needsLuminanceMask(name)) {
     return (
       <div
@@ -63,6 +65,7 @@ export default function RecoloredLogo({ src, name, alt = '', opacity = 0.4, styl
       alt={alt}
       className={className}
       style={{ filter: 'brightness(0) invert(1)', opacity, ...style }}
+      onLoad={onLoad}
       {...rest}
     />
   );

@@ -57,6 +57,14 @@ export const testimonial = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'showInHome',
+      title: 'Mostrar en el carrusel de la home',
+      description:
+        'Recomendaciones transversales sobre cómo es trabajar conmigo. Se muestran en la home una tras otra, por orden de creación. Si no hay ninguno marcado, la home muestra todos los testimonios.',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'placement',
       title: 'Dónde aparece',
       description:
@@ -65,8 +73,8 @@ export const testimonial = defineType({
       of: [{ type: 'string' }],
       options: {
         list: [
-          { title: 'Home — Sección naranja', value: 'home-orange' },
-          { title: 'Home — Sección verde', value: 'home-green' },
+          { title: 'Home — Sección naranja (sin uso)', value: 'home-orange' },
+          { title: 'Home — Sección verde (sin uso)', value: 'home-green' },
           { title: 'Enfoque', value: 'enfoque' },
           { title: 'Servicios — Estrategia de IA', value: 'estrategia-editorial' },
           { title: 'Servicios — Servicios editoriales (sin uso)', value: 'servicios-editoriales' },

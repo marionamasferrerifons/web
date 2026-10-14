@@ -27,9 +27,10 @@ export default function HeroSection() {
       className="relative w-full overflow-hidden flex justify-center pt-[calc(var(--navbar-height)+56px)] pb-[80px] px-[20px] md:px-[40px]"
       style={{ backgroundColor: 'var(--color-blue-500)' }}
     >
-      {/* Photo — top right, wave-masked */}
+      {/* Photo — top right, wave-masked. Provisional (retrat de LinkedIn) fins
+          que hi hagi les fotos definitives: només cal substituir el fitxer. */}
       <Image
-        src="/hero-photo.png"
+        src="/sobre-mi-hero-photo-provisional.webp"
         alt="Mariona Masferrer"
         width={500}
         height={279}

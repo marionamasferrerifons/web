@@ -3,7 +3,11 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
-import { BOOKING_URL } from '@/lib/constants';
+import ActionButtons from '@/components/service/ActionButtons';
+
+// Foto provisional (retrat de LinkedIn ampliat amb fons coral) fins que hi hagi
+// les fotos definitives: només cal substituir aquest fitxer.
+const HERO_PHOTO = '/home-hero-photo-provisional.webp';
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
@@ -40,7 +44,7 @@ export default function HeroSection() {
 
       {/* Photo — flush with the section's true left edge, regardless of viewport width */}
       <Image
-        src="/hero-photo.png"
+        src={HERO_PHOTO}
         alt="Mariona Masferrer"
         width={340}
         height={207}
@@ -71,16 +75,16 @@ export default function HeroSection() {
             maxWidth: '809px',
           }}
         >
-          Te ayudo a{' '}
-          <span style={{ color: 'var(--color-orange-400)' }}>decidir</span>
-          {' '}qué adoptar y qué dejar de lado en el sector editorial
+          Haz que la IA{' '}
+          <span style={{ color: 'var(--color-orange-400)' }}>potencie</span>
+          {' '}tu editorial educativa.
         </h1>
 
         <div className="flex flex-col md:flex-row md:items-end md:justify-end gap-[40px] mt-[64px] md:mt-[96px]">
           {/* Photo — mobile only; desktop uses the edge-to-edge absolute version above */}
           <Image
-            src="/hero-photo.png"
-            alt="Mariona Masferrer"
+            src={HERO_PHOTO}
+            alt=""
             width={340}
             height={207}
             className="hero-photo lg:hidden object-cover shrink-0"
@@ -107,7 +111,7 @@ export default function HeroSection() {
                 color: 'var(--color-blue-200)',
               }}
             >
-              [+15 AÑOS DE EXPERIENCIA]
+              [+10 AÑOS DE EXPERIENCIA]
             </p>
             <p
               className="hero-body"
@@ -120,37 +124,12 @@ export default function HeroSection() {
                 color: 'var(--color-blue-100)',
               }}
             >
-              Acompañamiento estratégico para directivos editoriales que buscan integrar la innovación en IA, combinando experiencia editorial, pedagógica y tecnológica.
+              Te ayudo a tomar decisiones estratégicas sobre IA, a mejorar tus flujos de producción y a aprender a trabajar con herramientas de IA. Te aporto criterio editorial y pedagógico, y un conocimiento práctico de la tecnología.
             </p>
 
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hero-button group flex items-center gap-[16px] bg-grey hover:bg-white rounded-full cursor-pointer transition-colors duration-[330ms] ease-linear"
-              style={{ paddingLeft: '28px', paddingRight: '12px', paddingTop: '8px', paddingBottom: '8px', marginTop: '16px' }}
-            >
-              <span
-                className="uppercase text-text-accent"
-                style={{
-                  fontFamily: 'var(--font-dm-mono)',
-                  fontWeight: 400,
-                  fontSize: 'var(--text-body-accent-mono)',
-                  lineHeight: 'var(--text-body-accent-mono--line-height)',
-                  letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-                }}
-              >
-                RESERVAR UNA LLAMADA
-              </span>
-              <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[27px]">
-                <img
-                  src="/arrow-white.svg"
-                  alt=""
-                  className="size-4 transition-transform duration-300 ease-out group-hover:rotate-45"
-                  aria-hidden="true"
-                />
-              </span>
-            </a>
+            <div className="hero-button w-full md:w-fit" style={{ marginTop: '24px' }}>
+              <ActionButtons inverted showNote={false} />
+            </div>
           </div>
         </div>
       </div>

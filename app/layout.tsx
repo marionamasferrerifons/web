@@ -25,7 +25,7 @@ const dmMono = DM_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Mariona Masferrer i Fons — Estrategia editorial con IA",
+    default: "Mariona Masferrer i Fons — IA para editoriales educativas",
     template: "%s · Mariona Masferrer i Fons",
   },
   description:

@@ -139,6 +139,32 @@ export const INDUSTRY_LOGOS_QUERY = `
   }
 `
 
+// Carrusel de la home: tots els testimonis, amb la marca «Mostrar en el
+// carrusel de la home». La pàgina mostra els marcats i, si no n'hi ha cap, tots.
+export const HOME_TESTIMONIALS_QUERY = `
+  *[_type == "testimonial"] | order(_createdAt asc) {
+    _id,
+    showInHome,
+    quote,
+    authorName,
+    authorRole,
+    avatar {
+      asset-> {
+        _id,
+        url
+      },
+      alt
+    },
+    "logo": logo->logo {
+      asset-> {
+        _id,
+        url
+      },
+      alt
+    }
+  }
+`
+
 export const TESTIMONIAL_BY_PLACEMENT_QUERY = `
   *[_type == "testimonial" && $placement in placement][0] {
     quote,

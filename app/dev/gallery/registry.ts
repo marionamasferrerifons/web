@@ -387,7 +387,7 @@ export const BLOCKS: BlockEntry[] = [
     recommendation: 'conservar',
     rationale: 'Funciona com a respirador entre blocs densos i no té cap problema tècnic observat.',
     variants: [
-      { id: 'problem', label: 'Problem (home) - titular amb forma de fons', files: ['app/home/ProblemSection.tsx'], pages: [PAGES.home] },
+      { id: 'problem', label: 'Problem (home) - titular amb forma de fons', files: ['app/home/ProblemSection.tsx'], pages: [PAGES.home], inactive: true, note: 'Retirat de la home el 2026-10-14; el component es conserva per a la galeria.' },
       { id: 'production-painpoints-title', label: 'Titulars de ProductionPainPoints (servicios editoriales)', files: ['app/servicios/servicios-editoriales/ProductionPainPointsSection.tsx'], pages: [PAGES.editoriales], embedded: true, note: 'Els dos h2 del bloc de pastilles; no és un component separat.' },
       { id: 'quote', label: 'Quote (sobre mi) - citació personal sobre fons taronja', files: ['app/sobre-mi/QuoteSection.tsx'], pages: [PAGES.sobreMi] },
     ],
@@ -442,7 +442,7 @@ export const BLOCKS: BlockEntry[] = [
     variants: [
       { id: 'ecosistema', label: 'Sense el teu criteri codificat (ecosistema) - esglaonat amb marges a la dreta', files: ['app/servicios/ecosistema-produccion-editorial/ProblemPillsSection.tsx'], pages: [PAGES.ecosistema] },
       { id: 'editoriales', label: 'Si necessites complir el pla (servicios editoriales) - dues files, titular a banda i banda', files: ['app/servicios/servicios-editoriales/ProductionPainPointsSection.tsx'], pages: [PAGES.editoriales] },
-      { id: 'home-avatars', label: 'Desafíos reales (home) - amb avatar flotant en lloc de punt de color', files: ['app/home/ChallengesSection.tsx'], pages: [PAGES.home], note: 'Variant més allunyada del patró: substitueix el punt per una fotografia d\'avatar i coordenades absolutes calibrades a 1400px.' },
+      { id: 'home-avatars', label: 'Desafíos reales (home) - amb avatar flotant en lloc de punt de color', files: ['app/home/ChallengesSection.tsx'], pages: [PAGES.home], note: 'Variant més allunyada del patró: substitueix el punt per una fotografia d\'avatar i coordenades absolutes calibrades a 1400px. Retirat de la home el 2026-10-14; el component es conserva per a la galeria.', inactive: true },
     ],
   },
   {
@@ -488,7 +488,7 @@ export const BLOCKS: BlockEntry[] = [
     rationale:
       'És el bloc més pròxim a un selector de serveis que existeix avui, però només funciona com a llista, no com a comparador. Amb quatre serveis caldra decidir si aquest patró escala o si cal un comparador nou (vegeu la secció de blocs inexistents a l\'inventari).',
     variants: [
-      { id: 'default', label: 'Les tres targetes reals, amb el seu contingut', files: ['app/home/ServicesSection.tsx'], pages: [PAGES.home] },
+      { id: 'default', label: 'Les tres targetes reals, amb el seu contingut', files: ['app/home/ServicesSection.tsx'], pages: [PAGES.home], inactive: true, note: 'Retirat de la home el 2026-10-14; el component es conserva per a la galeria.' },
       { id: 'formacion-services', label: 'Curso, acompañamiento y empresas (formación) - text 3 : il·lustració 2, botó propi a cada targeta', files: ['app/servicios/formacion-en-ia/TrainingServicesSection.tsx'], pages: [PAGES.formacion], note: 'La targeta no és un enllaç sencer: cada una té el seu botó de WhatsApp. La il·lustració es mostra sencera (object-contain) sobre --color-coral-100.' },
     ],
   },
@@ -517,6 +517,7 @@ export const BLOCKS: BlockEntry[] = [
       { id: 'produccion-modalities', label: '¿Qué necesitas resolver? (producción) - 3 modalitats amb il·lustració, subgrid', files: ['app/servicios/produccion-editorial-con-ia/ModalitiesSection.tsx'], pages: [PAGES.produccion] },
       { id: 'produccion-options', label: 'Dos formas de ponerlo en marcha (producción) - comparador de 2 opcions amb subgrid, dins ProductionSystemSection', files: ['app/servicios/produccion-editorial-con-ia/ProductionSystemSection.tsx'], pages: [PAGES.produccion], embedded: true },
       { id: 'formacion-starting-points', label: 'No te quedes fuera del futuro de la edición (formación) - 3 punts de partida amb icona i enllaç intern, subgrid', files: ['app/servicios/formacion-en-ia/StartingPointsSection.tsx'], pages: [PAGES.formacion] },
+      { id: 'home-services', label: '¿Cómo puedo ayudarte? (home) - els 3 serveis amb il·lustració i enllaç, subgrid', files: ['app/home/HomeServicesSection.tsx'], pages: [PAGES.home], note: 'Mateixa visualització que `produccion-modalities`, sense numeració.' },
     ],
   },
 
@@ -543,8 +544,9 @@ export const BLOCKS: BlockEntry[] = [
     variants: [
       { id: 'about-values', label: 'Mis valores (sobre mi) - 3 columnes de 2, amb formes de fons', files: ['app/sobre-mi/ValuesSection.tsx'], pages: [PAGES.sobreMi] },
       { id: 'enfoque-principles', label: 'Principios de trabajo (enfoque) - 3 columnes, targetes altes amb forma', files: ['app/enfoque/WorkPrinciplesSection.tsx'], pages: [PAGES.enfoque] },
-      { id: 'home-practice', label: 'Traducción a la práctica (home) - fila de 3 + testimoni incrustat', files: ['app/home/PracticeSection.tsx'], pages: [PAGES.home] },
+      { id: 'home-practice', label: 'Traducción a la práctica (home) - fila de 3 + testimoni incrustat', files: ['app/home/PracticeSection.tsx'], pages: [PAGES.home], inactive: true, note: 'Retirat de la home el 2026-10-14; el component es conserva per a la galeria.' },
       { id: 'ecosistema-advantages', label: 'Ventajas (ecosistema) - graella 2x2 + diagrama', files: ['app/servicios/ecosistema-produccion-editorial/AdvantagesSection.tsx'], pages: [PAGES.ecosistema] },
+      { id: 'home-profile', label: 'Sobre mí (home) - foto, presentació i 3 aportacions amb icona en fila', files: ['app/home/ProfileSection.tsx'], pages: [PAGES.home], note: 'Graella regular sense masonry, com `produccion-benefits`. Foto provisional.' },
     ],
   },
 
@@ -692,9 +694,10 @@ export const BLOCKS: BlockEntry[] = [
     recommendation: 'conservar',
     rationale: 'És el millor exemple del lloc de bloc reutilitzat correctament via props. Servirà de model per convergir altres patrons (hero-page, cta-band) cap a un sol component.',
     variants: [
-      { id: 'orange', label: 'Color per defecte (taronja-400), amb capcalera Testimonios', files: ['app/servicios/estrategia-editorial/TestimonialSection.tsx'], pages: [PAGES.home, PAGES.estrategia, PAGES.enfoque, PAGES.caso] },
-      { id: 'green', label: 'Variant verda (cardColor), amb capcalera', files: ['app/servicios/estrategia-editorial/TestimonialSection.tsx'], pages: [PAGES.home, PAGES.produccion] },
-      { id: 'embedded', label: 'hideHeader - incrustat sense títol de secció, dins PracticeSection', files: ['app/home/PracticeSection.tsx:150-163'], pages: [PAGES.home], embedded: true },
+      { id: 'orange', label: 'Color per defecte (taronja-400), amb capcalera Testimonios', files: ['app/servicios/estrategia-editorial/TestimonialSection.tsx'], pages: [PAGES.estrategia, PAGES.enfoque, PAGES.caso] },
+      { id: 'green', label: 'Variant verda (cardColor), amb capcalera', files: ['app/servicios/estrategia-editorial/TestimonialSection.tsx'], pages: [PAGES.produccion] },
+      { id: 'embedded', label: 'hideHeader - incrustat sense títol de secció, dins PracticeSection', files: ['app/home/PracticeSection.tsx:150-163'], pages: [PAGES.home], embedded: true, inactive: true, note: 'Retirat de la home el 2026-10-14; el component es conserva per a la galeria.' },
+      { id: 'home-carousel', label: 'Carrusel de testimonis (home) - hideHeader, colors alterns, avança cada 7 s', files: ['app/home/HomeTestimonialsSection.tsx'], pages: [PAGES.home], note: 'Testimonis marcats amb showInHome a Sanity; si no n\'hi ha cap, tots. Amb un sol testimoni no mostra controls.' },
     ],
   },
 
@@ -717,7 +720,8 @@ export const BLOCKS: BlockEntry[] = [
     recommendation: 'conservar',
     rationale: 'Component net i reutilitzat correctament amb props (tag/title/subtitle). Només caldria substituir l\'aparellament per subcadena per una referència directa si creix el catàleg de clients.',
     variants: [
-      { id: 'default', label: 'Llista amb casos reals i logotips aparellats', files: ['app/servicios/estrategia-editorial/CaseStudiesClient.tsx', 'app/servicios/estrategia-editorial/CaseStudiesSection.tsx'], pages: [PAGES.home, PAGES.estrategia, PAGES.enfoque], note: 'A estrategia-editorial està desactivat per SHOW_CASE_STUDIES = false.' },
+      { id: 'default', label: 'Llista amb casos reals i logotips aparellats', files: ['app/servicios/estrategia-editorial/CaseStudiesClient.tsx', 'app/servicios/estrategia-editorial/CaseStudiesSection.tsx'], pages: [PAGES.estrategia, PAGES.enfoque], note: 'Retirat de la home el 2026-10-14. A estrategia-editorial està desactivat per SHOW_CASE_STUDIES = false.' },
+      { id: 'home-cases', label: 'Proyectos que ya he realizado (home) - 2 targetes de cas sense client, subgrid', files: ['app/home/HomeCasesSection.tsx'], pages: [PAGES.home], note: 'Contingut fix al codi (no Sanity), sense logotip ni imatge.' },
     ],
   },
   {
@@ -762,7 +766,8 @@ export const BLOCKS: BlockEntry[] = [
     recommendation: 'adaptar',
     rationale: 'Funciona visualment però està acoblat a noms de client concrets en dos llocs diferents del codi; amb més clients caldra una propietat explícita al CMS en lloc d\'una llista a mà.',
     variants: [
-      { id: 'default', label: 'Marquesina amb logotips reals', files: ['app/home/LogosSection.tsx', 'components/RecoloredLogo.tsx'], pages: [PAGES.home] },
+      { id: 'default', label: 'Marquesina amb logotips reals', files: ['app/home/LogosSection.tsx', 'components/RecoloredLogo.tsx'], pages: [PAGES.home], inactive: true, note: 'Substituïda a la home per `home-strip` el 2026-10-14; el component es conserva per a la galeria.' },
+      { id: 'home-strip', label: 'Franja de targetes unida al hero (home) - mida per superfície, sense rètol', files: ['app/home/LogosStripSection.tsx', 'components/RecoloredLogo.tsx'], pages: [PAGES.home], note: 'Amb prefers-reduced-motion queda quieta i es desplaça a mà (també amb teclat). McGraw-Hill usa una silueta blanca preparada (public/logo-mcgrawhill-blanco.png).' },
     ],
   },
 

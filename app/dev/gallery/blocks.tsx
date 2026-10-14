@@ -28,6 +28,11 @@ import ProblemSection from '@/app/home/ProblemSection'
 import HomeCriterioShapesSection from '@/app/home/CriterioShapesSection'
 import PracticeSection from '@/app/home/PracticeSection'
 import ServicesSection from '@/app/home/ServicesSection'
+import LogosStripSection from '@/app/home/LogosStripSection'
+import HomeServicesSection from '@/app/home/HomeServicesSection'
+import HomeCasesSection from '@/app/home/HomeCasesSection'
+import ProfileSection from '@/app/home/ProfileSection'
+import HomeTestimonialsSection from '@/app/home/HomeTestimonialsSection'
 
 // Estrategia editorial (fitxers compartits que es queden en aquesta carpeta)
 import CaseStudiesClient from '@/app/servicios/estrategia-editorial/CaseStudiesClient'
@@ -186,6 +191,7 @@ export const BLOCK_RENDERERS: Record<string, Record<string, Renderer>> = {
     'produccion-modalities': () => <ModalitiesSection />,
     'produccion-options': () => <ProductionSystemSection />,
     'formacion-starting-points': () => <StartingPointsSection />,
+    'home-services': () => <HomeServicesSection />,
   },
 
   'valuegrid-masonry': {
@@ -193,6 +199,7 @@ export const BLOCK_RENDERERS: Record<string, Record<string, Renderer>> = {
     'enfoque-principles': () => <WorkPrinciplesSection />,
     'home-practice': () => <PracticeSection testimonial={testimonialFixture} />,
     'ecosistema-advantages': () => <AdvantagesSection />,
+    'home-profile': () => <ProfileSection />,
   },
 
   'brandshape-composition': {
@@ -222,14 +229,26 @@ export const BLOCK_RENDERERS: Record<string, Record<string, Renderer>> = {
         <TestimonialSection {...testimonialFixture} hideHeader />
       </div>
     ),
+    'home-carousel': () => (
+      <HomeTestimonialsSection
+        testimonials={[
+          { id: 'fixture-1', ...testimonialFixture },
+          { id: 'fixture-2', ...testimonialFixture, authorName: 'Segon testimoni' },
+        ]}
+      />
+    ),
   },
 
   'caselist-rows': {
     default: () => <CaseStudiesClient caseStudies={caseStudiesFixture} logos={industryLogosFixture.map((l) => ({ name: l.alt, logo: { asset: null, alt: l.alt } }))} />,
+    'home-cases': () => <HomeCasesSection />,
   },
   'project-carousel': { default: () => <EditorialProjectsSection projects={editorialProjectsFixture} /> },
 
-  'logo-marquee': { default: () => <LogosSection logos={industryLogosFixture} /> },
+  'logo-marquee': {
+    default: () => <LogosSection logos={industryLogosFixture} />,
+    'home-strip': () => <LogosStripSection logos={industryLogosFixture} />,
+  },
 
   'prose-block': {
     context: () => <ContextSection context={contextFixture} />,
