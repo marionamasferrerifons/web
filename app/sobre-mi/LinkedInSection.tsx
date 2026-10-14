@@ -45,7 +45,7 @@ export default function LinkedInSection() {
             }}
           >
             <Image
-              src="/hero-photo.png"
+              src="/mariona-perfil-provisional.webp"
               alt="Mariona Masferrer"
               fill
               sizes="(min-width: 768px) 198px, 120px"

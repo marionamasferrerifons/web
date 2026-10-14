@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SectionTag from '@/components/service/SectionTag';
 
 export default function CriterioSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -15,8 +16,7 @@ export default function CriterioSection() {
         scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
         defaults: { ease: 'power3.out' },
       })
-        .from('.criterio-tag',   { y: -20, opacity: 0, duration: 0.5 })
-        .from('.criterio-title', { y: 48,  opacity: 0, duration: 0.9 }, '-=0.2')
+        .from('.criterio-title', { y: 48,  opacity: 0, duration: 0.9 })
         .from('.criterio-subtitle', { y: 24, opacity: 0, duration: 0.6 }, '-=0.5')
         .from('.criterio-shape', { y: 40, opacity: 0, duration: 0.8, stagger: 0.12 }, '-=0.3');
     }, sectionRef);
@@ -45,49 +45,37 @@ export default function CriterioSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full flex flex-col gap-[64px] md:gap-[80px] items-center py-[56px] px-[20px] md:px-[40px]"
-      style={{ backgroundColor: 'var(--color-grey)' }}
+      className="w-full flex flex-col gap-[48px] items-center py-[64px] md:py-[96px] px-[20px] md:px-[40px] bg-white"
     >
       <div className="flex flex-col gap-[16px] items-center text-center" style={{ maxWidth: '690px' }}>
-        <p
-          className="criterio-tag uppercase"
-          style={{
-            fontFamily: 'var(--font-dm-mono)',
-            fontWeight: 400,
-            fontSize: 'var(--text-body-accent-mono)',
-            lineHeight: 'var(--text-body-accent-mono--line-height)',
-            letterSpacing: 'var(--text-body-accent-mono--letter-spacing)',
-            color: 'var(--color-text-secondary)',
-            opacity: 0.65,
-          }}
-        >
-          [MI ENFOQUE]
-        </p>
+        <div className="criterio-title">
+          <SectionTag color="var(--color-text-secondary)">[Mi enfoque]</SectionTag>
+        </div>
         <h2
           className="criterio-title"
           style={{
             fontFamily: 'var(--font-dm-sans)',
-            fontSize: 'var(--text-title-xl)',
-            lineHeight: 'var(--text-title-xl--line-height)',
+            fontSize: 'var(--text-title-l)',
+            lineHeight: 'var(--text-title-l--line-height)',
             fontWeight: 400,
-            fontVariationSettings: '"opsz" 14',
             color: 'var(--color-blue-400)',
           }}
         >
-          El <span style={{ color: 'var(--color-orange-400)' }}>criterio</span> de alguien que conoce el sector
+          ¿Cómo enfoco mi <span style={{ color: 'var(--color-orange-400)' }}>trabajo</span>?
         </h2>
         <p
           className="criterio-subtitle"
           style={{
             fontFamily: 'var(--font-dm-sans)',
-            fontSize: 'var(--text-body-m)',
-            lineHeight: 'var(--text-body-m--line-height)',
-            fontWeight: 400,
-            fontVariationSettings: '"opsz" 14',
+            fontSize: 'var(--text-body-l)',
+            lineHeight: 'var(--text-body-l--line-height)',
+            fontWeight: 300,
             color: 'var(--color-text-secondary)',
+            maxWidth: '495px',
+            textWrap: 'balance',
           }}
         >
-          Lorem ipsum dolor sit amet consectetur. Ultrices blandit vestibulum volutpat blandit vulputate fermentum pulvinar.
+          Combino la mirada editorial, pedagógica y tecnológica para definir dónde puede ayudarte la IA y cómo mantener el criterio de tu equipo al frente del proceso.
         </p>
       </div>
 
@@ -117,8 +105,7 @@ export default function CriterioSection() {
             className="absolute flex flex-col gap-[8px] opacity-100 translate-y-0 md:opacity-0 md:translate-y-[12px] transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-y-0"
             style={{ left: '48px', right: '32px', bottom: '32px' }}
           >
-            <p style={{ ...bodyTextStyle, fontWeight: 600 }}>Entiendo cómo funciona una editorial por dentro.</p>
-            <p style={bodyTextStyle}>Desde los procesos de producción hasta las decisiones estratégicas, lo que permite aplicar IA sin romper lo que ya funciona.</p>
+            <p style={bodyTextStyle}>Aplico la IA desde el conocimiento del oficio de editar, preservando sus buenas prácticas y el conocimiento acumulado del sector. Ese saber guía cómo incorporo la tecnología y cómo valoro sus resultados.</p>
           </div>
         </div>
 
@@ -141,8 +128,7 @@ export default function CriterioSection() {
               className="flex flex-col gap-[8px] opacity-100 max-h-none md:opacity-0 md:max-h-0 overflow-hidden transition-all duration-300 md:group-hover:opacity-100 md:group-hover:max-h-[200px]"
               style={{ maxWidth: '360px' }}
             >
-              <p style={{ ...bodyTextStyle, fontWeight: 600 }}>Entiendo el contenido desde quien lo enseña y quien lo produce.</p>
-              <p style={bodyTextStyle}>Haber trabajado como docente me permite entender cómo se usa el contenido en la práctica, algo clave a la hora de aplicar IA sin perder valor educativo.</p>
+              <p style={bodyTextStyle}>Combino metodologías didácticas basadas en evidencia con mi experiencia en el aula para crear materiales que favorezcan el aprendizaje significativo y respondan a las necesidades reales de docentes y alumnado.</p>
             </div>
           </div>
         </div>
@@ -168,8 +154,7 @@ export default function CriterioSection() {
             className="absolute flex flex-col gap-[8px] opacity-100 translate-y-0 md:opacity-0 md:translate-y-[12px] transition-all duration-300 md:group-hover:opacity-100 md:group-hover:translate-y-0"
             style={{ left: '32px', right: '32px', top: '230px' }}
           >
-            <p style={{ ...bodyTextStyle, fontWeight: 600 }}>Uso la IA en la práctica</p>
-            <p style={bodyTextStyle}>Trabajo con IA desde dentro del proceso editorial, lo que permite entender sus límites, sus riesgos y su verdadero potencial.</p>
+            <p style={bodyTextStyle}>Comprendo cómo funciona la IA, sus posibilidades y sus límites. Combino esa comprensión con la experiencia de aplicarla a proyectos reales para tomar decisiones tecnológicas fundamentadas que ayuden a tu editorial a alcanzar sus objetivos.</p>
           </div>
         </div>
       </div>

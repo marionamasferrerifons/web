@@ -15,6 +15,7 @@ export default function ActionButtons({
   noteColor,
   whatsappHref = WHATSAPP_URL,
   secondaryColor,
+  showNote = true,
 }: {
   inverted?: boolean;
   surface?: 'color' | 'white';
@@ -22,6 +23,8 @@ export default function ActionButtons({
   whatsappHref?: string;
   /** Color de vora i text del botó de WhatsApp quan el fons el demana (p. ex. coral). */
   secondaryColor?: string;
+  /** El hero de la home no porta la nota sota els botons. */
+  showNote?: boolean;
 }) {
   return (
     <div className="flex flex-col items-center gap-[16px] w-full">
@@ -33,7 +36,7 @@ export default function ActionButtons({
           Hablar por WhatsApp
         </Button>
       </div>
-      <p
+      {showNote && <p
         className="text-center"
         style={{
           fontFamily: 'var(--font-dm-sans)',
@@ -46,7 +49,7 @@ export default function ActionButtons({
         }}
       >
         1 hora para entender tu necesidad y valorar cómo puedo ayudarte. O, si lo prefieres, escríbeme y empezamos a hablar.
-      </p>
+      </p>}
     </div>
   );
 }

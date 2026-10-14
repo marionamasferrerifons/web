@@ -250,7 +250,7 @@ _Blocs que només són un titular gran, sense targetes ni llistes._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `problem` — Problem (home) - titular amb forma de fons | `app/home/ProblemSection.tsx` | / |  |
+| `problem` — Problem (home) - titular amb forma de fons | `app/home/ProblemSection.tsx` | / | Retirat de la home el 2026-10-14; el component es conserva per a la galeria. · _inactiu_ |
 | `production-painpoints-title` — Titulars de ProductionPainPoints (servicios editoriales) | `app/servicios/servicios-editoriales/ProductionPainPointsSection.tsx` | /servicios/servicios-editoriales (sense ruta, 301) | Els dos h2 del bloc de pastilles; no és un component separat. · _incrustat_ |
 | `quote` — Quote (sobre mi) - citació personal sobre fons taronja | `app/sobre-mi/QuoteSection.tsx` | /sobre-mi |  |
 
@@ -299,7 +299,7 @@ _Pastilles blanques que enumeren dolors del client abans de presentar l'oferta._
 |---|---|---|---|
 | `ecosistema` — Sense el teu criteri codificat (ecosistema) - esglaonat amb marges a la dreta | `app/servicios/ecosistema-produccion-editorial/ProblemPillsSection.tsx` | /servicios/ecosistema-produccion-editorial (sense ruta, 301) |  |
 | `editoriales` — Si necessites complir el pla (servicios editoriales) - dues files, titular a banda i banda | `app/servicios/servicios-editoriales/ProductionPainPointsSection.tsx` | /servicios/servicios-editoriales (sense ruta, 301) |  |
-| `home-avatars` — Desafíos reales (home) - amb avatar flotant en lloc de punt de color | `app/home/ChallengesSection.tsx` | / | Variant més allunyada del patró: substitueix el punt per una fotografia d'avatar i coordenades absolutes calibrades a 1400px. |
+| `home-avatars` — Desafíos reales (home) - amb avatar flotant en lloc de punt de color | `app/home/ChallengesSection.tsx` | / | Variant més allunyada del patró: substitueix el punt per una fotografia d'avatar i coordenades absolutes calibrades a 1400px. Retirat de la home el 2026-10-14; el component es conserva per a la galeria. · _inactiu_ |
 
 ### `qa-grid` — Graella de preguntes i respostes
 
@@ -343,7 +343,7 @@ _Els blocs que presenten l'oferta. És el grup clau per a la reorganització en 
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `default` — Les tres targetes reals, amb el seu contingut | `app/home/ServicesSection.tsx` | / |  |
+| `default` — Les tres targetes reals, amb el seu contingut | `app/home/ServicesSection.tsx` | / | Retirat de la home el 2026-10-14; el component es conserva per a la galeria. · _inactiu_ |
 | `formacion-services` — Curso, acompañamiento y empresas (formación) - text 3 : il·lustració 2, botó propi a cada targeta | `app/servicios/formacion-en-ia/TrainingServicesSection.tsx` | /servicios/formacion-en-ia | La targeta no és un enllaç sencer: cada una té el seu botó de WhatsApp. La il·lustració es mostra sencera (object-contain) sobre --color-coral-100. |
 
 ### `svccard-grid` — Graella de targetes de servei
@@ -370,6 +370,7 @@ _Els blocs que presenten l'oferta. És el grup clau per a la reorganització en 
 | `produccion-modalities` — ¿Qué necesitas resolver? (producción) - 3 modalitats amb il·lustració, subgrid | `app/servicios/produccion-editorial-con-ia/ModalitiesSection.tsx` | /servicios/produccion-editorial-con-ia |  |
 | `produccion-options` — Dos formas de ponerlo en marcha (producción) - comparador de 2 opcions amb subgrid, dins ProductionSystemSection | `app/servicios/produccion-editorial-con-ia/ProductionSystemSection.tsx` | /servicios/produccion-editorial-con-ia | _incrustat_ |
 | `formacion-starting-points` — No te quedes fuera del futuro de la edición (formación) - 3 punts de partida amb icona i enllaç intern, subgrid | `app/servicios/formacion-en-ia/StartingPointsSection.tsx` | /servicios/formacion-en-ia |  |
+| `home-services` — ¿Cómo puedo ayudarte? (home) - els 3 serveis amb il·lustració i enllaç, subgrid | `app/home/HomeServicesSection.tsx` | / | Mateixa visualització que `produccion-modalities`, sense numeració. |
 
 ## Graelles de valor
 
@@ -395,8 +396,9 @@ _Targetes curtes amb icona, títol i cos que argumenten beneficis o principis._
 |---|---|---|---|
 | `about-values` — Mis valores (sobre mi) - 3 columnes de 2, amb formes de fons | `app/sobre-mi/ValuesSection.tsx` | /sobre-mi |  |
 | `enfoque-principles` — Principios de trabajo (enfoque) - 3 columnes, targetes altes amb forma | `app/enfoque/WorkPrinciplesSection.tsx` | /enfoque |  |
-| `home-practice` — Traducción a la práctica (home) - fila de 3 + testimoni incrustat | `app/home/PracticeSection.tsx` | / |  |
+| `home-practice` — Traducción a la práctica (home) - fila de 3 + testimoni incrustat | `app/home/PracticeSection.tsx` | / | Retirat de la home el 2026-10-14; el component es conserva per a la galeria. · _inactiu_ |
 | `ecosistema-advantages` — Ventajas (ecosistema) - graella 2x2 + diagrama | `app/servicios/ecosistema-produccion-editorial/AdvantagesSection.tsx` | /servicios/ecosistema-produccion-editorial (sense ruta, 301) |  |
+| `home-profile` — Sobre mí (home) - foto, presentació i 3 aportacions amb icona en fila | `app/home/ProfileSection.tsx` | / | Graella regular sense masonry, com `produccion-benefits`. Foto provisional. |
 
 ## Composicions de marca
 
@@ -561,9 +563,10 @@ _Citació de client amb autoria i logotip._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `orange` — Color per defecte (taronja-400), amb capcalera Testimonios | `app/servicios/estrategia-editorial/TestimonialSection.tsx` | /, /servicios/estrategia-de-ia, /enfoque, /casos-de-exito/[slug] |  |
-| `green` — Variant verda (cardColor), amb capcalera | `app/servicios/estrategia-editorial/TestimonialSection.tsx` | /, /servicios/produccion-editorial-con-ia |  |
-| `embedded` — hideHeader - incrustat sense títol de secció, dins PracticeSection | `app/home/PracticeSection.tsx:150-163` | / | _incrustat_ |
+| `orange` — Color per defecte (taronja-400), amb capcalera Testimonios | `app/servicios/estrategia-editorial/TestimonialSection.tsx` | /servicios/estrategia-de-ia, /enfoque, /casos-de-exito/[slug] |  |
+| `green` — Variant verda (cardColor), amb capcalera | `app/servicios/estrategia-editorial/TestimonialSection.tsx` | /servicios/produccion-editorial-con-ia |  |
+| `embedded` — hideHeader - incrustat sense títol de secció, dins PracticeSection | `app/home/PracticeSection.tsx:150-163` | / | Retirat de la home el 2026-10-14; el component es conserva per a la galeria. · _incrustat_ · _inactiu_ |
+| `home-carousel` — Carrusel de testimonis (home) - hideHeader, colors alterns, avança cada 7 s | `app/home/HomeTestimonialsSection.tsx` | / | Testimonis marcats amb showInHome a Sanity; si no n'hi ha cap, tots. Amb un sol testimoni no mostra controls. |
 
 ## Casos i projectes
 
@@ -587,7 +590,8 @@ _Índexs de feina feta que enllacen o es naveguen._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `default` — Llista amb casos reals i logotips aparellats | `app/servicios/estrategia-editorial/CaseStudiesClient.tsx`<br>`app/servicios/estrategia-editorial/CaseStudiesSection.tsx` | /, /servicios/estrategia-de-ia, /enfoque | A estrategia-editorial està desactivat per SHOW_CASE_STUDIES = false. |
+| `default` — Llista amb casos reals i logotips aparellats | `app/servicios/estrategia-editorial/CaseStudiesClient.tsx`<br>`app/servicios/estrategia-editorial/CaseStudiesSection.tsx` | /servicios/estrategia-de-ia, /enfoque | Retirat de la home el 2026-10-14. A estrategia-editorial està desactivat per SHOW_CASE_STUDIES = false. |
+| `home-cases` — Proyectos que ya he realizado (home) - 2 targetes de cas sense client, subgrid | `app/home/HomeCasesSection.tsx` | / | Contingut fix al codi (no Sanity), sense logotip ni imatge. |
 
 ### `project-carousel` — Carrusel de projectes
 
@@ -631,7 +635,8 @@ _Prova social en forma de marquesina._
 
 | Variant | Fitxer(s) | Pàgines | Nota |
 |---|---|---|---|
-| `default` — Marquesina amb logotips reals | `app/home/LogosSection.tsx`<br>`components/RecoloredLogo.tsx` | / |  |
+| `default` — Marquesina amb logotips reals | `app/home/LogosSection.tsx`<br>`components/RecoloredLogo.tsx` | / | Substituïda a la home per `home-strip` el 2026-10-14; el component es conserva per a la galeria. · _inactiu_ |
+| `home-strip` — Franja de targetes unida al hero (home) - mida per superfície, sense rètol | `app/home/LogosStripSection.tsx`<br>`components/RecoloredLogo.tsx` | / | Amb prefers-reduced-motion queda quieta i es desplaça a mà (també amb teclat). McGraw-Hill usa una silueta blanca preparada (public/logo-mcgrawhill-blanco.png). |
 
 ## Prosa editable des del CMS
 
