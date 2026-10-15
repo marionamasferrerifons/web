@@ -1,8 +1,23 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { CLIENT_SPACES, formatDateShort, getClientSpace, type Block, type Unit } from '@/lib/clientes'
-import { ClientFooter, ClientHeader, Em, StatusPill, monoStyle } from '../../ClientUi'
+import {
+  CLIENT_SPACES,
+  deliveriesByUnit,
+  formatDateLong,
+  formatDateShort,
+  formatDayMonth,
+  formatMonth,
+  getClientSpace,
+  nextDelivery,
+  type Block,
+  type ClientProject,
+  type Delivery,
+  type Unit,
+} from '@/lib/clientes'
+import { ClientFooter, ClientHeader, DeliveryStatusPill, Em, StatusPill, monoStyle } from '../../ClientUi'
+import DeliveryCalendarSection, { DeliverySummary } from './DeliveryCalendarSection'
+import ProjectTabs from './ProjectTabs'
 
 type Props = { params: Promise<{ cliente: string; proyecto: string }> }
 
@@ -26,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const bodyM = { fontSize: '16px', lineHeight: '24px', fontWeight: 300 } as const
 
-function UnitCard({ unit }: { unit: Unit }) {
+function UnitCard({ unit, delivery }: { unit: Unit; delivery?: Delivery }) {
   const num = unit.code.replace(/\D/g, '')
   return (
     <li
@@ -62,6 +77,21 @@ function UnitCard({ unit }: { unit: Unit }) {
           ))}
         </ol>
       )}
+      {delivery && (
+        <div
+          className="mt-auto flex flex-wrap items-center justify-between gap-[8px] pt-[12px]"
+          style={{ borderTop: '1px solid var(--color-blue-100)' }}
+        >
+          <a
+            href={`#${delivery.id}`}
+            className="hover:text-[var(--color-text-accent)] transition-colors print:no-underline"
+            style={{ ...monoStyle, fontSize: '12px', color: 'var(--color-text-secondary)' }}
+          >
+            Entrega · {formatDateLong(delivery.date)}
+          </a>
+          <DeliveryStatusPill status={delivery.status} />
+        </div>
+      )}
     </li>
   )
 }
@@ -84,13 +114,108 @@ function PendingCallout({ pending }: { pending: NonNullable<Block['pending']> })
   )
 }
 
+/** Dates d'entrega de les unitats d'un bloc, sense repetir: [«23 nov», «7 dic»]. */
+function blockDates(block: Block, byUnit: Map<string, Delivery>) {
+  const dates = new Set(block.units.map((u) => byUnit.get(u.code)?.date).filter((d) => d !== undefined))
+  return [...dates].map(formatDayMonth)
+}
+
+function ProgramSection({ project }: { project: ClientProject }) {
+  const byUnit = deliveriesByUnit(project)
+  return (
+    <section className="px-[20px] md:px-[40px] pt-[64px] pb-[96px]">
+      <div className="mx-auto w-full max-w-[1160px] grid grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)] gap-[56px] items-start">
+
+        <nav aria-label="Bloques del programa" className="hidden lg:flex flex-col gap-[8px] sticky top-[24px] print:hidden">
+          <p className="px-[12px] pb-[8px]" style={{ ...monoStyle, color: 'var(--color-text-secondary)' }}>
+            Programa formativo
+          </p>
+          <ol className="flex flex-col gap-[2px]">
+            {project.blocks.map((b) => {
+              const dates = blockDates(b, byUnit)
+              return (
+                <li key={b.id}>
+                  <a
+                    href={`#${b.id}`}
+                    className="flex gap-[12px] px-[12px] py-[10px] rounded-[12px] text-blue-400 hover:bg-grey transition-colors"
+                  >
+                    <span style={{ ...monoStyle, color: 'var(--color-orange)' }}>{b.num}</span>
+                    <span className="flex flex-col gap-[2px]">
+                      <span style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 400 }}>{b.short}</span>
+                      {dates.length > 0 && (
+                        <span style={{ ...monoStyle, fontSize: '12px', lineHeight: '18px', color: 'var(--color-text-secondary)' }}>
+                          Entrega {dates.join(' · ')}
+                        </span>
+                      )}
+                    </span>
+                  </a>
+                </li>
+              )
+            })}
+          </ol>
+        </nav>
+
+        <div className="flex flex-col gap-[72px] min-w-0">
+          {project.blocks.map((b) => {
+            const dates = blockDates(b, byUnit)
+            return (
+              <section key={b.id} id={b.id} aria-labelledby={`${b.id}-titulo`} className="flex flex-col gap-[24px] scroll-mt-[24px]">
+                <div className="flex flex-col gap-[8px] pt-[20px]" style={{ borderTop: '2px solid var(--color-blue-400)' }}>
+                  <div className="flex flex-wrap items-center justify-between gap-x-[12px]">
+                    <p style={{ ...monoStyle, color: 'var(--color-orange)' }}>Bloque {b.num}</p>
+                    {dates.length > 0 && (
+                      <p style={{ ...monoStyle, fontSize: '12px', color: 'var(--color-text-secondary)' }}>
+                        Entrega {dates.join(' y ')}
+                      </p>
+                    )}
+                  </div>
+                  <h2
+                    id={`${b.id}-titulo`}
+                    style={{
+                      fontSize: 'var(--text-title-m)',
+                      lineHeight: 'var(--text-title-m--line-height)',
+                      fontWeight: 400,
+                      color: 'var(--color-blue-400)',
+                      textWrap: 'balance',
+                    }}
+                  >
+                    {b.title}
+                  </h2>
+                </div>
+
+                {b.pending && <PendingCallout pending={b.pending} />}
+
+                <ol className="grid grid-cols-1 md:grid-cols-2 gap-[16px]">
+                  {b.units.map((u) => (
+                    <UnitCard key={u.code} unit={u} delivery={byUnit.get(u.code)} />
+                  ))}
+                </ol>
+              </section>
+            )
+          })}
+        </div>
+
+      </div>
+    </section>
+  )
+}
+
 export default async function ClientProjectPage({ params }: Props) {
   const { cliente, proyecto } = await params
   const found = getProject(cliente, proyecto)
   if (!found) notFound()
   const { space, project } = found
 
-  const facts = [...project.facts, { label: 'Versión', value: `${project.version} · ${formatDateShort(project.date)}` }]
+  const deliveries = project.deliveries?.filter((d) => d.units.length > 0) ?? []
+  const hasCalendar = deliveries.length > 0
+  const next = nextDelivery(project)
+  const facts = [
+    ...project.facts,
+    ...(hasCalendar
+      ? [{ label: 'Entregas', value: `${deliveries.length} · ${formatMonth(deliveries[0].date).slice(0, 3)} – ${formatMonth(deliveries[deliveries.length - 1].date).slice(0, 3)}` }]
+      : []),
+    { label: 'Versión', value: `${project.version} · ${formatDateShort(project.date)}` },
+  ]
 
   return (
     <div className="bg-white">
@@ -98,7 +223,7 @@ export default async function ClientProjectPage({ params }: Props) {
 
       <main>
         {/* Capçalera del projecte: el gris queda sota les cantonades arrodonides de la barra */}
-        <section className="bg-grey -mt-[24px] px-[20px] md:px-[40px] pt-[56px] pb-[64px] print:mt-0 print:pt-0">
+        <section className={`bg-grey -mt-[24px] px-[20px] md:px-[40px] pt-[56px] ${hasCalendar ? 'pb-[40px]' : 'pb-[64px]'} print:mt-0 print:pt-0`}>
           <div className="mx-auto w-full max-w-[1160px] flex flex-col gap-[24px]">
             <Link
               href={`/clientes/${space.slug}`}
@@ -149,67 +274,31 @@ export default async function ClientProjectPage({ params }: Props) {
             >
               {project.intro}
             </p>
+            {hasCalendar && <DeliverySummary project={project} />}
           </div>
         </section>
 
-        {/* Programa */}
-        <section className="px-[20px] md:px-[40px] pt-[64px] pb-[96px]">
-          <div className="mx-auto w-full max-w-[1160px] grid grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)] gap-[56px] items-start">
-
-            <nav aria-label="Bloques del programa" className="hidden lg:flex flex-col gap-[8px] sticky top-[24px] print:hidden">
-              <p className="px-[12px] pb-[8px]" style={{ ...monoStyle, color: 'var(--color-text-secondary)' }}>
-                Programa formativo
-              </p>
-              <ol className="flex flex-col gap-[2px]">
-                {project.blocks.map((b) => (
-                  <li key={b.id}>
-                    <a
-                      href={`#${b.id}`}
-                      className="flex gap-[12px] px-[12px] py-[10px] rounded-[12px] text-blue-400 hover:bg-grey transition-colors"
-                    >
-                      <span style={{ ...monoStyle, color: 'var(--color-orange)' }}>{b.num}</span>
-                      <span style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 400 }}>{b.short}</span>
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
-
-            <div className="flex flex-col gap-[72px] min-w-0">
-              {project.blocks.map((b) => (
-                <section key={b.id} id={b.id} aria-labelledby={`${b.id}-titulo`} className="flex flex-col gap-[24px] scroll-mt-[24px]">
-                  <div className="flex flex-col gap-[8px] pt-[20px]" style={{ borderTop: '2px solid var(--color-blue-400)' }}>
-                    <p style={{ ...monoStyle, color: 'var(--color-orange)' }}>Bloque {b.num}</p>
-                    <h2
-                      id={`${b.id}-titulo`}
-                      style={{
-                        fontSize: 'var(--text-title-m)',
-                        lineHeight: 'var(--text-title-m--line-height)',
-                        fontWeight: 400,
-                        color: 'var(--color-blue-400)',
-                        textWrap: 'balance',
-                      }}
-                    >
-                      {b.title}
-                    </h2>
-                  </div>
-
-                  {b.pending && <PendingCallout pending={b.pending} />}
-
-                  <ol className="grid grid-cols-1 md:grid-cols-2 gap-[16px]">
-                    {b.units.map((u) => (
-                      <UnitCard key={u.code} unit={u} />
-                    ))}
-                  </ol>
-                </section>
-              ))}
-            </div>
-
-          </div>
-        </section>
+        {hasCalendar ? (
+          <ProjectTabs
+            tabs={[
+              { id: 'programa', label: 'Programa formativo', anchors: ['bloque-'], content: <ProgramSection project={project} /> },
+              {
+                id: 'calendario',
+                label: 'Calendario de entregas',
+                badge: next ? formatDayMonth(next.date) : undefined,
+                anchors: ['entrega-'],
+                content: (
+                  <DeliveryCalendarSection project={project} icsHref={`/clientes/${space.slug}/${project.slug}/calendario.ics`} />
+                ),
+              },
+            ]}
+          />
+        ) : (
+          <ProgramSection project={project} />
+        )}
       </main>
 
-      <ClientFooter lead="¿Comentarios sobre la propuesta?" />
+      <ClientFooter lead={hasCalendar ? '¿Dudas sobre el programa o el calendario?' : '¿Comentarios sobre la propuesta?'} />
     </div>
   )
 }

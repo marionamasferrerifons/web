@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import Link from 'next/link'
+import { DELIVERY_STATUS_LABEL, type DeliveryStatus } from '@/lib/clientes'
 
 export const CONTACT_EMAIL = 'mariona@masferrerifons.com'
 
@@ -81,6 +82,30 @@ export function StatusPill({ children }: { children: string }) {
     >
       <span aria-hidden="true" className="w-[8px] h-[8px] rounded-full bg-orange" />
       {children}
+    </span>
+  )
+}
+
+/** Colors de cada estat d'entrega: pastilla, punt i segment de la barra de progrés. */
+export const DELIVERY_STATUS_COLORS: Record<DeliveryStatus, { bg: string; dot: string; text: string }> = {
+  programada: { bg: 'var(--color-blue-50)', dot: 'var(--color-blue-100)', text: 'var(--color-blue-400)' },
+  'en-preparacion': { bg: 'var(--color-orange-100)', dot: 'var(--color-orange)', text: 'var(--color-blue-800)' },
+  entregada: { bg: 'var(--color-green)', dot: 'var(--color-blue-500)', text: 'var(--color-blue-800)' },
+}
+
+export function DeliveryStatusPill({ status }: { status: DeliveryStatus }) {
+  const c = DELIVERY_STATUS_COLORS[status]
+  return (
+    <span
+      className="inline-flex items-center gap-[6px] whitespace-nowrap rounded-full px-[10px]"
+      style={{ ...monoStyle, fontSize: '12px', lineHeight: '22px', background: c.bg, color: c.text }}
+    >
+      <span
+        aria-hidden="true"
+        className="w-[7px] h-[7px] rounded-full"
+        style={{ background: status === 'programada' ? 'var(--color-blue-300)' : c.dot }}
+      />
+      {DELIVERY_STATUS_LABEL[status]}
     </span>
   )
 }

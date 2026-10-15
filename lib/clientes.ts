@@ -33,6 +33,30 @@ export type Block = {
   units: Unit[]
 }
 
+/** Estat d'una entrega. Es copia a mà de ClickUp (to do / in progress / complete). */
+export type DeliveryStatus = 'programada' | 'en-preparacion' | 'entregada'
+
+export const DELIVERY_STATUS_LABEL: Record<DeliveryStatus, string> = {
+  programada: 'Programada',
+  'en-preparacion': 'En preparación',
+  entregada: 'Entregada',
+}
+
+export type Delivery = {
+  /** Àncora de la fila al calendari (`#entrega-1`). */
+  id: string
+  /** Data d'entrega, ISO (AAAA-MM-DD). */
+  date: string
+  /** «Entrega 1 · Bloque 1» */
+  label: string
+  title: string
+  /** Codis de les unitats que inclou (`U1`…). Buit per a una fita sense material. */
+  units: string[]
+  status: DeliveryStatus
+  /** Text en lloc de la llista d'unitats, per a les fites. */
+  note?: string
+}
+
 export type ClientProject = {
   slug: string
   kind: string
@@ -48,6 +72,10 @@ export type ClientProject = {
   facts: { label: string; value: string }[]
   intro: string
   blocks: Block[]
+  /** Calendari d'entregues: si n'hi ha, la pàgina mostra les pestanyes Programa | Calendario. */
+  deliveries?: Delivery[]
+  /** Darrer cop que s'han actualitzat dates o estats de les entregues, ISO. */
+  deliveriesUpdated?: string
 }
 
 export type ClientSpace = {
@@ -61,19 +89,19 @@ const IA_PARA_EDICION: ClientProject = {
   slug: 'ia-para-el-trabajo-de-edicion',
   kind: 'Formación',
   meta: '100 horas',
-  docType: 'Propuesta de índice',
-  status: 'En revisión',
+  docType: 'Programa y calendario',
+  status: 'En producción',
   title: 'IA para el trabajo de edición',
-  summary: 'Propuesta de índice: 5 bloques y 19 unidades.',
-  version: 1,
-  date: '2026-10-13',
+  summary: 'Programa de 5 bloques y 17 unidades, con el calendario de entregas del material.',
+  version: 2,
+  date: '2026-10-15',
   facts: [
     { label: 'Duración', value: '100 horas' },
     { label: 'Bloques', value: '5' },
-    { label: 'Unidades', value: '19' },
+    { label: 'Unidades', value: '17' },
   ],
   intro:
-    'El programa se organiza en cinco bloques y diecinueve unidades. Los tres primeros preparan las bases, el entorno y el método de trabajo; el cuarto presenta un catálogo ilustrado de flujos editoriales con IA y el quinto integra los criterios éticos y legales.',
+    'El programa se organiza en cinco bloques y diecisiete unidades. Los tres primeros preparan las bases, el entorno y el método de trabajo; el cuarto aplica ese método a casos de uso del sector del libro, del original al lector, y el quinto integra los criterios éticos y legales.',
   blocks: [
     {
       id: 'bloque-1',
@@ -196,31 +224,49 @@ const IA_PARA_EDICION: ClientProject = {
     {
       id: 'bloque-4',
       num: '4',
-      short: 'Optimizar tareas editoriales',
-      title: 'Optimizar tareas editoriales con IA',
-      pending: {
-        title: 'Pendiente de acordar',
-        text: 'Debemos consensuar el alcance del bloque 4 y las unidades que se desarrollarán, teniendo en cuenta los otros cursos que estáis preparando.',
-        options: [
-          {
-            label: 'Opción A · Panorámica',
-            text: 'Abordar todos los ámbitos propuestos mediante casos de uso concretos y acotados.',
-          },
-          {
-            label: 'Opción B · Profundización',
-            text: 'Seleccionar algunos ámbitos y desarrollar sus tareas y casos de uso con mayor profundidad.',
-          },
-        ],
-        note: 'Las unidades U10–U16 son una propuesta pendiente de este acuerdo.',
-      },
+      short: 'Casos de uso para el sector del libro',
+      title: 'Del original al lector: casos de uso para el sector del libro',
       units: [
-        { code: 'U10', title: 'IA para la valoración de originales', proposal: true },
-        { code: 'U11', title: 'IA para tareas de edición de mesa', proposal: true },
-        { code: 'U12', title: 'IA para productividad editorial', proposal: true },
-        { code: 'U13', title: 'IA para gestión de proyectos editoriales', proposal: true },
-        { code: 'U14', title: 'IA para promoción y marketing editorial', proposal: true },
-        { code: 'U15', title: 'IA para producción editorial', proposal: true },
-        { code: 'U16', title: 'IA para contenido educativo', proposal: true },
+        {
+          code: 'U10',
+          title: 'Valoración de originales',
+          items: [
+            'Llega un original: ¿cómo lo valoramos?',
+            'El *framework* en acción: elaborar un informe de lectura',
+          ],
+        },
+        {
+          code: 'U11',
+          title: 'Gestión de proyectos editoriales',
+          items: [
+            'Decidimos publicarlo: planificar el proyecto editorial',
+            'El *framework* en acción: preparar un calendario de trabajo',
+          ],
+        },
+        {
+          code: 'U12',
+          title: 'Edición de mesa',
+          items: [
+            'Trabajamos sobre el original: ¿cómo mejoramos el texto?',
+            'El *framework* en acción: la edición de un fragmento',
+          ],
+        },
+        {
+          code: 'U13',
+          title: 'Producción editorial',
+          items: [
+            'Del texto editado al producto editorial: la producción multiformato',
+            'El *framework* en acción: la producción de un audiolibro',
+          ],
+        },
+        {
+          code: 'U14',
+          title: 'Distribución y promoción de libros',
+          items: [
+            'El libro llega al mercado: ¿cómo lo vendemos?',
+            'El *framework* en acción: preparar una web promocional del libro',
+          ],
+        },
       ],
     },
     {
@@ -230,7 +276,7 @@ const IA_PARA_EDICION: ClientProject = {
       title: 'Trabajar con ética y seguridad jurídica',
       units: [
         {
-          code: 'U17',
+          code: 'U15',
           title: 'Principios éticos del editor/a centauro',
           items: [
             'Los dilemas del trabajo editorial con IA',
@@ -239,7 +285,7 @@ const IA_PARA_EDICION: ClientProject = {
           ],
         },
         {
-          code: 'U18',
+          code: 'U16',
           title: 'Transparencia y divulgación del uso de IA',
           items: [
             '¿Por qué es necesaria la transparencia?',
@@ -248,7 +294,7 @@ const IA_PARA_EDICION: ClientProject = {
           ],
         },
         {
-          code: 'U19',
+          code: 'U17',
           title: 'El marco legal del trabajo con IA',
           items: [
             'Mapa legal aplicable: AI Act, RGPD, derechos de autor y propiedad intelectual',
@@ -259,6 +305,26 @@ const IA_PARA_EDICION: ClientProject = {
         },
       ],
     },
+  ],
+  // Còpia de la llista «Curso Cálamo&Cran › General» de ClickUp. En canviar un
+  // estat o una data, actualitza també `deliveriesUpdated`.
+  deliveriesUpdated: '2026-10-15',
+  deliveries: [
+    {
+      id: 'entrega-0',
+      date: '2026-10-15',
+      label: 'Punto de partida',
+      title: 'Índice definitivo y ficha del curso',
+      units: [],
+      status: 'entregada',
+      note: 'Acordados en la reunión del 15 de octubre. A partir de aquí empieza la producción del material.',
+    },
+    { id: 'entrega-1', date: '2026-11-02', label: 'Entrega 1 · Bloque 1', title: 'Lo que necesito saber sobre la IA', units: ['U1', 'U2'], status: 'en-preparacion' },
+    { id: 'entrega-2', date: '2026-11-23', label: 'Entrega 2 · Bloque 2 (1.ª parte)', title: 'El entorno de trabajo', units: ['U3', 'U4'], status: 'programada' },
+    { id: 'entrega-3', date: '2026-12-07', label: 'Entrega 3 · Bloque 2 (2.ª parte)', title: 'El entorno de trabajo', units: ['U5', 'U6'], status: 'programada' },
+    { id: 'entrega-4', date: '2026-12-28', label: 'Entrega 4 · Bloque 3', title: 'El editor/a centauro', units: ['U7', 'U8', 'U9'], status: 'programada' },
+    { id: 'entrega-5', date: '2027-01-29', label: 'Entrega 5 · Bloque 4', title: 'Casos de uso para el sector del libro', units: ['U10', 'U11', 'U12', 'U13', 'U14'], status: 'programada' },
+    { id: 'entrega-6', date: '2027-02-26', label: 'Entrega 6 · Bloque 5', title: 'Ética y seguridad jurídica', units: ['U15', 'U16', 'U17'], status: 'programada' },
   ],
 }
 
@@ -283,3 +349,21 @@ const dateFormat = (options: Intl.DateTimeFormatOptions) => (iso: string) =>
 export const formatDateLong = dateFormat({ day: 'numeric', month: 'long', year: 'numeric' })
 /** «13/10/2026» */
 export const formatDateShort = dateFormat({ day: '2-digit', month: '2-digit', year: 'numeric' })
+/** «13 oct» */
+export const formatDayMonth = (iso: string) => dateFormat({ day: 'numeric', month: 'short' })(iso).replace('.', '')
+/** «noviembre» */
+export const formatMonth = dateFormat({ month: 'long' })
+/** «lunes» */
+export const formatWeekday = dateFormat({ weekday: 'long' })
+
+/** Unitat → entrega que la inclou. */
+export function deliveriesByUnit(project: ClientProject) {
+  const map = new Map<string, Delivery>()
+  for (const d of project.deliveries ?? []) for (const code of d.units) map.set(code, d)
+  return map
+}
+
+/** Primera entrega amb material que encara no s'ha entregat. */
+export function nextDelivery(project: ClientProject) {
+  return project.deliveries?.find((d) => d.units.length > 0 && d.status !== 'entregada')
+}

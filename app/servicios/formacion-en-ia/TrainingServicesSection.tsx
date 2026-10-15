@@ -10,11 +10,18 @@ import { WHATSAPP_URL_ACOMPANAMIENTO, WHATSAPP_URL_CURSO, WHATSAPP_URL_EMPRESAS 
 const SERVICES = [
   {
     id: 'curso',
-    tag: '[Curso con Cálamo y Cran]',
+    tag: '[Curso]',
     // Sense enllaç al curs fins que Cálamo y Cran publiqui la pàgina: llavors,
     // afegir el botó «Ver el curso en Cálamo y Cran» i revisar l'estat.
     status: 'Próximamente',
     title: 'IA para el trabajo de edición',
+    // Crèdit editorial: el curs és una coautoria amb Cálamo y Cran.
+    credit: {
+      label: 'Un curso de',
+      authors: ['Mariona Masferrer i Fons', 'Cálamo & Cran'],
+      logo: '/calamo-y-cran-sello.png',
+      logoAlt: 'Cálamo y Cran',
+    },
     body: 'Un curso práctico para incorporar la IA al trabajo editorial de forma estructurada. Empezamos desde las bases y construimos juntos un sistema completo de trabajo. Ideal si quieres empezar con una base sólida y transferible a cualquier proyecto.',
     cta: 'Pregúntame sobre el curso',
     href: WHATSAPP_URL_CURSO,
@@ -118,6 +125,50 @@ export default function TrainingServicesSection() {
                   >
                     {s.title}
                   </h2>
+                  {s.credit && (
+                    <div
+                      className="flex items-center gap-[14px] pt-[12px] mt-[4px]"
+                      style={{ borderTop: '1px solid var(--color-blue-100)' }}
+                    >
+                      <img
+                        src={s.credit.logo}
+                        alt={s.credit.logoAlt}
+                        width={48}
+                        height={48}
+                        className="shrink-0 rounded-full"
+                        style={{ width: '48px', height: '48px' }}
+                      />
+                      <p className="flex flex-col gap-[2px]">
+                        <span
+                          className="uppercase"
+                          style={{
+                            fontFamily: 'var(--font-dm-mono)',
+                            fontWeight: 400,
+                            fontSize: '12px',
+                            lineHeight: '16px',
+                            letterSpacing: '-0.5px',
+                            color: 'var(--color-text-secondary)',
+                          }}
+                        >
+                          {s.credit.label}
+                        </span>
+                        <span
+                          style={{
+                            fontFamily: 'var(--font-dm-sans)',
+                            fontSize: 'var(--text-body-m)',
+                            lineHeight: '22px',
+                            fontWeight: 400,
+                            color: 'var(--color-blue-800)',
+                          }}
+                        >
+                          <span className="whitespace-nowrap">{s.credit.authors[0]}</span>{' '}
+                          <span aria-hidden="true" style={{ color: 'var(--color-text-secondary)', fontWeight: 300 }}>×</span>
+                          <span className="sr-only">y</span>{' '}
+                          <span className="whitespace-nowrap">{s.credit.authors[1]}</span>
+                        </span>
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <p
                   style={{
