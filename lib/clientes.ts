@@ -33,6 +33,30 @@ export type Block = {
   units: Unit[]
 }
 
+/** Estat d'una entrega. Es copia a mà de ClickUp (to do / in progress / complete). */
+export type DeliveryStatus = 'programada' | 'en-preparacion' | 'entregada'
+
+export const DELIVERY_STATUS_LABEL: Record<DeliveryStatus, string> = {
+  programada: 'Programada',
+  'en-preparacion': 'En preparación',
+  entregada: 'Entregada',
+}
+
+export type Delivery = {
+  /** Àncora de la fila al calendari (`#entrega-1`). */
+  id: string
+  /** Data d'entrega, ISO (AAAA-MM-DD). */
+  date: string
+  /** «Entrega 1 · Bloque 1» */
+  label: string
+  title: string
+  /** Codis de les unitats que inclou (`U1`…). Buit per a una fita sense material. */
+  units: string[]
+  status: DeliveryStatus
+  /** Text en lloc de la llista d'unitats, per a les fites. */
+  note?: string
+}
+
 export type ClientProject = {
   slug: string
   kind: string
@@ -48,6 +72,10 @@ export type ClientProject = {
   facts: { label: string; value: string }[]
   intro: string
   blocks: Block[]
+  /** Calendari d'entregues: si n'hi ha, la pàgina mostra les pestanyes Programa | Calendario. */
+  deliveries?: Delivery[]
+  /** Darrer cop que s'han actualitzat dates o estats de les entregues, ISO. */
+  deliveriesUpdated?: string
 }
 
 export type ClientSpace = {
@@ -61,10 +89,10 @@ const IA_PARA_EDICION: ClientProject = {
   slug: 'ia-para-el-trabajo-de-edicion',
   kind: 'Formación',
   meta: '100 horas',
-  docType: 'Propuesta de índice',
-  status: 'En revisión',
+  docType: 'Programa y calendario',
+  status: 'En producción',
   title: 'IA para el trabajo de edición',
-  summary: 'Propuesta de índice: 5 bloques y 17 unidades.',
+  summary: 'Programa de 5 bloques y 17 unidades, con el calendario de entregas del material.',
   version: 2,
   date: '2026-10-15',
   facts: [
@@ -278,6 +306,26 @@ const IA_PARA_EDICION: ClientProject = {
       ],
     },
   ],
+  // Còpia de la llista «Curso Cálamo&Cran › General» de ClickUp. En canviar un
+  // estat o una data, actualitza també `deliveriesUpdated`.
+  deliveriesUpdated: '2026-10-15',
+  deliveries: [
+    {
+      id: 'entrega-0',
+      date: '2026-10-15',
+      label: 'Punto de partida',
+      title: 'Índice definitivo y ficha del curso',
+      units: [],
+      status: 'entregada',
+      note: 'Acordados en la reunión del 15 de octubre. A partir de aquí empieza la producción del material.',
+    },
+    { id: 'entrega-1', date: '2026-11-02', label: 'Entrega 1 · Bloque 1', title: 'Lo que necesito saber sobre la IA', units: ['U1', 'U2'], status: 'en-preparacion' },
+    { id: 'entrega-2', date: '2026-11-23', label: 'Entrega 2 · Bloque 2 (1.ª parte)', title: 'El entorno de trabajo', units: ['U3', 'U4'], status: 'programada' },
+    { id: 'entrega-3', date: '2026-12-07', label: 'Entrega 3 · Bloque 2 (2.ª parte)', title: 'El entorno de trabajo', units: ['U5', 'U6'], status: 'programada' },
+    { id: 'entrega-4', date: '2026-12-28', label: 'Entrega 4 · Bloque 3', title: 'El editor/a centauro', units: ['U7', 'U8', 'U9'], status: 'programada' },
+    { id: 'entrega-5', date: '2027-01-29', label: 'Entrega 5 · Bloque 4', title: 'Casos de uso para el sector del libro', units: ['U10', 'U11', 'U12', 'U13', 'U14'], status: 'programada' },
+    { id: 'entrega-6', date: '2027-02-26', label: 'Entrega 6 · Bloque 5', title: 'Ética y seguridad jurídica', units: ['U15', 'U16', 'U17'], status: 'programada' },
+  ],
 }
 
 export const CLIENT_SPACES: ClientSpace[] = [
@@ -301,3 +349,21 @@ const dateFormat = (options: Intl.DateTimeFormatOptions) => (iso: string) =>
 export const formatDateLong = dateFormat({ day: 'numeric', month: 'long', year: 'numeric' })
 /** «13/10/2026» */
 export const formatDateShort = dateFormat({ day: '2-digit', month: '2-digit', year: 'numeric' })
+/** «13 oct» */
+export const formatDayMonth = (iso: string) => dateFormat({ day: 'numeric', month: 'short' })(iso).replace('.', '')
+/** «noviembre» */
+export const formatMonth = dateFormat({ month: 'long' })
+/** «lunes» */
+export const formatWeekday = dateFormat({ weekday: 'long' })
+
+/** Unitat → entrega que la inclou. */
+export function deliveriesByUnit(project: ClientProject) {
+  const map = new Map<string, Delivery>()
+  for (const d of project.deliveries ?? []) for (const code of d.units) map.set(code, d)
+  return map
+}
+
+/** Primera entrega amb material que encara no s'ha entregat. */
+export function nextDelivery(project: ClientProject) {
+  return project.deliveries?.find((d) => d.units.length > 0 && d.status !== 'entregada')
+}
