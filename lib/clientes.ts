@@ -64,16 +64,16 @@ const IA_PARA_EDICION: ClientProject = {
   docType: 'Propuesta de índice',
   status: 'En revisión',
   title: 'IA para el trabajo de edición',
-  summary: 'Propuesta de índice: 5 bloques y 19 unidades.',
-  version: 1,
-  date: '2026-10-13',
+  summary: 'Propuesta de índice: 5 bloques y 17 unidades.',
+  version: 2,
+  date: '2026-10-15',
   facts: [
     { label: 'Duración', value: '100 horas' },
     { label: 'Bloques', value: '5' },
-    { label: 'Unidades', value: '19' },
+    { label: 'Unidades', value: '17' },
   ],
   intro:
-    'El programa se organiza en cinco bloques y diecinueve unidades. Los tres primeros preparan las bases, el entorno y el método de trabajo; el cuarto presenta un catálogo ilustrado de flujos editoriales con IA y el quinto integra los criterios éticos y legales.',
+    'El programa se organiza en cinco bloques y diecisiete unidades. Los tres primeros preparan las bases, el entorno y el método de trabajo; el cuarto aplica ese método a casos de uso del sector del libro, del original al lector, y el quinto integra los criterios éticos y legales.',
   blocks: [
     {
       id: 'bloque-1',
@@ -196,31 +196,49 @@ const IA_PARA_EDICION: ClientProject = {
     {
       id: 'bloque-4',
       num: '4',
-      short: 'Optimizar tareas editoriales',
-      title: 'Optimizar tareas editoriales con IA',
-      pending: {
-        title: 'Pendiente de acordar',
-        text: 'Debemos consensuar el alcance del bloque 4 y las unidades que se desarrollarán, teniendo en cuenta los otros cursos que estáis preparando.',
-        options: [
-          {
-            label: 'Opción A · Panorámica',
-            text: 'Abordar todos los ámbitos propuestos mediante casos de uso concretos y acotados.',
-          },
-          {
-            label: 'Opción B · Profundización',
-            text: 'Seleccionar algunos ámbitos y desarrollar sus tareas y casos de uso con mayor profundidad.',
-          },
-        ],
-        note: 'Las unidades U10–U16 son una propuesta pendiente de este acuerdo.',
-      },
+      short: 'Casos de uso para el sector del libro',
+      title: 'Del original al lector: casos de uso para el sector del libro',
       units: [
-        { code: 'U10', title: 'IA para la valoración de originales', proposal: true },
-        { code: 'U11', title: 'IA para tareas de edición de mesa', proposal: true },
-        { code: 'U12', title: 'IA para productividad editorial', proposal: true },
-        { code: 'U13', title: 'IA para gestión de proyectos editoriales', proposal: true },
-        { code: 'U14', title: 'IA para promoción y marketing editorial', proposal: true },
-        { code: 'U15', title: 'IA para producción editorial', proposal: true },
-        { code: 'U16', title: 'IA para contenido educativo', proposal: true },
+        {
+          code: 'U10',
+          title: 'Valoración de originales',
+          items: [
+            'Llega un original: ¿cómo lo valoramos?',
+            'El *framework* en acción: elaborar un informe de lectura',
+          ],
+        },
+        {
+          code: 'U11',
+          title: 'Gestión de proyectos editoriales',
+          items: [
+            'Decidimos publicarlo: planificar el proyecto editorial',
+            'El *framework* en acción: preparar un calendario de trabajo',
+          ],
+        },
+        {
+          code: 'U12',
+          title: 'Edición de mesa',
+          items: [
+            'Trabajamos sobre el original: ¿cómo mejoramos el texto?',
+            'El *framework* en acción: la edición de un fragmento',
+          ],
+        },
+        {
+          code: 'U13',
+          title: 'Producción editorial',
+          items: [
+            'Del texto editado al producto editorial: la producción multiformato',
+            'El *framework* en acción: la producción de un audiolibro',
+          ],
+        },
+        {
+          code: 'U14',
+          title: 'Distribución y promoción de libros',
+          items: [
+            'El libro llega al mercado: ¿cómo lo vendemos?',
+            'El *framework* en acción: preparar una web promocional del libro',
+          ],
+        },
       ],
     },
     {
@@ -230,7 +248,7 @@ const IA_PARA_EDICION: ClientProject = {
       title: 'Trabajar con ética y seguridad jurídica',
       units: [
         {
-          code: 'U17',
+          code: 'U15',
           title: 'Principios éticos del editor/a centauro',
           items: [
             'Los dilemas del trabajo editorial con IA',
@@ -239,7 +257,7 @@ const IA_PARA_EDICION: ClientProject = {
           ],
         },
         {
-          code: 'U18',
+          code: 'U16',
           title: 'Transparencia y divulgación del uso de IA',
           items: [
             '¿Por qué es necesaria la transparencia?',
@@ -248,7 +266,7 @@ const IA_PARA_EDICION: ClientProject = {
           ],
         },
         {
-          code: 'U19',
+          code: 'U17',
           title: 'El marco legal del trabajo con IA',
           items: [
             'Mapa legal aplicable: AI Act, RGPD, derechos de autor y propiedad intelectual',

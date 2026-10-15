@@ -3,6 +3,9 @@
 Registre de canvis importants del projecte. Format per entrada: **què** ha canviat, **quan**, i **per què**. No cal registrar fixes trivials o typos.
 
 ## 2026-10-15
+**Què:** Proposta d'índex «IA para el trabajo de edición» (`/clientes/calamoycran/ia-para-el-trabajo-de-edicion`, dades a `lib/clientes.ts`), versió 2: el bloc 4 passa a «Del original al lector: casos de uso para el sector del libro», amb cinc unitats definides (U10–U14, dos apartats cadascuna) en lloc de les set unitats proposades i les opcions pendents d'acordar. Les unitats del bloc 5 es renumeren (U15–U17) i el curs queda en 17 unitats.
+**Per què:** Contingut del bloc 4 acordat amb el client.
+
 **Què:** «Mi enfoque» de la home (`CriterioShapesSection`) a mòbil: les figures mantenen la forma (el cercle de Pedagogía continua sent un cercle) i hi mostren una versió escurçada del text, a 17/23 i amb les posicions ajustades (a Tecnología, títol i text ancorats a baix perquè no topin amb la corba superior, que creix amb l'amplada); a escriptori no canvia res (text complet en passar-hi el ratolí).
 **Per què:** El copy nou és més llarg que l'anterior i, a mòbil, el text de les figures es muntava sobre el títol (Editorial) o es tallava (Pedagogía i Tecnología).
 
