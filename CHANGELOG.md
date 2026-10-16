@@ -6,6 +6,9 @@ Registre de canvis importants del projecte. Format per entrada: **què** ha canv
 **Què:** Domini canònic a `https://www.masferrerifons.com` (`SITE_URL` a `lib/constants.ts`; afecta `metadataBase`, canonical, sitemap, robots i el `.ics` de clients). Imatges per compartir declarades a `openGraph.images` de `app/layout.tsx` en lloc de la convenció `app/opengraph-image.png`: la horitzontal de sempre (`public/og-image.png`, 1200 × 630) i una de quadrada nova (`public/og-image-square.png`, 600 × 600, logotip centrat sobre blau). S'hi afegeix `og:url`.
 **Per què:** En compartir la web per WhatsApp, la miniatura del logotip sortia borrosa. L'apex redirigeix (308) a www, i el rastrejador de WhatsApp segueix malament les redireccions de `og:image`; a més, retalla la imatge horitzontal en quadrat. El nom de fitxer nou també força WhatsApp a no fer servir la versió en memòria cau.
 
+**Què:** Favicon propi en lloc del de Vercel: quadrat blanc amb la silueta de la «M ondulada» del logotip en blau (`--color-blue-500`), sense text. `app/favicon.ico` (16/32/48, cada mida ajustada a la graella de píxels i amb les vores reforçades) i `app/apple-icon.png` (180 × 180, per a la pantalla d'inici del mòbil). Sense `icon.svg`: Chrome el prefereix a l'ICO i, escalat a 16 px, la figura queda borrosa.
+**Per què:** La pestanya del navegador encara mostrava el favicon per defecte del projecte inicial. El logotip complet amb text no es llegeix a 16 px.
+
 **Què:** Vercel Web Analytics (`@vercel/analytics`, component `components/SiteAnalytics.tsx` al layout). No compta les visites a `/clientes` ni a `/dev`.
 **Per què:** Veure analítiques bàsiques de visites (pàgines, països, procedència, dispositiu) sense cookies, i per tant sense bàner de consentiment. Cal activar-ho al panell de Vercel (projecte → Analytics → Enable).
 
