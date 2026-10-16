@@ -1,7 +1,9 @@
 export const BOOKING_URL =
   'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0z4P3GnumK8qcgUbLh8kmC2WUy1gcGLr4Mplgv2u0-uxPiitbJbZeu7hNBNue8Q_ubhdSrIuYL'
 
-export const SITE_URL = 'https://masferrerifons.com'
+// Domini canònic: l'apex redirigeix (308) a www, i els rastrejadors (WhatsApp)
+// segueixen malament les redireccions de og:image.
+export const SITE_URL = 'https://www.masferrerifons.com'
 
 /** Obre una conversa de WhatsApp amb un missatge suggerit que el visitant pot editar abans d'enviar. */
 export const whatsappUrl = (message: string) =>

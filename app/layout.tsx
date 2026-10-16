@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HideInClientSpace from "@/components/HideInClientSpace";
+import SiteAnalytics from "@/components/SiteAnalytics";
 import { SITE_URL } from "@/lib/constants";
 
 // Font variable amb l'eix de mida òptica (opsz 9–40): permet que els títols
@@ -37,6 +38,29 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_ES",
     siteName: "Mariona Masferrer i Fons",
+    url: "/",
+    // Declarades aquí (no amb app/opengraph-image.png): la convenció de fitxer
+    // substituiria openGraph.images i no permet afegir la versió quadrada.
+    // La horitzontal va primer (LinkedIn, WhatsApp gran); la quadrada serveix
+    // per a les miniatures que retallen en quadrat.
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Mariona Masferrer i Fons — Estrategia editorial con IA",
+      },
+      {
+        url: "/og-image-square.png",
+        width: 600,
+        height: 600,
+        alt: "Mariona Masferrer i Fons — Estrategia editorial con IA",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.png"],
   },
 };
 
@@ -55,6 +79,7 @@ export default function RootLayout({
         <HideInClientSpace>
           <Footer />
         </HideInClientSpace>
+        <SiteAnalytics />
       </body>
     </html>
   );
