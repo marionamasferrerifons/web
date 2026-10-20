@@ -6,10 +6,15 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionTag from './SectionTag';
 import Button from './Button';
+import { caseStudyPath, type Locale } from '@/lib/i18n';
+import { sharedContent } from '@/content/shared';
 
 type CaseHighlightProps = {
-  /** Slug del cas a Sanity; el botó enllaça a /casos-de-exito/{slug}. */
+  /** Slug del cas a Sanity; el botó enllaça a la pàgina del cas en `slugLocale`. */
   slug: string
+  locale?: Locale
+  /** Idioma del document de Sanity (castellà si encara no hi ha traducció). */
+  slugLocale?: Locale
   tag?: string
   title: string
   paragraphs: string[]
@@ -32,7 +37,9 @@ type CaseHighlightProps = {
  */
 export default function CaseHighlightSection({
   slug,
-  tag = '[CASO DE ÉXITO]',
+  locale = 'es',
+  slugLocale = locale,
+  tag = sharedContent[locale].caseHighlight.tag,
   title,
   paragraphs,
   facts,
@@ -150,7 +157,7 @@ export default function CaseHighlightSection({
             ))}
           </dl>
           <div>
-            <Button href={`/casos-de-exito/${slug}`} variant="primary">
+            <Button href={caseStudyPath(slug, slugLocale)} variant="primary">
               {linkLabel}
             </Button>
           </div>

@@ -1,39 +1,44 @@
 'use client';
 
-import { BOOKING_URL, WHATSAPP_URL } from '@/lib/constants';
+import { BOOKING_URL, whatsappFor, type WhatsappTopic } from '@/lib/constants';
+import type { Locale } from '@/lib/i18n';
+import { sharedContent } from '@/content/shared';
 import Button from './Button';
 
 /**
  * Bloc d'accions comú de les pàgines de servei: botó principal de reserva +
  * botó secundari de WhatsApp, amb una nota centrada a sota. A mòbil els
  * botons s'apilen a amplada completa i la nota es manté a sota.
- * `whatsappHref` permet que cada servei porti el seu missatge suggerit.
+ * `whatsappTopic` permet que cada servei porti el seu missatge suggerit.
  */
 export default function ActionButtons({
   inverted = false,
   surface = 'color',
   noteColor,
-  whatsappHref = WHATSAPP_URL,
+  whatsappTopic = 'general',
+  locale = 'es',
   secondaryColor,
   showNote = true,
 }: {
   inverted?: boolean;
   surface?: 'color' | 'white';
   noteColor?: string;
-  whatsappHref?: string;
+  whatsappTopic?: WhatsappTopic;
+  locale?: Locale;
   /** Color de vora i text del botó de WhatsApp quan el fons el demana (p. ex. coral). */
   secondaryColor?: string;
   /** El hero de la home no porta la nota sota els botons. */
   showNote?: boolean;
 }) {
+  const c = sharedContent[locale].actionButtons;
   return (
     <div className="flex flex-col items-center gap-[16px] w-full">
       <div className="flex flex-col md:flex-row items-stretch md:items-center gap-[16px] md:gap-[24px] w-full md:w-auto">
         <Button href={BOOKING_URL} variant="primary" surface={surface}>
-          Reservar una sesión gratuita
+          {c.booking}
         </Button>
-        <Button href={whatsappHref} variant="secondary" inverted={inverted} color={secondaryColor} icon="chat">
-          Hablar por WhatsApp
+        <Button href={whatsappFor(whatsappTopic, locale)} variant="secondary" inverted={inverted} color={secondaryColor} icon="chat">
+          {c.whatsapp}
         </Button>
       </div>
       {showNote && <p
@@ -48,7 +53,7 @@ export default function ActionButtons({
           textWrap: 'balance',
         }}
       >
-        1 hora para entender tu necesidad y valorar cómo puedo ayudarte. O, si lo prefieres, escríbeme y empezamos a hablar.
+        {c.note}
       </p>}
     </div>
   );

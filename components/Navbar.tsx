@@ -1,12 +1,16 @@
 import Link from 'next/link';
 import { BOOKING_URL } from '@/lib/constants';
+import { CASE_STUDIES_PREFIX, caseStudyPath, localizedPath, type CaseStudySlugPair, type Locale } from '@/lib/i18n';
 import { client } from '@/sanity/client';
-import { CASE_STUDIES_QUERY } from '@/sanity/queries';
+import { fetchLocalized } from '@/sanity/fetchLocalized';
+import { CASE_STUDIES_QUERY, CASE_STUDY_SLUG_PAIRS_QUERY } from '@/sanity/queries';
 import { squareThumbnailUrl } from '@/sanity/image';
+import { navContent } from '@/content/nav';
 import NavDropdown from './NavDropdown';
 import CaseStudiesDropdown from './CaseStudiesDropdown';
 import NavLink from './NavLink';
 import MobileMenu from './MobileMenu';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const monoStyle = {
   fontFamily: 'var(--font-dm-mono)',
@@ -15,29 +19,29 @@ const monoStyle = {
   letterSpacing: '-0.5px',
 }
 
-const SERVICES_ITEMS = [
-  { href: '/servicios/estrategia-de-ia', label: 'Estrategia de IA' },
-  { href: '/servicios/produccion-editorial-con-ia', label: 'Producción editorial con IA' },
-  { href: '/servicios/formacion-en-ia', label: 'Formación en IA' },
-]
-
-export default async function Navbar() {
+export default async function Navbar({ locale }: { locale: Locale }) {
+  const c = navContent[locale]
   let caseStudiesItems: { href: string; title: string; imageUrl?: string; imageAlt?: string }[] = []
+  let caseStudyPairs: CaseStudySlugPair[] = []
 
   try {
-    const caseStudies: {
-      _id: string
-      title: string
-      slug: string | null
-      imageCard: { asset: { _id: string; url: string } | null; alt?: string } | null
-    }[] = await client.fetch(CASE_STUDIES_QUERY)
-    caseStudiesItems = caseStudies
-      .filter((c) => c.slug)
-      .map((c) => ({
-        href: `/casos-de-exito/${c.slug}`,
-        title: c.title,
-        imageUrl: c.imageCard?.asset?._id ? squareThumbnailUrl(c.imageCard.asset._id, 48) : undefined,
-        imageAlt: c.imageCard?.alt,
+    const [caseStudies, pairs] = await Promise.all([
+      fetchLocalized<{
+        _id: string
+        title: string
+        slug: string | null
+        imageCard: { asset: { _id: string; url: string } | null; alt?: string } | null
+      }[]>(CASE_STUDIES_QUERY, locale),
+      client.fetch<CaseStudySlugPair[]>(CASE_STUDY_SLUG_PAIRS_QUERY),
+    ])
+    caseStudyPairs = pairs
+    caseStudiesItems = caseStudies.data
+      .filter((cs) => cs.slug)
+      .map((cs) => ({
+        href: caseStudyPath(cs.slug!, caseStudies.locale),
+        title: cs.title,
+        imageUrl: cs.imageCard?.asset?._id ? squareThumbnailUrl(cs.imageCard.asset._id, 48) : undefined,
+        imageAlt: cs.imageCard?.alt,
       }))
   } catch (error) {
     console.error('Navbar: failed to fetch case studies from Sanity', error)
@@ -51,10 +55,10 @@ export default async function Navbar() {
       <div className="relative flex items-center h-[40px]">
 
         {/* Logo */}
-        <Link href="/">
+        <Link href={localizedPath('/', locale)}>
           <img
             src="/logo.svg"
-            alt="Mariona Masferrer"
+            alt={c.logoAlt}
             style={{ height: '39.843px', width: 'auto' }}
           />
         </Link>
@@ -62,32 +66,27 @@ export default async function Navbar() {
         {/* Nav links — centred (desktop only) */}
         <nav
           className="hidden lg:flex absolute left-1/2 -translate-x-1/2 gap-[24px] items-center"
-          aria-label="Navegación principal"
+          aria-label={c.navAriaLabel}
         >
-          <NavDropdown label="Servicios" items={SERVICES_ITEMS} activePrefix="/servicios" />
+          <NavDropdown
+            label={c.servicesLabel}
+            items={c.servicesItems}
+            activePrefix={locale === 'ca' ? '/ca/serveis' : '/servicios'}
+          />
 
-          <CaseStudiesDropdown items={caseStudiesItems} />
+          <CaseStudiesDropdown
+            items={caseStudiesItems}
+            label={c.caseStudiesLabel}
+            activePrefix={CASE_STUDIES_PREFIX[locale]}
+          />
 
-          <NavLink href="/sobre-mi">Sobre mí</NavLink>
+          <NavLink href={localizedPath('/sobre-mi', locale)}>{c.aboutLabel}</NavLink>
         </nav>
 
         {/* Right side (desktop only) */}
         <div className="hidden lg:flex ml-auto items-center gap-[8px]">
 
-          {/* Language selector */}
-          <div
-            className="flex items-center gap-[8px] border border-[#d4d4d4] rounded-full px-[11px]"
-            style={{ height: '40px' }}
-          >
-            <span className="text-white" style={monoStyle}>ES</span>
-            <svg
-              width="14" height="7" viewBox="0 0 14 7"
-              fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path d="M1 1L7 6L13 1" stroke="var(--color-orange)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+          <LanguageSwitcher label={c.languageLabel} caseStudyPairs={caseStudyPairs} />
 
           {/* CTA button */}
           <a
@@ -98,10 +97,10 @@ export default async function Navbar() {
             style={{ height: '40px' }}
           >
             <span
-              className="whitespace-nowrap text-text-accent"
+              className="whitespace-nowrap uppercase text-text-accent"
               style={{ ...monoStyle, fontSize: '13px' }}
             >
-              RESERVAR UNA LLAMADA
+              {c.ctaLabel}
             </span>
             <span
               className="flex items-center justify-center rounded-full shrink-0 bg-orange"
@@ -120,8 +119,10 @@ export default async function Navbar() {
 
         {/* Mobile menu (mobile only) */}
         <MobileMenu
-          servicesItems={SERVICES_ITEMS}
-          caseStudiesItems={caseStudiesItems.map((c) => ({ href: c.href, label: c.title }))}
+          content={c}
+          aboutHref={localizedPath('/sobre-mi', locale)}
+          caseStudiesItems={caseStudiesItems.map((cs) => ({ href: cs.href, label: cs.title }))}
+          caseStudyPairs={caseStudyPairs}
         />
       </div>
     </header>

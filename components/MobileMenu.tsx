@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BOOKING_URL } from '@/lib/constants';
+import type { CaseStudySlugPair } from '@/lib/i18n';
+import type { NavContent } from '@/content/nav/types';
+import { LanguagePills } from './LanguageSwitcher';
 
 const monoStyle = {
   fontFamily: 'var(--font-dm-mono)',
@@ -22,11 +25,15 @@ const sansStyle = {
 export type MobileMenuItem = { href: string; label: string };
 
 export default function MobileMenu({
-  servicesItems,
+  content: c,
+  aboutHref,
   caseStudiesItems,
+  caseStudyPairs,
 }: {
-  servicesItems: MobileMenuItem[];
+  content: NavContent;
+  aboutHref: string;
   caseStudiesItems: MobileMenuItem[];
+  caseStudyPairs: CaseStudySlugPair[];
 }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -51,7 +58,7 @@ export default function MobileMenu({
       <button
         type="button"
         aria-expanded={open}
-        aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+        aria-label={open ? c.mobileMenu.closeLabel : c.mobileMenu.openLabel}
         onClick={() => setOpen((prev) => !prev)}
         className="relative z-50 flex flex-col justify-center items-center gap-[5px] size-[40px] cursor-pointer"
       >
@@ -76,9 +83,9 @@ export default function MobileMenu({
         >
           <div className="flex flex-col gap-[28px] px-[25px] py-[32px]">
             <div className="flex flex-col gap-[16px]">
-              <p className="uppercase text-white" style={monoStyle}>Servicios</p>
+              <p className="uppercase text-white" style={monoStyle}>{c.servicesLabel}</p>
               <div className="flex flex-col gap-[16px] pl-[12px]">
-                {servicesItems.map((item) => (
+                {c.servicesItems.map((item) => (
                   <Link key={item.href} href={item.href} className="text-white" style={sansStyle}>
                     {item.label}
                   </Link>
@@ -88,7 +95,7 @@ export default function MobileMenu({
 
             {caseStudiesItems.length > 0 && (
               <div className="flex flex-col gap-[16px]">
-                <p className="uppercase text-white" style={monoStyle}>Casos de éxito</p>
+                <p className="uppercase text-white" style={monoStyle}>{c.caseStudiesLabel}</p>
                 <div className="flex flex-col gap-[16px] pl-[12px]">
                   {caseStudiesItems.map((item) => (
                     <Link key={item.href} href={item.href} className="text-white" style={sansStyle}>
@@ -99,27 +106,15 @@ export default function MobileMenu({
               </div>
             )}
 
-            <Link href="/sobre-mi" className="text-white uppercase" style={monoStyle}>
-              Sobre mí
+            <Link href={aboutHref} className="text-white uppercase" style={monoStyle}>
+              {c.aboutLabel}
             </Link>
 
             <div
               className="flex items-center gap-[12px] pt-[24px]"
               style={{ borderTop: '1px solid rgba(242, 242, 242, 0.15)' }}
             >
-              <div
-                className="flex items-center gap-[8px] border border-[#d4d4d4] rounded-full px-[11px]"
-                style={{ height: '28px' }}
-              >
-                <span className="text-white" style={monoStyle}>ES</span>
-                <svg
-                  width="14" height="7" viewBox="0 0 14 7"
-                  fill="none" xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path d="M1 1L7 6L13 1" stroke="var(--color-orange)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
+              <LanguagePills label={c.languageLabel} caseStudyPairs={caseStudyPairs} />
             </div>
 
             <a
@@ -130,7 +125,7 @@ export default function MobileMenu({
               style={{ height: '44px' }}
             >
               <span className="text-text-accent uppercase" style={{ ...monoStyle, fontSize: '12px' }}>
-                Reservar una llamada
+                {c.ctaLabel}
               </span>
               <span className="flex items-center justify-center bg-orange rounded-full shrink-0 size-[24px]">
                 <img src="/arrow-white.svg" alt="" className="size-[14px] transition-transform duration-300 ease-out group-hover:rotate-45" aria-hidden="true" />
