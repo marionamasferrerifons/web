@@ -1,5 +1,6 @@
 import { defineType, defineField } from 'sanity'
 import { DocumentTextIcon } from '@sanity/icons'
+import { languageFields, withLanguageTag } from './language'
 
 const richTextBlock = {
   type: 'block',
@@ -253,12 +254,15 @@ export const caseStudy = defineType({
       type: 'reference',
       to: [{ type: 'testimonial' }],
     }),
+    ...languageFields('caseStudy', 'Si este caso de éxito es la versión en catalán, enlaza aquí el original en castellano.'),
   ],
   preview: {
     select: {
       title: 'title',
       subtitle: 'subtitle',
       media: 'imageCard',
+      language: 'language',
     },
+    prepare: ({ title, subtitle, media, language }) => ({ title: withLanguageTag(title, language), subtitle, media }),
   },
 })

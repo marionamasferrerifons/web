@@ -1,5 +1,6 @@
 import { defineType, defineField } from 'sanity'
 import { BookIcon } from '@sanity/icons'
+import { languageFields, withLanguageTag } from './language'
 
 export const editorialProject = defineType({
   name: 'editorialProject',
@@ -61,6 +62,7 @@ export const editorialProject = defineType({
       description: 'Los proyectos se muestran de menor a mayor. Déjalo vacío para que aparezca al final.',
       type: 'number',
     }),
+    ...languageFields('editorialProject', 'Si este proyecto es la versión en catalán, enlaza aquí el original en castellano.'),
   ],
   orderings: [
     {
@@ -70,6 +72,7 @@ export const editorialProject = defineType({
     },
   ],
   preview: {
-    select: { title: 'title', subtitle: 'publisher', media: 'image' },
+    select: { title: 'title', subtitle: 'publisher', media: 'image', language: 'language' },
+    prepare: ({ title, subtitle, media, language }) => ({ title: withLanguageTag(title, language), subtitle, media }),
   },
 })

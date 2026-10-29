@@ -1,5 +1,6 @@
 import { defineType, defineField } from 'sanity'
 import { CommentIcon } from '@sanity/icons'
+import { languageFields, withLanguageTag } from './language'
 
 export const testimonial = defineType({
   name: 'testimonial',
@@ -34,6 +35,7 @@ export const testimonial = defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
+    ...languageFields('testimonial', 'Si este testimonio es la versión en catalán, enlaza aquí el testimonio original en castellano.'),
     defineField({
       name: 'avatar',
       title: 'Foto del autor/a',
@@ -90,10 +92,12 @@ export const testimonial = defineType({
           const { document, getClient } = context
           const client = getClient({ apiVersion: '2024-01-01' })
           const id = document!._id.replace(/^drafts\./, '')
+          // Cada idioma té la seva pròpia assignació de seccions.
+          const language = (document!.language as string | undefined) ?? 'es'
 
           const conflicts: string[] = await client.fetch(
-            `*[_type == "testimonial" && !(_id in [$draftId, $publishedId]) && count((placement[])[@ in $values]) > 0].internalName`,
-            { draftId: `drafts.${id}`, publishedId: id, values }
+            `*[_type == "testimonial" && !(_id in [$draftId, $publishedId]) && coalesce(language, "es") == $language && count((placement[])[@ in $values]) > 0].internalName`,
+            { draftId: `drafts.${id}`, publishedId: id, values, language }
           )
 
           return conflicts.length > 0
@@ -103,6 +107,7 @@ export const testimonial = defineType({
     }),
   ],
   preview: {
-    select: { title: 'internalName', subtitle: 'authorRole', media: 'avatar' },
+    select: { title: 'internalName', subtitle: 'authorRole', media: 'avatar', language: 'language' },
+    prepare: ({ title, subtitle, media, language }) => ({ title: withLanguageTag(title, language), subtitle, media }),
   },
 })

@@ -19,10 +19,10 @@ export type CaseStudyItem = {
   imageAlt?: string;
 }
 
-export default function CaseStudiesDropdown({ items }: { items: CaseStudyItem[] }) {
+export default function CaseStudiesDropdown({ items, label, activePrefix }: { items: CaseStudyItem[]; label: string; activePrefix: string }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const isActive = pathname.startsWith('/casos-de-exito');
+  const isActive = pathname.startsWith(activePrefix);
 
   return (
     <div
@@ -37,7 +37,7 @@ export default function CaseStudiesDropdown({ items }: { items: CaseStudyItem[] 
         aria-expanded={open}
         onClick={() => setOpen((prev) => !prev)}
       >
-        Casos de éxito
+        {label}
         {isActive && (
           <span
             className="absolute left-0 right-0 bg-orange"

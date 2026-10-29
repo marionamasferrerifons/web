@@ -2,7 +2,7 @@ import { revalidatePath } from 'next/cache'
 import { type NextRequest, NextResponse } from 'next/server'
 import { isValidSignature, SIGNATURE_HEADER_NAME } from '@sanity/webhook'
 
-// Testimonials and case studies fan out across most of the site's 8 routes
+// Testimonials and case studies fan out across most of the site's routes, in both languages
 // (home, enfoque, estrategia-de-ia, produccion-editorial-con-ia, the case
 // study's own page) — mapping document type to affected paths would need
 // to be kept in sync with every page's data dependencies. Revalidating
@@ -26,7 +26,9 @@ export async function POST(req: NextRequest) {
   // fetch fresh content instead of re-caching what just went stale.
   await new Promise((resolve) => setTimeout(resolve, 1000))
 
+  // Un layout arrel per idioma: es revaliden tots dos arbres.
   revalidatePath('/', 'layout')
+  revalidatePath('/ca', 'layout')
 
   return NextResponse.json({ revalidated: true, now: Date.now() })
 }

@@ -1,18 +1,27 @@
-import { client } from '@/sanity/client';
+import { caseStudyPath, localizedPath, type Locale } from '@/lib/i18n';
+import { fetchLocalized } from '@/sanity/fetchLocalized';
 import { CASE_STUDIES_QUERY } from '@/sanity/queries';
+import { navContent } from '@/content/nav';
 import FooterClient from './FooterClient';
 
-export default async function Footer() {
+export default async function Footer({ locale }: { locale: Locale }) {
   let caseStudiesItems: { href: string; label: string }[] = []
 
   try {
-    const caseStudies: { _id: string; title: string; slug: string | null }[] = await client.fetch(CASE_STUDIES_QUERY)
-    caseStudiesItems = caseStudies
+    const caseStudies = await fetchLocalized<{ _id: string; title: string; slug: string | null }[]>(CASE_STUDIES_QUERY, locale)
+    caseStudiesItems = caseStudies.data
       .filter((c) => c.slug)
-      .map((c) => ({ href: `/casos-de-exito/${c.slug}`, label: c.title }))
+      .map((c) => ({ href: caseStudyPath(c.slug!, caseStudies.locale), label: c.title }))
   } catch (error) {
     console.error('Footer: failed to fetch case studies from Sanity', error)
   }
 
-  return <FooterClient caseStudiesItems={caseStudiesItems} />
+  return (
+    <FooterClient
+      content={navContent[locale]}
+      homeHref={localizedPath('/', locale)}
+      aboutHref={localizedPath('/sobre-mi', locale)}
+      caseStudiesItems={caseStudiesItems}
+    />
+  )
 }
