@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# documents de clients amb dades personals: no van al repositori públic
+/public/clientes/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

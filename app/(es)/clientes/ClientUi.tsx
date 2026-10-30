@@ -1,6 +1,8 @@
 import { Fragment } from 'react'
 import Link from 'next/link'
+import { clientCopy } from '@/content/clientes'
 import { DELIVERY_STATUS_LABEL, type DeliveryStatus } from '@/lib/clientes'
+import type { Locale } from '@/lib/i18n'
 
 export const CONTACT_EMAIL = 'mariona@masferrerifons.com'
 
@@ -25,7 +27,8 @@ export function Em({ text }: { text: string }) {
 }
 
 /** Capçalera simplificada: el logotip porta a la web principal. */
-export function ClientHeader({ clientName }: { clientName: string }) {
+export function ClientHeader({ clientName, locale = 'es' }: { clientName: string; locale?: Locale }) {
+  const copy = clientCopy[locale]
   return (
     <header
       className="relative z-10 flex items-center justify-between gap-[16px] h-[88px] px-[20px] md:px-[40px] bg-blue-500 print:hidden"
@@ -34,14 +37,14 @@ export function ClientHeader({ clientName }: { clientName: string }) {
       <div className="flex items-center gap-[20px]">
         <Link
           href="/"
-          aria-label="Ir a la web de Mariona Masferrer i Fons"
+          aria-label={copy.homeLabel}
           className="flex items-center min-h-[44px] rounded-[8px] focus-visible:outline-[3px] focus-visible:outline-white focus-visible:outline-offset-[3px]"
         >
           <img src="/logo.svg" alt="" style={{ height: '40px', width: 'auto', display: 'block' }} />
         </Link>
         <span aria-hidden="true" className="hidden md:block w-px h-[28px]" style={{ background: 'rgba(255,255,255,.35)' }} />
         <span className="hidden md:block" style={{ ...monoStyle, color: 'var(--color-blue-100)' }}>
-          Espacio de trabajo compartido
+          {copy.workspaceShared}
         </span>
       </div>
       <span style={{ ...monoStyle, color: 'var(--color-white)' }}>{clientName}</span>
@@ -49,7 +52,7 @@ export function ClientHeader({ clientName }: { clientName: string }) {
   )
 }
 
-export function ClientFooter({ lead }: { lead: string }) {
+export function ClientFooter({ lead, locale = 'es' }: { lead: string; locale?: Locale }) {
   const textStyle = {
     fontSize: '14px',
     lineHeight: '20px',
@@ -62,7 +65,7 @@ export function ClientFooter({ lead }: { lead: string }) {
       style={{ borderTop: '1px solid #E0E6F2' }}
     >
       <div className="mx-auto w-full max-w-[1160px] flex flex-wrap justify-between gap-[12px]">
-        <p style={textStyle}>Espacio privado. Por favor, no compartas este enlace fuera de tu equipo.</p>
+        <p style={textStyle}>{clientCopy[locale].privateNotice}</p>
         <p style={textStyle}>
           {lead}{' '}
           <a href={`mailto:${CONTACT_EMAIL}`} className="underline" style={{ color: 'var(--color-text-accent)' }}>
