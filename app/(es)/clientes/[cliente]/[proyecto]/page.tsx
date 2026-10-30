@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import { clientCopy } from '@/content/clientes'
 import {
   CLIENT_SPACES,
   deliveriesByUnit,
@@ -18,6 +19,7 @@ import {
 import { ClientFooter, ClientHeader, DeliveryStatusPill, Em, StatusPill, monoStyle } from '../../ClientUi'
 import DeliveryCalendarSection, { DeliverySummary } from './DeliveryCalendarSection'
 import ProjectTabs from './ProjectTabs'
+import ProposalSections from './ProposalSections'
 
 type Props = { params: Promise<{ cliente: string; proyecto: string }> }
 
@@ -205,6 +207,9 @@ export default async function ClientProjectPage({ params }: Props) {
   const found = getProject(cliente, proyecto)
   if (!found) notFound()
   const { space, project } = found
+  const locale = space.locale ?? 'es'
+  const copy = clientCopy[locale]
+  const { proposal } = project
 
   const deliveries = project.deliveries?.filter((d) => d.units.length > 0) ?? []
   const hasCalendar = deliveries.length > 0
@@ -218,8 +223,8 @@ export default async function ClientProjectPage({ params }: Props) {
   ]
 
   return (
-    <div className="bg-white">
-      <ClientHeader clientName={space.name} />
+    <div lang={locale} className="bg-white">
+      <ClientHeader clientName={space.name} locale={locale} />
 
       <main>
         {/* Capçalera del projecte: el gris queda sota les cantonades arrodonides de la barra */}
@@ -233,7 +238,7 @@ export default async function ClientProjectPage({ params }: Props) {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              Proyectos activos
+              {copy.projects}
             </Link>
             <div className="flex flex-wrap items-center gap-[12px]">
               <span style={{ ...monoStyle, color: 'var(--color-text-secondary)' }}>
@@ -253,32 +258,38 @@ export default async function ClientProjectPage({ params }: Props) {
             >
               {project.title}
             </h1>
-            <dl className="flex flex-wrap gap-x-[32px] gap-y-[12px]">
-              {facts.map((f) => (
-                <div key={f.label} className="flex flex-col gap-[2px]">
-                  <dt style={{ ...monoStyle, fontSize: '12px', color: 'var(--color-text-secondary)' }}>{f.label}</dt>
-                  <dd style={{ fontSize: 'var(--text-body-xl)', lineHeight: 'var(--text-body-xl--line-height)', fontWeight: 400 }}>
-                    {f.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-            <p
-              style={{
-                fontSize: 'var(--text-body-l)',
-                lineHeight: 'var(--text-body-l--line-height)',
-                fontWeight: 300,
-                color: 'var(--color-text-secondary)',
-                maxWidth: '760px',
-              }}
-            >
-              {project.intro}
-            </p>
+            {!proposal && (
+              <>
+                <dl className="flex flex-wrap gap-x-[32px] gap-y-[12px]">
+                  {facts.map((f) => (
+                    <div key={f.label} className="flex flex-col gap-[2px]">
+                      <dt style={{ ...monoStyle, fontSize: '12px', color: 'var(--color-text-secondary)' }}>{f.label}</dt>
+                      <dd style={{ fontSize: 'var(--text-body-xl)', lineHeight: 'var(--text-body-xl--line-height)', fontWeight: 400 }}>
+                        {f.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+                <p
+                  style={{
+                    fontSize: 'var(--text-body-l)',
+                    lineHeight: 'var(--text-body-l--line-height)',
+                    fontWeight: 300,
+                    color: 'var(--color-text-secondary)',
+                    maxWidth: '760px',
+                  }}
+                >
+                  {project.intro}
+                </p>
+              </>
+            )}
             {hasCalendar && <DeliverySummary project={project} />}
           </div>
         </section>
 
-        {hasCalendar ? (
+        {proposal ? (
+          <ProposalSections proposal={proposal} />
+        ) : hasCalendar ? (
           <ProjectTabs
             tabs={[
               { id: 'programa', label: 'Programa formativo', anchors: ['bloque-'], content: <ProgramSection project={project} /> },
@@ -298,7 +309,7 @@ export default async function ClientProjectPage({ params }: Props) {
         )}
       </main>
 
-      <ClientFooter lead={hasCalendar ? '¿Dudas sobre el programa o el calendario?' : '¿Comentarios sobre la propuesta?'} />
+      <ClientFooter lead={hasCalendar ? '¿Dudas sobre el programa o el calendario?' : copy.proposalComments} locale={locale} />
     </div>
   )
 }

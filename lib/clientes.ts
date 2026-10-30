@@ -10,6 +10,8 @@
  * Els textos admeten *cursiva* entre asteriscos.
  */
 
+import type { Locale } from '@/lib/i18n'
+
 export type Unit = {
   code: string
   title: string
@@ -57,6 +59,62 @@ export type Delivery = {
   note?: string
 }
 
+/** Qui se n'ocupa d'un pas del procés: decideix el color i l'etiqueta. */
+export type ProposalOwner = 'mariona' | 'client'
+
+export type ProposalStep = {
+  /** Sobre quin material es treballa («Sobre InDesign»). */
+  where: string
+  title: string
+  note?: string
+  owner: ProposalOwner
+  video?: { href: string; label: string }
+}
+
+export type ProposalComparisonRow = {
+  concept: string
+  conceptNote?: string
+  classic: string
+  classicNote?: string
+  /** Mostra el valor del procés clàssic ratllat. */
+  classicStruck?: boolean
+  /** Part destacada del valor proposat («0,05 €»). */
+  proposedAmount?: string
+  proposed: string
+  proposedNote?: string
+  delta: string
+  /** `saving`: estalvi quantificat. `neutral`: millora sense xifra. */
+  deltaTone: 'saving' | 'neutral'
+}
+
+/** Proposta de treball: si n'hi ha, la pàgina la mostra en lloc del programa per blocs. */
+export type ProjectProposal = {
+  process: {
+    title: string
+    owners: Record<ProposalOwner, { initial: string; name: string; role: string }>
+    steps: ProposalStep[]
+  }
+  gains: {
+    title: string
+    items: { icon: 'speed' | 'cost' | 'quality'; title: string; text: string }[]
+    comparison: {
+      title: string
+      headers: { concept: string; classic: string; proposed: string }
+      rows: ProposalComparisonRow[]
+      footnote: string
+    }
+  }
+  budget: {
+    title: string
+    label: string
+    heading: string
+    text: string
+    /** Enllaç per compartir de Holded, protegit amb contrasenya. */
+    href: string
+    viewLabel: string
+  }
+}
+
 export type ClientProject = {
   slug: string
   kind: string
@@ -76,11 +134,14 @@ export type ClientProject = {
   deliveries?: Delivery[]
   /** Darrer cop que s'han actualitzat dates o estats de les entregues, ISO. */
   deliveriesUpdated?: string
+  proposal?: ProjectProposal
 }
 
 export type ClientSpace = {
   slug: string
   name: string
+  /** Idioma de la interfície d'aquest client. Per defecte, castellà. */
+  locale?: Locale
   intro: string
   projects: ClientProject[]
 }
@@ -328,6 +389,88 @@ const IA_PARA_EDICION: ClientProject = {
   ],
 }
 
+const AJEDREZ_EN_CLASE: ClientProject = {
+  slug: 'el-ajedrez-en-clase',
+  kind: 'Traducció',
+  meta: 'Castellà → Català',
+  docType: 'Proposta i pressupost',
+  status: 'En valoració',
+  title: 'El ajedrez en clase',
+  summary: 'Proposta de treball i pressupost.',
+  version: 1,
+  date: '2026-10-30',
+  facts: [],
+  intro: '',
+  blocks: [],
+  proposal: {
+    process: {
+      title: 'Com proposo treballar?',
+      owners: {
+        mariona: { initial: 'M', name: 'Mariona', role: 'Mariona Masferrer · Text' },
+        client: { initial: 'F', name: 'FEDAC', role: 'FEDAC · Maquetació' },
+      },
+      steps: [
+        { where: 'Sobre InDesign', title: 'Traducció automàtica del contingut', note: "A partir de l'arxiu d'InDesign.", owner: 'mariona' },
+        {
+          where: 'Sobre InDesign',
+          title: 'Ajust de la maquetació resultant',
+          owner: 'client',
+          video: {
+            href: 'https://www.loom.com/share/e5ffa6ac370248f99843bc1e94e11e87',
+            label: 'Mireu aquest vídeo per fer-vos una idea de la feina que caldrà fer.',
+          },
+        },
+        { where: 'Sobre el PDF maquetat', title: "Revisió de la traducció i correcció d'estil i ortotipogràfica", owner: 'mariona' },
+        { where: 'Sobre InDesign', title: 'Introducció de canvis', note: "Bolqueu a l'InDesign les correccions del PDF.", owner: 'client' },
+        { where: 'Sobre proves', title: 'Revisió de proves o galerades', owner: 'mariona' },
+        { where: 'Sobre InDesign', title: 'Introducció final de canvis', owner: 'client' },
+      ],
+    },
+    gains: {
+      title: 'Què guanyem amb aquest flux de treball?',
+      items: [
+        { icon: 'speed', title: 'Més rapidesa', text: 'Simplifiquem els passos: no cal tornar a maquetar la versió catalana des de zero.' },
+        { icon: 'cost', title: 'Menys costos', text: 'La simplificació també es nota en les tarifes, com veureu en la taula comparativa que segueix.' },
+        { icon: 'quality', title: 'La mateixa qualitat', text: 'Mantenim dues revisions del text en català: sobre el PDF maquetat i sobre les proves.' },
+      ],
+      comparison: {
+        title: 'Taula comparativa de costos',
+        headers: { concept: 'Concepte', classic: 'Procés clàssic', proposed: 'Procés proposat' },
+        rows: [
+          {
+            concept: 'Text',
+            classic: '0,07 € / paraula',
+            classicNote: 'Traducció',
+            classicStruck: true,
+            proposedAmount: '0,05 €',
+            proposed: ' / paraula',
+            proposedNote: "Revisió de la traducció i correcció d'estil i ortotipogràfica",
+            delta: '−29 %',
+            deltaTone: 'saving',
+          },
+          {
+            concept: 'Maquetació',
+            conceptNote: 'Cost intern de FEDAC',
+            classic: 'Procés complet',
+            proposed: 'Només introducció de canvis',
+            delta: 'Menys hores',
+            deltaTone: 'neutral',
+          },
+        ],
+        footnote: 'Sense perdre qualitat: el text en català es revisa dues vegades.',
+      },
+    },
+    budget: {
+      title: 'Pressupost',
+      label: 'Pressupost',
+      heading: 'El ajedrez en clase',
+      text: 'El document detalla cada concepte i les condicions de pagament.',
+      href: 'https://app.holded.com/share/doc/DBYKDc',
+      viewLabel: 'Veure pressupost',
+    },
+  },
+}
+
 export const CLIENT_SPACES: ClientSpace[] = [
   {
     slug: 'calamoycran',
@@ -336,14 +479,22 @@ export const CLIENT_SPACES: ClientSpace[] = [
       'Este es nuestro espacio de trabajo compartido. Aquí encontraréis los proyectos en curso y las propuestas que estamos conversando.',
     projects: [IA_PARA_EDICION],
   },
+  {
+    slug: 'fedac',
+    name: 'FEDAC',
+    locale: 'ca',
+    intro:
+      'Aquest és el nostre espai de treball compartit. Hi trobareu informació sobre els projectes que estem valorant i els projectes en curs.',
+    projects: [AJEDREZ_EN_CLASE],
+  },
 ]
 
 export function getClientSpace(slug: string) {
   return CLIENT_SPACES.find((c) => c.slug === slug)
 }
 
-const dateFormat = (options: Intl.DateTimeFormatOptions) => (iso: string) =>
-  new Intl.DateTimeFormat('es-ES', { ...options, timeZone: 'UTC' }).format(new Date(iso))
+const dateFormat = (options: Intl.DateTimeFormatOptions) => (iso: string, locale: Locale = 'es') =>
+  new Intl.DateTimeFormat(`${locale}-ES`, { ...options, timeZone: 'UTC' }).format(new Date(iso))
 
 /** «13 de octubre de 2026» */
 export const formatDateLong = dateFormat({ day: 'numeric', month: 'long', year: 'numeric' })
